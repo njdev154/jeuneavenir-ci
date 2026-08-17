@@ -1,0 +1,152 @@
+{
+  "_note": "Fiches métiers liées aux 7 filières. Contenu de départ réaliste, à affiner/vérifier avant mise en ligne (notamment les rémunérations).",
+  "metiers": [
+    {
+      "id": "developpeur-web",
+      "nom": "Développeur web",
+      "description": "Conçoit et développe des sites internet et applications web.",
+      "missions": ["Écrire du code", "Corriger des bugs", "Collaborer avec des designers"],
+      "competences": ["HTML/CSS/JS", "Logique de programmation", "Travail en équipe"]
+    },
+    {
+      "id": "administrateur-reseaux",
+      "nom": "Administrateur systèmes et réseaux",
+      "description": "Installe, configure et sécurise les réseaux informatiques et serveurs d'une organisation.",
+      "missions": ["Surveiller le réseau", "Gérer les accès et la sécurité", "Résoudre les pannes"],
+      "competences": ["Réseaux", "Systèmes d'exploitation", "Rigueur et réactivité"]
+    },
+    {
+      "id": "data-analyst",
+      "nom": "Data analyst",
+      "description": "Analyse des données pour aider une entreprise à prendre de meilleures décisions.",
+      "missions": ["Collecter des données", "Créer des tableaux de bord", "Présenter des résultats"],
+      "competences": ["Statistiques", "Excel / outils de data", "Esprit d'analyse"]
+    },
+    {
+      "id": "comptable",
+      "nom": "Comptable",
+      "description": "Gère les comptes financiers d'une entreprise ou d'une organisation.",
+      "missions": ["Tenue des comptes", "Déclarations fiscales", "Bilans"],
+      "competences": ["Rigueur", "Maîtrise des chiffres", "Logiciels comptables"]
+    },
+    {
+      "id": "commercial",
+      "nom": "Commercial",
+      "description": "Vend les produits ou services d'une entreprise et développe son portefeuille clients.",
+      "missions": ["Prospecter de nouveaux clients", "Négocier", "Assurer le suivi client"],
+      "competences": ["Aisance relationnelle", "Persuasion", "Sens de la négociation"]
+    },
+    {
+      "id": "gestionnaire-rh",
+      "nom": "Gestionnaire des ressources humaines",
+      "description": "Gère le recrutement, la formation et l'administration du personnel d'une entreprise.",
+      "missions": ["Recruter", "Gérer les contrats et la paie", "Organiser les formations"],
+      "competences": ["Écoute", "Organisation", "Droit du travail"]
+    },
+    {
+      "id": "avocat",
+      "nom": "Avocat",
+      "description": "Conseille et défend des clients devant la justice.",
+      "missions": ["Conseil juridique", "Plaidoirie", "Rédaction d'actes"],
+      "competences": ["Argumentation", "Connaissance du droit", "Expression orale"]
+    },
+    {
+      "id": "juriste-entreprise",
+      "nom": "Juriste d'entreprise",
+      "description": "Conseille une entreprise sur les questions juridiques liées à son activité (contrats, litiges, conformité).",
+      "missions": ["Rédiger et vérifier des contrats", "Conseiller la direction", "Gérer les litiges"],
+      "competences": ["Rigueur juridique", "Rédaction", "Discrétion"]
+    },
+    {
+      "id": "magistrat",
+      "nom": "Magistrat",
+      "description": "Rend la justice au nom de l'État, en tant que juge ou procureur.",
+      "missions": ["Instruire des dossiers", "Rendre des décisions de justice", "Appliquer la loi"],
+      "competences": ["Impartialité", "Rigueur", "Analyse juridique"]
+    },
+    {
+      "id": "conducteur-travaux",
+      "nom": "Conducteur de travaux",
+      "description": "Supervise l'exécution d'un chantier de construction du début à la fin.",
+      "missions": ["Planifier le chantier", "Coordonner les équipes", "Contrôler la qualité et les délais"],
+      "competences": ["Organisation", "Lecture de plans", "Leadership terrain"]
+    },
+    {
+      "id": "ingenieur-genie-civil",
+      "nom": "Ingénieur génie civil",
+      "description": "Conçoit et dimensionne les structures de bâtiments et infrastructures (ponts, routes, immeubles).",
+      "missions": ["Calculer des structures", "Concevoir des plans techniques", "Superviser la construction"],
+      "competences": ["Mathématiques appliquées", "Logiciels de conception", "Rigueur technique"]
+    },
+    {
+      "id": "topographe",
+      "nom": "Topographe",
+      "description": "Mesure et représente un terrain avec précision avant la construction d'un projet.",
+      "missions": ["Relever des mesures sur le terrain", "Réaliser des plans topographiques", "Vérifier l'implantation d'un ouvrage"],
+      "competences": ["Précision", "Outils de mesure/GPS", "Dessin technique"]
+    },
+    {
+      "id": "infirmier",
+      "nom": "Infirmier / Infirmière",
+      "description": "Assure les soins courants aux patients, en établissement de santé ou à domicile.",
+      "missions": ["Prodiguer des soins", "Surveiller l'état des patients", "Assister les médecins"],
+      "competences": ["Sang-froid", "Empathie", "Connaissances médicales"]
+    },
+    {
+      "id": "medecin",
+      "nom": "Médecin",
+      "description": "Diagnostique et soigne les maladies, généraliste ou spécialiste.",
+      "missions": ["Consulter les patients", "Poser un diagnostic", "Prescrire un traitement"],
+      "competences": ["Connaissances médicales approfondies", "Écoute", "Prise de décision"]
+    },
+    {
+      "id": "pharmacien",
+      "nom": "Pharmacien",
+      "description": "Délivre des médicaments et conseille les patients sur leur bon usage.",
+      "missions": ["Délivrer des médicaments", "Conseiller les patients", "Vérifier les prescriptions"],
+      "competences": ["Rigueur", "Connaissances pharmaceutiques", "Sens du conseil"]
+    },
+    {
+      "id": "community-manager",
+      "nom": "Community manager",
+      "description": "Anime et développe la présence d'une marque sur les réseaux sociaux.",
+      "missions": ["Créer du contenu", "Répondre à la communauté", "Suivre les statistiques"],
+      "competences": ["Créativité", "Rédaction", "Connaissance des réseaux sociaux"]
+    },
+    {
+      "id": "charge-communication",
+      "nom": "Chargé(e) de communication",
+      "description": "Conçoit et met en œuvre la stratégie de communication d'une organisation.",
+      "missions": ["Rédiger des communiqués", "Organiser des événements", "Gérer l'image de marque"],
+      "competences": ["Rédaction", "Organisation", "Sens relationnel"]
+    },
+    {
+      "id": "marketeur-digital",
+      "nom": "Marketeur digital",
+      "description": "Développe la visibilité et les ventes d'une entreprise via les canaux numériques.",
+      "missions": ["Gérer des campagnes publicitaires en ligne", "Analyser les performances", "Optimiser le référencement"],
+      "competences": ["Outils publicitaires en ligne", "Analyse de données", "Créativité"]
+    },
+    {
+      "id": "technicien-agricole",
+      "nom": "Technicien agricole",
+      "description": "Accompagne les exploitants agricoles dans l'amélioration de leur production.",
+      "missions": ["Conseiller les producteurs", "Suivre les cultures", "Contrôler la qualité"],
+      "competences": ["Connaissances agronomiques", "Terrain", "Pédagogie"]
+    },
+    {
+      "id": "ingenieur-agronome",
+      "nom": "Ingénieur agronome",
+      "description": "Conçoit des méthodes pour améliorer la production agricole et la gestion des exploitations.",
+      "missions": ["Optimiser les rendements", "Concevoir des projets agricoles", "Superviser des équipes terrain"],
+      "competences": ["Sciences agronomiques", "Gestion de projet", "Analyse"]
+    },
+    {
+      "id": "agro-entrepreneur",
+      "nom": "Agro-entrepreneur",
+      "description": "Crée et gère sa propre activité dans l'agriculture ou la transformation agroalimentaire.",
+      "missions": ["Gérer une exploitation ou une unité de transformation", "Commercialiser des produits", "Gérer les finances de l'activité"],
+      "competences": ["Sens de l'initiative", "Gestion", "Connaissances agricoles"]
+    }
+  ]
+}

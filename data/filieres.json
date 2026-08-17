@@ -1,0 +1,198 @@
+{
+  "_note": "7 filières couvertes par le quiz d'orientation. Salaires indicatifs = estimations à confirmer avant mise en ligne, jamais présentées comme des chiffres officiels garantis.",
+  "filieres": [
+    {
+      "id": "informatique",
+      "nom": "Informatique",
+      "description": "Conception, développement et maintenance de logiciels, sites web et systèmes informatiques.",
+      "matieres_principales": [
+        "Mathématiques",
+        "Algorithmique",
+        "Programmation",
+        "Réseaux"
+      ],
+      "duree_etudes": "2 ans (BTS) à 5 ans (Master)",
+      "debouches": [
+        "Développement web/mobile",
+        "Administration systèmes et réseaux",
+        "Cybersécurité",
+        "Data / IA"
+      ],
+      "metiers_lies": [
+        "developpeur-web",
+        "administrateur-reseaux",
+        "data-analyst"
+      ],
+      "salaire_indicatif": "150 000 - 400 000 FCFA/mois en début de carrière (estimation à vérifier)",
+      "ecoles_liees": [
+        "pigier-yopougon",
+        "inphb",
+        "ufhb"
+      ]
+    },
+    {
+      "id": "gestion-commerce",
+      "nom": "Gestion & Commerce",
+      "description": "Gestion administrative, comptable et commerciale des entreprises.",
+      "matieres_principales": [
+        "Comptabilité",
+        "Gestion",
+        "Marketing",
+        "Droit des affaires"
+      ],
+      "duree_etudes": "2 ans (BTS) à 5 ans (Master)",
+      "debouches": [
+        "Comptabilité",
+        "Ressources humaines",
+        "Commercial",
+        "Entrepreneuriat"
+      ],
+      "metiers_lies": [
+        "comptable",
+        "commercial",
+        "gestionnaire-rh"
+      ],
+      "salaire_indicatif": "130 000 - 350 000 FCFA/mois en début de carrière (estimation à vérifier)",
+      "ecoles_liees": [
+        "pigier-yopougon",
+        "ufhb"
+      ]
+    },
+    {
+      "id": "droit",
+      "nom": "Droit",
+      "description": "Étude des règles juridiques encadrant la vie en société et les relations entre personnes/institutions.",
+      "matieres_principales": [
+        "Droit civil",
+        "Droit pénal",
+        "Droit public",
+        "Procédure"
+      ],
+      "duree_etudes": "3 ans (Licence) à 5 ans (Master), puis école du barreau/magistrature",
+      "debouches": [
+        "Avocat",
+        "Magistrat",
+        "Juriste d'entreprise",
+        "Notaire"
+      ],
+      "metiers_lies": [
+        "avocat",
+        "juriste-entreprise",
+        "magistrat"
+      ],
+      "salaire_indicatif": "Très variable selon le poste (estimation à vérifier)",
+      "ecoles_liees": [
+        "ufhb"
+      ]
+    },
+    {
+      "id": "genie-civil",
+      "nom": "Génie Civil / BTP",
+      "description": "Conception, construction et suivi de bâtiments, routes et infrastructures.",
+      "matieres_principales": [
+        "Mathématiques",
+        "Physique",
+        "Mécanique des structures",
+        "Dessin technique"
+      ],
+      "duree_etudes": "2 ans (BTS) à 5 ans (Ingénieur)",
+      "debouches": [
+        "Chantier BTP",
+        "Bureau d'études",
+        "Architecture",
+        "Urbanisme"
+      ],
+      "metiers_lies": [
+        "conducteur-travaux",
+        "ingenieur-genie-civil",
+        "topographe"
+      ],
+      "salaire_indicatif": "150 000 - 400 000 FCFA/mois en début de carrière (estimation à vérifier)",
+      "ecoles_liees": [
+        "inphb"
+      ]
+    },
+    {
+      "id": "sante",
+      "nom": "Santé / Médecine",
+      "description": "Formation aux métiers du soin, de la médecine et du paramédical.",
+      "matieres_principales": [
+        "Biologie",
+        "Chimie",
+        "Physiologie",
+        "Anatomie"
+      ],
+      "duree_etudes": "3 ans (paramédical) à 7+ ans (médecine)",
+      "debouches": [
+        "Médecine générale/spécialisée",
+        "Soins infirmiers",
+        "Pharmacie",
+        "Sage-femme"
+      ],
+      "metiers_lies": [
+        "infirmier",
+        "medecin",
+        "pharmacien"
+      ],
+      "salaire_indicatif": "Très variable selon la spécialité (estimation à vérifier)",
+      "ecoles_liees": [
+        "ufr-sciences-medicales"
+      ]
+    },
+    {
+      "id": "communication-marketing",
+      "nom": "Communication & Marketing",
+      "description": "Stratégies de communication, promotion et relation client pour les marques et organisations.",
+      "matieres_principales": [
+        "Marketing",
+        "Communication digitale",
+        "Design",
+        "Rédaction"
+      ],
+      "duree_etudes": "2 ans (BTS) à 5 ans (Master)",
+      "debouches": [
+        "Community management",
+        "Publicité",
+        "Relations publiques",
+        "Marketing digital"
+      ],
+      "metiers_lies": [
+        "community-manager",
+        "charge-communication",
+        "marketeur-digital"
+      ],
+      "salaire_indicatif": "130 000 - 350 000 FCFA/mois en début de carrière (estimation à vérifier)",
+      "ecoles_liees": [
+        "pigier-yopougon",
+        "istc-polytechnique"
+      ]
+    },
+    {
+      "id": "agronomie",
+      "nom": "Agronomie / Agro-industrie",
+      "description": "Production agricole, transformation des produits et gestion des exploitations.",
+      "matieres_principales": [
+        "Biologie végétale",
+        "Sciences du sol",
+        "Économie agricole",
+        "Agro-technologie"
+      ],
+      "duree_etudes": "2 ans (BTS) à 5 ans (Ingénieur agronome)",
+      "debouches": [
+        "Exploitation agricole",
+        "Agro-industrie",
+        "Recherche agricole",
+        "Conseil agricole"
+      ],
+      "metiers_lies": [
+        "technicien-agricole",
+        "ingenieur-agronome",
+        "agro-entrepreneur"
+      ],
+      "salaire_indicatif": "130 000 - 350 000 FCFA/mois en début de carrière (estimation à vérifier)",
+      "ecoles_liees": [
+        "inphb"
+      ]
+    }
+  ]
+}

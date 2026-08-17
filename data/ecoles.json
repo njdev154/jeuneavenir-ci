@@ -1,0 +1,45 @@
+{
+  "_note": "Exemples de départ. Compléter avec de vraies informations vérifiées avant mise en ligne.",
+  "ecoles": [
+    {
+      "id": "pigier-yopougon",
+      "nom": "PIGIER Côte d'Ivoire - Yopougon",
+      "ville": "Abidjan (Yopougon)",
+      "statut": "Privé",
+      "formations": ["informatique", "gestion-commerce", "communication-marketing"],
+      "contact": ""
+    },
+    {
+      "id": "inphb",
+      "nom": "Institut National Polytechnique Félix Houphouët-Boigny (INP-HB)",
+      "ville": "Yamoussoukro",
+      "statut": "Public",
+      "formations": ["genie-civil", "informatique", "agronomie"],
+      "contact": ""
+    },
+    {
+      "id": "ufhb",
+      "nom": "Université Félix Houphouët-Boigny",
+      "ville": "Abidjan (Cocody)",
+      "statut": "Public",
+      "formations": ["droit", "gestion-commerce", "informatique"],
+      "contact": ""
+    },
+    {
+      "id": "ufr-sciences-medicales",
+      "nom": "UFR Sciences Médicales - Université Félix Houphouët-Boigny",
+      "ville": "Abidjan (Cocody)",
+      "statut": "Public",
+      "formations": ["sante"],
+      "contact": ""
+    },
+    {
+      "id": "istc-polytechnique",
+      "nom": "ISTC Polytechnique",
+      "ville": "Abidjan",
+      "statut": "Privé",
+      "formations": ["communication-marketing"],
+      "contact": ""
+    }
+  ]
+}

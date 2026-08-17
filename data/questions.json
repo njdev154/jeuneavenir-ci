@@ -1,0 +1,145 @@
+{
+  "_note": "Banque de 14 questions. Le quiz tire 7 questions au hasard à chaque lancement pour varier l'expérience tout en restant équilibré entre les 7 filières. Chaque réponse pointe vers une ou plusieurs filières (id correspondant à data/filieres.json).",
+  "questions": [
+    {
+      "id": "q1",
+      "texte": "Quelle matière préfères-tu au lycée ?",
+      "reponses": [
+        { "texte": "Mathématiques / Physique", "filieres": ["informatique", "genie-civil"] },
+        { "texte": "Sciences de la vie et de la terre (SVT)", "filieres": ["sante", "agronomie"] },
+        { "texte": "Économie / Gestion", "filieres": ["gestion-commerce"] },
+        { "texte": "Français / Philosophie", "filieres": ["droit", "communication-marketing"] }
+      ]
+    },
+    {
+      "id": "q2",
+      "texte": "Dans un projet de groupe, tu es plutôt...",
+      "reponses": [
+        { "texte": "Celui qui résout les problèmes techniques", "filieres": ["informatique", "genie-civil"] },
+        { "texte": "Celui qui organise et gère le budget", "filieres": ["gestion-commerce"] },
+        { "texte": "Celui qui prend la parole et convainc les autres", "filieres": ["droit", "communication-marketing"] },
+        { "texte": "Celui qui prend soin des autres membres", "filieres": ["sante"] }
+      ]
+    },
+    {
+      "id": "q3",
+      "texte": "Qu'est-ce qui te motive le plus dans un futur métier ?",
+      "reponses": [
+        { "texte": "Créer et construire des choses concrètes", "filieres": ["genie-civil", "informatique"] },
+        { "texte": "Aider et soigner les autres", "filieres": ["sante"] },
+        { "texte": "Défendre la justice et les droits des gens", "filieres": ["droit"] },
+        { "texte": "Gagner de l'argent et entreprendre", "filieres": ["gestion-commerce"] }
+      ]
+    },
+    {
+      "id": "q4",
+      "texte": "Tu préfères travailler...",
+      "reponses": [
+        { "texte": "Sur un ordinateur, seul(e) et concentré(e)", "filieres": ["informatique"] },
+        { "texte": "En extérieur ou sur le terrain", "filieres": ["genie-civil", "agronomie"] },
+        { "texte": "En contact direct avec des gens toute la journée", "filieres": ["sante", "communication-marketing"] },
+        { "texte": "Dans un bureau, avec des dossiers et des chiffres", "filieres": ["gestion-commerce", "droit"] }
+      ]
+    },
+    {
+      "id": "q5",
+      "texte": "Un ami te demande de l'aide pour un problème. Tu es plutôt doué(e) pour...",
+      "reponses": [
+        { "texte": "Réparer ou comprendre un appareil électronique", "filieres": ["informatique"] },
+        { "texte": "Expliquer clairement un règlement ou une règle", "filieres": ["droit"] },
+        { "texte": "Le rassurer et prendre soin de lui", "filieres": ["sante"] },
+        { "texte": "Lui donner un bon conseil pour vendre ou négocier", "filieres": ["gestion-commerce"] }
+      ]
+    },
+    {
+      "id": "q6",
+      "texte": "Quel type de contenu regardes-tu le plus volontiers sur internet ?",
+      "reponses": [
+        { "texte": "Tutoriels tech, jeux vidéo, applications", "filieres": ["informatique"] },
+        { "texte": "Actualités, débats, politique", "filieres": ["droit", "communication-marketing"] },
+        { "texte": "Santé, bien-être, sciences", "filieres": ["sante"] },
+        { "texte": "Business, entrepreneuriat, marques", "filieres": ["gestion-commerce", "communication-marketing"] }
+      ]
+    },
+    {
+      "id": "q7",
+      "texte": "Comment décrirais-tu ta relation avec la nature et l'environnement ?",
+      "reponses": [
+        { "texte": "Je m'y intéresse beaucoup, j'aime le vivant", "filieres": ["agronomie"] },
+        { "texte": "J'aime bâtir et transformer un espace", "filieres": ["genie-civil"] },
+        { "texte": "Peu d'intérêt particulier", "filieres": ["informatique", "gestion-commerce"] },
+        { "texte": "Je préfère les enjeux humains/sociaux", "filieres": ["droit", "sante"] }
+      ]
+    },
+    {
+      "id": "q8",
+      "texte": "Dans une entreprise, la tâche qui t'attire le plus est...",
+      "reponses": [
+        { "texte": "Concevoir un site ou une application", "filieres": ["informatique"] },
+        { "texte": "Gérer les comptes et le budget", "filieres": ["gestion-commerce"] },
+        { "texte": "Communiquer sur les réseaux sociaux", "filieres": ["communication-marketing"] },
+        { "texte": "Superviser un chantier", "filieres": ["genie-civil"] }
+      ]
+    },
+    {
+      "id": "q9",
+      "texte": "Un métier idéal pour toi doit avant tout...",
+      "reponses": [
+        { "texte": "Avoir un impact direct sur la vie des gens (santé, justice)", "filieres": ["sante", "droit"] },
+        { "texte": "Permettre de créer, innover, résoudre des problèmes techniques", "filieres": ["informatique", "genie-civil"] },
+        { "texte": "Offrir de bonnes perspectives financières rapidement", "filieres": ["gestion-commerce"] },
+        { "texte": "Être créatif et varié au quotidien", "filieres": ["communication-marketing"] }
+      ]
+    },
+    {
+      "id": "q10",
+      "texte": "Tu es plus à l'aise avec...",
+      "reponses": [
+        { "texte": "Les chiffres et les calculs", "filieres": ["informatique", "gestion-commerce"] },
+        { "texte": "Les mots, l'argumentation et la rédaction", "filieres": ["droit", "communication-marketing"] },
+        { "texte": "Le vivant (plantes, animaux, corps humain)", "filieres": ["sante", "agronomie"] },
+        { "texte": "Les objets techniques et la construction", "filieres": ["genie-civil"] }
+      ]
+    },
+    {
+      "id": "q11",
+      "texte": "Que ferais-tu si tu avais un weekend totalement libre ?",
+      "reponses": [
+        { "texte": "Bricoler, réparer ou bidouiller quelque chose", "filieres": ["informatique", "genie-civil"] },
+        { "texte": "Faire du bénévolat ou aider quelqu'un", "filieres": ["sante"] },
+        { "texte": "Monter un petit projet ou une vente", "filieres": ["gestion-commerce"] },
+        { "texte": "Créer du contenu (vidéo, photo, texte) pour les réseaux", "filieres": ["communication-marketing"] }
+      ]
+    },
+    {
+      "id": "q12",
+      "texte": "Dans un débat, tu es plutôt...",
+      "reponses": [
+        { "texte": "Celui/celle qui argumente avec des règles et des faits précis", "filieres": ["droit"] },
+        { "texte": "Celui/celle qui reste factuel et technique", "filieres": ["informatique", "genie-civil"] },
+        { "texte": "Celui/celle qui parle avec émotion et persuasion", "filieres": ["communication-marketing"] },
+        { "texte": "Celui/celle qui pense d'abord aux conséquences humaines", "filieres": ["sante"] }
+      ]
+    },
+    {
+      "id": "q13",
+      "texte": "Quel univers professionnel te fait le plus rêver ?",
+      "reponses": [
+        { "texte": "Une startup tech ou un studio de développement", "filieres": ["informatique"] },
+        { "texte": "Un hôpital ou un centre de santé", "filieres": ["sante"] },
+        { "texte": "Un cabinet d'avocats ou un tribunal", "filieres": ["droit"] },
+        { "texte": "Une exploitation agricole ou une coopérative", "filieres": ["agronomie"] }
+      ]
+    },
+    {
+      "id": "q14",
+      "texte": "Ce qui te ferait le plus fièr(e) dans ta future carrière...",
+      "reponses": [
+        { "texte": "Avoir construit quelque chose de tes propres mains (bâtiment, appli)", "filieres": ["genie-civil", "informatique"] },
+        { "texte": "Avoir dirigé ta propre entreprise", "filieres": ["gestion-commerce"] },
+        { "texte": "Avoir sauvé ou soigné des vies", "filieres": ["sante"] },
+        { "texte": "Avoir défendu une cause juste", "filieres": ["droit"] }
+      ]
+    }
+  ]
+}
