@@ -1,0 +1,151 @@
+/* ===========================================
+   JEUNEAVENIR CI - Feuille de style principale
+   =========================================== */
+
+/* --- Variables : charte graphique du cahier des charges --- */
+:root {
+  --couleur-principale: #C2592E; /* Terracotta / Ocre */
+  --couleur-fond-sombre: #1A1917;
+  --couleur-sable: #F4EDE4;
+  --couleur-texte: #1A1917;
+  --couleur-texte-clair: #FFFFFF;
+  --couleur-gris: #6B6560;
+
+  --police-titres: 'Fraunces', serif;
+  --police-texte: 'Inter', sans-serif;
+
+  --rayon-carte: 12px;
+  --ombre-carte: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Reset de base --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--police-texte);
+  color: var(--couleur-texte);
+  background-color: var(--couleur-sable);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--police-titres);
+  font-weight: 700;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
+
+@media (min-width: 768px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2rem; }
+}
+
+/* --- Header --- */
+.entete {
+  background-color: var(--couleur-fond-sombre);
+  color: var(--couleur-texte-clair);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--police-titres);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--couleur-texte-clair);
+  text-decoration: none;
+}
+
+/* Menu mobile : caché par défaut sur petit écran */
+.nav-principale {
+  display: none;
+  flex-direction: column;
+}
+
+.nav-principale.nav-ouverte {
+  display: flex;
+}
+
+.nav-principale a {
+  color: var(--couleur-texte-clair);
+  text-decoration: none;
+  padding: 12px 0;
+}
+
+.menu-burger {
+  background: none;
+  border: none;
+  color: var(--couleur-texte-clair);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (min-width: 900px) {
+  .menu-burger { display: none; }
+  .nav-principale {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+/* --- Boutons --- */
+.bouton-principal {
+  display: inline-block;
+  background-color: var(--couleur-principale);
+  color: var(--couleur-texte-clair);
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.bouton-principal:hover {
+  background-color: #a44a25;
+}
+
+.bouton-secondaire {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--couleur-principale);
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid var(--couleur-principale);
+  cursor: pointer;
+}
+
+/* --- Cartes (réutilisées partout : filières, écoles, mentors, offres) --- */
+.carte {
+  background-color: #fff;
+  border-radius: var(--rayon-carte);
+  box-shadow: var(--ombre-carte);
+  padding: 20px;
+}
+
+/* --- Footer --- */
+.pied-de-page {
+  background-color: var(--couleur-fond-sombre);
+  color: var(--couleur-sable);
+  padding: 32px 24px;
+  margin-top: 48px;
+}
+
+/* --- Conteneur général --- */
+.conteneur {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
