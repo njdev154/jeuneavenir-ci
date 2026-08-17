@@ -1,0 +1,11 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+*.swp
+
+# Si un jour tu ajoutes des dépendances (V2)
+node_modules/
+.env
