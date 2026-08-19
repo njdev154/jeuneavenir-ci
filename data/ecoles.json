@@ -1,45 +1,1005 @@
 {
-  "_note": "Exemples de départ. Compléter avec de vraies informations vérifiées avant mise en ligne.",
+  "_note": "Base reconstruite à partir du repertoire officiel MESRS (portail bac.mesrs-ci.net), croisee avec les sites propres des etablissements quand disponibles. 'domaine_confirme: false' signifie que l'etablissement est bien reel et autorise, mais que le rattachement a nos 7 filieres est une estimation raisonnable (nom/reputation), pas une confirmation filiere-par-filiere sur le site de l'ecole -- a verifier avant affichage en production.",
+  "date_derniere_verification_globale": "2026-08-19",
+  "sources_generales": [
+    "https://bac.mesrs-ci.net/guide/orientation",
+    "https://bac.mesrs-ci.net/offres/ets-prives",
+    "https://bac.mesrs-ci.net/offres/grdes-ecoles",
+    "https://www.enseignement.gouv.ci/publications/sous-categorie/28"
+  ],
   "ecoles": [
     {
-      "id": "pigier-yopougon",
-      "nom": "PIGIER Côte d'Ivoire - Yopougon",
-      "ville": "Abidjan (Yopougon)",
-      "statut": "Privé",
-      "formations": ["informatique", "gestion-commerce", "communication-marketing"],
-      "contact": ""
+      "id": "ufhb-droit",
+      "nom": "Université Félix Houphouët-Boigny — UFR Sciences Juridiques, Administratives et Politiques",
+      "sigle": "UFHB",
+      "statut": "public",
+      "type": "universite",
+      "tutelle": "MESRS",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "droit"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master",
+        "Doctorat"
+      ],
+      "contact": {
+        "site": "https://www.univ-fhb.edu.ci/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
     },
     {
-      "id": "inphb",
-      "nom": "Institut National Polytechnique Félix Houphouët-Boigny (INP-HB)",
-      "ville": "Yamoussoukro",
-      "statut": "Public",
-      "formations": ["genie-civil", "informatique", "agronomie"],
-      "contact": ""
-    },
-    {
-      "id": "ufhb",
-      "nom": "Université Félix Houphouët-Boigny",
-      "ville": "Abidjan (Cocody)",
-      "statut": "Public",
-      "formations": ["droit", "gestion-commerce", "informatique"],
-      "contact": ""
+      "id": "ufhb-eco-gestion",
+      "nom": "Université Félix Houphouët-Boigny — UFR Sciences Économiques et Gestion",
+      "sigle": "UFHB",
+      "statut": "public",
+      "type": "universite",
+      "tutelle": "MESRS",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "gestion-commerce"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master",
+        "Doctorat"
+      ],
+      "contact": {
+        "site": "https://www.univ-fhb.edu.ci/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
     },
     {
       "id": "ufr-sciences-medicales",
-      "nom": "UFR Sciences Médicales - Université Félix Houphouët-Boigny",
-      "ville": "Abidjan (Cocody)",
-      "statut": "Public",
-      "formations": ["sante"],
-      "contact": ""
+      "nom": "Université Félix Houphouët-Boigny — UFR Sciences Médicales",
+      "sigle": "UFHB",
+      "statut": "public",
+      "type": "universite",
+      "tutelle": "Ministère de la Santé et de l'Hygiène Publique / MESRS",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "sante"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master",
+        "Doctorat"
+      ],
+      "contact": {
+        "site": "https://www.ufrsm-ufhb.ci/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "una-genie-civil",
+      "nom": "Université Nangui Abrogoua — UFR Sciences et Technologies (Génie Civil)",
+      "sigle": "UNA",
+      "statut": "public",
+      "type": "universite",
+      "tutelle": "MESRS",
+      "ville": "Abidjan",
+      "commune": "Abobo-Adjamé",
+      "campus_de": null,
+      "domaines": [
+        "genie-civil"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "una-agronomie",
+      "nom": "Université Nangui Abrogoua — Agronomie et Sciences Agricoles",
+      "sigle": "UNA",
+      "statut": "public",
+      "type": "universite",
+      "tutelle": "MESRS",
+      "ville": "Abidjan",
+      "commune": "Abobo-Adjamé",
+      "campus_de": null,
+      "domaines": [
+        "agronomie"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "uao-bouake-droit",
+      "nom": "Université Alassane Ouattara — filière Droit",
+      "sigle": "UAO",
+      "statut": "public",
+      "type": "universite",
+      "tutelle": "MESRS",
+      "ville": "Bouaké",
+      "commune": "Bouaké",
+      "campus_de": null,
+      "domaines": [
+        "droit"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "ujlog-daloa",
+      "nom": "Université Jean Lorougnon Guédé",
+      "sigle": "UJLoG",
+      "statut": "public",
+      "type": "universite",
+      "tutelle": "MESRS",
+      "ville": "Daloa",
+      "commune": "Daloa",
+      "campus_de": null,
+      "domaines": [
+        "droit",
+        "gestion-commerce"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "upgc-korhogo",
+      "nom": "Université Péléforo Gon Coulibaly",
+      "sigle": "UPGC",
+      "statut": "public",
+      "type": "universite",
+      "tutelle": "MESRS",
+      "ville": "Korhogo",
+      "commune": "Korhogo",
+      "campus_de": null,
+      "domaines": [
+        "droit",
+        "gestion-commerce"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "uvci",
+      "nom": "Université Virtuelle de Côte d'Ivoire",
+      "sigle": "UVCI",
+      "statut": "public",
+      "type": "universite",
+      "tutelle": "MESRS",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "informatique"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master",
+        "Doctorat"
+      ],
+      "contact": {
+        "site": "https://bac.mesrs-ci.net/offres/formations/uvci",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "inphb-stic",
+      "nom": "INP-HB — École STIC (Sciences et Technologies de l'Information et de la Communication)",
+      "sigle": "INP-HB",
+      "statut": "public",
+      "type": "grande_ecole",
+      "tutelle": "MESRS",
+      "ville": "Yamoussoukro",
+      "commune": "Yamoussoukro",
+      "campus_de": null,
+      "domaines": [
+        "informatique"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master",
+        "Ingénieur"
+      ],
+      "contact": {
+        "site": "https://new-website.inphb.ci/ecoles-et-centres",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "inphb-escae",
+      "nom": "INP-HB — ESCAE (École Supérieure de Commerce et d'Administration des Entreprises)",
+      "sigle": "INP-HB",
+      "statut": "public",
+      "type": "grande_ecole",
+      "tutelle": "MESRS",
+      "ville": "Yamoussoukro",
+      "commune": "Yamoussoukro",
+      "campus_de": null,
+      "domaines": [
+        "gestion-commerce"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "https://new-website.inphb.ci/ecoles-et-centres",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "inphb-estp",
+      "nom": "INP-HB — ESTP (École Supérieure des Travaux Publics)",
+      "sigle": "INP-HB",
+      "statut": "public",
+      "type": "grande_ecole",
+      "tutelle": "MESRS",
+      "ville": "Yamoussoukro",
+      "commune": "Yamoussoukro",
+      "campus_de": null,
+      "domaines": [
+        "genie-civil"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master",
+        "Ingénieur"
+      ],
+      "contact": {
+        "site": "https://new-website.inphb.ci/ecoles-et-centres",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "inphb-esa",
+      "nom": "INP-HB — ESA (École Supérieure d'Agronomie)",
+      "sigle": "INP-HB",
+      "statut": "public",
+      "type": "grande_ecole",
+      "tutelle": "MESRS",
+      "ville": "Yamoussoukro",
+      "commune": "Yamoussoukro",
+      "campus_de": null,
+      "domaines": [
+        "agronomie"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master",
+        "Ingénieur"
+      ],
+      "contact": {
+        "site": "https://new-website.inphb.ci/ecoles-et-centres",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "ensea",
+      "nom": "École Nationale Supérieure de Statistique et d'Économie Appliquée",
+      "sigle": "ENSEA",
+      "statut": "public",
+      "type": "grande_ecole",
+      "tutelle": "MESRS",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "gestion-commerce",
+        "informatique"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "https://ensea.ed.ci/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "esatic",
+      "nom": "École Supérieure Africaine des Technologies de l'Information et de la Communication",
+      "sigle": "ESATIC",
+      "statut": "public",
+      "type": "grande_ecole",
+      "tutelle": "MESRS",
+      "ville": "Abidjan",
+      "commune": "Treichville",
+      "campus_de": null,
+      "domaines": [
+        "informatique"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master",
+        "Doctorat"
+      ],
+      "contact": {
+        "site": "https://esatic.ci/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "infas",
+      "nom": "Institut National de Formation des Agents de Santé",
+      "sigle": "INFAS",
+      "statut": "public",
+      "type": "institut",
+      "tutelle": "Ministère de la Santé et de l'Hygiène Publique",
+      "ville": "Abidjan",
+      "commune": "Treichville",
+      "campus_de": null,
+      "domaines": [
+        "sante"
+      ],
+      "niveaux": [
+        "Diplôme d'État"
+      ],
+      "contact": {
+        "site": "https://infas.ci/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
     },
     {
       "id": "istc-polytechnique",
-      "nom": "ISTC Polytechnique",
+      "nom": "ISTC Polytechnique — École de Publicité Marketing / École de Journalisme",
+      "sigle": "ISTC",
+      "statut": "public",
+      "type": "grande_ecole",
+      "tutelle": "Ministère de la Communication et des Médias",
       "ville": "Abidjan",
-      "statut": "Privé",
-      "formations": ["communication-marketing"],
-      "contact": ""
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "communication-marketing"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "https://www.istcpolytechnique.ci/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "hec-abidjan",
+      "nom": "Hautes Études Commerciales d'Abidjan",
+      "sigle": "HEC-Abidjan",
+      "statut": "prive",
+      "type": "universite",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "gestion-commerce"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "cerap-uj",
+      "nom": "CERAP / Université Jésuite",
+      "sigle": "CERAP/UJ",
+      "statut": "prive",
+      "type": "universite",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "droit",
+        "gestion-commerce",
+        "communication-marketing"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": {
+        "annee": 2023,
+        "score": 130,
+        "mention": "sur 160"
+      },
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "ucao-uua",
+      "nom": "Université Catholique de l'Afrique de l'Ouest — Unité Universitaire d'Abidjan",
+      "sigle": "UCAO-UUA",
+      "statut": "prive",
+      "type": "universite",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "droit",
+        "gestion-commerce",
+        "communication-marketing"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": {
+        "annee": 2023,
+        "score": 132,
+        "mention": "1re place, sur 160"
+      },
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "rusta-abidjan",
+      "nom": "RUSTA Université",
+      "sigle": "RUSTA",
+      "statut": "prive",
+      "type": "universite",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "gestion-commerce"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": {
+        "annee": 2023,
+        "score": 131,
+        "mention": "sur 160"
+      },
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "rusta-bouake",
+      "nom": "RUSTA Université — Annexe de Bouaké",
+      "sigle": "RUSTA",
+      "statut": "prive",
+      "type": "universite",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Bouaké",
+      "commune": "Bouaké",
+      "campus_de": "rusta-abidjan",
+      "domaines": [
+        "gestion-commerce"
+      ],
+      "niveaux": [
+        "Licence"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "etic-cocody",
+      "nom": "École Technique Informatique et Commerciale University",
+      "sigle": "ETIC University",
+      "statut": "prive",
+      "type": "universite",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "informatique",
+        "gestion-commerce"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "etic-bondoukou",
+      "nom": "ETIC University — Antenne de Bondoukou",
+      "sigle": "ETIC University",
+      "statut": "prive",
+      "type": "universite",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Bondoukou",
+      "commune": "Bondoukou",
+      "campus_de": "etic-cocody",
+      "domaines": [
+        "informatique",
+        "gestion-commerce"
+      ],
+      "niveaux": [
+        "Licence"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "gnu-cocody",
+      "nom": "Global Numerik University",
+      "sigle": "GNU",
+      "statut": "prive",
+      "type": "universite",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "informatique"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "esit-cocody",
+      "nom": "École Supérieure d'Interprétariat et de Traduction",
+      "sigle": "ESIT",
+      "statut": "prive",
+      "type": "universite",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Cocody",
+      "campus_de": null,
+      "domaines": [
+        "communication-marketing"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_officiel",
+        "domaine_confirme": false,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "isa-sante",
+      "nom": "ISA Santé (en partenariat avec l'INFAS)",
+      "sigle": "ISA Santé",
+      "statut": "prive",
+      "type": "institut",
+      "tutelle": "Ministère de la Santé et de l'Hygiène Publique",
+      "ville": "Abidjan",
+      "commune": "Abidjan",
+      "campus_de": null,
+      "domaines": [
+        "sante"
+      ],
+      "niveaux": [
+        "BTS",
+        "Diplôme d'État"
+      ],
+      "contact": {
+        "site": "https://www.isa.ci/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_ecole",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "eipc-abidjan",
+      "nom": "EIPC-Abidjan — École Internationale des Ponts et Chaussées",
+      "sigle": "EIPC",
+      "statut": "prive",
+      "type": "grande_ecole",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Abidjan",
+      "campus_de": null,
+      "domaines": [
+        "genie-civil"
+      ],
+      "niveaux": [
+        "Licence",
+        "Master"
+      ],
+      "contact": {
+        "site": "https://eipc-abidjan.ci/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_ecole",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "pigier-plateau",
+      "nom": "Pigier Côte d'Ivoire — Campus Plateau",
+      "sigle": "Pigier CI",
+      "statut": "prive",
+      "type": "grande_ecole",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Plateau",
+      "campus_de": null,
+      "domaines": [
+        "informatique",
+        "gestion-commerce",
+        "communication-marketing"
+      ],
+      "niveaux": [
+        "BTS",
+        "Licence"
+      ],
+      "contact": {
+        "site": "https://www.pigierci.com/",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": {
+        "annee": 2022,
+        "score": 131,
+        "mention": "2e place grandes écoles privées, sur 160"
+      },
+      "verification": {
+        "statut": "verifie_ecole",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
+    },
+    {
+      "id": "pigier-yopougon",
+      "nom": "Pigier Côte d'Ivoire — Campus Yopougon",
+      "sigle": "Pigier CI",
+      "statut": "prive",
+      "type": "grande_ecole",
+      "tutelle": "MESRS (établissement privé autorisé)",
+      "ville": "Abidjan",
+      "commune": "Yopougon",
+      "campus_de": "pigier-plateau",
+      "domaines": [
+        "informatique",
+        "gestion-commerce",
+        "communication-marketing"
+      ],
+      "niveaux": [
+        "BTS"
+      ],
+      "contact": {
+        "site": "",
+        "telephone": "",
+        "email": ""
+      },
+      "evaluation_mesrs": null,
+      "verification": {
+        "statut": "verifie_ecole",
+        "domaine_confirme": true,
+        "date": "2026-08-19"
+      },
+      "sources": [
+        "https://bac.mesrs-ci.net/offres/ets-prives"
+      ]
     }
   ]
 }

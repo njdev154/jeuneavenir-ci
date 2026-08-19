@@ -25,11 +25,18 @@
       ],
       "salaire_indicatif": "150 000 - 400 000 FCFA/mois en début de carrière (estimation à vérifier)",
       "ecoles_liees": [
-        "pigier-yopougon",
-        "inphb",
-        "ufhb"
+        "uvci",
+        "inphb-stic",
+        "ensea",
+        "esatic",
+        "etic-cocody",
+        "etic-bondoukou",
+        "gnu-cocody",
+        "pigier-plateau",
+        "pigier-yopougon"
       ],
-      "code_holland": "IRC"
+      "code_holland": "IRC",
+      "holland_code_note": "Code Holland attribue par le modele de correspondance du site (methode RIASEC/O*NET), et non une donnee officielle du MESRS."
     },
     {
       "id": "gestion-commerce",
@@ -55,10 +62,23 @@
       ],
       "salaire_indicatif": "130 000 - 350 000 FCFA/mois en début de carrière (estimation à vérifier)",
       "ecoles_liees": [
-        "pigier-yopougon",
-        "ufhb"
+        "ufhb-eco-gestion",
+        "ujlog-daloa",
+        "upgc-korhogo",
+        "inphb-escae",
+        "ensea",
+        "hec-abidjan",
+        "cerap-uj",
+        "ucao-uua",
+        "rusta-abidjan",
+        "rusta-bouake",
+        "etic-cocody",
+        "etic-bondoukou",
+        "pigier-plateau",
+        "pigier-yopougon"
       ],
-      "code_holland": "ECS"
+      "code_holland": "ECS",
+      "holland_code_note": "Code Holland attribue par le modele de correspondance du site (methode RIASEC/O*NET), et non une donnee officielle du MESRS."
     },
     {
       "id": "droit",
@@ -84,9 +104,15 @@
       ],
       "salaire_indicatif": "Très variable selon le poste (estimation à vérifier)",
       "ecoles_liees": [
-        "ufhb"
+        "ufhb-droit",
+        "uao-bouake-droit",
+        "ujlog-daloa",
+        "upgc-korhogo",
+        "cerap-uj",
+        "ucao-uua"
       ],
-      "code_holland": "ESA"
+      "code_holland": "ESA",
+      "holland_code_note": "Code Holland attribue par le modele de correspondance du site (methode RIASEC/O*NET), et non une donnee officielle du MESRS."
     },
     {
       "id": "genie-civil",
@@ -112,9 +138,12 @@
       ],
       "salaire_indicatif": "150 000 - 400 000 FCFA/mois en début de carrière (estimation à vérifier)",
       "ecoles_liees": [
-        "inphb"
+        "una-genie-civil",
+        "inphb-estp",
+        "eipc-abidjan"
       ],
-      "code_holland": "RIC"
+      "code_holland": "RIC",
+      "holland_code_note": "Code Holland attribue par le modele de correspondance du site (methode RIASEC/O*NET), et non une donnee officielle du MESRS."
     },
     {
       "id": "sante",
@@ -140,9 +169,12 @@
       ],
       "salaire_indicatif": "Très variable selon la spécialité (estimation à vérifier)",
       "ecoles_liees": [
-        "ufr-sciences-medicales"
+        "ufr-sciences-medicales",
+        "infas",
+        "isa-sante"
       ],
-      "code_holland": "SIR"
+      "code_holland": "SIR",
+      "holland_code_note": "Code Holland attribue par le modele de correspondance du site (methode RIASEC/O*NET), et non une donnee officielle du MESRS."
     },
     {
       "id": "communication-marketing",
@@ -168,10 +200,15 @@
       ],
       "salaire_indicatif": "130 000 - 350 000 FCFA/mois en début de carrière (estimation à vérifier)",
       "ecoles_liees": [
-        "pigier-yopougon",
-        "istc-polytechnique"
+        "istc-polytechnique",
+        "cerap-uj",
+        "ucao-uua",
+        "esit-cocody",
+        "pigier-plateau",
+        "pigier-yopougon"
       ],
-      "code_holland": "AES"
+      "code_holland": "AES",
+      "holland_code_note": "Code Holland attribue par le modele de correspondance du site (methode RIASEC/O*NET), et non une donnee officielle du MESRS."
     },
     {
       "id": "agronomie",
@@ -197,9 +234,11 @@
       ],
       "salaire_indicatif": "130 000 - 350 000 FCFA/mois en début de carrière (estimation à vérifier)",
       "ecoles_liees": [
-        "inphb"
+        "una-agronomie",
+        "inphb-esa"
       ],
-      "code_holland": "RIS"
+      "code_holland": "RIS",
+      "holland_code_note": "Code Holland attribue par le modele de correspondance du site (methode RIASEC/O*NET), et non une donnee officielle du MESRS."
     }
   ]
 }
