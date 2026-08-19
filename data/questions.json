@@ -1,144 +1,446 @@
 {
-  "_note": "Banque de 14 questions. Le quiz tire 7 questions au hasard à chaque lancement pour varier l'expérience tout en restant équilibré entre les 7 filières. Chaque réponse pointe vers une ou plusieurs filières (id correspondant à data/filieres.json).",
+  "_note": "Banque de 14 questions RIASEC/Holland. Le quiz tire 7 questions au hasard. Chaque réponse donne des points sur les 6 dimensions R-I-A-S-E-C (pas directement sur les filières). Le résultat final est un code Holland en 3 lettres, comparé au code_holland de chaque filière (voir data/filieres.json).",
+  "totaux_par_lettre_banque_complete": {
+    "R": 32,
+    "I": 33,
+    "A": 23,
+    "S": 27,
+    "E": 29,
+    "C": 25
+  },
   "questions": [
     {
       "id": "q1",
       "texte": "Quelle matière préfères-tu au lycée ?",
       "reponses": [
-        { "texte": "Mathématiques / Physique", "filieres": ["informatique", "genie-civil"] },
-        { "texte": "Sciences de la vie et de la terre (SVT)", "filieres": ["sante", "agronomie"] },
-        { "texte": "Économie / Gestion", "filieres": ["gestion-commerce"] },
-        { "texte": "Français / Philosophie", "filieres": ["droit", "communication-marketing"] }
+        {
+          "texte": "Mathématiques / Physique",
+          "riasec": {
+            "I": 3,
+            "R": 1
+          }
+        },
+        {
+          "texte": "Sciences de la vie et de la terre (SVT)",
+          "riasec": {
+            "I": 2,
+            "S": 2
+          }
+        },
+        {
+          "texte": "Économie / Gestion",
+          "riasec": {
+            "E": 2,
+            "C": 2
+          }
+        },
+        {
+          "texte": "Français / Philosophie",
+          "riasec": {
+            "A": 2,
+            "S": 2
+          }
+        }
       ]
     },
     {
       "id": "q2",
       "texte": "Dans un projet de groupe, tu es plutôt...",
       "reponses": [
-        { "texte": "Celui qui résout les problèmes techniques", "filieres": ["informatique", "genie-civil"] },
-        { "texte": "Celui qui organise et gère le budget", "filieres": ["gestion-commerce"] },
-        { "texte": "Celui qui prend la parole et convainc les autres", "filieres": ["droit", "communication-marketing"] },
-        { "texte": "Celui qui prend soin des autres membres", "filieres": ["sante"] }
+        {
+          "texte": "Celui/celle qui organise et planifie tout",
+          "riasec": {
+            "C": 3
+          }
+        },
+        {
+          "texte": "Celui/celle qui a des idées originales",
+          "riasec": {
+            "A": 3
+          }
+        },
+        {
+          "texte": "Celui/celle qui motive et dirige l'équipe",
+          "riasec": {
+            "E": 3
+          }
+        },
+        {
+          "texte": "Celui/celle qui aide les autres à avancer",
+          "riasec": {
+            "S": 3
+          }
+        }
       ]
     },
     {
       "id": "q3",
-      "texte": "Qu'est-ce qui te motive le plus dans un futur métier ?",
+      "texte": "Un week-end libre, tu préfères...",
       "reponses": [
-        { "texte": "Créer et construire des choses concrètes", "filieres": ["genie-civil", "informatique"] },
-        { "texte": "Aider et soigner les autres", "filieres": ["sante"] },
-        { "texte": "Défendre la justice et les droits des gens", "filieres": ["droit"] },
-        { "texte": "Gagner de l'argent et entreprendre", "filieres": ["gestion-commerce"] }
+        {
+          "texte": "Bricoler, réparer ou construire quelque chose",
+          "riasec": {
+            "R": 3
+          }
+        },
+        {
+          "texte": "Lire, chercher à comprendre un sujet en profondeur",
+          "riasec": {
+            "I": 3
+          }
+        },
+        {
+          "texte": "Dessiner, écrire ou créer du contenu",
+          "riasec": {
+            "A": 3
+          }
+        },
+        {
+          "texte": "Sortir, rencontrer du monde, aider un proche",
+          "riasec": {
+            "S": 2,
+            "E": 1
+          }
+        }
       ]
     },
     {
       "id": "q4",
-      "texte": "Tu préfères travailler...",
+      "texte": "Quel type de problème aimes-tu résoudre ?",
       "reponses": [
-        { "texte": "Sur un ordinateur, seul(e) et concentré(e)", "filieres": ["informatique"] },
-        { "texte": "En extérieur ou sur le terrain", "filieres": ["genie-civil", "agronomie"] },
-        { "texte": "En contact direct avec des gens toute la journée", "filieres": ["sante", "communication-marketing"] },
-        { "texte": "Dans un bureau, avec des dossiers et des chiffres", "filieres": ["gestion-commerce", "droit"] }
+        {
+          "texte": "Un problème technique ou mécanique",
+          "riasec": {
+            "R": 3
+          }
+        },
+        {
+          "texte": "Une énigme logique ou un calcul complexe",
+          "riasec": {
+            "I": 3
+          }
+        },
+        {
+          "texte": "Un conflit entre deux personnes",
+          "riasec": {
+            "S": 3
+          }
+        },
+        {
+          "texte": "Comment vendre ou négocier quelque chose",
+          "riasec": {
+            "E": 3
+          }
+        }
       ]
     },
     {
       "id": "q5",
-      "texte": "Un ami te demande de l'aide pour un problème. Tu es plutôt doué(e) pour...",
+      "texte": "Dans ton futur métier, ce qui compte le plus pour toi c'est...",
       "reponses": [
-        { "texte": "Réparer ou comprendre un appareil électronique", "filieres": ["informatique"] },
-        { "texte": "Expliquer clairement un règlement ou une règle", "filieres": ["droit"] },
-        { "texte": "Le rassurer et prendre soin de lui", "filieres": ["sante"] },
-        { "texte": "Lui donner un bon conseil pour vendre ou négocier", "filieres": ["gestion-commerce"] }
+        {
+          "texte": "Travailler avec mes mains, sur le terrain",
+          "riasec": {
+            "R": 3
+          }
+        },
+        {
+          "texte": "Comprendre comment les choses fonctionnent",
+          "riasec": {
+            "I": 2,
+            "R": 1
+          }
+        },
+        {
+          "texte": "Exprimer ma créativité",
+          "riasec": {
+            "A": 3
+          }
+        },
+        {
+          "texte": "Avoir un cadre clair et de l'ordre dans mon travail",
+          "riasec": {
+            "C": 3
+          }
+        }
       ]
     },
     {
       "id": "q6",
-      "texte": "Quel type de contenu regardes-tu le plus volontiers sur internet ?",
+      "texte": "Quel environnement de travail t'attire le plus ?",
       "reponses": [
-        { "texte": "Tutoriels tech, jeux vidéo, applications", "filieres": ["informatique"] },
-        { "texte": "Actualités, débats, politique", "filieres": ["droit", "communication-marketing"] },
-        { "texte": "Santé, bien-être, sciences", "filieres": ["sante"] },
-        { "texte": "Business, entrepreneuriat, marques", "filieres": ["gestion-commerce", "communication-marketing"] }
+        {
+          "texte": "Un atelier, un chantier, un laboratoire",
+          "riasec": {
+            "R": 2,
+            "I": 1
+          }
+        },
+        {
+          "texte": "Un bureau avec des dossiers, des chiffres à gérer",
+          "riasec": {
+            "C": 3
+          }
+        },
+        {
+          "texte": "Une agence créative, un studio",
+          "riasec": {
+            "A": 3
+          }
+        },
+        {
+          "texte": "Une entreprise dynamique, orientée business",
+          "riasec": {
+            "E": 3
+          }
+        }
       ]
     },
     {
       "id": "q7",
-      "texte": "Comment décrirais-tu ta relation avec la nature et l'environnement ?",
+      "texte": "Tes amis te décriraient plutôt comme...",
       "reponses": [
-        { "texte": "Je m'y intéresse beaucoup, j'aime le vivant", "filieres": ["agronomie"] },
-        { "texte": "J'aime bâtir et transformer un espace", "filieres": ["genie-civil"] },
-        { "texte": "Peu d'intérêt particulier", "filieres": ["informatique", "gestion-commerce"] },
-        { "texte": "Je préfère les enjeux humains/sociaux", "filieres": ["droit", "sante"] }
+        {
+          "texte": "Quelqu'un de pratique et débrouillard",
+          "riasec": {
+            "R": 3
+          }
+        },
+        {
+          "texte": "Quelqu'un de curieux qui analyse tout",
+          "riasec": {
+            "I": 3
+          }
+        },
+        {
+          "texte": "Quelqu'un d'à l'écoute et bienveillant",
+          "riasec": {
+            "S": 3
+          }
+        },
+        {
+          "texte": "Quelqu'un de convaincant et ambitieux",
+          "riasec": {
+            "E": 3
+          }
+        }
       ]
     },
     {
       "id": "q8",
-      "texte": "Dans une entreprise, la tâche qui t'attire le plus est...",
+      "texte": "Si tu devais choisir une activité extrascolaire...",
       "reponses": [
-        { "texte": "Concevoir un site ou une application", "filieres": ["informatique"] },
-        { "texte": "Gérer les comptes et le budget", "filieres": ["gestion-commerce"] },
-        { "texte": "Communiquer sur les réseaux sociaux", "filieres": ["communication-marketing"] },
-        { "texte": "Superviser un chantier", "filieres": ["genie-civil"] }
+        {
+          "texte": "Club sciences / robotique",
+          "riasec": {
+            "I": 2,
+            "R": 1
+          }
+        },
+        {
+          "texte": "Club théâtre / arts / musique",
+          "riasec": {
+            "A": 3
+          }
+        },
+        {
+          "texte": "Club débat / entrepreneuriat junior",
+          "riasec": {
+            "E": 2,
+            "C": 1
+          }
+        },
+        {
+          "texte": "Bénévolat / aide aux devoirs pour les plus jeunes",
+          "riasec": {
+            "S": 3
+          }
+        }
       ]
     },
     {
       "id": "q9",
-      "texte": "Un métier idéal pour toi doit avant tout...",
+      "texte": "Ce qui te motive le plus dans un travail...",
       "reponses": [
-        { "texte": "Avoir un impact direct sur la vie des gens (santé, justice)", "filieres": ["sante", "droit"] },
-        { "texte": "Permettre de créer, innover, résoudre des problèmes techniques", "filieres": ["informatique", "genie-civil"] },
-        { "texte": "Offrir de bonnes perspectives financières rapidement", "filieres": ["gestion-commerce"] },
-        { "texte": "Être créatif et varié au quotidien", "filieres": ["communication-marketing"] }
+        {
+          "texte": "Voir un résultat concret que j'ai construit",
+          "riasec": {
+            "R": 3
+          }
+        },
+        {
+          "texte": "Découvrir et comprendre des choses nouvelles",
+          "riasec": {
+            "I": 3
+          }
+        },
+        {
+          "texte": "Aider concrètement d'autres personnes",
+          "riasec": {
+            "S": 3
+          }
+        },
+        {
+          "texte": "Gagner de l'argent et évoluer rapidement",
+          "riasec": {
+            "E": 3
+          }
+        }
       ]
     },
     {
       "id": "q10",
-      "texte": "Tu es plus à l'aise avec...",
+      "texte": "Comment préfères-tu apprendre une nouvelle notion ?",
       "reponses": [
-        { "texte": "Les chiffres et les calculs", "filieres": ["informatique", "gestion-commerce"] },
-        { "texte": "Les mots, l'argumentation et la rédaction", "filieres": ["droit", "communication-marketing"] },
-        { "texte": "Le vivant (plantes, animaux, corps humain)", "filieres": ["sante", "agronomie"] },
-        { "texte": "Les objets techniques et la construction", "filieres": ["genie-civil"] }
+        {
+          "texte": "En pratiquant directement, par l'expérience",
+          "riasec": {
+            "R": 3
+          }
+        },
+        {
+          "texte": "En comprenant la théorie et la logique derrière",
+          "riasec": {
+            "I": 3
+          }
+        },
+        {
+          "texte": "En en discutant avec d'autres",
+          "riasec": {
+            "S": 2,
+            "E": 1
+          }
+        },
+        {
+          "texte": "En suivant une méthode claire, étape par étape",
+          "riasec": {
+            "C": 3
+          }
+        }
       ]
     },
     {
       "id": "q11",
-      "texte": "Que ferais-tu si tu avais un weekend totalement libre ?",
+      "texte": "Face à un texte de loi ou un règlement, tu...",
       "reponses": [
-        { "texte": "Bricoler, réparer ou bidouiller quelque chose", "filieres": ["informatique", "genie-civil"] },
-        { "texte": "Faire du bénévolat ou aider quelqu'un", "filieres": ["sante"] },
-        { "texte": "Monter un petit projet ou une vente", "filieres": ["gestion-commerce"] },
-        { "texte": "Créer du contenu (vidéo, photo, texte) pour les réseaux", "filieres": ["communication-marketing"] }
+        {
+          "texte": "T'ennuies vite, tu préfères l'action concrète",
+          "riasec": {
+            "R": 2
+          }
+        },
+        {
+          "texte": "Aimes en décortiquer la logique",
+          "riasec": {
+            "I": 2,
+            "C": 1
+          }
+        },
+        {
+          "texte": "Aimes en débattre et en tirer des arguments",
+          "riasec": {
+            "A": 1,
+            "E": 2
+          }
+        },
+        {
+          "texte": "Aimes vérifier que tout est bien respecté à la lettre",
+          "riasec": {
+            "C": 3
+          }
+        }
       ]
     },
     {
       "id": "q12",
-      "texte": "Dans un débat, tu es plutôt...",
+      "texte": "Dans une entreprise, le poste qui t'attire le plus...",
       "reponses": [
-        { "texte": "Celui/celle qui argumente avec des règles et des faits précis", "filieres": ["droit"] },
-        { "texte": "Celui/celle qui reste factuel et technique", "filieres": ["informatique", "genie-civil"] },
-        { "texte": "Celui/celle qui parle avec émotion et persuasion", "filieres": ["communication-marketing"] },
-        { "texte": "Celui/celle qui pense d'abord aux conséquences humaines", "filieres": ["sante"] }
+        {
+          "texte": "Technicien(ne) ou ingénieur(e) terrain",
+          "riasec": {
+            "R": 3
+          }
+        },
+        {
+          "texte": "Chercheur(se) ou analyste",
+          "riasec": {
+            "I": 3
+          }
+        },
+        {
+          "texte": "Designer ou créatif(ve)",
+          "riasec": {
+            "A": 3
+          }
+        },
+        {
+          "texte": "Commercial(e) ou manager",
+          "riasec": {
+            "E": 3
+          }
+        }
       ]
     },
     {
       "id": "q13",
-      "texte": "Quel univers professionnel te fait le plus rêver ?",
+      "texte": "Ce qui te dérange le plus dans un travail...",
       "reponses": [
-        { "texte": "Une startup tech ou un studio de développement", "filieres": ["informatique"] },
-        { "texte": "Un hôpital ou un centre de santé", "filieres": ["sante"] },
-        { "texte": "Un cabinet d'avocats ou un tribunal", "filieres": ["droit"] },
-        { "texte": "Une exploitation agricole ou une coopérative", "filieres": ["agronomie"] }
+        {
+          "texte": "Rester assis(e) sans jamais rien construire",
+          "riasec": {
+            "R": 2
+          }
+        },
+        {
+          "texte": "Faire toujours la même chose sans réfléchir",
+          "riasec": {
+            "I": 2
+          }
+        },
+        {
+          "texte": "Ne jamais pouvoir aider ou échanger avec les gens",
+          "riasec": {
+            "S": 3
+          }
+        },
+        {
+          "texte": "Le désordre et l'improvisation permanente",
+          "riasec": {
+            "C": 3
+          }
+        }
       ]
     },
     {
       "id": "q14",
-      "texte": "Ce qui te ferait le plus fièr(e) dans ta future carrière...",
+      "texte": "Si on te confiait un budget à gérer pour un événement...",
       "reponses": [
-        { "texte": "Avoir construit quelque chose de tes propres mains (bâtiment, appli)", "filieres": ["genie-civil", "informatique"] },
-        { "texte": "Avoir dirigé ta propre entreprise", "filieres": ["gestion-commerce"] },
-        { "texte": "Avoir sauvé ou soigné des vies", "filieres": ["sante"] },
-        { "texte": "Avoir défendu une cause juste", "filieres": ["droit"] }
+        {
+          "texte": "Tu ferais un tableau précis, poste par poste",
+          "riasec": {
+            "C": 3
+          }
+        },
+        {
+          "texte": "Tu chercherais à négocier les meilleurs prix",
+          "riasec": {
+            "E": 3
+          }
+        },
+        {
+          "texte": "Tu penserais d'abord à l'ambiance et à la déco",
+          "riasec": {
+            "A": 2,
+            "S": 1
+          }
+        },
+        {
+          "texte": "Tu regarderais ce qui est techniquement faisable",
+          "riasec": {
+            "R": 2,
+            "I": 1
+          }
+        }
       ]
     }
   ]

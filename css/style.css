@@ -517,3 +517,346 @@ h3 { font-size: 1.2rem; }
   font-weight: 600;
   text-decoration: none;
 }
+
+/* ===========================================
+   TABLEAU DE BORD
+   =========================================== */
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 32px 20px;
+}
+
+@media (min-width: 900px) {
+  .dashboard-layout {
+    grid-template-columns: 240px 1fr;
+    align-items: start;
+  }
+}
+
+.dashboard-sidebar {
+  background-color: var(--couleur-fond-sombre);
+  border-radius: var(--rayon-carte);
+  padding: 24px 16px;
+  color: var(--couleur-texte-clair);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-avatar {
+  text-align: center;
+}
+
+.avatar-cercle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--couleur-principale);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--police-titres);
+  font-size: 1.4rem;
+  margin: 0 auto 10px;
+}
+
+.sidebar-nom {
+  font-weight: 600;
+}
+
+.sidebar-type {
+  font-size: 0.8rem;
+  color: #cfc9c2;
+}
+
+.dashboard-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboard-nav a {
+  color: #cfc9c2;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.dashboard-nav a.nav-active {
+  background-color: var(--couleur-principale);
+  color: #fff;
+  font-weight: 600;
+}
+
+.lien-deconnexion {
+  background: none;
+  border: none;
+  color: #cfc9c2;
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: var(--police-texte);
+}
+
+.lien-deconnexion:hover {
+  color: #fff;
+}
+
+.dashboard-sous-titre {
+  color: var(--couleur-gris);
+  margin-bottom: 24px;
+}
+
+.dashboard-stats {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-bottom: 32px;
+}
+
+.carte-stat {
+  text-align: center;
+}
+
+.carte-stat strong {
+  display: block;
+  font-family: var(--police-titres);
+  font-size: 2rem;
+  color: var(--couleur-principale);
+}
+
+.carte-stat span {
+  font-size: 0.85rem;
+  color: var(--couleur-gris);
+}
+
+.dashboard-section-titre {
+  margin-bottom: 12px;
+}
+
+.ligne-activite {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee4d8;
+  font-size: 0.9rem;
+}
+
+.ligne-activite:last-child {
+  border-bottom: none;
+}
+
+/* ===========================================
+   QUIZ D'ORIENTATION
+   =========================================== */
+
+.conteneur-quiz {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.carte-quiz {
+  width: 100%;
+  max-width: 560px;
+}
+
+.quiz-intro-texte {
+  color: var(--couleur-gris);
+  margin: 12px 0 24px;
+}
+
+.quiz-progression-texte {
+  font-size: 0.85rem;
+  color: var(--couleur-gris);
+  margin-bottom: 8px;
+}
+
+.barre-progression {
+  width: 100%;
+  height: 6px;
+  background-color: #eee4d8;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.barre-progression-remplie {
+  height: 100%;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.quiz-question-texte {
+  margin-bottom: 20px;
+}
+
+.quiz-reponses {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.bouton-reponse {
+  text-align: left;
+  padding: 14px 16px;
+  border: 2px solid #e4dfd6;
+  border-radius: 8px;
+  background: #fff;
+  font-family: var(--police-texte);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.bouton-reponse:hover {
+  border-color: #d8a48f;
+}
+
+.bouton-reponse-selectionnee {
+  border-color: var(--couleur-principale);
+  background-color: #fbf0ea;
+  font-weight: 600;
+}
+
+.bouton-principal:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===========================================
+   PAGE RÉSULTAT DU QUIZ
+   =========================================== */
+
+.resultat-etiquette {
+  color: var(--couleur-principale);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.resultat-liste-filieres {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0 24px;
+}
+
+.carte-mini-filiere {
+  background-color: var(--couleur-sable);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.carte-mini-filiere p {
+  color: var(--couleur-gris);
+  font-size: 0.9rem;
+  margin: 6px 0 10px;
+}
+
+.resultat-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.resultat-actions .bouton-secondaire {
+  text-align: center;
+}
+
+.lien-refaire-quiz {
+  display: block;
+  text-align: center;
+  color: var(--couleur-gris);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+/* ===========================================
+   RÉSULTAT RIASEC (code Holland + dimensions)
+   =========================================== */
+
+.resultat-code-holland-bloc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0 24px;
+  font-size: 0.9rem;
+  color: var(--couleur-gris);
+}
+
+.resultat-code-holland-bloc strong {
+  font-family: var(--police-titres);
+  font-size: 1.5rem;
+  color: var(--couleur-principale);
+  letter-spacing: 0.05em;
+}
+
+.resultat-dimensions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.dimension-ligne {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+}
+
+.dimension-label {
+  color: var(--couleur-texte);
+}
+
+.dimension-barre-fond {
+  height: 8px;
+  background-color: #eee4d8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dimension-barre-remplie {
+  height: 100%;
+  background-color: var(--couleur-principale);
+  border-radius: 4px;
+}
+
+.dimension-valeur {
+  font-weight: 600;
+  text-align: right;
+  min-width: 20px;
+}
+
+.carte-mini-filiere-entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge-code-holland {
+  background-color: var(--couleur-fond-sombre);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+
+.explication-score {
+  font-size: 0.8rem;
+  color: var(--couleur-gris);
+  font-style: italic;
+  margin-top: 6px !important;
+}
