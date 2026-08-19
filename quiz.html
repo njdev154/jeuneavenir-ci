@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz d'orientation — JeuneAvenir CI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-quiz">
+
+  <header class="entete-simple">
+    <a href="index.html" class="lien-retour">← Quitter le quiz</a>
+    <a href="index.html" class="logo">🧭 JeuneAvenir CI</a>
+  </header>
+
+  <main class="conteneur-quiz">
+
+    <!-- Écran d'intro -->
+    <div id="ecran-intro" class="carte carte-quiz">
+      <h1>Quiz d'orientation</h1>
+      <p class="quiz-intro-texte">
+        7 questions, 3 minutes. Il n'y a pas de bonne ou mauvaise réponse —
+        réponds simplement selon ce qui te correspond le plus.
+      </p>
+      <button id="bouton-demarrer" class="bouton-principal bouton-pleine-largeur">Commencer le quiz</button>
+    </div>
+
+    <!-- Écran de question (masqué au départ) -->
+    <div id="ecran-question" class="carte carte-quiz" style="display:none;">
+      <p class="quiz-progression-texte" id="quiz-progression-texte">Question 1/7</p>
+      <div class="barre-progression">
+        <div class="barre-progression-remplie" id="barre-progression-remplie"></div>
+      </div>
+
+      <h2 id="quiz-question-texte" class="quiz-question-texte"></h2>
+
+      <div id="quiz-reponses" class="quiz-reponses"></div>
+
+      <button id="bouton-suivant" class="bouton-principal bouton-pleine-largeur" disabled>Suivant</button>
+    </div>
+
+  </main>
+
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
