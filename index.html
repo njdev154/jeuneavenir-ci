@@ -10,52 +10,124 @@
 <body>
 
   <header class="entete">
-    <a href="index.html" class="logo">JeuneAvenir CI</a>
+    <a href="index.html" class="logo">🧭 JeuneAvenir CI</a>
+
     <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
+
     <nav class="nav-principale">
       <a href="quiz.html">Orientation</a>
-      <a href="filieres.html">Filières</a>
+      <a href="filieres.html">Découverte</a>
       <a href="mentorat.html">Mentorat</a>
-      <a href="offres.html">Offres</a>
-      <a href="connexion.html">Connexion</a>
+      <a href="offres.html">Insertion pro</a>
+      <a href="a-propos.html">À propos</a>
     </nav>
+
+    <div class="entete-actions">
+      <a href="connexion.html" class="lien-connexion">Se connecter</a>
+      <a href="inscription.html" class="bouton-principal bouton-petit">S'inscrire</a>
+    </div>
   </header>
 
-  <main class="conteneur">
-    <section style="padding: 60px 0; text-align: center;">
-      <h1>Ton avenir commence ici</h1>
-      <p style="margin: 16px 0 24px; color: var(--couleur-gris);">
-        Orientation, mentorat et emploi : un seul site pour t'accompagner du lycée à ton premier travail.
-      </p>
-      <a href="quiz.html" class="bouton-principal">Commencer le quiz d'orientation</a>
-    </section>
+  <main>
 
-    <!-- Les 5 piliers -->
-    <section style="padding: 40px 0;">
-      <h2 style="text-align:center; margin-bottom: 32px;">Ce que JeuneAvenir CI t'apporte</h2>
-      <div style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-        <div class="carte">
-          <h3>🧭 Orientation</h3>
-          <p>Trouve ta filière en quelques minutes.</p>
-        </div>
-        <div class="carte">
-          <h3>🏫 Découverte</h3>
-          <p>Filières, écoles et métiers en détail.</p>
-        </div>
-        <div class="carte">
-          <h3>🤝 Mentorat</h3>
-          <p>Échange avec un professionnel de ton domaine.</p>
-        </div>
-        <div class="carte">
-          <h3>💼 Insertion pro</h3>
-          <p>Trouve un stage ou un emploi.</p>
+    <!-- HERO -->
+    <section class="hero conteneur">
+      <div class="hero-texte">
+        <h1>Ton avenir a un <span class="texte-accent">cap</span>.<br>Nous sommes le <span class="texte-accent">compas</span>.</h1>
+        <p class="hero-sous-titre">
+          JeuneAvenir CI t'accompagne du lycée à l'emploi. Choisis ta voie, développe ton potentiel et saisis les meilleures opportunités.
+        </p>
+        <div class="hero-boutons">
+          <a href="quiz.html" class="bouton-principal">Je fais le quiz d'orientation</a>
+          <a href="filieres.html" class="bouton-secondaire">Découvrir la plateforme</a>
         </div>
       </div>
+      <div class="hero-image">
+        <img src="assets/images/hero-etudiants.jpg" alt="Deux jeunes étudiants ivoiriens consultant une tablette" loading="lazy">
+      </div>
     </section>
+
+    <!-- BANDEAU STATS -->
+    <section class="bandeau-stats">
+      <div class="conteneur stats-grille">
+        <div class="stat"><strong>7</strong><span>Filières répertoriées</span></div>
+        <div class="stat"><strong>5</strong><span>Écoles partenaires</span></div>
+        <div class="stat"><strong>2</strong><span>Mentors disponibles</span></div>
+        <div class="stat"><strong>2</strong><span>Offres d'emploi et stage</span></div>
+      </div>
+    </section>
+
+    <!-- LES 5 PILIERS -->
+    <section class="conteneur section-piliers">
+      <h2 class="titre-centre">Les 5 piliers de JeuneAvenir CI</h2>
+      <div class="grille-piliers">
+
+        <article class="carte carte-pilier">
+          <div class="pilier-icone">🧭</div>
+          <h3>Orientation</h3>
+          <p>Découvre les filières qui te correspondent grâce à notre quiz intelligent.</p>
+          <a href="quiz.html" class="lien-explorer">Explorer →</a>
+        </article>
+
+        <article class="carte carte-pilier">
+          <div class="pilier-icone">🎓</div>
+          <h3>Découverte</h3>
+          <p>Explore les filières, écoles et métiers pour faire les bons choix.</p>
+          <a href="filieres.html" class="lien-explorer">Explorer →</a>
+        </article>
+
+        <article class="carte carte-pilier">
+          <div class="pilier-icone">🤝</div>
+          <h3>Mentorat</h3>
+          <p>Échange avec des mentors et bénéficie de conseils personnalisés.</p>
+          <a href="mentorat.html" class="lien-explorer">Explorer →</a>
+        </article>
+
+        <article class="carte carte-pilier">
+          <div class="pilier-icone">💼</div>
+          <h3>Insertion pro</h3>
+          <p>Trouve des stages, des emplois et booste ta carrière.</p>
+          <a href="offres.html" class="lien-explorer">Explorer →</a>
+        </article>
+
+        <article class="carte carte-pilier">
+          <div class="pilier-icone">👤</div>
+          <h3>Mon compte</h3>
+          <p>Gère ton profil, tes favoris, ton historique et tes candidatures.</p>
+          <a href="dashboard.html" class="lien-explorer">Explorer →</a>
+        </article>
+
+      </div>
+    </section>
+
   </main>
 
   <footer class="pied-de-page">
-    <p>&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+    <div class="conteneur footer-grille">
+      <div class="footer-colonne">
+        <p class="logo" style="margin-bottom:8px;">🧭 JeuneAvenir CI</p>
+        <p class="footer-texte-gris">Le copilote du jeune ivoirien, du lycée à l'emploi.</p>
+      </div>
+      <div class="footer-colonne">
+        <h4>Navigation</h4>
+        <a href="index.html">Accueil</a>
+        <a href="quiz.html">Orientation</a>
+        <a href="filieres.html">Découverte</a>
+        <a href="mentorat.html">Mentorat</a>
+        <a href="offres.html">Insertion pro</a>
+      </div>
+      <div class="footer-colonne">
+        <h4>Ressources</h4>
+        <a href="faq.html">FAQ</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-colonne">
+        <h4>Légal</h4>
+        <a href="confidentialite.html">Politique de confidentialité</a>
+      </div>
+    </div>
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
   </footer>
 
   <script src="js/main.js"></script>

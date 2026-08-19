@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer un compte — JeuneAvenir CI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-auth">
+
+  <header class="entete-simple">
+    <a href="index.html" class="logo">🧭 JeuneAvenir CI</a>
+    <a href="index.html" class="lien-retour">← Retour à l'accueil</a>
+  </header>
+
+  <main class="conteneur-auth">
+    <div class="carte carte-auth">
+      <h1>Crée ton compte</h1>
+      <p class="auth-sous-titre">Rejoins la communauté et construis ton avenir.</p>
+
+      <form id="formulaire-inscription">
+
+        <fieldset class="choix-type-compte">
+          <legend>Je suis un(e) :</legend>
+
+          <label class="carte-type-compte">
+            <input type="radio" name="type_compte" value="jeune" checked>
+            <span class="type-titre">Jeune</span>
+            <span class="type-desc">Lycéen, étudiant ou jeune diplômé</span>
+          </label>
+
+          <label class="carte-type-compte">
+            <input type="radio" name="type_compte" value="mentor">
+            <span class="type-titre">Mentor</span>
+            <span class="type-desc">Professionnel souhaitant accompagner</span>
+          </label>
+
+          <label class="carte-type-compte">
+            <input type="radio" name="type_compte" value="entreprise">
+            <span class="type-titre">Entreprise</span>
+            <span class="type-desc">Recruteur ou représentant d'entreprise</span>
+          </label>
+        </fieldset>
+
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" required autocomplete="name">
+
+        <label for="email">Adresse e-mail</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+
+        <label for="mot_de_passe">Mot de passe</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe" required minlength="8" autocomplete="new-password">
+
+        <label for="confirmation">Confirmer le mot de passe</label>
+        <input type="password" id="confirmation" name="confirmation" required minlength="8" autocomplete="new-password">
+
+        <label class="ligne-case">
+          <input type="checkbox" id="conditions" required>
+          J'accepte les <a href="#">Conditions d'utilisation</a> et la <a href="confidentialite.html">Politique de confidentialité</a>
+        </label>
+
+        <p class="message-erreur" id="message-erreur" role="alert"></p>
+
+        <button type="submit" class="bouton-principal bouton-pleine-largeur">Créer mon compte</button>
+      </form>
+
+      <div class="separateur">ou continuer avec</div>
+
+      <button class="bouton-social" id="bouton-google">
+        <span>🔵</span> Continuer avec Google
+      </button>
+      <button class="bouton-social" id="bouton-apple">
+        <span>⚫</span> Continuer avec Apple
+      </button>
+
+      <p class="auth-bas">Déjà un compte ? <a href="connexion.html">Se connecter</a></p>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
