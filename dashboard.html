@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon tableau de bord — JeuneAvenir CI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-dashboard">
+
+  <header class="entete-simple">
+    <a href="index.html" class="logo">🧭 JeuneAvenir CI</a>
+    <a href="index.html" class="lien-retour">← Retour à l'accueil</a>
+  </header>
+
+  <!-- Affiché uniquement si personne n'est connecté -->
+  <div id="bloc-non-connecte" class="conteneur-auth" style="display:none;">
+    <div class="carte carte-auth" style="text-align:center;">
+      <h1>Tu n'es pas connecté</h1>
+      <p class="auth-sous-titre">Connecte-toi pour accéder à ton tableau de bord.</p>
+      <a href="connexion.html" class="bouton-principal bouton-pleine-largeur">Se connecter</a>
+    </div>
+  </div>
+
+  <!-- Affiché uniquement si un utilisateur est connecté -->
+  <div id="bloc-dashboard" class="dashboard-layout conteneur" style="display:none;">
+
+    <aside class="dashboard-sidebar">
+      <div class="dashboard-avatar">
+        <div class="avatar-cercle" id="avatar-initiale">?</div>
+        <p id="sidebar-nom" class="sidebar-nom"></p>
+        <p id="sidebar-type" class="sidebar-type"></p>
+      </div>
+
+      <nav class="dashboard-nav" id="dashboard-nav">
+        <!-- Rempli dynamiquement en JS selon le type de compte -->
+      </nav>
+
+      <button id="bouton-deconnexion" class="lien-deconnexion">🚪 Déconnexion</button>
+    </aside>
+
+    <div class="dashboard-contenu">
+      <h1 id="dashboard-salutation">Bonjour !</h1>
+      <p class="dashboard-sous-titre">Voici un résumé de ton activité.</p>
+
+      <div class="dashboard-stats" id="dashboard-stats">
+        <!-- Cartes de statistiques, remplies en JS -->
+      </div>
+
+      <h2 class="dashboard-section-titre">Activité récente</h2>
+      <div class="carte dashboard-activite" id="dashboard-activite">
+        <!-- Liste d'activité, remplie en JS -->
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/dashboard.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
