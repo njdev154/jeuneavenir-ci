@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toutes les filières — JeuneAvenir CI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="entete">
+    <a href="index.html" class="logo">🧭 JeuneAvenir CI</a>
+    <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
+    <nav class="nav-principale">
+      <a href="quiz.html">Orientation</a>
+      <a href="filieres.html">Découverte</a>
+      <a href="mentorat.html">Mentorat</a>
+      <a href="offres.html">Insertion pro</a>
+    </nav>
+    <div class="entete-actions">
+      <a href="connexion.html" class="lien-connexion">Se connecter</a>
+      <a href="inscription.html" class="bouton-principal bouton-petit">S'inscrire</a>
+    </div>
+  </header>
+
+  <main class="conteneur page-decouverte">
+
+    <h1>Toutes les filières</h1>
+    <p class="page-sous-titre">Découvre les filières disponibles en Côte d'Ivoire et les écoles qui les proposent.</p>
+
+    <input type="search" id="recherche-filiere" class="champ-recherche" placeholder="Rechercher une filière (ex: informatique, droit...)">
+
+    <div id="grille-filieres" class="grille-filieres"></div>
+
+    <!-- Fiche détaillée, affichée au clic sur une filière -->
+    <div id="fiche-filiere" class="carte fiche-filiere" style="display:none;"></div>
+
+  </main>
+
+  <footer class="pied-de-page">
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+  </footer>
+
+  <script src="js/filieres.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

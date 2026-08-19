@@ -1,2 +1,136 @@
 // filieres.js
-// Chargement de data/filieres.json, affichage de la liste, filtres et recherche.
+// Charge data/filieres.json + data/ecoles.json, affiche la liste des
+// filières (avec recherche), et une fiche détaillée au clic sur une
+// filière (matières, débouchés, écoles qui la proposent, métiers liés).
+
+let TOUTES_FILIERES = [];
+let TOUTES_ECOLES = [];
+let TOUS_METIERS = [];
+
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const [repFilieres, repEcoles, repMetiers] = await Promise.all([
+      fetch("data/filieres.json"),
+      fetch("data/ecoles.json"),
+      fetch("data/metiers.json")
+    ]);
+    TOUTES_FILIERES = (await repFilieres.json()).filieres;
+    TOUTES_ECOLES = (await repEcoles.json()).ecoles;
+    TOUS_METIERS = (await repMetiers.json()).metiers;
+
+    afficherListe(TOUTES_FILIERES);
+
+    // Recherche en direct
+    document.getElementById("recherche-filiere").addEventListener("input", (e) => {
+      const terme = e.target.value.toLowerCase().trim();
+      const filtrees = TOUTES_FILIERES.filter(f =>
+        f.nom.toLowerCase().includes(terme) ||
+        (f.description || "").toLowerCase().includes(terme)
+      );
+      afficherListe(filtrees);
+    });
+
+    // Si l'URL contient #informatique (ex: venant du résultat du quiz), ouvre directement la fiche
+    if (window.location.hash) {
+      const id = window.location.hash.replace("#", "");
+      const f = TOUTES_FILIERES.find(x => x.id === id);
+      if (f) afficherFiche(f);
+    }
+
+  } catch (erreur) {
+    console.error(erreur);
+    document.getElementById("grille-filieres").innerHTML = "<p>Impossible de charger les filières. Vérifie que tu utilises un serveur local (Live Server).</p>";
+  }
+});
+
+function afficherListe(filieres) {
+  const grille = document.getElementById("grille-filieres");
+
+  if (filieres.length === 0) {
+    grille.innerHTML = "<p class='message-vide'>Aucune filière ne correspond à ta recherche.</p>";
+    return;
+  }
+
+  grille.innerHTML = filieres.map(f => `
+    <button type="button" class="carte carte-filiere" data-id="${f.id}">
+      <h3>${f.nom}</h3>
+      <p>${(f.description || "").slice(0, 90)}${(f.description || "").length > 90 ? "…" : ""}</p>
+      <span class="badge-code-holland">${f.code_holland || ""}</span>
+    </button>
+  `).join("");
+
+  grille.querySelectorAll(".carte-filiere").forEach(carte => {
+    carte.addEventListener("click", () => {
+      const f = TOUTES_FILIERES.find(x => x.id === carte.dataset.id);
+      afficherFiche(f);
+      history.replaceState(null, "", `#${f.id}`);
+    });
+  });
+}
+
+function afficherFiche(filiere) {
+  const fiche = document.getElementById("fiche-filiere");
+  if (!filiere) { fiche.style.display = "none"; return; }
+
+  const ecolesLiees = TOUTES_ECOLES.filter(e => filiere.ecoles_liees.includes(e.id));
+  const metiersLies = TOUS_METIERS.filter(m => filiere.metiers_lies.includes(m.id));
+
+  fiche.innerHTML = `
+    <div class="fiche-filiere-entete">
+      <div>
+        <h2>${filiere.nom}</h2>
+        <span class="badge-code-holland">Code Holland : ${filiere.code_holland || "?"}</span>
+      </div>
+      <button type="button" class="bouton-fermer-fiche" id="bouton-fermer-fiche" aria-label="Fermer">✕</button>
+    </div>
+
+    <p class="fiche-description">${filiere.description || "Description à venir."}</p>
+
+    <div class="fiche-grille-infos">
+      <div>
+        <h4>Durée des études</h4>
+        <p>${filiere.duree_etudes || "Non renseignée"}</p>
+      </div>
+      <div>
+        <h4>Matières principales</h4>
+        <p>${(filiere.matieres_principales || []).join(", ") || "Non renseignées"}</p>
+      </div>
+      <div>
+        <h4>Débouchés</h4>
+        <p>${(filiere.debouches || []).join(", ") || "Non renseignés"}</p>
+      </div>
+      <div>
+        <h4>Salaire indicatif</h4>
+        <p>${filiere.salaire_indicatif || "Non renseigné"}</p>
+      </div>
+    </div>
+
+    <h4>Métiers liés</h4>
+    <div class="chips-metiers">
+      ${metiersLies.map(m => `<span class="chip">${m.nom}</span>`).join("") || "<p>Aucun métier renseigné.</p>"}
+    </div>
+
+    <h4>Écoles qui proposent cette filière (${ecolesLiees.length})</h4>
+    <div class="liste-mini-ecoles">
+      ${ecolesLiees.map(e => `
+        <div class="mini-ecole">
+          <div>
+            <strong>${e.nom}</strong>
+            <span class="mini-ecole-lieu">${e.ville}${e.commune ? " · " + e.commune : ""} · ${e.statut === "public" ? "Public" : "Privé"}</span>
+          </div>
+          ${e.verification.domaine_confirme
+            ? '<span class="badge-verifie">✔ Domaine vérifié</span>'
+            : '<span class="badge-a-confirmer">À confirmer</span>'}
+        </div>
+      `).join("") || "<p>Aucune école renseignée pour l'instant.</p>"}
+    </div>
+  `;
+
+  fiche.style.display = "block";
+  document.getElementById("bouton-fermer-fiche").addEventListener("click", () => {
+    fiche.style.display = "none";
+    history.replaceState(null, "", window.location.pathname);
+  });
+
+  fiche.scrollIntoView({ behavior: "smooth", block: "start" });
+}
