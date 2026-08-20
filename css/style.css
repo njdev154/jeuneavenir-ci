@@ -128,7 +128,7 @@ h3 { font-size: 1.2rem; }
 }
 
 .bouton-principal:hover {
-  background-color: #a44a25;
+  background-color: var(--bleu-700);
 }
 
 .bouton-secondaire {
@@ -447,7 +447,7 @@ h3 { font-size: 1.2rem; }
 
 .carte-type-compte:has(input:checked) {
   border-color: var(--couleur-principale);
-  background-color: #fbf0ea;
+  background-color: var(--bleu-100);
 }
 
 .type-titre {
@@ -732,12 +732,12 @@ h3 { font-size: 1.2rem; }
 }
 
 .bouton-reponse:hover {
-  border-color: #d8a48f;
+  border-color: var(--bleu-500);
 }
 
 .bouton-reponse-selectionnee {
   border-color: var(--couleur-principale);
-  background-color: #fbf0ea;
+  background-color: var(--bleu-100);
   font-weight: 600;
 }
 
@@ -943,16 +943,37 @@ h3 { font-size: 1.2rem; }
 }
 
 .carte-filiere {
+  display: block;
+  width: 100%;
   text-align: left;
   cursor: pointer;
   font-family: var(--police-texte);
+  background-color: #fff;
   border: none;
+  margin: 0;
+}
+
+.carte-filiere:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(11,37,69,0.08), 0 16px 30px rgba(11,37,69,0.10);
+}
+
+.carte-filiere .pilier-icone {
+  margin-bottom: 14px;
+}
+
+.carte-filiere h3 {
+  margin-bottom: 2px;
 }
 
 .carte-filiere p {
   color: var(--couleur-gris);
   font-size: 0.85rem;
   margin: 8px 0 12px;
+}
+
+.carte-filiere .lien-explorer {
+  font-size: 0.85rem;
 }
 
 /* --- Fiche filière détaillée --- */
@@ -1117,7 +1138,7 @@ h3 { font-size: 1.2rem; }
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background-color: #fbf0ea;
+  background-color: var(--bleu-100);
   color: var(--couleur-principale);
   display: flex;
   align-items: center;
@@ -1132,7 +1153,7 @@ h3 { font-size: 1.2rem; }
 
 /* --- Cartes : plus d'air, ombre plus douce, effet au survol --- */
 .carte {
-  box-shadow: 0 1px 3px rgba(26,25,23,0.06), 0 8px 20px rgba(26,25,23,0.05);
+  box-shadow: 0 1px 3px rgba(11,37,69,0.06), 0 8px 20px rgba(11,37,69,0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1142,7 +1163,7 @@ h3 { font-size: 1.2rem; }
 
 .carte-pilier:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 10px rgba(26,25,23,0.08), 0 16px 30px rgba(26,25,23,0.08);
+  box-shadow: 0 4px 10px rgba(11,37,69,0.08), 0 16px 30px rgba(11,37,69,0.08);
 }
 
 .carte-pilier h3 {
@@ -1182,12 +1203,12 @@ h3 { font-size: 1.2rem; }
 
 /* --- Boutons : ombre légère au repos, plus francs --- */
 .bouton-principal {
-  box-shadow: 0 2px 6px rgba(194,89,46,0.25);
+  box-shadow: 0 2px 6px rgba(11,37,69,0.25);
 }
 
 .bouton-principal:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(194,89,46,0.3);
+  box-shadow: 0 4px 10px rgba(11,37,69,0.3);
 }
 
 /* ===========================================
@@ -1505,7 +1526,7 @@ body.page-prete {
 
 .bouton-reponse-selectionnee {
   border-color: var(--couleur-or);
-  background-color: #fff6e8;
+  background-color: var(--bleu-100);
 }
 
 /* ===========================================
