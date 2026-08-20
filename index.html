@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JeuneAvenir CI — Ton parcours, du lycée à l'emploi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <header class="entete">
-    <a href="index.html" class="logo">🧭 JeuneAvenir CI</a>
+    <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
 
     <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
 
@@ -30,20 +31,25 @@
 
   <main>
 
-    <!-- HERO -->
-    <section class="hero conteneur">
-      <div class="hero-texte">
-        <h1>Ton avenir a un <span class="texte-accent">cap</span>.<br>Nous sommes le <span class="texte-accent">compas</span>.</h1>
-        <p class="hero-sous-titre">
-          JeuneAvenir CI t'accompagne du lycée à l'emploi. Choisis ta voie, développe ton potentiel et saisis les meilleures opportunités.
-        </p>
-        <div class="hero-boutons">
-          <a href="quiz.html" class="bouton-principal">Je fais le quiz d'orientation</a>
-          <a href="filieres.html" class="bouton-secondaire">Découvrir la plateforme</a>
-        </div>
+    <!-- HERO — dégradé horizon, plein écran, élément signature -->
+    <section class="hero-horizon">
+      <div class="hero-horizon-fond">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="svg-soleil-leve">
+          <circle cx="80" cy="78" r="16" fill="#4C9FE8"/>
+        </svg>
       </div>
-      <div class="hero-image">
-        <img src="assets/images/hero-etudiants.jpg" alt="Deux jeunes étudiants ivoiriens consultant une tablette" loading="lazy">
+      <div class="conteneur hero">
+        <div class="hero-texte">
+          <p class="hero-eyebrow">Ton parcours, du lycée à l'emploi</p>
+          <h1>Ton avenir a un <em>horizon</em>.<br>Avance vers lui.</h1>
+          <p class="hero-sous-titre">
+            JeuneAvenir CI t'accompagne à chaque étape : choisir ta filière, trouver un mentor, décrocher ton premier emploi.
+          </p>
+          <div class="hero-boutons">
+            <a href="quiz.html" class="bouton-principal">Je fais le quiz d'orientation</a>
+            <a href="filieres.html" class="bouton-secondaire bouton-secondaire-sombre">Découvrir la plateforme</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -63,35 +69,45 @@
       <div class="grille-piliers">
 
         <article class="carte carte-pilier">
-          <div class="pilier-icone">🧭</div>
+          <div class="pilier-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="currentColor" stroke="none"/></svg>
+          </div>
           <h3>Orientation</h3>
           <p>Découvre les filières qui te correspondent grâce à notre quiz intelligent.</p>
           <a href="quiz.html" class="lien-explorer">Explorer →</a>
         </article>
 
         <article class="carte carte-pilier">
-          <div class="pilier-icone">🎓</div>
+          <div class="pilier-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 1 8l11 5 9-4.1V15"/><path d="M5 10.5V16c0 1.5 3 3 7 3s7-1.5 7-3v-5.5"/></svg>
+          </div>
           <h3>Découverte</h3>
           <p>Explore les filières, écoles et métiers pour faire les bons choix.</p>
           <a href="filieres.html" class="lien-explorer">Explorer →</a>
         </article>
 
         <article class="carte carte-pilier">
-          <div class="pilier-icone">🤝</div>
+          <div class="pilier-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 12l3 3 6-6"/><path d="M3 8c2-3 5-4 7-2l2 2-3 3-2-2c-1-1-3-1-4 1"/><path d="M21 16c-2 3-5 4-7 2l-2-2 3-3 2 2c1 1 3 1 4-1"/></svg>
+          </div>
           <h3>Mentorat</h3>
           <p>Échange avec des mentors et bénéficie de conseils personnalisés.</p>
           <a href="mentorat.html" class="lien-explorer">Explorer →</a>
         </article>
 
         <article class="carte carte-pilier">
-          <div class="pilier-icone">💼</div>
+          <div class="pilier-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
+          </div>
           <h3>Insertion pro</h3>
           <p>Trouve des stages, des emplois et booste ta carrière.</p>
           <a href="offres.html" class="lien-explorer">Explorer →</a>
         </article>
 
         <article class="carte carte-pilier">
-          <div class="pilier-icone">👤</div>
+          <div class="pilier-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          </div>
           <h3>Mon compte</h3>
           <p>Gère ton profil, tes favoris, ton historique et tes candidatures.</p>
           <a href="dashboard.html" class="lien-explorer">Explorer →</a>
@@ -105,7 +121,7 @@
   <footer class="pied-de-page">
     <div class="conteneur footer-grille">
       <div class="footer-colonne">
-        <p class="logo" style="margin-bottom:8px;">🧭 JeuneAvenir CI</p>
+        <p class="logo" style="margin-bottom:8px;"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="28" height="28">JeuneAvenir CI</p>
         <p class="footer-texte-gris">Le copilote du jeune ivoirien, du lycée à l'emploi.</p>
       </div>
       <div class="footer-colonne">
@@ -121,6 +137,7 @@
         <a href="faq.html">FAQ</a>
         <a href="a-propos.html">À propos</a>
         <a href="contact.html">Contact</a>
+        <a href="avis.html">Donne ton avis</a>
       </div>
       <div class="footer-colonne">
         <h4>Légal</h4>

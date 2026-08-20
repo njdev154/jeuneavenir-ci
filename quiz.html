@@ -4,43 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz d'orientation — JeuneAvenir CI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="page-quiz">
 
-  <header class="entete-simple">
+  <header class="entete-simple entete-simple-horizon">
     <a href="index.html" class="lien-retour">← Quitter le quiz</a>
-    <a href="index.html" class="logo">🧭 JeuneAvenir CI</a>
+    <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
   </header>
 
-  <main class="conteneur-quiz">
+  <div class="fond-quiz">
 
-    <!-- Écran d'intro -->
-    <div id="ecran-intro" class="carte carte-quiz">
-      <h1>Quiz d'orientation</h1>
-      <p class="quiz-intro-texte">
-        7 questions, 3 minutes. Il n'y a pas de bonne ou mauvaise réponse —
-        réponds simplement selon ce qui te correspond le plus.
-      </p>
-      <button id="bouton-demarrer" class="bouton-principal bouton-pleine-largeur">Commencer le quiz</button>
-    </div>
+    <main class="conteneur-quiz">
 
-    <!-- Écran de question (masqué au départ) -->
-    <div id="ecran-question" class="carte carte-quiz" style="display:none;">
-      <p class="quiz-progression-texte" id="quiz-progression-texte">Question 1/7</p>
-      <div class="barre-progression">
-        <div class="barre-progression-remplie" id="barre-progression-remplie"></div>
+      <!-- Écran d'intro : juste la série, rien d'autre -->
+      <div id="ecran-intro" class="carte carte-quiz carte-quiz-intro">
+        <h1>Trouve ta filière</h1>
+        <p class="quiz-intro-texte">
+          8 questions, 3 minutes. Réponds simplement selon ce qui te correspond le plus.
+        </p>
+
+        <label for="quiz-serie" class="quiz-label-serie">Dans quelle série es-tu (ou étais-tu) ?</label>
+        <select id="quiz-serie" class="champ-select champ-select-pleine-largeur">
+          <option value="">Choisis ta série...</option>
+        </select>
+
+        <button id="bouton-demarrer" class="bouton-principal bouton-pleine-largeur" disabled>Commencer</button>
       </div>
 
-      <h2 id="quiz-question-texte" class="quiz-question-texte"></h2>
+      <!-- Écran de question (masqué au départ) -->
+      <div id="ecran-question" class="carte carte-quiz" style="display:none;">
 
-      <div id="quiz-reponses" class="quiz-reponses"></div>
+        <div class="quiz-etapes" id="quiz-etapes"></div>
 
-      <button id="bouton-suivant" class="bouton-principal bouton-pleine-largeur" disabled>Suivant</button>
-    </div>
+        <h2 id="quiz-question-texte" class="quiz-question-texte"></h2>
 
-  </main>
+        <div id="quiz-reponses" class="quiz-reponses"></div>
+
+        <button id="bouton-suivant" class="bouton-principal bouton-pleine-largeur" disabled>Suivant</button>
+      </div>
+
+      <!-- Écran final : une question ouverte simple -->
+      <div id="ecran-ouverte" class="carte carte-quiz" style="display:none;">
+        <h2 class="quiz-question-texte">Une dernière chose : qu'est-ce qui te motive dans un futur métier ?</h2>
+        <p class="quiz-ouverte-aide">Facultatif — une phrase suffit.</p>
+        <textarea id="quiz-texte-libre" class="quiz-textarea" rows="4" placeholder="Écris ici si tu veux..."></textarea>
+        <button id="bouton-voir-resultat" class="bouton-principal bouton-pleine-largeur">Voir ma filière</button>
+      </div>
+
+    </main>
+  </div>
 
   <script src="js/quiz.js"></script>
   <script src="js/main.js"></script>
