@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donne ton avis — JeuneAvenir CI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="entete">
+    <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
+    <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
+    <nav class="nav-principale">
+      <a href="quiz.html">Orientation</a>
+      <a href="filieres.html">Découverte</a>
+      <a href="mentorat.html">Mentorat</a>
+      <a href="offres.html">Insertion pro</a>
+    </nav>
+    <div class="entete-actions">
+      <a href="connexion.html" class="lien-connexion">Se connecter</a>
+      <a href="inscription.html" class="bouton-principal bouton-petit">S'inscrire</a>
+    </div>
+  </header>
+
+  <main class="conteneur-auth">
+    <div class="carte carte-auth" id="carte-avis">
+      <h1>Donne ton avis</h1>
+      <p class="auth-sous-titre">
+        Une idée, un bug, une suggestion sur le site ? Dis-le nous — indépendamment du quiz d'orientation.
+      </p>
+
+      <form id="formulaire-avis">
+        <label for="type-avis">Type de retour</label>
+        <select id="type-avis" class="champ-select" style="width:100%;">
+          <option value="idee">Une idée / suggestion</option>
+          <option value="bug">Un bug / problème</option>
+          <option value="compliment">Un compliment 🙂</option>
+          <option value="autre">Autre</option>
+        </select>
+
+        <label for="message-avis">Ton message</label>
+        <textarea id="message-avis" class="quiz-textarea" rows="5" required placeholder="Écris ici ce que tu penses du site..."></textarea>
+
+        <label for="email-avis">Ton e-mail (optionnel, si tu veux une réponse)</label>
+        <input type="email" id="email-avis" placeholder="ton@email.com">
+
+        <button type="submit" class="bouton-principal bouton-pleine-largeur">Envoyer mon avis</button>
+      </form>
+
+      <div id="confirmation-avis" style="display:none; text-align:center;">
+        <h2>Merci !</h2>
+        <p class="auth-sous-titre">Ton avis a bien été enregistré.</p>
+        <a href="index.html" class="bouton-secondaire bouton-pleine-largeur">Retour à l'accueil</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pied-de-page">
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+  </footer>
+
+  <script src="js/avis.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
