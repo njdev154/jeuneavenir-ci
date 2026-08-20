@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
+  <defs>
+    <style>
+      .nom { font-family: 'Instrument Serif', Georgia, serif; font-weight: 700; font-size: 42px; fill: #FFFFFF; text-anchor: middle; }
+      .ci  { font-family: 'Instrument Serif', Georgia, serif; font-weight: 700; font-size: 28px; fill: #4C9FE8; text-anchor: middle; letter-spacing: 1px; }
+    </style>
+  </defs>
+  <g transform="translate(160,110)">
+    <circle cx="0" cy="0" r="95" fill="#0B2545"/>
+    <circle cx="0" cy="0" r="95" fill="none" stroke="#4C9FE8" stroke-width="2" opacity="0.35"/>
+    <polygon points="55,-55 15,15 -55,55" fill="#4C9FE8" transform="scale(1.15)"/>
+    <polygon points="55,-55 -15,-15 -55,55" fill="#163f6f" transform="scale(1.15)"/>
+    <circle cx="0" cy="0" r="8" fill="#0B2545"/>
+  </g>
+  <text x="160" y="262" class="nom">JeuneAvenir</text>
+  <text x="160" y="298" class="ci">CI</text>
+</svg>
