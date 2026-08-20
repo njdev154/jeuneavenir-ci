@@ -1,5 +1,5 @@
 {
-  "_note": "Filieres realistement accessibles depuis chaque serie du BAC ivoirien. Sert de filtre : le quiz ne recommande que parmi ces filieres-la pour rester coherent avec le parcours reel de l'eleve.",
+  "_note": "Filieres realistement accessibles depuis chaque serie du BAC ivoirien. Verifie le 19 aout 2026 via plusieurs sources datees 2026 (calendrier officiel DECO des epreuves, resultats officiels par serie). Champ 'verification': 'confirmee' = croise sur au moins 2 sources 2026 independantes ; 'a_confirmer' = serie mentionnee par des sources plus anciennes/generalistes mais absente du calendrier d'examen 2026 consulte -- possible faible effectif ou evolution recente, a verifier avant affichage definitif.",
   "series": [
     {
       "id": "a1",
@@ -8,7 +8,8 @@
         "droit",
         "communication-marketing",
         "gestion-commerce"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "a2",
@@ -17,16 +18,18 @@
         "droit",
         "communication-marketing",
         "gestion-commerce"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "b",
-      "nom": "B — Lettres-Sciences Sociales",
+      "nom": "B — Sciences Économiques et Sociales",
       "filieres_possibles": [
-        "droit",
         "gestion-commerce",
+        "droit",
         "communication-marketing"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "c",
@@ -36,7 +39,8 @@
         "sante",
         "genie-civil",
         "agronomie"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "d",
@@ -45,7 +49,8 @@
         "sante",
         "agronomie",
         "informatique"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "e",
@@ -53,14 +58,16 @@
       "filieres_possibles": [
         "genie-civil",
         "informatique"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "f1",
       "nom": "F1 — Construction Mécanique",
       "filieres_possibles": [
         "genie-civil"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "f2",
@@ -68,7 +75,8 @@
       "filieres_possibles": [
         "genie-civil",
         "informatique"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "f3",
@@ -76,14 +84,25 @@
       "filieres_possibles": [
         "genie-civil",
         "informatique"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "f4",
       "nom": "F4 — Génie Civil",
       "filieres_possibles": [
         "genie-civil"
-      ]
+      ],
+      "verification": "confirmee"
+    },
+    {
+      "id": "f7",
+      "nom": "F7 — Biochimie / Chimie de spécialité",
+      "filieres_possibles": [
+        "sante",
+        "agronomie"
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "g1",
@@ -91,14 +110,16 @@
       "filieres_possibles": [
         "gestion-commerce",
         "droit"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "g2",
       "nom": "G2 — Techniques Quantitatives de Gestion",
       "filieres_possibles": [
         "gestion-commerce"
-      ]
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "g3",
@@ -106,14 +127,32 @@
       "filieres_possibles": [
         "gestion-commerce",
         "communication-marketing"
-      ]
+      ],
+      "verification": "a_confirmer"
     },
     {
-      "id": "h",
-      "nom": "H1/H2/H3 — Séries Artistiques",
+      "id": "h1",
+      "nom": "H1 — Arts Plastiques",
       "filieres_possibles": [
         "communication-marketing"
-      ]
+      ],
+      "verification": "confirmee"
+    },
+    {
+      "id": "h2",
+      "nom": "H2 — Musique",
+      "filieres_possibles": [
+        "communication-marketing"
+      ],
+      "verification": "confirmee"
+    },
+    {
+      "id": "h3",
+      "nom": "H3 — Art Dramatique",
+      "filieres_possibles": [
+        "communication-marketing"
+      ],
+      "verification": "confirmee"
     },
     {
       "id": "autre",
@@ -126,7 +165,8 @@
         "sante",
         "communication-marketing",
         "agronomie"
-      ]
+      ],
+      "verification": "confirmee"
     }
   ]
 }
