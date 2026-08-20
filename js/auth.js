@@ -10,12 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const boutonGoogle = document.getElementById("bouton-google");
   const boutonApple = document.getElementById("bouton-apple");
 
-  const infoNonDisponible = () => {
-    alert("La connexion avec Google/Apple arrivera en V2, avec la vraie authentification (Supabase Auth). Pour l'instant, utilise le formulaire email/mot de passe.");
+  const afficherMessageBientot = (bouton) => {
+    if (bouton.nextElementSibling?.classList?.contains("message-info-connexion")) return;
+    const message = document.createElement("p");
+    message.className = "message-info-connexion";
+    message.textContent = "Bientôt disponible — utilise l'email et le mot de passe pour l'instant.";
+    bouton.insertAdjacentElement("afterend", message);
   };
 
-  if (boutonGoogle) boutonGoogle.addEventListener("click", infoNonDisponible);
-  if (boutonApple) boutonApple.addEventListener("click", infoNonDisponible);
+  if (boutonGoogle) boutonGoogle.addEventListener("click", () => afficherMessageBientot(boutonGoogle));
+  if (boutonApple) boutonApple.addEventListener("click", () => afficherMessageBientot(boutonApple));
 
   // --- Formulaire d'inscription ---
   const formInscription = document.getElementById("formulaire-inscription");
