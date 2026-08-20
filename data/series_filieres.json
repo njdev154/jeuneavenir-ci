@@ -1,0 +1,132 @@
+{
+  "_note": "Filieres realistement accessibles depuis chaque serie du BAC ivoirien. Sert de filtre : le quiz ne recommande que parmi ces filieres-la pour rester coherent avec le parcours reel de l'eleve.",
+  "series": [
+    {
+      "id": "a1",
+      "nom": "A1 — Lettres-Langues",
+      "filieres_possibles": [
+        "droit",
+        "communication-marketing",
+        "gestion-commerce"
+      ]
+    },
+    {
+      "id": "a2",
+      "nom": "A2 — Lettres-Sciences Humaines",
+      "filieres_possibles": [
+        "droit",
+        "communication-marketing",
+        "gestion-commerce"
+      ]
+    },
+    {
+      "id": "b",
+      "nom": "B — Lettres-Sciences Sociales",
+      "filieres_possibles": [
+        "droit",
+        "gestion-commerce",
+        "communication-marketing"
+      ]
+    },
+    {
+      "id": "c",
+      "nom": "C — Mathématiques et Physique",
+      "filieres_possibles": [
+        "informatique",
+        "sante",
+        "genie-civil",
+        "agronomie"
+      ]
+    },
+    {
+      "id": "d",
+      "nom": "D — Biologie-Géologie",
+      "filieres_possibles": [
+        "sante",
+        "agronomie",
+        "informatique"
+      ]
+    },
+    {
+      "id": "e",
+      "nom": "E — Mathématiques et Techniques",
+      "filieres_possibles": [
+        "genie-civil",
+        "informatique"
+      ]
+    },
+    {
+      "id": "f1",
+      "nom": "F1 — Construction Mécanique",
+      "filieres_possibles": [
+        "genie-civil"
+      ]
+    },
+    {
+      "id": "f2",
+      "nom": "F2 — Électronique",
+      "filieres_possibles": [
+        "genie-civil",
+        "informatique"
+      ]
+    },
+    {
+      "id": "f3",
+      "nom": "F3 — Électrotechnique",
+      "filieres_possibles": [
+        "genie-civil",
+        "informatique"
+      ]
+    },
+    {
+      "id": "f4",
+      "nom": "F4 — Génie Civil",
+      "filieres_possibles": [
+        "genie-civil"
+      ]
+    },
+    {
+      "id": "g1",
+      "nom": "G1 — Techniques Administratives",
+      "filieres_possibles": [
+        "gestion-commerce",
+        "droit"
+      ]
+    },
+    {
+      "id": "g2",
+      "nom": "G2 — Techniques Quantitatives de Gestion",
+      "filieres_possibles": [
+        "gestion-commerce"
+      ]
+    },
+    {
+      "id": "g3",
+      "nom": "G3 — Techniques Commerciales",
+      "filieres_possibles": [
+        "gestion-commerce",
+        "communication-marketing"
+      ]
+    },
+    {
+      "id": "h",
+      "nom": "H1/H2/H3 — Séries Artistiques",
+      "filieres_possibles": [
+        "communication-marketing"
+      ]
+    },
+    {
+      "id": "autre",
+      "nom": "Pas encore au lycée / Je ne sais pas",
+      "filieres_possibles": [
+        "informatique",
+        "gestion-commerce",
+        "droit",
+        "genie-civil",
+        "sante",
+        "communication-marketing",
+        "agronomie"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "_note": "Liste complete des matieres du college et du lycee ivoirien (toutes series confondues). L'etudiant en choisit 2 a 4 qu'il aimait -- pas de filtrage par serie, plus simple et accessible aux collegiens qui n'ont pas encore choisi de serie. Poids RIASEC = notre methode de correspondance.",
+  "matieres": [
+    {
+      "id": "maths",
+      "nom": "Mathématiques",
+      "riasec": {
+        "I": 3,
+        "R": 1
+      }
+    },
+    {
+      "id": "physique-chimie",
+      "nom": "Physique-Chimie",
+      "riasec": {
+        "I": 3,
+        "R": 1
+      }
+    },
+    {
+      "id": "svt",
+      "nom": "SVT (Sciences de la Vie et de la Terre)",
+      "riasec": {
+        "I": 2,
+        "S": 2
+      }
+    },
+    {
+      "id": "francais",
+      "nom": "Français",
+      "riasec": {
+        "A": 2,
+        "S": 1
+      }
+    },
+    {
+      "id": "philosophie",
+      "nom": "Philosophie",
+      "riasec": {
+        "A": 2,
+        "I": 1
+      }
+    },
+    {
+      "id": "histoire-geo",
+      "nom": "Histoire-Géographie",
+      "riasec": {
+        "S": 2,
+        "I": 1
+      }
+    },
+    {
+      "id": "langues",
+      "nom": "Langues vivantes (Anglais, Allemand, Espagnol...)",
+      "riasec": {
+        "A": 2,
+        "S": 1
+      }
+    },
+    {
+      "id": "economie",
+      "nom": "Économie / Sciences économiques et sociales",
+      "riasec": {
+        "E": 2,
+        "C": 1
+      }
+    },
+    {
+      "id": "comptabilite",
+      "nom": "Comptabilité / Gestion",
+      "riasec": {
+        "C": 3
+      }
+    },
+    {
+      "id": "techniques-administratives",
+      "nom": "Techniques administratives",
+      "riasec": {
+        "C": 3,
+        "E": 1
+      }
+    },
+    {
+      "id": "techniques-commerciales",
+      "nom": "Techniques commerciales",
+      "riasec": {
+        "E": 3,
+        "C": 1
+      }
+    },
+    {
+      "id": "construction-mecanique",
+      "nom": "Construction Mécanique",
+      "riasec": {
+        "R": 3,
+        "I": 1
+      }
+    },
+    {
+      "id": "electronique",
+      "nom": "Électronique",
+      "riasec": {
+        "R": 3,
+        "I": 2
+      }
+    },
+    {
+      "id": "electrotechnique",
+      "nom": "Électrotechnique",
+      "riasec": {
+        "R": 3,
+        "I": 2
+      }
+    },
+    {
+      "id": "genie-civil-construction",
+      "nom": "Génie Civil / Construction",
+      "riasec": {
+        "R": 3,
+        "I": 1
+      }
+    },
+    {
+      "id": "technologie",
+      "nom": "Technologie (collège)",
+      "riasec": {
+        "R": 2,
+        "I": 1
+      }
+    },
+    {
+      "id": "arts",
+      "nom": "Arts plastiques / Musique / Arts du spectacle",
+      "riasec": {
+        "A": 3
+      }
+    },
+    {
+      "id": "eps",
+      "nom": "EPS (Éducation Physique et Sportive)",
+      "riasec": {
+        "R": 2,
+        "S": 1
+      }
+    },
+    {
+      "id": "informatique-matiere",
+      "nom": "Informatique / TIC",
+      "riasec": {
+        "I": 2,
+        "R": 1
+      }
+    },
+    {
+      "id": "education-civique",
+      "nom": "Éducation civique et morale",
+      "riasec": {
+        "S": 2,
+        "C": 1
+      }
+    }
+  ]
+}
