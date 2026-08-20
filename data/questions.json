@@ -1,12 +1,12 @@
 {
-  "_note": "Banque de 14 questions RIASEC/Holland. Le quiz tire 7 questions au hasard. Chaque réponse donne des points sur les 6 dimensions R-I-A-S-E-C (pas directement sur les filières). Le résultat final est un code Holland en 3 lettres, comparé au code_holland de chaque filière (voir data/filieres.json).",
+  "_note": "Banque de 18 questions RIASEC/Holland (14 initiales + 4 ajoutées pour plus de variete). Le quiz tire 7 questions au hasard parmi les 18, en plus de la selection de matieres et de la question ouverte.",
   "totaux_par_lettre_banque_complete": {
-    "R": 32,
-    "I": 33,
-    "A": 23,
-    "S": 27,
-    "E": 29,
-    "C": 25
+    "R": 38,
+    "I": 42,
+    "A": 31,
+    "S": 35,
+    "E": 37,
+    "C": 33
   },
   "questions": [
     {
@@ -439,6 +439,129 @@
           "riasec": {
             "R": 2,
             "I": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q15",
+      "texte": "Un objet cassé à la maison, tu...",
+      "reponses": [
+        {
+          "texte": "Essaies de le réparer toi-même",
+          "riasec": {
+            "R": 3
+          }
+        },
+        {
+          "texte": "Cherches à comprendre pourquoi il est tombé en panne",
+          "riasec": {
+            "I": 3
+          }
+        },
+        {
+          "texte": "Appelles quelqu'un de confiance pour t'aider",
+          "riasec": {
+            "S": 2,
+            "E": 1
+          }
+        },
+        {
+          "texte": "Notes combien ça coûterait de le remplacer",
+          "riasec": {
+            "C": 2,
+            "E": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q16",
+      "texte": "Ton style pour rendre un devoir...",
+      "reponses": [
+        {
+          "texte": "Bien présenté, structuré, sans fautes",
+          "riasec": {
+            "C": 3
+          }
+        },
+        {
+          "texte": "Original, avec ma touche personnelle",
+          "riasec": {
+            "A": 3
+          }
+        },
+        {
+          "texte": "Avec des arguments solides et bien recherchés",
+          "riasec": {
+            "I": 3
+          }
+        },
+        {
+          "texte": "Fait rapidement, l'important c'est le résultat final",
+          "riasec": {
+            "E": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q17",
+      "texte": "Dans une association ou un club scolaire, tu voudrais être...",
+      "reponses": [
+        {
+          "texte": "Trésorier(ère), tu aimes gérer les comptes",
+          "riasec": {
+            "C": 3
+          }
+        },
+        {
+          "texte": "Président(e), tu aimes porter les projets",
+          "riasec": {
+            "E": 3
+          }
+        },
+        {
+          "texte": "Responsable communication, tu aimes créer du contenu",
+          "riasec": {
+            "A": 2,
+            "E": 1
+          }
+        },
+        {
+          "texte": "Simple membre actif, tu aimes surtout aider concrètement",
+          "riasec": {
+            "S": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q18",
+      "texte": "Un dimanche pluvieux, tu préfères...",
+      "reponses": [
+        {
+          "texte": "Démonter/remonter un appareil ou bricoler",
+          "riasec": {
+            "R": 3
+          }
+        },
+        {
+          "texte": "Regarder un documentaire scientifique",
+          "riasec": {
+            "I": 3
+          }
+        },
+        {
+          "texte": "Dessiner, écrire ou jouer de la musique",
+          "riasec": {
+            "A": 3
+          }
+        },
+        {
+          "texte": "Appeler des amis ou de la famille",
+          "riasec": {
+            "S": 3
           }
         }
       ]
