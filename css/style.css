@@ -4,18 +4,34 @@
 
 /* --- Variables : charte graphique du cahier des charges --- */
 :root {
-  --couleur-principale: #C2592E; /* Terracotta / Ocre */
-  --couleur-fond-sombre: #1A1917;
-  --couleur-sable: #F4EDE4;
-  --couleur-texte: #1A1917;
-  --couleur-texte-clair: #FFFFFF;
-  --couleur-gris: #6B6560;
+  /* Une seule couleur de base (bleu), déclinée en teintes -- plus d'or ni de couleurs multiples */
+  --bleu-900: #0B2545;   /* le plus foncé : header, footer, texte fort */
+  --bleu-700: #163f6f;   /* intermédiaire : dégradés, survols */
+  --bleu-500: #4C9FE8;   /* le plus clair de la teinte : liens, accents, boutons */
+  --bleu-100: #EAF3FC;   /* fond très clair : cartes, badges */
 
-  --police-titres: 'Fraunces', serif;
-  --police-texte: 'Inter', sans-serif;
+  --gris-900: #16233B;   /* texte principal (bleu très foncé, proche du noir) */
+  --gris-500: #5B6B82;   /* texte secondaire */
+  --blanc: #FFFFFF;
+
+  /* Alias conservés pour compatibilité avec le reste du CSS existant */
+  --couleur-principale: var(--bleu-500);
+  --couleur-fond-sombre: var(--bleu-900);
+  --couleur-sable: var(--bleu-100);
+  --couleur-texte: var(--gris-900);
+  --couleur-texte-clair: var(--blanc);
+  --couleur-gris: var(--gris-500);
+  --couleur-nuit: var(--bleu-900);
+  --couleur-ciel: var(--bleu-500);
+  --couleur-fond-clair: var(--bleu-100);
+  --couleur-or: var(--bleu-500);        /* l'or n'existe plus : tout redevient bleu */
+  --couleur-or-texte: #2A6FB0;          /* variante bleue foncée pour le texte/liens (contraste) */
+
+  --police-titres: 'Instrument Serif', serif;
+  --police-texte: 'Manrope', sans-serif;
 
   --rayon-carte: 12px;
-  --ombre-carte: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --ombre-carte: 0 2px 10px rgba(11, 37, 69, 0.06);
 }
 
 /* --- Reset de base --- */
@@ -118,12 +134,12 @@ h3 { font-size: 1.2rem; }
 .bouton-secondaire {
   display: inline-block;
   background-color: transparent;
-  color: var(--couleur-principale);
+  color: var(--couleur-or-texte);
   padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  border: 2px solid var(--couleur-principale);
+  border: 2px solid var(--couleur-or-texte);
   cursor: pointer;
 }
 
@@ -288,7 +304,7 @@ h3 { font-size: 1.2rem; }
 }
 
 .lien-explorer {
-  color: var(--couleur-principale);
+  color: var(--couleur-or-texte);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
@@ -459,7 +475,7 @@ h3 { font-size: 1.2rem; }
 .lien-mdp-oublie {
   align-self: flex-end;
   font-size: 0.85rem;
-  color: var(--couleur-principale);
+  color: var(--couleur-or-texte);
   text-decoration: none;
   margin-top: 6px;
 }
@@ -513,7 +529,7 @@ h3 { font-size: 1.2rem; }
 }
 
 .auth-bas a {
-  color: var(--couleur-principale);
+  color: var(--couleur-or-texte);
   font-weight: 600;
   text-decoration: none;
 }
@@ -628,7 +644,7 @@ h3 { font-size: 1.2rem; }
   display: block;
   font-family: var(--police-titres);
   font-size: 2rem;
-  color: var(--couleur-principale);
+  color: var(--couleur-or-texte);
 }
 
 .carte-stat span {
@@ -735,7 +751,7 @@ h3 { font-size: 1.2rem; }
    =========================================== */
 
 .resultat-etiquette {
-  color: var(--couleur-principale);
+  color: var(--couleur-or-texte);
   font-weight: 600;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -1077,7 +1093,552 @@ h3 { font-size: 1.2rem; }
 
 .carte-ecole-eval {
   font-size: 0.8rem;
-  color: var(--couleur-principale);
+  color: var(--couleur-or-texte);
   font-weight: 600;
   margin-bottom: 8px;
+}
+
+/* ===========================================
+   REFONTE VISUELLE — logo, icônes, cartes
+   =========================================== */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icone {
+  display: block;
+}
+
+/* --- Icônes des piliers : cercle coloré avec icône ligne --- */
+.pilier-icone {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #fbf0ea;
+  color: var(--couleur-principale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.pilier-icone svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* --- Cartes : plus d'air, ombre plus douce, effet au survol --- */
+.carte {
+  box-shadow: 0 1px 3px rgba(26,25,23,0.06), 0 8px 20px rgba(26,25,23,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carte-pilier {
+  padding: 28px 24px;
+}
+
+.carte-pilier:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(26,25,23,0.08), 0 16px 30px rgba(26,25,23,0.08);
+}
+
+.carte-pilier h3 {
+  margin-bottom: 4px;
+}
+
+/* --- Espacements généraux plus respirés --- */
+.section-piliers {
+  padding: 72px 20px;
+}
+
+.grille-piliers {
+  gap: 24px;
+}
+
+.bandeau-stats {
+  padding: 36px 0;
+}
+
+.stat strong {
+  font-size: 2.1rem;
+}
+
+/* --- Hero SVG : cadrage propre --- */
+.hero-image svg {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* --- En-tête un peu plus premium --- */
+.entete {
+  padding: 18px 28px;
+}
+
+/* --- Boutons : ombre légère au repos, plus francs --- */
+.bouton-principal {
+  box-shadow: 0 2px 6px rgba(194,89,46,0.25);
+}
+
+.bouton-principal:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(194,89,46,0.3);
+}
+
+/* ===========================================
+   DIRECTION "HORIZON" — ajustements de contraste
+   et nouveau hero (remplace les anciennes règles
+   .hero / .hero-image du bloc précédent)
+   =========================================== */
+
+/* Sur fond clair, le texte/liens dorés doivent utiliser la variante foncée
+   pour rester lisibles (accessibilité) — les BOUTONS gardent l'or plein
+   avec du texte marine, qui offre un bon contraste. */
+.texte-accent,
+.lien-explorer,
+.lien-mdp-oublie,
+.auth-bas a {
+  color: var(--couleur-or-texte);
+}
+
+.bouton-principal {
+  background-color: var(--bleu-900);
+  color: var(--blanc);
+  font-weight: 700;
+}
+
+.bouton-principal:hover {
+  background-color: var(--bleu-700);
+}
+
+/* --- Header : fond marine, cohérent avec le hero --- */
+.entete {
+  background-color: var(--couleur-nuit);
+}
+
+/* --- Hero Horizon : dégradé signature --- */
+.hero-horizon {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--couleur-nuit) 0%, #123a68 55%, var(--couleur-ciel) 100%);
+}
+
+.hero-horizon-fond {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.svg-soleil-leve {
+  position: absolute;
+  bottom: -10%;
+  right: -5%;
+  width: 60%;
+  height: 60%;
+  opacity: 0.9;
+  filter: blur(0.5px);
+}
+
+.hero-horizon .hero {
+  position: relative;
+  z-index: 1;
+  padding: 64px 20px 96px;
+}
+
+.hero-horizon .hero-texte {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  color: var(--couleur-ciel);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.hero-horizon h1 {
+  color: #fff;
+  font-size: 2.4rem;
+  line-height: 1.15;
+}
+
+.hero-horizon h1 em {
+  color: var(--couleur-or);
+  font-style: italic;
+}
+
+.hero-horizon .hero-sous-titre {
+  color: #cfe0f2;
+  max-width: 480px;
+  margin: 18px auto 28px;
+}
+
+.hero-horizon .hero-boutons {
+  justify-content: center;
+}
+
+.bouton-secondaire-sombre {
+  color: #fff;
+  border-color: rgba(255,255,255,0.5);
+}
+
+.bouton-secondaire-sombre:hover {
+  border-color: #fff;
+  background-color: rgba(255,255,255,0.08);
+}
+
+@media (min-width: 900px) {
+  .hero-horizon h1 { font-size: 3.4rem; }
+  .hero-horizon .hero { padding: 96px 20px 130px; }
+}
+
+/* --- Piliers : icônes en cercle bleu ciel doux plutôt qu'orange --- */
+.pilier-icone {
+  background-color: #e7f1fb;
+  color: var(--couleur-ciel);
+}
+
+.carte-pilier:hover {
+  box-shadow: 0 4px 10px rgba(11,37,69,0.08), 0 16px 30px rgba(11,37,69,0.10);
+}
+
+/* ===========================================
+   ANIMATIONS — apparition douce, pas de "snap" brutal
+   =========================================== */
+
+/* Fondu léger de toute la page à l'arrivée */
+body {
+  opacity: 0;
+}
+
+body.page-prete {
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+/* Cartes/titres : apparition progressive au scroll (au lieu d'apparaître d'un bloc) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Les cartes d'une même grille apparaissent en léger décalage les unes des autres */
+.grille-piliers .carte-pilier:nth-child(1) { transition-delay: 0.05s; }
+.grille-piliers .carte-pilier:nth-child(2) { transition-delay: 0.1s; }
+.grille-piliers .carte-pilier:nth-child(3) { transition-delay: 0.15s; }
+.grille-piliers .carte-pilier:nth-child(4) { transition-delay: 0.2s; }
+.grille-piliers .carte-pilier:nth-child(5) { transition-delay: 0.25s; }
+
+/* Respect des personnes sensibles aux animations */
+@media (prefers-reduced-motion: reduce) {
+  body, .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* ===========================================
+   PAGE "BIENTÔT DISPONIBLE" (gabarit pages vides)
+   =========================================== */
+
+.page-bientot {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px 100px;
+  min-height: 50vh;
+  align-items: center;
+}
+
+.carte-bientot {
+  text-align: center;
+  max-width: 420px;
+}
+
+.bientot-icone {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.carte-bientot p {
+  color: var(--couleur-gris);
+  margin: 10px 0 22px;
+}
+
+/* ===========================================
+   RÉDUCTION DES ESPACES EXCESSIFS (retour utilisateur)
+   =========================================== */
+
+.hero-horizon .hero {
+  padding: 48px 20px 72px;
+}
+
+@media (min-width: 900px) {
+  .hero-horizon .hero { padding: 64px 20px 90px; }
+}
+
+.section-piliers {
+  padding: 48px 20px;
+}
+
+.bandeau-stats {
+  padding: 24px 0;
+}
+
+/* ===========================================
+   QUIZ — refonte visuelle Horizon
+   =========================================== */
+
+.entete-simple-horizon {
+  background-color: var(--couleur-nuit);
+}
+
+.fond-quiz {
+  background: linear-gradient(180deg, var(--couleur-nuit) 0%, #163f6f 30%, var(--couleur-fond-clair) 100%);
+  min-height: calc(100vh - 68px);
+  padding-bottom: 40px;
+}
+
+.conteneur-quiz {
+  padding: 48px 20px;
+}
+
+.carte-quiz {
+  box-shadow: 0 10px 40px rgba(11,37,69,0.25);
+}
+
+/* --- Écran d'intro --- */
+.carte-quiz-intro {
+  text-align: center;
+}
+
+.quiz-intro-badge {
+  display: inline-block;
+  background-color: #e7f1fb;
+  color: var(--couleur-ciel);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.quiz-intro-dimensions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0 24px;
+}
+
+.quiz-intro-dimensions span {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--couleur-fond-clair);
+  color: var(--couleur-nuit);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 1rem;
+  border: 1px solid #dce6f0;
+}
+
+/* --- Points d'étapes --- */
+.quiz-etapes {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.quiz-etape-point {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background-color: #e4dfd6;
+}
+
+.quiz-etape-point.etape-faite {
+  background-color: var(--couleur-ciel);
+}
+
+.quiz-etape-point.etape-active {
+  background-color: var(--couleur-or);
+}
+
+/* --- Animation d'entrée à chaque question --- */
+@keyframes quizEntreeQuestion {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.quiz-carte-animee {
+  animation: quizEntreeQuestion 0.35s ease;
+}
+
+/* --- Boutons de réponse : plus de présence --- */
+.bouton-reponse {
+  padding: 16px 18px;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.bouton-reponse:hover {
+  border-color: var(--couleur-ciel);
+  background-color: #f3f8fd;
+}
+
+.bouton-reponse-selectionnee {
+  border-color: var(--couleur-or);
+  background-color: #fff6e8;
+}
+
+/* ===========================================
+   QUESTION OUVERTE (quiz) + PAGE AVIS
+   =========================================== */
+
+.quiz-ouverte-aide {
+  color: var(--couleur-gris);
+  font-size: 0.9rem;
+  margin: 8px 0 18px;
+}
+
+.quiz-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d8d2c8;
+  border-radius: 8px;
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 18px;
+}
+
+.quiz-textarea:focus {
+  outline: 2px solid var(--couleur-ciel);
+}
+
+.resultat-texte-libre-bloc {
+  background-color: var(--couleur-fond-clair);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.texte-libre-citation {
+  font-style: italic;
+  margin: 8px 0 12px;
+}
+
+.texte-libre-note {
+  font-size: 0.8rem;
+  color: var(--couleur-gris);
+  margin-bottom: 8px;
+}
+
+.chip-mot-detecte {
+  background-color: #e7f1fb;
+  color: var(--couleur-ciel);
+  font-weight: 600;
+}
+
+/* Page avis : réutilise .carte-auth, juste quelques ajustements */
+#carte-avis textarea,
+#carte-avis input,
+#carte-avis select {
+  margin-bottom: 14px;
+}
+
+/* ===========================================
+   SÉLECTEUR DE SÉRIE (écran d'intro du quiz)
+   =========================================== */
+
+.quiz-label-serie {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.champ-select-pleine-largeur {
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.quiz-serie-aide {
+  font-size: 0.78rem;
+  color: var(--couleur-gris);
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* ===========================================
+   GRILLE DE MATIÈRES (sélection multiple, écran d'intro du quiz)
+   =========================================== */
+
+.quiz-grille-matieres {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  max-height: 280px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 4px;
+  text-align: left;
+}
+
+@media (min-width: 560px) {
+  .quiz-grille-matieres { grid-template-columns: 1fr 1fr; }
+}
+
+.matiere-case {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #e4dfd6;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.matiere-case:has(input:checked) {
+  border-color: var(--couleur-ciel);
+  background-color: #f3f8fd;
+}
+
+.matiere-case input {
+  flex-shrink: 0;
+}
+
+/* ===========================================
+   CORRECTIONS D'AUDIT : lien actif, message inline, page 404
+   =========================================== */
+
+.nav-principale a.nav-lien-actif {
+  color: var(--bleu-500);
+  font-weight: 700;
+}
+
+.message-info-connexion {
+  font-size: 0.78rem;
+  color: var(--couleur-gris);
+  text-align: center;
+  margin: -4px 0 10px;
 }

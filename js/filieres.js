@@ -55,7 +55,6 @@ function afficherListe(filieres) {
     <button type="button" class="carte carte-filiere" data-id="${f.id}">
       <h3>${f.nom}</h3>
       <p>${(f.description || "").slice(0, 90)}${(f.description || "").length > 90 ? "…" : ""}</p>
-      <span class="badge-code-holland">${f.code_holland || ""}</span>
     </button>
   `).join("");
 
@@ -79,7 +78,6 @@ function afficherFiche(filiere) {
     <div class="fiche-filiere-entete">
       <div>
         <h2>${filiere.nom}</h2>
-        <span class="badge-code-holland">Code Holland : ${filiere.code_holland || "?"}</span>
       </div>
       <button type="button" class="bouton-fermer-fiche" id="bouton-fermer-fiche" aria-label="Fermer">✕</button>
     </div>
