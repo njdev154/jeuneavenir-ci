@@ -1663,3 +1663,156 @@ body.page-prete {
   text-align: center;
   margin: -4px 0 10px;
 }
+
+/* ===========================================
+   PAGE MENTORAT
+   =========================================== */
+
+.grille-mentors {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.carte-mentor {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--police-texte);
+  background-color: #fff;
+  border: none;
+  margin: 0;
+}
+
+.carte-mentor:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(11,37,69,0.08), 0 16px 30px rgba(11,37,69,0.10);
+}
+
+.carte-mentor p {
+  color: var(--couleur-gris);
+  font-size: 0.85rem;
+  margin: 4px 0 10px;
+}
+
+.mentor-domaine {
+  color: var(--couleur-or-texte) !important;
+  font-weight: 600;
+  font-size: 0.8rem !important;
+}
+
+.avatar-cercle-mentor {
+  width: 44px;
+  height: 44px;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  background-color: var(--bleu-900);
+  color: #fff;
+}
+
+.avatar-cercle-grand {
+  width: 56px;
+  height: 56px;
+  font-size: 1.3rem;
+  margin-bottom: 0;
+}
+
+.fiche-mentor {
+  margin-top: 32px;
+}
+
+.fiche-mentor-entete-infos {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mentor-disponibilite {
+  font-size: 0.9rem;
+  color: var(--couleur-gris);
+  margin: 12px 0 20px;
+}
+
+.encart-connexion-requise {
+  background-color: var(--bleu-100);
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+}
+
+.encart-connexion-requise p {
+  margin-bottom: 12px;
+  color: var(--couleur-texte);
+  font-size: 0.9rem;
+}
+
+.confirmation-demande {
+  background-color: #eafaf0;
+  color: #1e7e42;
+  border-radius: 8px;
+  padding: 14px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ===========================================
+   PAGE OFFRES (STAGES & EMPLOIS)
+   =========================================== */
+
+.grille-offres {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.carte-offre {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--police-texte);
+  background-color: #fff;
+  border: none;
+  margin: 0;
+}
+
+.carte-offre:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(11,37,69,0.08), 0 16px 30px rgba(11,37,69,0.10);
+}
+
+.carte-offre h3 {
+  margin: 10px 0 2px;
+}
+
+.carte-offre p {
+  color: var(--couleur-gris);
+  font-size: 0.85rem;
+  margin: 6px 0 10px;
+}
+
+.offre-entreprise {
+  font-weight: 600 !important;
+  color: var(--couleur-texte) !important;
+}
+
+.badge-type-offre {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-type-stage {
+  background-color: var(--bleu-100);
+  color: var(--couleur-or-texte);
+}
+
+.badge-type-emploi {
+  background-color: var(--bleu-900);
+  color: #fff;
+}
