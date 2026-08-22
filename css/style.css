@@ -1816,3 +1816,60 @@ body.page-prete {
   background-color: var(--bleu-900);
   color: #fff;
 }
+
+/* ===========================================
+   COMPARATEUR DE FILIÈRES
+   =========================================== */
+
+.comparateur-selecteurs {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-bottom: 28px;
+}
+
+.comparateur-select {
+  width: 100%;
+}
+
+.tableau-comparateur-scroll {
+  overflow-x: auto;
+}
+
+.tableau-comparateur {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: var(--rayon-carte);
+  overflow: hidden;
+  box-shadow: var(--ombre-carte);
+}
+
+.tableau-comparateur th,
+.tableau-comparateur td {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #eee4d8;
+  vertical-align: top;
+}
+
+.tableau-comparateur thead th {
+  background-color: var(--bleu-900);
+  color: #fff;
+  font-family: var(--police-titres);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tableau-comparateur tbody th {
+  color: var(--couleur-gris);
+  font-weight: 600;
+  white-space: nowrap;
+  background-color: var(--bleu-100);
+}
+
+.tableau-comparateur tbody tr:last-child td,
+.tableau-comparateur tbody tr:last-child th {
+  border-bottom: none;
+}
