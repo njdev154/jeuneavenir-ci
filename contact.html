@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — JeuneAvenir CI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="alternate icon" href="assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -27,12 +27,40 @@
     </div>
   </header>
 
-  <main class="conteneur page-bientot">
-    <div class="carte carte-bientot">
-      <span class="bientot-icone" aria-hidden="true">✉️</span>
+  <main class="conteneur-auth">
+    <div class="carte carte-auth" id="carte-contact">
       <h1>Contact</h1>
-      <p>Le formulaire de contact arrive très bientôt.</p>
-      <a href="index.html" class="bouton-principal">Retour à l'accueil</a>
+      <p class="auth-sous-titre">Une question, un partenariat, une école ou une entreprise à référencer ? Écris-nous.</p>
+
+      <form id="formulaire-contact">
+        <label for="contact-nom">Ton nom</label>
+        <input type="text" id="contact-nom" required>
+
+        <label for="contact-email">Ton e-mail</label>
+        <input type="email" id="contact-email" required>
+
+        <label for="contact-sujet">Sujet</label>
+        <select id="contact-sujet" class="champ-select" style="width:100%;">
+          <option value="question">Question générale</option>
+          <option value="ecole">Je représente une école</option>
+          <option value="entreprise">Je représente une entreprise</option>
+          <option value="mentor">Je veux devenir mentor</option>
+          <option value="autre">Autre</option>
+        </select>
+
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" class="quiz-textarea" rows="5" required></textarea>
+
+        <button type="submit" class="bouton-principal bouton-pleine-largeur">Envoyer</button>
+      </form>
+
+      <div id="confirmation-contact" style="display:none; text-align:center;">
+        <h2>Message envoyé</h2>
+        <p class="auth-sous-titre">On te répondra dès que possible.</p>
+        <a href="index.html" class="bouton-secondaire bouton-pleine-largeur">Retour à l'accueil</a>
+      </div>
+
+      <p class="auth-bas">Tu veux plutôt donner un avis sur le site ? <a href="avis.html">C'est par ici</a></p>
     </div>
   </main>
 
@@ -40,6 +68,7 @@
     <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
   </footer>
 
+  <script src="js/contact.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -1898,3 +1898,46 @@ body.page-prete {
   background-color: var(--bleu-100);
   border-color: var(--couleur-or-texte);
 }
+
+/* ===========================================
+   FAQ (accordéons)
+   =========================================== */
+
+.liste-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-faq {
+  background-color: #fff;
+  border-radius: var(--rayon-carte);
+  box-shadow: var(--ombre-carte);
+  padding: 16px 20px;
+}
+
+.item-faq summary {
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.item-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.item-faq summary::before {
+  content: "+ ";
+  color: var(--couleur-or-texte);
+  font-weight: 700;
+}
+
+.item-faq[open] summary::before {
+  content: "− ";
+}
+
+.item-faq p {
+  margin-top: 10px;
+  color: var(--couleur-gris);
+  font-size: 0.9rem;
+}
