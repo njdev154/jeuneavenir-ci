@@ -4,35 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mon profil — JeuneAvenir CI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="alternate icon" href="assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <header class="entete">
+  <header class="entete-simple entete-simple-horizon">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
-    <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
-    <nav class="nav-principale">
-      <a href="quiz.html">Orientation</a>
-      <a href="filieres.html">Découverte</a>
-      <a href="mentorat.html">Mentorat</a>
-      <a href="offres.html">Insertion pro</a>
-    </nav>
-    <div class="entete-actions">
-      <a href="connexion.html" class="lien-connexion">Se connecter</a>
-      <a href="inscription.html" class="bouton-principal bouton-petit">S'inscrire</a>
-    </div>
+    <a href="dashboard.html" class="lien-retour">← Mon tableau de bord</a>
   </header>
 
-  <main class="conteneur page-bientot">
-    <div class="carte carte-bientot">
-      <span class="bientot-icone" aria-hidden="true">👤</span>
+  <div id="bloc-non-connecte" class="conteneur-auth" style="display:none;">
+    <div class="carte carte-auth" style="text-align:center;">
+      <h1>Tu n'es pas connecté</h1>
+      <p class="auth-sous-titre">Connecte-toi pour accéder à ton profil.</p>
+      <a href="connexion.html" class="bouton-principal bouton-pleine-largeur">Se connecter</a>
+    </div>
+  </div>
+
+  <main id="bloc-profil" class="conteneur-auth" style="display:none;">
+    <div class="carte carte-auth" style="max-width:520px;">
       <h1>Mon profil</h1>
-      <p>La gestion de ton profil arrive très bientôt.</p>
-      <a href="index.html" class="bouton-principal">Retour à l'accueil</a>
+      <p class="auth-sous-titre">Ces informations sont enregistrées sur cet appareil (V1).</p>
+
+      <form id="formulaire-profil">
+        <label for="profil-nom">Nom complet</label>
+        <input type="text" id="profil-nom" required>
+
+        <label for="profil-email">Adresse e-mail</label>
+        <input type="email" id="profil-email" disabled>
+
+        <label for="profil-ville">Ville</label>
+        <input type="text" id="profil-ville" placeholder="Ex : Abidjan">
+
+        <div id="champs-jeune" style="display:none;">
+          <label for="profil-formation">Formation actuelle</label>
+          <input type="text" id="profil-formation" placeholder="Ex : BTS Informatique">
+
+          <label for="profil-competences">Compétences (séparées par une virgule)</label>
+          <input type="text" id="profil-competences" placeholder="Ex : HTML, CSS, JavaScript">
+        </div>
+
+        <p class="message-erreur" id="message-succes-profil" role="status" style="color:#1e7e42;"></p>
+
+        <button type="submit" class="bouton-principal bouton-pleine-largeur">Enregistrer</button>
+      </form>
     </div>
   </main>
 
@@ -40,6 +59,7 @@
     <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
   </footer>
 
+  <script src="js/profil.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

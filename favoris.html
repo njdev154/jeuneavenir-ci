@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mes favoris — JeuneAvenir CI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="alternate icon" href="assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,24 +22,27 @@
       <a href="offres.html">Insertion pro</a>
     </nav>
     <div class="entete-actions">
-      <a href="connexion.html" class="lien-connexion">Se connecter</a>
-      <a href="inscription.html" class="bouton-principal bouton-petit">S'inscrire</a>
+      <a href="dashboard.html" class="lien-connexion">Mon tableau de bord</a>
     </div>
   </header>
 
-  <main class="conteneur page-bientot">
-    <div class="carte carte-bientot">
-      <span class="bientot-icone" aria-hidden="true">⭐</span>
-      <h1>Mes favoris</h1>
-      <p>Retrouve ici tes filières, écoles et mentors sauvegardés — bientôt disponible.</p>
-      <a href="index.html" class="bouton-principal">Retour à l'accueil</a>
-    </div>
+  <main class="conteneur page-decouverte">
+    <h1>Mes favoris</h1>
+    <p class="page-sous-titre">Filières et mentors que tu as sauvegardés (enregistré sur cet appareil).</p>
+
+    <h2 class="dashboard-section-titre" style="margin-top:32px;">Filières</h2>
+    <div id="favoris-filieres" class="grille-filieres"></div>
+
+    <h2 class="dashboard-section-titre" style="margin-top:32px;">Mentors</h2>
+    <div id="favoris-mentors" class="grille-mentors"></div>
   </main>
 
   <footer class="pied-de-page">
     <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
   </footer>
 
+  <script src="js/favoris.js"></script>
+  <script src="js/favoris-page.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

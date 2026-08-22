@@ -1873,3 +1873,28 @@ body.page-prete {
 .tableau-comparateur tbody tr:last-child th {
   border-bottom: none;
 }
+
+/* ===========================================
+   BOUTON FAVORI
+   =========================================== */
+
+.bouton-favori {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: none;
+  border: 2px solid var(--bleu-100);
+  color: var(--couleur-or-texte);
+  font-family: var(--police-texte);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 16px 0;
+}
+
+.bouton-favori-actif {
+  background-color: var(--bleu-100);
+  border-color: var(--couleur-or-texte);
+}

@@ -95,6 +95,8 @@ function afficherFiche(filiere) {
       <button type="button" class="bouton-fermer-fiche" id="bouton-fermer-fiche" aria-label="Fermer">✕</button>
     </div>
 
+    ${boutonFavoriHTML("filieres", filiere.id)}
+
     <p class="fiche-description">${filiere.description || "Description à venir."}</p>
 
     <div class="fiche-grille-infos">
@@ -138,6 +140,7 @@ function afficherFiche(filiere) {
   `;
 
   fiche.style.display = "block";
+  activerBoutonFavori(fiche);
   document.getElementById("bouton-fermer-fiche").addEventListener("click", () => {
     fiche.style.display = "none";
     history.replaceState(null, "", window.location.pathname);
