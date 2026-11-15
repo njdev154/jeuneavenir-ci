@@ -48,6 +48,14 @@ test("la recherche par domaine ne montre que les rattachements confirmés et leu
   assert.ok(attendus.length > 0);
   assert.deepEqual(reponse.cartes.map(carte => carte.titre), attendus);
   assert.ok(reponse.cartes.every(carte => carte.sources.length > 0));
+  assert.ok(reponse.cartes.every(carte => carte.lien === "ecoles.html"));
+});
+
+test("le salaire reste présenté comme une estimation du catalogue", () => {
+  const reponse = assistant.repondre("Quel est le salaire en informatique ?", loadData());
+
+  assert.match(reponse.paragraphes.join(" "), /150 000 - 400 000 FCFA\/mois/);
+  assert.match(reponse.paragraphes.join(" "), /estimation/i);
 });
 
 test("les mentors et offres non publiés ne sont jamais proposés", () => {

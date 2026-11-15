@@ -1,6 +1,12 @@
 # Journal du projet
 
 ## 2026-11-15 — Assistant Copilot
+- Intégration du verrou de compte de l'assistant v2, avec contrôle du statut de publication des mentors/offres et filtrage des rattachements école-domaine confirmés; aucune donnée fictive n'a été réintroduite.
+- Mise à jour du README et des tests de l'assistant, notamment le lien vers les fiches Écoles et la présentation des salaires comme estimations.
+- Vérifications : 5 tests Node réussis, syntaxe de tous les scripts JavaScript valide, tous les JSON lisibles et `git diff --check` sans erreur.
+- Reste à faire : valider le verrou dans un navigateur et les parcours connectés via un serveur HTTP local; l'outil navigateur ne retrouvait pas la page ouverte pendant ce contrôle. La source JS originale du pack ne peut pas être comparée à l'archive externe bloquée par le sandbox.
+
+## 2026-11-15 — Assistant Copilot
 - Intégration de l'assistant local dans les 21 pages HTML; les fichiers actifs sont rangés dans `js/assistant.js` et `css/assistant.css`. Les sources du pack redondantes ont été retirées après extraction des éléments nécessaires.
 - Garde-fous de fiabilité : les mentors/offres ne sont chargés qu'avec le statut `verifie` (leurs listes sont maintenant vides, statut `aucune_publication`); les écoles recherchées par domaine doivent avoir un rattachement confirmé et montrent leurs sources; les séries, durées, métiers et salaires sont présentés comme des repères, sans promesse d'admission.
 - README actualisé et ajout de tests ciblés dans `tests/assistant.test.js`.

@@ -2,15 +2,14 @@
 // Assistant d'orientation, PHASE A (locale), ajoutée en V1.
 //
 // CE QUE C'EST :
-// Assistant local à règles qui consulte les fichiers data/*.json et
-// rend visibles les limites des fiches. Les profils et offres de
-// démonstration ne sont pas publiés comme des informations réelles.
+// Un assistant local qui consulte les fichiers data/*.json et signale
+// les informations encore à confirmer. Ce n'est pas une IA générative.
 //
 // SÉCURITÉ (par conception) :
-// - Pas de clé API ni d'appel à un service d'IA externe. Le navigateur
-//   charge les JSON du site depuis son origine.
+// - Aucune clé API ni appel à un service externe : les JSON sont chargés
+//   depuis le site et les questions restent dans le navigateur.
 // - Les questions tapées par le visiteur ne sont envoyées NULLE PART et
-//   ne sont PAS enregistrées par cet assistant.
+//   ne sont PAS enregistrées (ni localStorage, ni base, ni statistique).
 // - Tout affichage passe par textContent / createElement : le texte de
 //   l'utilisateur et celui des données ne sont jamais injectés comme du
 //   HTML (protection contre les injections de code, XSS).
@@ -18,13 +17,26 @@
 //   stocké par le site lui-même (clé "jac_dernier_resultat_quiz"), pour
 //   personnaliser les conseils. Lecture seule, jamais modifiée ici.
 //
+// VERROU COMPTE (demandé par Junior, 2026-11-15) :
+// L'assistant ne répond qu'aux visiteurs CONNECTÉS : sans compte et sans
+// connexion, il affiche un message et les boutons Inscription / Connexion
+// au lieu de répondre. La vérification lit la clé que le site utilise
+// déjà ("jac_utilisateur_connecte", posée par js/auth.js).
+// Limite honnête : en V1, les comptes sont SIMULÉS (localStorage, mot de
+// passe non vérifié — voir le CDC, section 3). Ce verrou est donc un
+// verrou de parcours : il arrête les visiteurs ordinaires, pas un
+// technicien déterminé. La vraie serrure arrivera avec la V2 (Supabase
+// Auth) et, pour la Phase B, le serveur vérifiera la session AVANT tout
+// appel à Gemini — c'est aussi ce qui protégera le quota et, plus tard,
+// le paiement.
+//
 // LIMITES HONNÊTES :
 // Ce n'est PAS une intelligence artificielle générative : l'assistant
 // comprend les questions prévues (filières, écoles, métiers, mentors,
 // offres, séries du bac, résultat du quiz) et cherche dans les données.
 // Hors de ces sujets, il le dit clairement au lieu d'inventer.
-// Une conversation générative nécessiterait une phase séparée avec des
-// sources contrôlées et une protection serveur des clés.
+// La conversation libre (Phase B, Gemini côté serveur) viendra ensuite,
+// par-dessus ce même assistant qui restera en secours.
 
 (function () {
   "use strict";
@@ -218,10 +230,7 @@
   function carteMetier(donnees, m) {
     return {
       titre: m.nom,
-      lignes: [
-        (m.description || "").slice(0, 140),
-        "Repère indicatif du catalogue; missions et parcours sont à confirmer."
-      ],
+      lignes: [(m.description || "").slice(0, 140)],
       lien: "metiers.html#" + m.id,
       texteLien: "Voir la fiche métier"
     };
@@ -272,7 +281,7 @@
 
     // --- Salutations / politesse / présentation ---
     if (/^(bonjour|bonsoir|salut|hello|coucou|bjr)\b/.test(qn) && qn.split(" ").length <= 4) {
-      rep.paragraphes.push("Bonjour et bienvenue sur JeuneAvenir CI. Je consulte les informations du catalogue; les éléments non confirmés sont signalés et les données de démonstration ne sont pas présentées comme réelles.");
+      rep.paragraphes.push("Bonjour et bienvenue sur JeuneAvenir CI. Je consulte le catalogue du site et je signale les informations qui restent à confirmer.");
       rep.paragraphes.push("Pose-moi une question, ou utilise un des boutons ci-dessous.");
       return rep;
     }
@@ -283,20 +292,20 @@
     }
     if (/\b(qui es tu|tu es qui|que peux tu faire|que sais tu faire|a quoi tu sers|comment ca marche|aide|au secours)\b/.test(qn)) {
       rep.paragraphes.push("Je suis l'assistant de JeuneAvenir CI. Je peux :");
-      rep.paragraphes.push("• te présenter les pistes associées à une série du bac dans le catalogue ;\n• chercher les établissements recensés et afficher les limites de leurs fiches ;\n• présenter les métiers et les estimations publiées sur le site ;\n• vérifier si des mentors ou offres réels et confirmés sont publiés ;\n• retrouver les pistes de ton quiz enregistré sur cet appareil.");
-      rep.paragraphes.push("Je ne peux pas confirmer une admission, une embauche ou un accompagnement. Si une information manque ou n'est pas vérifiée, je te le dis au lieu de l'inventer.");
+      rep.paragraphes.push("• te présenter des pistes associées à ta série du bac ;\n• chercher les établissements recensés et signaler les rattachements à confirmer ;\n• présenter les métiers et estimations du catalogue ;\n• vérifier si des mentors ou offres réels et confirmés sont publiés ;\n• retrouver les pistes de ton quiz enregistré sur cet appareil.");
+      rep.paragraphes.push("Je réponds uniquement avec les données du site : si une information n'y est pas, je te le dis au lieu d'inventer.");
       return rep;
     }
 
     // --- Résultat du quiz (personnalisé) ---
-    var demandeResultat = /\b(mon resultat|resultat.{0,12}quiz|selon mon quiz|selon le quiz|mes resultats|tu me conseilles quoi|conseille moi|que me conseilles tu)\b/.test(qn);
+    var demandeResultat = /\b(mon resultat|resultat du quiz|selon mon quiz|selon le quiz|mes resultats|tu me conseilles quoi|conseille moi)\b/.test(qn);
     if (demandeResultat) {
       var ids = contexte.resultatQuiz && contexte.resultatQuiz.filieresAccessibles;
-      if (Array.isArray(ids) && ids.length) {
+      if (ids && ids.length) {
         var filieresQuiz = ids.map(function (id) { return filiereParId(donnees, id); }).filter(Boolean);
-        rep.paragraphes.push("D'après ton résultat au quiz enregistré sur cet appareil, voici les pistes associées à ta série de bac. Elles ne garantissent ni l'admissibilité ni une admission : vérifie les conditions auprès de chaque établissement.");
+        rep.paragraphes.push("D'après ton résultat au quiz enregistré sur cet appareil, voici les pistes associées. Elles ne garantissent ni l'admissibilité ni une admission : vérifie les conditions auprès de chaque établissement.");
         filieresQuiz.slice(0, 4).forEach(function (f) { rep.cartes.push(carteFiliere(donnees, f)); });
-        rep.paragraphes.push("Ouvre une fiche pour examiner les informations disponibles. Tu peux aussi refaire le quiz si ta situation a changé.");
+        rep.paragraphes.push("Ouvre une fiche pour voir les matières, les débouchés et les écoles liées. Tu peux aussi refaire le quiz si ta situation a changé.");
         rep.actions.push(ACTION_QUIZ);
         return rep;
       }
@@ -312,7 +321,7 @@
       return rep;
     }
 
-    // --- Série du bac -> pistes du catalogue ---
+    // --- Série du bac -> filières ouvertes ---
     var serie = serieDetectee(qn, donnees);
     var veutEcoles = /\b(ecole|ecoles|universite|universites|institut|etablissement|etudier)\b/.test(qn);
     if (serie && serie.id !== "autre" && !veutEcoles) {
@@ -320,9 +329,7 @@
         .map(function (id) { return filiereParId(donnees, id); }).filter(Boolean);
       rep.paragraphes.push("Pour un bac " + serie.nom + ", le catalogue propose ces pistes à explorer :");
       ouvertes.forEach(function (f) { rep.cartes.push(carteFiliere(donnees, f)); });
-      rep.paragraphes.push(serie.verification === "a_confirmer"
-        ? "Cette correspondance reste à confirmer auprès des établissements et des sources officielles; elle ne garantit pas une admission."
-        : "Cette liste est un repère d'orientation, pas une décision d'admissibilité ni une garantie d'admission. Vérifie les conditions auprès des établissements.");
+      rep.paragraphes.push("Ce sont des pistes d'orientation, pas une décision d'admissibilité ni une garantie d'admission. Vérifie les conditions auprès des établissements.");
       rep.actions.push(ACTION_QUIZ);
       return rep;
     }
@@ -337,7 +344,7 @@
     var demandeMatieres = /\b(matiere|matieres|programme|cours)\b/.test(qn);
     if (filiere && (demandeSalaire || demandeDuree || demandeDebouches || demandeMatieres)) {
       if (demandeSalaire) rep.paragraphes.push("Pour la filière " + filiere.nom + ", le salaire indicatif indiqué sur le site est : " + (filiere.salaire_indicatif || "non précisé") + ". C'est une estimation de début de carrière, à vérifier selon l'entreprise et l'expérience.");
-      if (demandeDuree) rep.paragraphes.push("Durée indicative renseignée pour " + filiere.nom + " : " + (filiere.duree_etudes || "non précisée sur le site") + ". Confirme le parcours exact auprès de l'établissement.");
+      if (demandeDuree) rep.paragraphes.push("La filière " + filiere.nom + " dure : " + (filiere.duree_etudes || "durée non précisée sur le site") + ".");
       if (demandeDebouches) rep.paragraphes.push("Débouchés de la filière " + filiere.nom + " : " + ((filiere.debouches || []).join(", ") || "voir la fiche") + ".");
       if (demandeMatieres) rep.paragraphes.push("Matières principales en " + filiere.nom + " : " + ((filiere.matieres_principales || []).join(", ") || "voir la fiche") + ".");
       rep.cartes.push(carteFiliere(donnees, filiere));
@@ -350,7 +357,7 @@
         return !filiere || m.domaine === filiere.id;
       });
       if (!mentors.length) {
-        rep.paragraphes.push("Aucun profil de mentor réel et vérifié n'est publié pour le moment. Les profils de démonstration ne sont pas proposés comme de vraies personnes.");
+        rep.paragraphes.push("Aucun mentor réel et vérifié n'est publié pour le moment.");
         return rep;
       }
       rep.paragraphes.push(filiere
@@ -371,11 +378,9 @@
         if (veutEmploi && !veutStage && o.type !== "emploi") return false;
         return true;
       });
-      if (!offres.length) {
-        rep.paragraphes.push("Aucune offre réelle et vérifiée n'est publiée dans le catalogue pour le moment. Les offres de démonstration ne sont pas présentées comme des emplois disponibles.");
-        return rep;
-      }
-      rep.paragraphes.push("Voici les offres publiées dans le catalogue qui correspondent :");
+      rep.paragraphes.push(offres.length
+        ? "Voici les offres présentes sur le site qui correspondent :"
+        : "Aucune offre réelle et vérifiée n'est publiée dans le catalogue pour le moment.");
       offres.slice(0, 5).forEach(function (o) { rep.cartes.push(carteOffre(donnees, o)); });
       return rep;
     }
@@ -392,15 +397,12 @@
       // on ne déclenche la liste d'écoles que si un critère existe.
       if (filiere || ville || veutEcoles) {
         rep.paragraphes.push(ecoles.length
-          ? "Voici les établissements du relevé partiel" +
-            (filiere ? " dont le rattachement à " + filiere.nom + " est confirmé" : "") +
-            (ville ? " à " + ville : "") + ". Consulte les sources et leur portée avant de prendre une décision :"
-          : filiere
-            ? "Je n'ai trouvé aucun rattachement confirmé à " + filiere.nom +
-              (ville ? " à " + ville : "") + " dans ce relevé partiel. Cela ne signifie pas qu'aucun établissement ne propose cette formation; vérifie auprès des établissements et consulte les sources du catalogue."
-            : "Je n'ai trouvé aucune fiche d'établissement correspondant à ces critères dans le relevé partiel du site. Essaie une autre ville ou consulte les sources du catalogue.");
+          ? "J'ai trouvé " + ecoles.length + " établissement(s) correspondant(s) dans le catalogue" +
+            (filiere ? " pour " + filiere.nom : "") + (ville ? " à " + ville : "") + " :"
+          : "Aucun établissement ne correspond dans les données du site" +
+            (filiere ? " pour " + filiere.nom : "") + (ville ? " à " + ville : "") + ". Essaie une autre ville ou un autre domaine.");
         ecoles.slice(0, 5).forEach(function (e) { rep.cartes.push(carteEcole(donnees, e)); });
-        if (ecoles.length > 5) rep.paragraphes.push("D'autres fiches sont disponibles dans le relevé partiel; consulte la page Écoles pour les examiner.");
+        if (ecoles.length > 5) rep.paragraphes.push("Il y en a d'autres : la page Écoles permet de filtrer par ville, statut et domaine.");
         return rep;
       }
     }
@@ -423,7 +425,6 @@
         metiers = scoresM.map(function (x) { return x.m; });
         rep.paragraphes.push(metiers.length ? "Voici les métiers qui correspondent à ta recherche :" : "Précise un domaine, par exemple « métiers de la santé », et je te montre les métiers liés.");
       }
-      if (metiers.length) rep.paragraphes.push("Ces fiches sont des repères généraux; les missions et parcours doivent être confirmés auprès de professionnels et des formations concernées.");
       metiers.slice(0, 5).forEach(function (m) { rep.cartes.push(carteMetier(donnees, m)); });
       if (!filiere && !metiers.length) rep.actions.push(ACTION_FILIERES);
       return rep;
@@ -432,16 +433,11 @@
     // --- Une filière reconnue, question générale ---
     if (filiere) {
       rep.paragraphes.push(filiere.description || "");
-      rep.paragraphes.push("Les informations de cette fiche sont des repères du catalogue; confirme les parcours et conditions auprès des établissements concernés.");
       rep.cartes.push(carteFiliere(donnees, filiere));
       var liees = (filiere.ecoles_liees || []).slice(0, 3)
-        .map(function (id) { return ecoleParId(donnees, id); })
-        .filter(function (e) {
-          return e && e.verification && e.verification.domaine_confirme &&
-            (e.domaines || []).indexOf(filiere.id) !== -1;
-        });
+        .map(function (id) { return ecoleParId(donnees, id); }).filter(Boolean);
       if (liees.length) {
-        rep.paragraphes.push("Quelques établissements dont le rattachement à cette filière est confirmé par une source :");
+        rep.paragraphes.push("Quelques établissements liés à cette filière :");
         liees.forEach(function (e) { rep.cartes.push(carteEcole(donnees, e)); });
       }
       return rep;
@@ -470,7 +466,7 @@
 
     // --- Réponse honnête par défaut : on n'invente rien ---
     rep.paragraphes.push("Je n'ai pas trouvé la réponse dans les données du site, et je préfère te le dire plutôt que d'inventer.");
-    rep.paragraphes.push("Essaie avec des mots simples, par exemple : « filières après un bac A2 », « établissements d'informatique à Abidjan », « estimation de salaire en informatique » ou « résultat de mon quiz ».");
+    rep.paragraphes.push("Essaie avec des mots simples, par exemple : « filières après un bac A2 », « écoles d'informatique à Abidjan », « stage en droit », « mentor en santé ». Ou commence par le quiz d'orientation.");
     rep.actions.push(ACTION_QUIZ);
     rep.actions.push(ACTION_FILIERES);
     rep.actions.push(ACTION_CONTACT);
@@ -516,19 +512,16 @@
         // Chaque JSON du site enveloppe sa liste sous une clé du même nom,
         // sauf series_filieres.json dont la clé est "series".
         var liste = json[cle] || json.series || json;
-        if (!Array.isArray(liste)) throw new Error("Format de données invalide : " + fichiers[cle]);
-        if ((cle === "mentors" || cle === "offres") && json._statut_publication !== "verifie") {
-          liste = [];
-        }
-        return [cle, liste, json._statut_publication === "verifie"];
+        var statutVerifie = json._statut_publication === "verifie";
+        if ((cle === "mentors" || cle === "offres") && !statutVerifie) liste = [];
+        return [cle, liste, statutVerifie];
       });
     })).then(function (paires) {
       donneesChargees = {};
       paires.forEach(function (p) {
         donneesChargees[p[0]] = p[1];
-        if (p[0] === "mentors" || p[0] === "offres") {
-          donneesChargees[p[0] + "Publies"] = p[2];
-        }
+        if (p[0] === "mentors") donneesChargees.mentorsPublies = p[2];
+        if (p[0] === "offres") donneesChargees.offresPubliees = p[2];
       });
       return donneesChargees;
     }).catch(function (err) {
@@ -544,6 +537,20 @@
     } catch (e) { return null; }
   }
 
+  // Utilisateur connecté selon le mécanisme actuel du site (V1 simulée).
+  // Renvoie l'objet utilisateur ({ nom, email, typeCompte }) ou null.
+  function lireUtilisateurConnecte() {
+    try {
+      var u = JSON.parse(localStorage.getItem("jac_utilisateur_connecte") || "null");
+      return u && u.email ? u : null;
+    } catch (e) { return null; }
+  }
+
+  var ACTIONS_VERROU = [
+    { label: "Créer un compte", href: "inscription.html" },
+    { label: "Se connecter", href: "connexion.html" }
+  ];
+
   function construireInterface() {
     if (document.querySelector(".jac-assistant-bouton")) return;
 
@@ -551,8 +558,6 @@
     bouton.type = "button";
     bouton.className = "jac-assistant-bouton";
     bouton.setAttribute("aria-label", "Ouvrir l'assistant d'orientation");
-    bouton.setAttribute("aria-controls", "jac-assistant-dialog");
-    bouton.setAttribute("aria-expanded", "false");
     var imgBouton = document.createElement("img");
     imgBouton.src = "assets/icons/logo.svg";
     imgBouton.alt = "";
@@ -562,7 +567,6 @@
     bouton.appendChild(texteBouton);
 
     var panneau = document.createElement("section");
-    panneau.id = "jac-assistant-dialog";
     panneau.className = "jac-assistant-panneau";
     panneau.hidden = true;
     panneau.setAttribute("role", "dialog");
@@ -580,7 +584,7 @@
     titre.textContent = "Assistant JeuneAvenir";
     var sousTitre = document.createElement("div");
     sousTitre.className = "jac-assistant-sous-titre";
-    sousTitre.textContent = "Catalogue local · sources et limites visibles";
+    sousTitre.textContent = "Catalogue du site · certaines fiches restent à confirmer";
     textes.appendChild(titre);
     textes.appendChild(sousTitre);
     var fermer = document.createElement("button");
@@ -594,16 +598,14 @@
 
     var messages = document.createElement("div");
     messages.className = "jac-assistant-messages";
-    messages.setAttribute("role", "log");
-    messages.setAttribute("aria-live", "polite");
 
     var suggestions = document.createElement("div");
     suggestions.className = "jac-assistant-suggestions";
     [
       { label: "Quelle filière après mon bac ?", question: "Quelles filières après un bac A2 ?" },
       { label: "Écoles à Abidjan", question: "Quelles écoles y a-t-il à Abidjan ?" },
-      { label: "Statut du mentorat", question: "Y a-t-il un mentor vérifié ?" },
-      { label: "Offres réelles", question: "Y a-t-il une offre de stage réelle ?" },
+      { label: "Trouver un mentor", question: "Je cherche un mentor" },
+      { label: "Stages et offres", question: "Je cherche un stage" },
       { label: "Selon mon quiz", question: "Que me conseilles-tu selon mon résultat de quiz ?" }
     ].forEach(function (s) {
       var b = document.createElement("button");
@@ -663,24 +665,6 @@
           l.textContent = ligne;
           bloc.appendChild(l);
         });
-        (carte.sources || []).forEach(function (source) {
-          if (!source || !/^https?:\/\//i.test(String(source.href || ""))) return;
-          var ligneSource = document.createElement("div");
-          ligneSource.className = "jac-assistant-carte-ligne";
-          var lienSource = document.createElement("a");
-          lienSource.className = "jac-assistant-carte-lien";
-          lienSource.href = source.href;
-          lienSource.target = "_blank";
-          lienSource.rel = "noopener noreferrer";
-          lienSource.textContent = source.label || "Consulter la source";
-          ligneSource.appendChild(lienSource);
-          if (source.description) {
-            var porteeSource = document.createElement("span");
-            porteeSource.textContent = " — " + source.description;
-            ligneSource.appendChild(porteeSource);
-          }
-          bloc.appendChild(ligneSource);
-        });
         if (carte.lien) {
           var a = document.createElement("a");
           a.className = "jac-assistant-carte-lien";
@@ -708,6 +692,15 @@
     function poserQuestion(question) {
       var q = String(question || "").trim();
       if (!q) return;
+      // Verrou compte : sans connexion, aucune réponse, juste le chemin.
+      if (!lireUtilisateurConnecte()) {
+        afficherReponse({
+          paragraphes: ["Pour utiliser l'assistant, il faut d'abord créer un compte ou te connecter. C'est gratuit et ça prend une minute."],
+          cartes: [],
+          actions: ACTIONS_VERROU
+        });
+        return;
+      }
       ajouterBulle(q, "utilisateur");
       envoyer.disabled = true;
       var attente = ajouterBulle("Je cherche dans les données du site…", "assistant");
@@ -726,27 +719,30 @@
     bouton.addEventListener("click", function () {
       var ouvert = panneau.hidden;
       panneau.hidden = !ouvert;
-      bouton.setAttribute("aria-expanded", String(ouvert));
       if (ouvert) {
         if (!dejaAccueilli) {
           dejaAccueilli = true;
-          ajouterBulle("Bonjour, je suis l'assistant local de JeuneAvenir CI. Je consulte le catalogue et ses références; certaines fiches restent à confirmer. Aucun mentor ni aucune offre réelle n'est publié pour le moment.", "assistant");
-          ajouterBulle("Je peux proposer des pistes d'orientation, mais pas garantir une admission. Dis-moi ta série du bac, une ville ou un métier qui t'intéresse.", "assistant");
+          var utilisateur = lireUtilisateurConnecte();
+          if (utilisateur) {
+            ajouterBulle("Bonjour" + (utilisateur.nom ? " " + utilisateur.nom : "") + ", je consulte le catalogue de JeuneAvenir CI et je signale les informations qui restent à confirmer.", "assistant");
+            ajouterBulle("Dis-moi par exemple ta série du bac, une ville, ou le métier qui t'intéresse.", "assistant");
+          } else {
+            afficherReponse({
+              paragraphes: [
+                "Bonjour, je suis l'assistant de JeuneAvenir CI. Je consulte le catalogue du site et je signale les informations qui restent à confirmer.",
+                "L'assistant est réservé aux membres : crée un compte gratuit ou connecte-toi, et je pourrai te répondre tout de suite."
+              ],
+              cartes: [],
+              actions: ACTIONS_VERROU
+            });
+          }
         }
         champ.focus();
       }
     });
-    fermer.addEventListener("click", function () {
-      panneau.hidden = true;
-      bouton.setAttribute("aria-expanded", "false");
-      bouton.focus();
-    });
+    fermer.addEventListener("click", function () { panneau.hidden = true; bouton.focus(); });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !panneau.hidden) {
-        panneau.hidden = true;
-        bouton.setAttribute("aria-expanded", "false");
-        bouton.focus();
-      }
+      if (e.key === "Escape" && !panneau.hidden) { panneau.hidden = true; bouton.focus(); }
     });
     formulaire.addEventListener("submit", function (e) {
       e.preventDefault();
