@@ -2,9 +2,11 @@
 
 ## 2026-11-15 — Assistant Copilot
 - Intégration du verrou de compte de l'assistant v2, avec contrôle du statut de publication des mentors/offres et filtrage des rattachements école-domaine confirmés; aucune donnée fictive n'a été réintroduite.
-- Mise à jour du README et des tests de l'assistant, notamment le lien vers les fiches Écoles et la présentation des salaires comme estimations.
-- Vérifications : 5 tests Node réussis, syntaxe de tous les scripts JavaScript valide, tous les JSON lisibles et `git diff --check` sans erreur.
-- Reste à faire : valider le verrou dans un navigateur et les parcours connectés via un serveur HTTP local; l'outil navigateur ne retrouvait pas la page ouverte pendant ce contrôle. La source JS originale du pack ne peut pas être comparée à l'archive externe bloquée par le sandbox.
+- Mise à jour du README et des tests de l'assistant; correction de l'accord singulier/pluriel dans le message des résultats d'écoles.
+- Vérifications : 6 tests Node réussis, syntaxe de tous les scripts JavaScript valide, tous les JSON lisibles et `git diff --check` sans erreur.
+- Validation navigateur : verrou déconnecté (aucune carte), accueil personnalisé avec un compte de test, affichage mobile contenu dans 360 px, et aucune erreur JavaScript sur index, quiz et filières.
+- Parcours complet vérifié avec un compte de test : quiz A2 terminé, résultat enregistré puis repris par l'assistant, qui a proposé Droit, Communication & Marketing et Gestion & Commerce. Les questions filières, écoles d'informatique à Abidjan, salaire, stage, mentor et météo ont aussi été testées avec les JSON du projet. Les données de test du navigateur ont ensuite été effacées.
+- Reste à faire : restaurer/comparer le JavaScript original du pack si nécessaire; l'archive externe reste bloquée par le sandbox. Aucun remote Git n'est configuré, donc pas de push.
 
 ## 2026-11-15 — Assistant Copilot
 - Intégration de l'assistant local dans les 21 pages HTML; les fichiers actifs sont rangés dans `js/assistant.js` et `css/assistant.css`. Les sources du pack redondantes ont été retirées après extraction des éléments nécessaires.

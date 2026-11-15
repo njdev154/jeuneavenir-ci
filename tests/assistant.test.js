@@ -51,6 +51,27 @@ test("la recherche par domaine ne montre que les rattachements confirmés et leu
   assert.ok(reponse.cartes.every(carte => carte.lien === "ecoles.html"));
 });
 
+test("la recherche d'écoles accorde correctement le singulier et le pluriel", () => {
+  const donnees = loadData();
+  const question = "Quelles écoles font l'informatique à Abidjan ?";
+  const pluriel = assistant.repondre(question, donnees);
+  const nombre = pluriel.cartes.length;
+
+  assert.ok(nombre > 1);
+  assert.match(pluriel.paragraphes[0], new RegExp(nombre + " établissements correspondants"));
+
+  const ecole = donnees.ecoles.find(item =>
+    item.ville === "Abidjan" &&
+    item.domaines.includes("informatique") &&
+    item.verification &&
+    item.verification.domaine_confirme
+  );
+  donnees.ecoles = [ecole];
+  const singulier = assistant.repondre(question, donnees);
+
+  assert.match(singulier.paragraphes[0], /1 établissement correspondant/);
+});
+
 test("le salaire reste présenté comme une estimation du catalogue", () => {
   const reponse = assistant.repondre("Quel est le salaire en informatique ?", loadData());
 

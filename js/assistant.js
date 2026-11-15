@@ -396,8 +396,9 @@
       // Si la question ne précise rien d'utile, on ne vide pas la réponse :
       // on ne déclenche la liste d'écoles que si un critère existe.
       if (filiere || ville || veutEcoles) {
+        var accord = ecoles.length > 1 ? "s" : "";
         rep.paragraphes.push(ecoles.length
-          ? "J'ai trouvé " + ecoles.length + " établissement(s) correspondant(s) dans le catalogue" +
+          ? "J'ai trouvé " + ecoles.length + " établissement" + accord + " correspondant" + accord + " dans le catalogue" +
             (filiere ? " pour " + filiere.nom : "") + (ville ? " à " + ville : "") + " :"
           : "Aucun établissement ne correspond dans les données du site" +
             (filiere ? " pour " + filiere.nom : "") + (ville ? " à " + ville : "") + ". Essaie une autre ville ou un autre domaine.");
