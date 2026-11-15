@@ -1,6 +1,22 @@
 # Journal du projet
 
 ## 2026-11-15 — Assistant Copilot
+- Mission 02 réalisée : refonte cohérente des pages `inscription.html`, `connexion.html` et `mot-de-passe-oublie.html`, avec une feuille dédiée `css/auth-pages.css` et le script d'interface `js/auth-ui.js`.
+- Les identifiants attendus par `js/auth.js` et `js/mot-de-passe-oublie.js` sont conservés. Le choix Jeune/Mentor/Entreprise, les validations, le message d'erreur, les liens, les boutons Google/Apple et leurs notices restent branchés au fonctionnement V1.
+- Ajout de l'affichage/masquage des mots de passe et d'une explication explicite sur la démo locale. Aucune authentification serveur, connexion sociale réelle, ni réinitialisation par e-mail n'est prétendue; `js/auth.js` n'a pas été modifié.
+- Vérifications : parcours d'inscription (champs requis, choix Mentor, mot de passe visible/masqué, confirmation erronée puis succès) et connexion avec compte de test; comptes temporaires nettoyés. Confirmation de mot de passe oublié testée sans envoi d'e-mail. Aucun débordement horizontal à 360, 390, 768 et 1440 px; aucune erreur JavaScript observée sur les pages testées.
+- `node --test tests/assistant.test.js` : 6 tests réussis. `node --check` sur les scripts concernés et `git diff --check` réussis.
+- Références : les trois maquettes desktop et la maquette mobile d'inscription ont été consultées. Aucune maquette mobile de connexion ou de mot de passe oublié n'est présente dans le dossier; ces deux mises en page ont été adaptées et contrôlées aux tailles mobiles.
+- Reste à faire : faire valider cette livraison avant de commencer la Mission 03.
+
+## 2026-11-15 — Assistant Copilot
+- Mission 01 réalisée : fondations visuelles isolées dans `css/accueil.css`, hero Horizon plein écran, navigation responsive et présentation retravaillée des cinq piliers. Les contenus, liens, logo original, statistiques et limites V1 sont conservés.
+- `index.html` reçoit la feuille de style dédiée, une hiérarchie accessible pour le menu, le point final accentué dans « horizon. » et la signature de la maquette. `js/main.js` met à jour l’état ARIA du menu uniquement sur l’accueil.
+- Vérifications navigateur : 1899 × 876, 1440 × 900 et 390 × 844; contrôle complémentaire à 360, 768, 1023 et 1024 px. Aucun débordement horizontal; logo et polices chargés; menu ouvert/fermé et lien « À propos » vérifiés; aucune erreur JavaScript observée.
+- `node --check js/main.js` et `git diff --check` réussis. Le serveur local n’a pas été joignable depuis le sandbox; les contrôles navigateur ont été faits sur l’URL locale `file://`.
+- Reste à faire : faire valider les captures et l’accueil avant toute autre mission. Aucune autre page ni donnée JSON n’a été modifiée.
+
+## 2026-11-15 — Assistant Copilot
 - Intégration du verrou de compte de l'assistant v2, avec contrôle du statut de publication des mentors/offres et filtrage des rattachements école-domaine confirmés; aucune donnée fictive n'a été réintroduite.
 - Mise à jour du README et des tests de l'assistant; correction de l'accord singulier/pluriel dans le message des résultats d'écoles.
 - Vérifications : 6 tests Node réussis, syntaxe de tous les scripts JavaScript valide, tous les JSON lisibles et `git diff --check` sans erreur.

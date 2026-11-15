@@ -9,80 +9,116 @@
   <link rel="alternate icon" href="assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth-pages.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body class="page-auth">
-
-  <header class="entete-simple">
-    <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
-    <a href="index.html" class="lien-retour">← Retour à l'accueil</a>
+<body class="page-auth page-auth-inscription">
+  <header class="auth-entete">
+    <a href="index.html" class="auth-marque">
+      <img src="assets/icons/logo.svg" alt="" width="32" height="32">
+      <span>JeuneAvenir <span class="auth-marque-ci">CI</span></span>
+    </a>
+    <a href="index.html" class="auth-retour"><span aria-hidden="true">←</span> Retour à l'accueil</a>
   </header>
 
-  <main class="conteneur-auth">
-    <div class="carte carte-auth">
-      <h1>Crée ton compte</h1>
-      <p class="auth-sous-titre">Démo locale uniquement : le nom et l'e-mail restent dans ce navigateur. Aucun compte en ligne n'est créé; n'utilise pas un mot de passe réel ou réutilisé.</p>
+  <main class="auth-main auth-main-inscription">
+    <aside class="auth-story" aria-labelledby="auth-story-title">
+      <div class="auth-story-contenu">
+        <p class="auth-kicker auth-kicker-clair">JEUNEAVENIR CI</p>
+        <h2 id="auth-story-title">Chaque étape<br>mérite<br>une bonne<br><em>boussole.</em></h2>
+        <p>Explore des pistes d'orientation et des informations sourcées pour avancer à ton rythme.</p>
+        <p class="auth-story-signature">Ton parcours commence ici.</p>
+      </div>
+      <div class="auth-orbite" aria-hidden="true">
+        <img src="assets/icons/logo.svg" alt="" width="120" height="120">
+      </div>
+    </aside>
 
-      <form id="formulaire-inscription">
+    <section class="auth-zone" aria-labelledby="auth-page-title">
+      <div class="auth-card auth-card-inscription">
+        <p class="auth-kicker">REJOINDRE JEUNEAVENIR CI</p>
+        <h1 id="auth-page-title">Crée ton compte.</h1>
+        <p class="auth-intro">Choisis ton espace et commence à construire la suite de ton parcours.</p>
+        <p class="auth-notice" id="auth-demo-note"><strong>Démo locale :</strong> tes données restent dans ce navigateur; aucun compte en ligne n'est créé. N'utilise pas un mot de passe réel.</p>
 
-        <fieldset class="choix-type-compte">
-          <legend>Je suis un(e) :</legend>
+        <form id="formulaire-inscription">
+          <fieldset class="choix-type-compte">
+            <legend>Je suis un(e) :</legend>
 
-          <label class="carte-type-compte">
-            <input type="radio" name="type_compte" value="jeune" checked>
-            <span class="type-titre">Jeune</span>
-            <span class="type-desc">Lycéen, étudiant ou jeune diplômé</span>
-          </label>
+            <label class="carte-type-compte">
+              <input type="radio" name="type_compte" value="jeune" checked>
+              <span class="type-titre">Jeune</span>
+              <span class="type-desc">Lycéen, étudiant ou jeune diplômé</span>
+            </label>
 
-          <label class="carte-type-compte">
-            <input type="radio" name="type_compte" value="mentor">
-            <span class="type-titre">Mentor</span>
-            <span class="type-desc">Professionnel souhaitant accompagner</span>
-          </label>
+            <label class="carte-type-compte">
+              <input type="radio" name="type_compte" value="mentor">
+              <span class="type-titre">Mentor</span>
+              <span class="type-desc">Professionnel souhaitant accompagner</span>
+            </label>
 
-          <label class="carte-type-compte">
-            <input type="radio" name="type_compte" value="entreprise">
-            <span class="type-titre">Entreprise</span>
-            <span class="type-desc">Recruteur ou représentant d'entreprise</span>
-          </label>
-        </fieldset>
+            <label class="carte-type-compte">
+              <input type="radio" name="type_compte" value="entreprise">
+              <span class="type-titre">Entreprise</span>
+              <span class="type-desc">Recruteur ou représentant d'entreprise</span>
+            </label>
+          </fieldset>
 
-        <label for="nom">Nom complet</label>
-        <input type="text" id="nom" name="nom" required autocomplete="name">
+          <div class="auth-champs-grille">
+            <div class="auth-champ auth-champ-large">
+              <label for="nom">Nom complet</label>
+              <input type="text" id="nom" name="nom" placeholder="Nom et prénom" required autocomplete="name" aria-describedby="auth-demo-note">
+            </div>
 
-        <label for="email">Adresse e-mail</label>
-        <input type="email" id="email" name="email" required autocomplete="email">
+            <div class="auth-champ auth-champ-large">
+              <label for="email">Adresse e-mail</label>
+              <input type="email" id="email" name="email" placeholder="nom@exemple.ci" required autocomplete="email" aria-describedby="auth-demo-note">
+            </div>
 
-        <label for="mot_de_passe">Mot de passe</label>
-        <input type="password" id="mot_de_passe" name="mot_de_passe" required minlength="8" autocomplete="new-password">
+            <div class="auth-champ">
+              <label for="mot_de_passe">Mot de passe</label>
+              <div class="auth-mot-de-passe">
+                <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="8 caractères minimum" required minlength="8" autocomplete="new-password" aria-describedby="auth-password-hint">
+                <button class="auth-toggle-mot-de-passe" type="button" aria-label="Afficher le mot de passe" aria-controls="mot_de_passe" aria-pressed="false" data-password-toggle>Afficher</button>
+              </div>
+            </div>
 
-        <label for="confirmation">Confirmer le mot de passe</label>
-        <input type="password" id="confirmation" name="confirmation" required minlength="8" autocomplete="new-password">
+            <div class="auth-champ">
+              <label for="confirmation">Confirmer le mot de passe</label>
+              <div class="auth-mot-de-passe">
+                <input type="password" id="confirmation" name="confirmation" placeholder="8 caractères minimum" required minlength="8" autocomplete="new-password" aria-describedby="auth-password-hint">
+                <button class="auth-toggle-mot-de-passe" type="button" aria-label="Afficher la confirmation du mot de passe" aria-controls="confirmation" aria-pressed="false" data-password-toggle>Afficher</button>
+              </div>
+            </div>
+          </div>
+          <p class="auth-aide" id="auth-password-hint">Au moins 8 caractères. Tu pourras compléter ton profil plus tard.</p>
 
-        <label class="ligne-case">
-          <input type="checkbox" id="conditions" required>
-          J'ai lu la <a href="confidentialite.html">notice de confidentialité V1</a> et compris qu'il s'agit d'une démonstration locale.
-        </label>
+          <p class="message-erreur auth-erreur" id="message-erreur" role="alert"></p>
+          <button type="submit" class="bouton-principal auth-bouton-principal">Créer mon compte</button>
+        </form>
 
-        <p class="message-erreur" id="message-erreur" role="alert"></p>
-
-        <button type="submit" class="bouton-principal bouton-pleine-largeur">Créer mon compte</button>
-      </form>
-
-      <div class="separateur">ou continuer avec</div>
-
-      <button class="bouton-social" id="bouton-google">
-        <img src="assets/icons/google-logo.svg" alt="" width="18" height="18"> Continuer avec Google
-      </button>
-      <button class="bouton-social" id="bouton-apple">
-        <img src="assets/icons/apple-logo.svg" alt="" width="18" height="18"> Continuer avec Apple
-      </button>
-
-      <p class="auth-bas">Déjà un compte ? <a href="connexion.html">Se connecter</a></p>
-    </div>
+        <div class="auth-separateur"><span>ou continuer avec</span></div>
+        <div class="auth-reseaux" aria-label="Autres méthodes de connexion" aria-describedby="auth-social-note">
+          <button type="button" class="bouton-social auth-bouton-social" id="bouton-google">
+            <img src="assets/icons/google-logo.svg" alt="" width="18" height="18"> Continuer avec Google
+          </button>
+          <button type="button" class="bouton-social auth-bouton-social" id="bouton-apple">
+            <img src="assets/icons/apple-logo.svg" alt="" width="18" height="18"> Continuer avec Apple
+          </button>
+        </div>
+        <p class="auth-note-social" id="auth-social-note">Google et Apple ne sont pas activés en V1; ces boutons affichent une information et ne créent pas de session.</p>
+        <p class="auth-lien-bas">Déjà inscrit ? <a href="connexion.html">Se connecter</a></p>
+      </div>
+    </section>
   </main>
 
+  <footer class="auth-pied">
+    <span>© 2026 JeuneAvenir CI</span>
+    <a href="confidentialite.html">Confidentialité</a>
+  </footer>
+
   <script src="js/auth.js"></script>
+  <script src="js/auth-ui.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
 </body>

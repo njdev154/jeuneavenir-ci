@@ -5,11 +5,12 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const formulaire = document.getElementById("formulaire-mdp-oublie");
-  if (!formulaire) return;
+  const confirmation = document.getElementById("confirmation-mdp-oublie");
+  if (!formulaire || !confirmation) return;
 
   formulaire.addEventListener("submit", (e) => {
     e.preventDefault();
-    formulaire.style.display = "none";
-    document.getElementById("confirmation-mdp-oublie").style.display = "block";
+    formulaire.hidden = true;
+    confirmation.hidden = false;
   });
 });

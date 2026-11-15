@@ -9,39 +9,51 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth-pages.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body class="page-auth">
-
-  <header class="entete-simple entete-simple-horizon">
-    <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
-    <a href="connexion.html" class="lien-retour">← Retour à la connexion</a>
+<body class="page-auth page-auth-mot-de-passe">
+  <header class="auth-entete">
+    <a href="index.html" class="auth-marque">
+      <img src="assets/icons/logo.svg" alt="" width="32" height="32">
+      <span>JeuneAvenir <span class="auth-marque-ci">CI</span></span>
+    </a>
+    <a href="connexion.html" class="auth-retour"><span aria-hidden="true">←</span> Retour à la connexion</a>
   </header>
 
-  <main class="conteneur-auth">
-    <div class="carte carte-auth">
-      <h1>Mot de passe oublié</h1>
-      <p class="auth-sous-titre">La réinitialisation par e-mail n'est pas activée dans cette démonstration. Aucun lien ne sera envoyé.</p>
+  <main class="auth-main auth-main-centre">
+    <section class="auth-zone" aria-labelledby="auth-page-title">
+      <div class="auth-card">
+        <p class="auth-kicker">ACCÈS AU COMPTE</p>
+        <h1 id="auth-page-title">Mot de passe oublié ?</h1>
+        <p class="auth-intro">Saisis l'adresse e-mail utilisée pour ton compte afin de consulter les options disponibles.</p>
+        <p class="auth-notice"><strong>À savoir :</strong> la réinitialisation par e-mail n'est pas activée en V1. Aucun message ne sera envoyé.</p>
 
-      <form id="formulaire-mdp-oublie">
-        <label for="email-mdp-oublie">Adresse e-mail</label>
-        <input type="email" id="email-mdp-oublie" required>
+        <form id="formulaire-mdp-oublie">
+          <div class="auth-champ auth-champ-large">
+            <label for="email-mdp-oublie">Adresse e-mail</label>
+            <input type="email" id="email-mdp-oublie" name="email" placeholder="nom@exemple.ci" required autocomplete="email" aria-describedby="auth-reset-note">
+          </div>
+          <span class="auth-aide auth-reset-aide" id="auth-reset-note">Cette démonstration ne contacte pas de service de messagerie.</span>
+          <button type="submit" class="bouton-principal auth-bouton-principal">Afficher l'information</button>
+        </form>
 
-        <button type="submit" class="bouton-principal bouton-pleine-largeur">Afficher l'information</button>
-      </form>
+        <div class="auth-confirmation" id="confirmation-mdp-oublie" hidden role="status" aria-live="polite">
+          <span class="auth-confirmation-marque" aria-hidden="true">i</span>
+          <h2>Réinitialisation non disponible en V1</h2>
+          <p>Aucun e-mail n'a été envoyé. Pour cette démonstration locale, la connexion retrouve un compte à partir de son adresse e-mail et ne vérifie pas le mot de passe.</p>
+          <a href="connexion.html" class="bouton-secondaire auth-bouton-secondaire">Retour à la connexion</a>
+        </div>
 
-      <div id="confirmation-mdp-oublie" style="display:none; text-align:center;">
-        <h2>Réinitialisation non disponible</h2>
-        <p class="auth-sous-titre">
-          Cette fonctionnalité sera pleinement active avec la prochaine version du site
-          (authentification sécurisée). Pour l'instant, aucun e-mail n'est réellement envoyé.
-        </p>
-        <a href="connexion.html" class="bouton-secondaire bouton-pleine-largeur">Retour à la connexion</a>
+        <p class="auth-lien-bas">Tu te souviens de ton mot de passe ? <a href="connexion.html">Se connecter</a></p>
       </div>
-
-      <p class="auth-bas">Tu te souviens de ton mot de passe ? <a href="connexion.html">Se connecter</a></p>
-    </div>
+    </section>
   </main>
+
+  <footer class="auth-pied">
+    <span>© 2026 JeuneAvenir CI</span>
+    <a href="confidentialite.html">Confidentialité</a>
+  </footer>
 
   <script src="js/mot-de-passe-oublie.js"></script>
   <script src="js/main.js"></script>
