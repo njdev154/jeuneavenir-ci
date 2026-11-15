@@ -1,0 +1,206 @@
+/* assistant.css — JeuneAvenir CI
+   Styles de l'assistant d'orientation (Phase A, locale).
+   Préfixe unique « jac-assistant- » : aucun risque de collision avec
+   css/style.css. Palette reprise de la charte du site (bleus Horizon).
+   Aucune police ni ressource externe : le site reste 100 % autonome. */
+
+.jac-assistant-bouton {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: none;
+  border: 1px solid #0B2545;
+  border-radius: 10px;
+  background: #0B2545;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.jac-assistant-bouton:hover { background: #163f6f; transform: translateY(-1px); }
+.jac-assistant-bouton img { width: 22px; height: 22px; display: block; }
+
+.jac-assistant-panneau {
+  position: fixed;
+  right: 20px;
+  bottom: 84px;
+  z-index: 9999;
+  width: min(384px, calc(100vw - 32px));
+  height: min(580px, calc(100vh - 110px));
+  height: min(580px, calc(100dvh - 110px));
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid #EAF3FC;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: inherit;
+  color: #16233B;
+}
+.jac-assistant-panneau[hidden] { display: none; }
+
+.jac-assistant-entete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #0B2545;
+  color: #FFFFFF;
+}
+.jac-assistant-entete img { width: 28px; height: 28px; }
+.jac-assistant-entete-textes { flex: 1; min-width: 0; }
+.jac-assistant-titre { font-size: 16px; font-weight: 800; line-height: 1.2; }
+.jac-assistant-sous-titre { font-size: 12px; opacity: 0.85; line-height: 1.3; }
+.jac-assistant-fermer {
+  border: none;
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.jac-assistant-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  background: #F7FAFD;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jac-assistant-bulle {
+  max-width: 88%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.jac-assistant-bulle-assistant {
+  align-self: flex-start;
+  background: #FFFFFF;
+  border: 1px solid #EAF3FC;
+  border-bottom-left-radius: 2px;
+}
+.jac-assistant-bulle-utilisateur {
+  align-self: flex-end;
+  background: #4C9FE8;
+  color: #FFFFFF;
+  border-bottom-right-radius: 2px;
+}
+
+.jac-assistant-carte {
+  align-self: flex-start;
+  width: 88%;
+  background: #FFFFFF;
+  border: 1px solid #DCE9F7;
+  border-left: 4px solid #4C9FE8;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+.jac-assistant-carte-titre { font-weight: 800; color: #0B2545; margin-bottom: 2px; }
+.jac-assistant-carte-ligne { color: #5B6B82; font-size: 13px; line-height: 1.4; }
+.jac-assistant-carte-lien {
+  display: inline-block;
+  margin-top: 6px;
+  color: #2A6FB0;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+}
+.jac-assistant-carte-lien:hover { text-decoration: underline; }
+
+.jac-assistant-actions { align-self: flex-start; display: flex; flex-wrap: wrap; gap: 8px; }
+.jac-assistant-action {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #4C9FE8;
+  background: #EAF3FC;
+  color: #0B2545;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+.jac-assistant-action:hover { background: #DCE9F7; }
+
+.jac-assistant-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px 0;
+  background: #FFFFFF;
+}
+.jac-assistant-suggestion {
+  padding: 7px 11px;
+  border-radius: 6px;
+  border: 1px solid #DCE9F7;
+  background: #FFFFFF;
+  color: #163f6f;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+.jac-assistant-suggestion:hover { background: #EAF3FC; }
+
+.jac-assistant-formulaire {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px 14px;
+  background: #FFFFFF;
+}
+.jac-assistant-champ {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid #DCE9F7;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #16233B;
+}
+.jac-assistant-champ:focus { outline: 2px solid #4C9FE8; outline-offset: 0; border-color: transparent; }
+.jac-assistant-envoyer {
+  padding: 11px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #0B2545;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+.jac-assistant-envoyer:hover { background: #163f6f; }
+.jac-assistant-envoyer:disabled { opacity: 0.6; cursor: wait; }
+
+@media (max-width: 640px) {
+  .jac-assistant-panneau {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    bottom: 80px;
+    height: min(70vh, calc(100vh - 100px));
+    height: min(70dvh, calc(100dvh - 100px));
+  }
+  .jac-assistant-bouton { right: 14px; bottom: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jac-assistant-bouton { transition: none; }
+}

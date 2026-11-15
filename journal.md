@@ -1,6 +1,14 @@
 # Journal du projet
 
 ## 2026-11-15 — Assistant Copilot
+- Intégration de l'assistant local dans les 21 pages HTML; les fichiers actifs sont rangés dans `js/assistant.js` et `css/assistant.css`. Le pack reçu est conservé comme référence et son guide/prompt ne demandent plus de présenter des exemples fictifs comme vrais.
+- Garde-fous de fiabilité : les mentors/offres ne sont chargés qu'avec le statut `verifie` (les JSON actuels sont `demo_fictif`); les écoles recherchées par domaine doivent avoir un rattachement confirmé et montrent leurs sources; les séries, durées, métiers et salaires sont présentés comme des repères, sans promesse d'admission.
+- README actualisé et ajout de tests ciblés dans `tests/assistant.test.js`.
+- Vérifications : 4 tests Node réussis; syntaxe de tous les scripts `js/*.js`, parse des JSON, références uniques dans les 21 pages et `git diff --check` réussis. Test navigateur avec données simulées : filières A2, écoles/sources, salaire, exclusion des profils/offres fictifs, question hostile rendue comme texte, ouverture/fermeture et viewport mobile 360 px; aucune erreur JavaScript.
+- Le navigateur intégré ne pouvait pas joindre le serveur local lancé par le terminal; le test navigateur a donc utilisé des réponses JSON contrôlées. L'assistant doit être servi en HTTP (Live Server) pour charger les fichiers JSON réels.
+- À faire : examiner les sources des métiers et des estimations avant d'élargir les réponses; configurer/confirmer le remote Git puis demander confirmation avant le premier push. Le cahier des charges non suivi reste exclu de la sauvegarde.
+
+## 2026-11-15 — Assistant Copilot
 - Analyse comparative du projet avec le cahier des charges définitif : inventaire des pages, scripts, données, limites V1 et écarts prioritaires.
 - Vérification statique des références locales : aucun lien ou fichier script introuvable; fichiers JSON lisibles et identifiants de données uniques pour les collections contrôlées.
 - Décision produit avec le client : le premier public pilote sera les lycéens et nouveaux bacheliers ivoiriens; priorité à une orientation fiable et actionnable avant l’élargissement aux autres publics.

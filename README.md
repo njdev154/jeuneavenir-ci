@@ -23,8 +23,8 @@ jeuneavenir-ci/
 │   faq.html, a-propos.html, contact.html,
 │   confidentialite.html         → Pages fonctionnelles à des degrés différents
 │
-├── css/style.css              → Toute la charte graphique (une seule couleur
-│                                 de base : bleu, déclinée en 4 teintes)
+├── css/style.css              → Charte graphique principale du site
+├── css/assistant.css          → Styles du widget d'orientation
 │
 ├── js/
 │   ├── main.js                → Menu mobile, animations, lien actif
@@ -37,6 +37,7 @@ jeuneavenir-ci/
 │   ├── ecoles.js                     → Liste + filtres écoles
 │   ├── avis.js                        → Formulaire de retour
 │   ├── mentors.js, offres.js            → Interfaces branchées; aucune donnée vérifiée publiée
+│   ├── assistant.js                    → Assistant local à règles, sans IA générative
 │
 ├── data/
 │   ├── questions.json          → 18 questions pour l'auto-réflexion
@@ -48,6 +49,8 @@ jeuneavenir-ci/
 │   ├── mentors.json, offres.json     → Exemples fictifs, non publiés par le site
 │
 ├── documentation/               → Recherches sources (CSV MESRS, rapport)
+├── pack-assistant-ia-v1/         → Pack initial conservé comme référence; ne pas recopier ses scripts sur ceux de js/ et css/
+├── tests/assistant.test.js       → Tests Node ciblés de l'assistant
 │
 └── assets/
     ├── icons/logo.svg, favicon.svg
@@ -62,6 +65,8 @@ Utilise un serveur local :
 1. Extension **Live Server** de VS Code (clic droit sur `index.html` → "Open with Live Server"), OU
 2. `python3 -m http.server 8000` à la racine, puis ouvrir `http://localhost:8000`
 
+Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.test.js`.
+
 ## Sources et limites des données
 
 - **Orientation post-bac :** [guide du MESRS](https://bac.mesrs-ci.net/guide/orientation), avec recherches par localité, filière et série du bac; il propose aussi un simulateur d'orientation. Ces pages ne prouvent pas à elles seules que notre catalogue est exhaustif ou à jour.
@@ -73,6 +78,8 @@ Utilise un serveur local :
 - **Quiz :** le score est une règle interne d'auto-réflexion, pas un test psychométrique validé. Les correspondances série/filière ne confirment pas les conditions officielles d'admission ou d'affectation; vérifier auprès du MESRS et de l'établissement.
 - **Recherche non encore intégrée :** le CSV local `documentation/universites_privees_mesrs_2026.csv` contient 145 entrées réparties dans 18 villes. Lors de la consultation du 15 novembre 2026, la liste MESRS en ligne était numérotée jusqu'à 146; le CSV et la page ne sont donc pas synchronisés. Des variantes et erreurs de saisie sont également à rapprocher avant toute intégration. Le CSV ne constitue pas une preuve d'exhaustivité nationale.
 - **Mentors et offres :** les fichiers JSON contiennent des exemples explicitement fictifs. Le site les masque; ne jamais les présenter comme des profils, emplois ou stages réels.
+- **Assistant (Phase A) :** `js/assistant.js` applique des règles locales aux JSON du site; ce n'est pas une IA générative et aucune question n'est envoyée à un service externe. Il lit le résultat du quiz dans le stockage local du navigateur. Les mentors/offres ne sont chargés que si leur statut de publication est `verifie`; actuellement, les exemples sont fictifs et l'assistant confirme qu'aucun profil ni offre réel n'est publié. Pour les écoles, les réponses par domaine ne retiennent que les rattachements marqués confirmés; le relevé reste partiel et les fiches affichent les sources et leur portée.
+- **Pack fourni :** `pack-assistant-ia-v1/` est conservé comme référence d'origine. Les fichiers actifs sont `js/assistant.js` et `css/assistant.css`; ne remplace pas ces versions par celles du pack initial, dont les tests attendaient des profils et offres fictifs.
 - **Frais, admissions et bourses :** conserver l'année, la nature précise du frais et la source officielle. Confirmer les montants, critères et échéances auprès du ministère ou de l'établissement avant publication.
 
 ## Principes de conception (à respecter en continuant le projet)
@@ -85,6 +92,7 @@ Utilise un serveur local :
 - **Honnêteté sur les limites de la V1** : pas de backend; l'authentification
   est simulée en `localStorage`, le mot de passe n'est pas vérifié, et les
   mentors/offres fictifs sont masqués. Toujours l'indiquer à l'utilisateur.
+- **Assistant local** : présenter les résultats comme des pistes, exposer les limites des sources et ne jamais confondre une correspondance dans le catalogue avec une admission, une offre réelle ou un mentor réel.
 
 ## État d'avancement
 
@@ -96,6 +104,7 @@ Utilise un serveur local :
 - [x] Favicon, page 404, gestion d'erreurs propre
 - [x] Comparateur, catalogues métiers, mentors et offres (interfaces présentes;
       métiers à vérifier; exemples fictifs mentor/offres masqués)
+- [x] Assistant local de règles intégré aux pages; les données de démonstration sont exclues et les limites du catalogue sont indiquées
 - [ ] Concevoir une authentification réelle avant toute collecte de comptes
 - [ ] Choisir et mettre en place une base de données avant toute publication dynamique
 
@@ -103,4 +112,5 @@ Utilise un serveur local :
 
 - **V1** (en cours) : site statique pilote, HTML/CSS/JS, données JSON partielles
 - **Étapes ultérieures** : authentification, base de données et outils de gestion à concevoir et valider avant publication
-- **À évaluer** : recherche avancée ou assistant IA, seulement si les données et le besoin le justifient
+- **Phase A** : assistant local non génératif, fondé sur les données du catalogue
+- **À évaluer** : conversation générative seulement avec un besoin validé, des sources fiables et un backend protégeant les clés; elle ne doit pas inventer d'admissions, d'offres ou de mentors
