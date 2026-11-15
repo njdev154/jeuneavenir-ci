@@ -6,6 +6,7 @@
 - README actualisé et ajout de tests ciblés dans `tests/assistant.test.js`.
 - Retrait des enregistrements fictifs des fichiers publics mentors/offres; leurs listes sont maintenant vides avec un statut `aucune_publication`.
 - Nettoyage avant publication : suppression des copies redondantes du pack assistant et mise à jour des textes du site pour annoncer clairement l'absence de mentors et d'offres réels.
+- Avant tout push, réécriture des branches locales pour retirer des versions historiques les JSON contenant des profils/offres fictifs et les copies du pack; les fichiers JSON vides sont conservés dans la version actuelle.
 - Vérifications antérieures : 4 tests Node; syntaxe des scripts `js/*.js`, parse des JSON, références uniques dans les 21 pages et `git diff --check`. Test navigateur avec données simulées : filières A2, écoles/sources, salaire, exclusion des profils/offres non publiés, question hostile rendue comme texte, ouverture/fermeture et viewport mobile 360 px; aucune erreur JavaScript.
 - Contrôles de ce nettoyage : 4 tests Node réussis; syntaxe des 18 scripts JavaScript, parse des 8 fichiers JSON et `git diff --check` réussis. Aucune référence obsolète au pack ou aux exemples fictifs ne reste dans les textes actifs.
 - Le navigateur intégré ne pouvait pas joindre le serveur local lancé par le terminal; le test navigateur a donc utilisé des réponses JSON contrôlées. L'assistant doit être servi en HTTP (Live Server) pour charger les fichiers JSON réels.
