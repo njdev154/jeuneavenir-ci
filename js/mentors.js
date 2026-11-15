@@ -13,7 +13,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       fetch("data/mentors.json"),
       fetch("data/filieres.json")
     ]);
-    TOUS_MENTORS = (await repMentors.json()).mentors;
+    const donneesMentors = await repMentors.json();
+    TOUS_MENTORS = donneesMentors._statut_publication === "verifie"
+      ? donneesMentors.mentors
+      : [];
     TOUTES_FILIERES = (await repFilieres.json()).filieres;
 
     remplirFiltreDomaine();
@@ -72,7 +75,9 @@ function afficherListe(mentors) {
   const grille = document.getElementById("grille-mentors");
 
   if (mentors.length === 0) {
-    grille.innerHTML = "<p class='message-vide'>Aucun mentor ne correspond à ta recherche.</p>";
+    grille.innerHTML = TOUS_MENTORS.length === 0
+      ? "<p class='message-vide'>Aucun mentor vérifié n'est publié pour le moment.</p>"
+      : "<p class='message-vide'>Aucun mentor ne correspond à ta recherche.</p>";
     return;
   }
 

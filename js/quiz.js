@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
       SERIES_FILIERES.forEach(s => {
         const option = document.createElement("option");
         option.value = s.id;
-        option.textContent = s.nom;
+        option.textContent = s.verification === "a_confirmer"
+          ? `${s.nom} — correspondances à confirmer`
+          : s.nom;
         selectSerie.appendChild(option);
       });
     })

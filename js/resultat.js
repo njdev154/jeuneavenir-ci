@@ -1,5 +1,5 @@
 // resultat.js
-// Affiche 1 à 2 filières recommandées, choisies UNIQUEMENT parmi celles
+// Affiche les filières recommandées, choisies UNIQUEMENT parmi celles
 // accessibles depuis la série de l'élève (filieresAccessibles), classées
 // selon les réponses données au quiz. Rien de la mécanique interne
 // (scores, code, dimensions) n'est affiché à l'utilisateur.
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       .sort((a, b) => b.correspondance - a.correspondance);
 
     const meilleurScore = filieresClassees[0]?.correspondance ?? 0;
-    const filieresGagnantes = filieresClassees.filter(f => f.correspondance === meilleurScore).slice(0, 2);
+    const filieresGagnantes = filieresClassees.filter(f => f.correspondance === meilleurScore);
 
     blocResultat.style.display = "block";
 
@@ -46,8 +46,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (filieresGagnantes.length > 1) {
       etiquette.textContent = "Tes filières recommandées";
-      titre.textContent = filieresGagnantes.map(f => f.nom).join(" ou ");
-      description.textContent = "Ces deux filières te correspondent bien, à toi de creuser celle qui t'attire le plus.";
+      titre.textContent = filieresGagnantes.length > 2
+        ? `${filieresGagnantes.length} pistes à explorer`
+        : filieresGagnantes.map(f => f.nom).join(" ou ");
+      description.textContent = "Ces filières obtiennent le même meilleur résultat. Compare-les pour choisir celle qui t'attire le plus.";
     } else {
       etiquette.textContent = "Ta filière recommandée";
       titre.textContent = filieresGagnantes[0]?.nom || "";

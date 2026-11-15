@@ -1,27 +1,27 @@
 # JeuneAvenir CI
 
-Plateforme d'orientation, de mentorat et d'insertion professionnelle pour les jeunes ivoiriens.
-Du choix de filière post-bac jusqu'au premier emploi, en un seul site.
+Version pilote d'une plateforme d'orientation pour les lycéens et nouveaux bacheliers ivoiriens. Le site aide à explorer des pistes; il ne décide pas d'une affectation et ne garantit ni admission, ni place, ni emploi. Le catalogue actuel est partiel et plusieurs services ne sont pas encore réels.
 
 ## Structure du projet
 
 ```
 jeuneavenir-ci/
 ├── index.html                 → Accueil (hero "Horizon", 5 piliers)
-├── inscription.html           → Inscription (auth simulée V1, réelle en V2)
+├── inscription.html           → Inscription de démonstration (aucun compte en ligne)
 ├── connexion.html             → Connexion (idem)
-├── mot-de-passe-oublie.html   → Placeholder (V2)
+├── mot-de-passe-oublie.html   → Information sur la réinitialisation (non active en V1)
 ├── quiz.html                  → Quiz d'orientation (par série + questions)
-├── resultat.html              → Résultat simplifié (1-2 filières)
+├── resultat.html              → Pistes les mieux notées, ex æquo inclus
 ├── filieres.html               → Liste + recherche + fiche détaillée
 ├── ecoles.html                  → Liste + filtres (ville/statut/domaine)
 ├── dashboard.html                → Tableau de bord (jeune/mentor/entreprise)
 ├── avis.html                      → Formulaire de retour sur le site
 ├── 404.html                        → Page d'erreur
-├── mentorat.html, offres.html, metiers.html,
-│   comparateur.html, profil.html, favoris.html,
+├── mentorat.html, offres.html  → Pages d'attente; les données fictives sont masquées
+├── metiers.html                 → Fiches de métiers (contenu de départ à valider)
+├── comparateur.html, profil.html, favoris.html,
 │   faq.html, a-propos.html, contact.html,
-│   confidentialite.html          → Placeholders "Bientôt disponible"
+│   confidentialite.html         → Pages fonctionnelles à des degrés différents
 │
 ├── css/style.css              → Toute la charte graphique (une seule couleur
 │                                 de base : bleu, déclinée en 4 teintes)
@@ -36,17 +36,16 @@ jeuneavenir-ci/
 │   ├── filieres.js                  → Liste + fiche filière
 │   ├── ecoles.js                     → Liste + filtres écoles
 │   ├── avis.js                        → Formulaire de retour
-│   ├── mentors.js, offres.js            → Prévus, pas encore branchés
+│   ├── mentors.js, offres.js            → Interfaces branchées; aucune donnée vérifiée publiée
 │
 ├── data/
-│   ├── questions.json          → 18 questions (méthode interne, jamais
-│   │                              affichée telle quelle à l'utilisateur)
-│   ├── series_filieres.json     → Filière accessibles par série de BAC
+│   ├── questions.json          → 18 questions pour l'auto-réflexion
+│   ├── series_filieres.json     → Correspondances internes série/filière, à confirmer
 │   ├── matieres_completes.json   → Liste des matières (collège/lycée)
 │   ├── filieres.json              → 7 filières détaillées
-│   ├── ecoles.json                 → 30 établissements réels (source MESRS)
-│   ├── metiers.json                 → 21 métiers liés aux filières
-│   ├── mentors.json, offres.json     → Exemples de départ
+│   ├── ecoles.json                 → 30 fiches dans 6 villes; associations de filières à réexaminer
+│   ├── metiers.json                 → 21 fiches de départ, à valider
+│   ├── mentors.json, offres.json     → Exemples fictifs, non publiés par le site
 │
 ├── documentation/               → Recherches sources (CSV MESRS, rapport)
 │
@@ -63,32 +62,45 @@ Utilise un serveur local :
 1. Extension **Live Server** de VS Code (clic droit sur `index.html` → "Open with Live Server"), OU
 2. `python3 -m http.server 8000` à la racine, puis ouvrir `http://localhost:8000`
 
+## Sources et limites des données
+
+- **Orientation post-bac :** [guide du MESRS](https://bac.mesrs-ci.net/guide/orientation), avec recherches par localité, filière et série du bac; il propose aussi un simulateur d'orientation. Ces pages ne prouvent pas à elles seules que notre catalogue est exhaustif ou à jour.
+- **Établissements privés :** [liste MESRS des établissements privés autorisés](https://bac.mesrs-ci.net/offres/ets-prives). Les filières et frais ne sont pas toujours renseignés; les frais d'inscription ne sont pas nécessairement les frais complets de scolarité.
+- **Baccalauréat :** [portail officiel DECO](https://www.men-deco.org/). Les règles, séries et documents dépendent de la session; vérifier les documents de l'année concernée.
+- **Formation technique et professionnelle :** [répertoire METFPA](https://formation-professionnelle.gouv.ci/?page_id=9227) et [écoles privées et filières](https://formation-professionnelle.gouv.ci/?page_id=9479). La date de mise à jour n'est pas toujours affichée.
+- **Couverture intégrée :** `data/ecoles.json` contient 30 fiches dans 6 villes. Au 15 novembre 2026, 10 fiches privées ont été rapprochées d'une entrée des listes MESRS des établissements privés ou grandes écoles privées; leur fiche affiche le lien, la date et la portée de la source. Cela atteste seulement que le nom ou sigle et la localité apparaissent sur la liste; sa colonne filières est vide. Onze correspondances école-domaine citent une source directe et sont signalées dans l'interface; pour ISA Santé, la source provient de l'école et l'agrément n'est pas confirmé indépendamment. Les autres correspondances restent à confirmer; les 30 fiches restent à réexaminer pour les programmes et autres données.
+- **Traçabilité des fiches :** les éléments `sources` indiquent le nom tel qu'il apparaît dans la source, la localité, la date de consultation et la portée limitée de la vérification. Ne pas en déduire qu'une formation est ouverte, qu'une admission est garantie ou que les frais d'inscription représentent le coût total.
+- **Quiz :** le score est une règle interne d'auto-réflexion, pas un test psychométrique validé. Les correspondances série/filière ne confirment pas les conditions officielles d'admission ou d'affectation; vérifier auprès du MESRS et de l'établissement.
+- **Recherche non encore intégrée :** le CSV local `documentation/universites_privees_mesrs_2026.csv` contient 145 entrées réparties dans 18 villes. Lors de la consultation du 15 novembre 2026, la liste MESRS en ligne était numérotée jusqu'à 146; le CSV et la page ne sont donc pas synchronisés. Des variantes et erreurs de saisie sont également à rapprocher avant toute intégration. Le CSV ne constitue pas une preuve d'exhaustivité nationale.
+- **Mentors et offres :** les fichiers JSON contiennent des exemples explicitement fictifs. Le site les masque; ne jamais les présenter comme des profils, emplois ou stages réels.
+- **Frais, admissions et bourses :** conserver l'année, la nature précise du frais et la source officielle. Confirmer les montants, critères et échéances auprès du ministère ou de l'établissement avant publication.
+
 ## Principes de conception (à respecter en continuant le projet)
 
 - **Une seule couleur de base** (bleu, en variantes `--bleu-900/700/500/100`
   dans `css/style.css`) — pas de nouvelle couleur sans raison forte.
-- **Aucun jargon technique visible côté utilisateur.** La méthode du quiz
-  (RIASEC/Holland, scores, codes) reste dans les commentaires du code,
-  jamais à l'écran. L'utilisateur ne voit que des questions simples et un
-  résultat clair.
-- **Honnêteté sur les limites de la V1** : pas de vraie base de données,
-  authentification simulée en `localStorage`, données d'exemple pour
-  mentors/offres. Toujours le dire clairement dans le code (commentaires),
-  jamais le cacher.
+- **Clarté sur le quiz :** le score est interne, non validé psychométriquement,
+  et ne doit pas être présenté comme une décision d'affectation ou une prédiction
+  d'admission.
+- **Honnêteté sur les limites de la V1** : pas de backend; l'authentification
+  est simulée en `localStorage`, le mot de passe n'est pas vérifié, et les
+  mentors/offres fictifs sont masqués. Toujours l'indiquer à l'utilisateur.
 
 ## État d'avancement
 
 - [x] Structure de dossiers, charte graphique (direction "Horizon")
-- [x] Accueil, Inscription, Connexion, Dashboard (3 profils)
-- [x] Quiz d'orientation (par série réelle du BAC ivoirien) + Résultat
-- [x] Filières et Écoles (30 établissements réels, vérifiés MESRS)
+- [x] Accueil, Inscription, Connexion et Dashboard de démonstration
+- [x] Quiz d'auto-réflexion (correspondances série/filière à confirmer) + Résultat
+- [x] Filières et premier relevé de 30 établissements (couverture partielle;
+      sources par fiche et rattachements à revalider)
 - [x] Favicon, page 404, gestion d'erreurs propre
-- [ ] Mentorat, Offres, Métiers, Comparateur (encore en "Bientôt disponible")
-- [ ] Authentification réelle (V2 — Supabase Auth)
-- [ ] Base de données réelle (V2)
+- [x] Comparateur, catalogues métiers, mentors et offres (interfaces présentes;
+      métiers à vérifier; exemples fictifs mentor/offres masqués)
+- [ ] Concevoir une authentification réelle avant toute collecte de comptes
+- [ ] Choisir et mettre en place une base de données avant toute publication dynamique
 
 ## Versions du projet
 
-- **V1** (en cours) : site statique complet, HTML/CSS/JS, données en JSON
-- **V2** : authentification réelle + base de données Supabase
-- **V3** : recherche avancée, tableau d'administration, assistant IA
+- **V1** (en cours) : site statique pilote, HTML/CSS/JS, données JSON partielles
+- **Étapes ultérieures** : authentification, base de données et outils de gestion à concevoir et valider avant publication
+- **À évaluer** : recherche avancée ou assistant IA, seulement si les données et le besoin le justifient

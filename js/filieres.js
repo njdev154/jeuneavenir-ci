@@ -132,7 +132,7 @@ function afficherFiche(filiere) {
             <span class="mini-ecole-lieu">${e.ville}${e.commune ? " · " + e.commune : ""} · ${e.statut === "public" ? "Public" : "Privé"}</span>
           </div>
           ${e.verification.domaine_confirme
-            ? '<span class="badge-verifie">✔ Domaine vérifié</span>'
+            ? '<span class="badge-verifie">Domaine confirmé</span>'
             : '<span class="badge-a-confirmer">À confirmer</span>'}
         </div>
       `).join("") || "<p>Aucune école renseignée pour l'instant.</p>"}

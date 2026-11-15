@@ -1,11 +1,14 @@
 {
-  "_note": "Base reconstruite à partir du repertoire officiel MESRS (portail bac.mesrs-ci.net), croisee avec les sites propres des etablissements quand disponibles. 'domaine_confirme: false' signifie que l'etablissement est bien reel et autorise, mais que le rattachement a nos 7 filieres est une estimation raisonnable (nom/reputation), pas une confirmation filiere-par-filiere sur le site de l'ecole -- a verifier avant affichage en production.",
-  "date_derniere_verification_globale": "2026-08-19",
+  "_note": "Relevé de travail non exhaustif. Dix fiches privées sont rapprochées d’une entrée des listes MESRS consultées le 15 novembre 2026; cela confirme seulement le nom ou sigle et la localité affichés, pas les filières (colonne vide), l’ouverture actuelle, les admissions ni les frais complets. Onze rattachements école-domaine disposent d’une source directe; pour ISA, la source est publiée par l’école elle-même et son agrément doit être confirmé indépendamment. Les autres filières, statuts, niveaux et conditions restent à réexaminer; aucune exhaustivité nationale n’est revendiquée.",
+  "date_derniere_verification_globale": null,
   "sources_generales": [
     "https://bac.mesrs-ci.net/guide/orientation",
     "https://bac.mesrs-ci.net/offres/ets-prives",
     "https://bac.mesrs-ci.net/offres/grdes-ecoles",
-    "https://www.enseignement.gouv.ci/publications/sous-categorie/28"
+    "https://www.enseignement.gouv.ci/publications/sous-categorie/28",
+    "https://bac.mesrs-ci.net/option/3",
+    "https://bac.mesrs-ci.net/option/4",
+    "https://bac.mesrs-ci.net/offres/formations"
   ],
   "ecoles": [
     {
@@ -33,12 +36,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": true,
-        "date": "2026-08-19"
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://univ-fhb.edu.ci/ufr-ufhb/",
+          "libelle": "UFHB - annuaire officiel des UFR",
+          "nom_dans_source": "UFR Sciences juridiques et administratives",
+          "domaine_dans_source": "L’annuaire identifie l’UFR SJAP et ses formations en droit.",
+          "portee": "Appuie le domaine Droit; ne confirme pas tous les niveaux ni les conditions d’admission.",
+          "consultee_le": "2026-11-15",
+          "ville_dans_source": null,
+          "commune_dans_source": null
+        }
       ]
     },
     {
@@ -66,12 +79,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": true,
-        "date": "2026-08-19"
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://univ-fhb.edu.ci/ufr-ufhb/",
+          "libelle": "UFHB - annuaire officiel des UFR",
+          "nom_dans_source": "UFR Sciences économiques et gestion",
+          "domaine_dans_source": "La page liste les sciences de gestion, le marketing et plusieurs parcours d’économie.",
+          "portee": "Appuie le domaine Gestion-Commerce; ne confirme pas tous les niveaux ni les conditions d’admission.",
+          "consultee_le": "2026-11-15",
+          "ville_dans_source": null,
+          "commune_dans_source": null
+        }
       ]
     },
     {
@@ -99,12 +122,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": true,
-        "date": "2026-08-19"
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://univ-fhb.edu.ci/ufr-ufhb/",
+          "libelle": "UFHB - annuaire officiel des UFR",
+          "nom_dans_source": "UFR Sciences médicales",
+          "domaine_dans_source": "La page décrit les formations médicales et le diplôme d’État de docteur en médecine.",
+          "portee": "Appuie le domaine Santé; ne confirme pas tous les niveaux ni les conditions d’admission.",
+          "consultee_le": "2026-11-15",
+          "ville_dans_source": null,
+          "commune_dans_source": null
+        }
       ]
     },
     {
@@ -131,12 +164,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
-        "domaine_confirme": true,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": false,
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://www.univ-na.ci/",
+          "libelle": "UNA — site institutionnel",
+          "nom_dans_source": "Universite Nangui Abrogoua",
+          "ville_dans_source": "Abidjan",
+          "commune_dans_source": null,
+          "domaine_dans_source": null,
+          "portee": "Confirme l’existence et le nom de l’université uniquement; les composantes, domaines, niveaux et localités de ces fiches restent à vérifier.",
+          "consultee_le": "2026-11-15"
+        }
       ]
     },
     {
@@ -163,12 +206,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
-        "domaine_confirme": true,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": false,
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://www.univ-na.ci/",
+          "libelle": "UNA — site institutionnel",
+          "nom_dans_source": "Universite Nangui Abrogoua",
+          "ville_dans_source": "Abidjan",
+          "commune_dans_source": null,
+          "domaine_dans_source": null,
+          "portee": "Confirme l’existence et le nom de l’université uniquement; les composantes, domaines, niveaux et localités de ces fiches restent à vérifier.",
+          "consultee_le": "2026-11-15"
+        }
       ]
     },
     {
@@ -195,12 +248,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": true,
-        "date": "2026-08-19"
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://univ-ao.edu.ci/formation/unite-de-formation-et-de-recherche/sciences-juridiques-administratives-et-politique/",
+          "libelle": "UAO — UFR Sciences juridiques",
+          "nom_dans_source": "Unite de Formation et de Recherche Sciences Juridiques Administratives et Politique",
+          "ville_dans_source": "Bouake",
+          "commune_dans_source": "Bouake",
+          "domaine_dans_source": "La page presente des licences et masters en droit public et prive.",
+          "portee": "Confirme le domaine Droit pour l’UAO; les conditions et l’ouverture de chaque parcours doivent être revérifiées pour la session visée.",
+          "consultee_le": "2026-11-15"
+        }
       ]
     },
     {
@@ -228,12 +291,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://ujlog.edu.ci/",
+          "libelle": "UJLoG — site institutionnel",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "Université Jean Lorougnon Guédé (UJLoG)",
+          "ville_dans_source": "Daloa",
+          "commune_dans_source": "Daloa",
+          "domaine_dans_source": null,
+          "portee": "Confirme l’existence et le nom de l’université; les domaines Droit/Gestion-Commerce et les conditions d’admission de cette fiche restent à vérifier."
+        }
       ]
     },
     {
@@ -261,12 +334,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
-        "domaine_confirme": false,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": true,
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://www.univ-pgc.edu.ci/upgc/forms/formations/sciencessociale/sc-ss-presentation.php",
+          "libelle": "UPGC — UFR des Sciences sociales",
+          "nom_dans_source": "Universite Peleforo Gon Coulibaly de Korhogo - UFR des Sciences Sociales",
+          "ville_dans_source": "Korhogo",
+          "commune_dans_source": "Korhogo",
+          "domaine_dans_source": "La page énumère les départements Économie et Droit et des critères d’accès.",
+          "portee": "Confirme les domaines Droit et Gestion-Commerce pour l’UPGC; vérifier la session d’admission et les critères auprès de l’université.",
+          "consultee_le": "2026-11-15"
+        }
       ]
     },
     {
@@ -294,12 +377,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": true,
-        "date": "2026-08-19"
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_filieres",
+          "url": "https://bac.mesrs-ci.net/offres/formations/uvci",
+          "libelle": "MESRS - liste des filières de l’UVCI",
+          "nom_dans_source": "Université Virtuelle de Côte d’Ivoire - UVCI",
+          "domaine_dans_source": "La liste comprend notamment développement d’applications, réseaux et sécurité informatique et bases de données.",
+          "portee": "Appuie le domaine Informatique; la page ne confirme pas les conditions d’admission ni l’ouverture des candidatures.",
+          "consultee_le": "2026-11-15",
+          "ville_dans_source": null,
+          "commune_dans_source": null
+        }
       ]
     },
     {
@@ -321,19 +414,17 @@
         "Ingénieur"
       ],
       "contact": {
-        "site": "https://new-website.inphb.ci/ecoles-et-centres",
+        "site": "https://inphb.edu.ci/",
         "telephone": "",
         "email": ""
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
-        "domaine_confirme": true,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": false,
+        "date": null
       },
-      "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
-      ]
+      "sources": []
     },
     {
       "id": "inphb-escae",
@@ -353,19 +444,17 @@
         "Master"
       ],
       "contact": {
-        "site": "https://new-website.inphb.ci/ecoles-et-centres",
+        "site": "https://inphb.edu.ci/",
         "telephone": "",
         "email": ""
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
-        "domaine_confirme": true,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": false,
+        "date": null
       },
-      "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
-      ]
+      "sources": []
     },
     {
       "id": "inphb-estp",
@@ -386,19 +475,17 @@
         "Ingénieur"
       ],
       "contact": {
-        "site": "https://new-website.inphb.ci/ecoles-et-centres",
+        "site": "https://inphb.edu.ci/",
         "telephone": "",
         "email": ""
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
-        "domaine_confirme": true,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": false,
+        "date": null
       },
-      "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
-      ]
+      "sources": []
     },
     {
       "id": "inphb-esa",
@@ -419,19 +506,17 @@
         "Ingénieur"
       ],
       "contact": {
-        "site": "https://new-website.inphb.ci/ecoles-et-centres",
+        "site": "https://inphb.edu.ci/",
         "telephone": "",
         "email": ""
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
-        "domaine_confirme": true,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": false,
+        "date": null
       },
-      "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
-      ]
+      "sources": []
     },
     {
       "id": "ensea",
@@ -458,12 +543,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://ensea.ed.ci/formation-initiale/",
+          "libelle": "ENSEA - formations initiales",
+          "nom_dans_source": "École Nationale Supérieure de Statistique et d’Économie Appliquée",
+          "ville_dans_source": "Abidjan",
+          "commune_dans_source": "Cocody",
+          "domaine_dans_source": "La page presente les parcours Analyste Statisticien et Ingenieur Statisticien Economiste.",
+          "portee": "Confirme l’offre de formation de l’ENSEA; le domaine générique Informatique/Gestion-Commerce de cette fiche n’est pas valide tel quel et reste à revoir.",
+          "consultee_le": "2026-11-15"
+        }
       ]
     },
     {
@@ -491,12 +586,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": true,
-        "date": "2026-08-19"
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://esatic.ci/licences-esatic/",
+          "libelle": "ESATIC - parcours officiels de licence",
+          "nom_dans_source": "Licence en Systèmes Informatiques et Génie Logiciel (SIGL)",
+          "domaine_dans_source": "La page liste des licences en systèmes informatiques, génie logiciel, réseaux et télécommunications.",
+          "portee": "Appuie le domaine Informatique; vérifier chaque diplôme et les conditions d’admission sur la page de formation correspondante.",
+          "consultee_le": "2026-11-15",
+          "ville_dans_source": null,
+          "commune_dans_source": null
+        }
       ]
     },
     {
@@ -522,12 +627,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": true,
-        "date": "2026-08-19"
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_officiel",
+          "url": "https://infas.ci/fr",
+          "libelle": "INFAS - site officiel",
+          "nom_dans_source": "Institut National de Formation des Agents de Santé (INFAS)",
+          "domaine_dans_source": "Le site décrit l’INFAS comme établissement public chargé de former les professionnels de santé.",
+          "portee": "Appuie le domaine Santé; les diplômes précis, antennes et conditions du concours restent à vérifier.",
+          "consultee_le": "2026-11-15",
+          "ville_dans_source": null,
+          "commune_dans_source": null
+        }
       ]
     },
     {
@@ -554,12 +669,33 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": true,
-        "date": "2026-08-19"
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_etablissement",
+          "url": "https://istcpolytechnique-ci.com/05/epm.php",
+          "libelle": "ISTC - Ecole de Publicite Marketing",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "Ecole de Publicite Marketing (EPM-ISTC)",
+          "ville_dans_source": null,
+          "commune_dans_source": null,
+          "domaine_dans_source": "La page decrit des formations en publicite, marketing et strategies de communication.",
+          "portee": "Appuie le domaine Communication-Marketing et les diplômes Licence/Master annoncés par l’école; les conditions et autorisations doivent être confirmées auprès de l’autorité compétente."
+        },
+        {
+          "type": "site_etablissement",
+          "url": "https://istcpolytechnique-ci.com/05/ej.php",
+          "libelle": "ISTC - Ecole de Journalisme",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "Ecole de Journalisme (EJ-ISTC)",
+          "ville_dans_source": null,
+          "commune_dans_source": null,
+          "domaine_dans_source": "La page decrit les formations en journalisme, medias et communication.",
+          "portee": "Appuie le domaine Communication-Marketing et les diplômes Licence/Master annoncés par l’école; les conditions et autorisations doivent être confirmées auprès de l’autorité compétente."
+        }
       ]
     },
     {
@@ -586,12 +722,21 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_prives",
+          "url": "https://bac.mesrs-ci.net/offres/ets-prives",
+          "libelle": "Liste MESRS des établissements privés autorisés",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "HAUTES ETUDES COMMERCIALES D'ABIDJAN -(HEC-ABIDJAN)",
+          "ville_dans_source": "ABIDJAN",
+          "commune_dans_source": "COCODY",
+          "portee": "Le nom et la localité apparaissent sur la liste; les filières ne sont pas renseignées."
+        }
       ]
     },
     {
@@ -624,12 +769,21 @@
         "mention": "sur 160"
       },
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_prives",
+          "url": "https://bac.mesrs-ci.net/offres/ets-prives",
+          "libelle": "Liste MESRS des établissements privés autorisés",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "CERAP/UNIVERSITE JESUITE -(CERAP/UJ)",
+          "ville_dans_source": "ABIDJAN",
+          "commune_dans_source": "COCODY",
+          "portee": "Le nom et la localité apparaissent sur la liste; les filières ne sont pas renseignées."
+        }
       ]
     },
     {
@@ -662,12 +816,21 @@
         "mention": "1re place, sur 160"
       },
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_prives",
+          "url": "https://bac.mesrs-ci.net/offres/ets-prives",
+          "libelle": "Liste MESRS des établissements privés autorisés",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "UNIVERSITE CATHOLIQUE D'AFRIQUE DE L'OUEST-UNITE UNIVERSITAIRE D'ABIDAJN -(UCAO-UUA)",
+          "ville_dans_source": "ABIDJAN",
+          "commune_dans_source": "COCODY",
+          "portee": "Le sigle et la localité apparaissent sur la liste; le nom développé comporte une coquille et les filières ne sont pas renseignées."
+        }
       ]
     },
     {
@@ -698,12 +861,21 @@
         "mention": "sur 160"
       },
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_prives",
+          "url": "https://bac.mesrs-ci.net/offres/ets-prives",
+          "libelle": "Liste MESRS des établissements privés autorisés",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "RUSTA UNIVERSITE -(RUSTA UNIVERSITE)",
+          "ville_dans_source": "ABIDJAN",
+          "commune_dans_source": "COCODY",
+          "portee": "Le nom et la localité apparaissent sur la liste; les filières ne sont pas renseignées."
+        }
       ]
     },
     {
@@ -729,12 +901,21 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_prives",
+          "url": "https://bac.mesrs-ci.net/offres/ets-prives",
+          "libelle": "Liste MESRS des établissements privés autorisés",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "RUSTA UNIVERSITE ANNEXE DE BOUAKE",
+          "ville_dans_source": "BOUAKE",
+          "commune_dans_source": "BOUAKE",
+          "portee": "Le nom et la localité apparaissent sur la liste; les filières ne sont pas renseignées."
+        }
       ]
     },
     {
@@ -762,12 +943,21 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_prives",
+          "url": "https://bac.mesrs-ci.net/offres/ets-prives",
+          "libelle": "Liste MESRS des établissements privés autorisés",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "ECOLE TECHNIQUE INFORMATIQUE ET COMMERCIALE-UNIVERSITY -(ETIC-UNIVERSITY)",
+          "ville_dans_source": "ABIDJAN",
+          "commune_dans_source": "COCODY",
+          "portee": "Le nom et la localité apparaissent sur la liste; les filières ne sont pas renseignées."
+        }
       ]
     },
     {
@@ -794,12 +984,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_prives",
+          "url": "https://bac.mesrs-ci.net/offres/ets-prives",
+          "libelle": "Liste MESRS des etablissements prives autorises",
+          "nom_dans_source": "ETIC UNIVERSTY BONDOUKOU",
+          "ville_dans_source": "BONDOUKOU",
+          "commune_dans_source": "BONDOUKOU",
+          "domaine_dans_source": null,
+          "portee": "Le nom, mal orthographie dans la liste, et la localite correspondent; la liste ne renseigne pas les filieres. Ne pas confondre avec les differentes entrees ETIC de la liste des grandes ecoles.",
+          "consultee_le": "2026-11-15"
+        }
       ]
     },
     {
@@ -826,12 +1026,21 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_prives",
+          "url": "https://bac.mesrs-ci.net/offres/ets-prives",
+          "libelle": "Liste MESRS des établissements privés autorisés",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "GLOBAL NUMERIK UNIVERSITY -(GNU)",
+          "ville_dans_source": "ABIDJAN",
+          "commune_dans_source": "COCODY",
+          "portee": "Le nom et la localité apparaissent sur la liste; les filières ne sont pas renseignées."
+        }
       ]
     },
     {
@@ -858,12 +1067,21 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_officiel",
+        "statut": "a_reexaminer",
         "domaine_confirme": false,
-        "date": "2026-08-19"
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_prives",
+          "url": "https://bac.mesrs-ci.net/offres/ets-prives",
+          "libelle": "Liste MESRS des établissements privés autorisés",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "ECOLE SUPERIEURE D'INTERPRETARIAT ET DE TRADUCTION -(ESIT)",
+          "ville_dans_source": "ABIDJAN",
+          "commune_dans_source": "COCODY",
+          "portee": "Le nom et la localité apparaissent sur la liste; les filières ne sont pas renseignées."
+        }
       ]
     },
     {
@@ -880,7 +1098,6 @@
         "sante"
       ],
       "niveaux": [
-        "BTS",
         "Diplôme d'État"
       ],
       "contact": {
@@ -890,12 +1107,22 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_ecole",
+        "statut": "a_reexaminer",
         "domaine_confirme": true,
-        "date": "2026-08-19"
+        "date": "2026-11-15"
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_etablissement",
+          "url": "https://www.isa.ci/",
+          "libelle": "ISA Santé — site de l’école",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "ISA Sante",
+          "ville_dans_source": null,
+          "commune_dans_source": null,
+          "domaine_dans_source": "Le site présente des formations d’infirmier diplômé d’État (IDE) et continues dans le secteur de la santé.",
+          "portee": "Source publiée par l’école, pas un registre indépendant; elle décrit son offre mais ne suffit pas à confirmer l’agrément ou la reconnaissance officielle."
+        }
       ]
     },
     {
@@ -906,7 +1133,7 @@
       "type": "grande_ecole",
       "tutelle": "MESRS (établissement privé autorisé)",
       "ville": "Abidjan",
-      "commune": "Abidjan",
+      "commune": "Cocody",
       "campus_de": null,
       "domaines": [
         "genie-civil"
@@ -922,12 +1149,21 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_ecole",
-        "domaine_confirme": true,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": false,
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "mesrs_grandes_ecoles",
+          "url": "https://bac.mesrs-ci.net/offres/grdes-ecoles",
+          "libelle": "Liste MESRS des grandes écoles privées autorisées",
+          "consultee_le": "2026-11-15",
+          "nom_dans_source": "ECOLE INTERNATIONALE DES PONTS ET CHAUSSEES D'ABIDJAN -(EIPC-ABIDJAN)",
+          "ville_dans_source": "ABIDJAN",
+          "commune_dans_source": "COCODY",
+          "portee": "Le nom et la localité apparaissent sur la liste; les filières ne sont pas renseignées."
+        }
       ]
     },
     {
@@ -960,12 +1196,22 @@
         "mention": "2e place grandes écoles privées, sur 160"
       },
       "verification": {
-        "statut": "verifie_ecole",
-        "domaine_confirme": true,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": false,
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_etablissement",
+          "url": "https://pigierci.com/nos-formations",
+          "libelle": "Pigier Côte d’Ivoire — catalogue de formations",
+          "nom_dans_source": "Pigier Côte d’Ivoire",
+          "ville_dans_source": null,
+          "commune_dans_source": null,
+          "domaine_dans_source": "La page liste des formations en gestion, marketing, informatique et systèmes d’information.",
+          "portee": "Source de l’établissement pour son catalogue général; elle ne confirme ni l’implantation de chacun des campus Plateau/Yopougon ni l’ouverture des formations dans chaque campus.",
+          "consultee_le": "2026-11-15"
+        }
       ]
     },
     {
@@ -993,13 +1239,25 @@
       },
       "evaluation_mesrs": null,
       "verification": {
-        "statut": "verifie_ecole",
-        "domaine_confirme": true,
-        "date": "2026-08-19"
+        "statut": "a_reexaminer",
+        "domaine_confirme": false,
+        "date": null
       },
       "sources": [
-        "https://bac.mesrs-ci.net/offres/ets-prives"
+        {
+          "type": "site_etablissement",
+          "url": "https://pigierci.com/nos-formations",
+          "libelle": "Pigier Côte d’Ivoire — catalogue de formations",
+          "nom_dans_source": "Pigier Côte d’Ivoire",
+          "ville_dans_source": null,
+          "commune_dans_source": null,
+          "domaine_dans_source": "La page liste des formations en gestion, marketing, informatique et systèmes d’information.",
+          "portee": "Source de l’établissement pour son catalogue général; elle ne confirme ni l’implantation de chacun des campus Plateau/Yopougon ni l’ouverture des formations dans chaque campus.",
+          "consultee_le": "2026-11-15"
+        }
       ]
     }
-  ]
+  ],
+  "date_derniere_verification_precedente": "2026-08-19",
+  "date_derniere_revue_sources": "2026-11-15"
 }

@@ -11,7 +11,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       fetch("data/mentors.json")
     ]);
     const toutesFilieres = (await repFilieres.json()).filieres;
-    const tousMentors = (await repMentors.json()).mentors;
+    const donneesMentors = await repMentors.json();
+    const tousMentors = donneesMentors._statut_publication === "verifie"
+      ? donneesMentors.mentors
+      : [];
 
     // --- Filières favorites ---
     const conteneurFilieres = document.getElementById("favoris-filieres");

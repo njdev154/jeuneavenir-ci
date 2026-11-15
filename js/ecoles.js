@@ -81,20 +81,20 @@ function afficherResultats(ecoles) {
       .map(id => TOUTES_FILIERES.find(f => f.id === id)?.nom)
       .filter(Boolean)
       .join(", ");
-
     return `
       <article class="carte carte-ecole">
         <div class="carte-ecole-entete">
           <h3>${e.nom}</h3>
           ${e.verification.domaine_confirme
-            ? '<span class="badge-verifie">✔ Domaine vérifié</span>'
+            ? '<span class="badge-verifie">Domaine confirmé</span>'
             : '<span class="badge-a-confirmer">Domaine à confirmer</span>'}
         </div>
-        <p class="carte-ecole-lieu">${e.ville}${e.commune ? " · " + e.commune : ""} — ${e.statut === "public" ? "Public" : "Privé"} · ${e.type.replace("_", " ")}</p>
+        <p class="carte-ecole-lieu">${e.ville}${e.commune ? " · " + e.commune : ""} — Type indiqué : ${e.statut === "public" ? "public" : "privé"} · ${e.type.replace("_", " ")}</p>
+        ${e.sources.map(source => `<p class="carte-ecole-source"><a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.libelle}</a>, consultée le ${source.consultee_le}. ${source.portee}</p>`).join("")}
         <p class="carte-ecole-domaines">${nomsDomaines}</p>
         ${e.campus_de ? `<p class="carte-ecole-campus">Antenne de : ${TOUTES_ECOLES.find(x => x.id === e.campus_de)?.nom || ""}</p>` : ""}
         ${e.evaluation_mesrs ? `<p class="carte-ecole-eval">Évaluation MESRS ${e.evaluation_mesrs.annee} : ${e.evaluation_mesrs.score} (${e.evaluation_mesrs.mention})</p>` : ""}
-        ${e.contact.site ? `<a href="${e.contact.site}" target="_blank" rel="noopener" class="lien-explorer">Site officiel →</a>` : ""}
+        ${e.contact.site ? `<a href="${e.contact.site}" target="_blank" rel="noopener" class="lien-explorer">Site indiqué →</a>` : ""}
       </article>
     `;
   }).join("");

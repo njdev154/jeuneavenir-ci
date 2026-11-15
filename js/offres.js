@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       fetch("data/offres.json"),
       fetch("data/filieres.json")
     ]);
-    TOUTES_OFFRES = (await repOffres.json()).offres;
+    const donneesOffres = await repOffres.json();
+    TOUTES_OFFRES = donneesOffres._statut_publication === "verifie"
+      ? donneesOffres.offres
+      : [];
     TOUTES_FILIERES = (await repFilieres.json()).filieres;
 
     remplirFiltres();
@@ -82,7 +85,9 @@ function afficherListe(offres) {
   const conteneur = document.getElementById("liste-offres");
 
   if (offres.length === 0) {
-    conteneur.innerHTML = "<p class='message-vide'>Aucune offre ne correspond à ces critères.</p>";
+    conteneur.innerHTML = TOUTES_OFFRES.length === 0
+      ? "<p class='message-vide'>Aucune offre vérifiée n'est publiée pour le moment.</p>"
+      : "<p class='message-vide'>Aucune offre ne correspond à ces critères.</p>";
     return;
   }
 
