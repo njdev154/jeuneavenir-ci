@@ -1,12 +1,15 @@
 # Journal du projet
 
 ## 2026-11-15 — Assistant Copilot
-- Intégration de l'assistant local dans les 21 pages HTML; les fichiers actifs sont rangés dans `js/assistant.js` et `css/assistant.css`. Le pack reçu est conservé comme référence et son guide/prompt ne demandent plus de présenter des exemples fictifs comme vrais.
-- Garde-fous de fiabilité : les mentors/offres ne sont chargés qu'avec le statut `verifie` (les JSON actuels sont `demo_fictif`); les écoles recherchées par domaine doivent avoir un rattachement confirmé et montrent leurs sources; les séries, durées, métiers et salaires sont présentés comme des repères, sans promesse d'admission.
+- Intégration de l'assistant local dans les 21 pages HTML; les fichiers actifs sont rangés dans `js/assistant.js` et `css/assistant.css`. Les sources du pack redondantes ont été retirées après extraction des éléments nécessaires.
+- Garde-fous de fiabilité : les mentors/offres ne sont chargés qu'avec le statut `verifie` (leurs listes sont maintenant vides, statut `aucune_publication`); les écoles recherchées par domaine doivent avoir un rattachement confirmé et montrent leurs sources; les séries, durées, métiers et salaires sont présentés comme des repères, sans promesse d'admission.
 - README actualisé et ajout de tests ciblés dans `tests/assistant.test.js`.
-- Vérifications : 4 tests Node réussis; syntaxe de tous les scripts `js/*.js`, parse des JSON, références uniques dans les 21 pages et `git diff --check` réussis. Test navigateur avec données simulées : filières A2, écoles/sources, salaire, exclusion des profils/offres fictifs, question hostile rendue comme texte, ouverture/fermeture et viewport mobile 360 px; aucune erreur JavaScript.
+- Retrait des enregistrements fictifs des fichiers publics mentors/offres; leurs listes sont maintenant vides avec un statut `aucune_publication`.
+- Nettoyage avant publication : suppression des copies redondantes du pack assistant et mise à jour des textes du site pour annoncer clairement l'absence de mentors et d'offres réels.
+- Vérifications antérieures : 4 tests Node; syntaxe des scripts `js/*.js`, parse des JSON, références uniques dans les 21 pages et `git diff --check`. Test navigateur avec données simulées : filières A2, écoles/sources, salaire, exclusion des profils/offres non publiés, question hostile rendue comme texte, ouverture/fermeture et viewport mobile 360 px; aucune erreur JavaScript.
+- Contrôles de ce nettoyage : 4 tests Node réussis; syntaxe des 18 scripts JavaScript, parse des 8 fichiers JSON et `git diff --check` réussis. Aucune référence obsolète au pack ou aux exemples fictifs ne reste dans les textes actifs.
 - Le navigateur intégré ne pouvait pas joindre le serveur local lancé par le terminal; le test navigateur a donc utilisé des réponses JSON contrôlées. L'assistant doit être servi en HTTP (Live Server) pour charger les fichiers JSON réels.
-- À faire : examiner les sources des métiers et des estimations avant d'élargir les réponses; configurer/confirmer le remote Git puis demander confirmation avant le premier push. Le cahier des charges non suivi reste exclu de la sauvegarde.
+- À faire : examiner les sources des métiers et des estimations avant d'élargir les réponses; confirmer le remote Git et la branche à publier avant le premier push. Le cahier des charges non suivi reste exclu de la sauvegarde.
 
 ## 2026-11-15 — Assistant Copilot
 - Analyse comparative du projet avec le cahier des charges définitif : inventaire des pages, scripts, données, limites V1 et écarts prioritaires.

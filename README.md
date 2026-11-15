@@ -46,10 +46,9 @@ jeuneavenir-ci/
 │   ├── filieres.json              → 7 filières détaillées
 │   ├── ecoles.json                 → 30 fiches dans 6 villes; associations de filières à réexaminer
 │   ├── metiers.json                 → 21 fiches de départ, à valider
-│   ├── mentors.json, offres.json     → Exemples fictifs, non publiés par le site
+│   ├── mentors.json, offres.json     → Listes vides tant qu'aucune donnée réelle n'est validée
 │
 ├── documentation/               → Recherches sources (CSV MESRS, rapport)
-├── pack-assistant-ia-v1/         → Pack initial conservé comme référence; ne pas recopier ses scripts sur ceux de js/ et css/
 ├── tests/assistant.test.js       → Tests Node ciblés de l'assistant
 │
 └── assets/
@@ -77,9 +76,8 @@ Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.te
 - **Traçabilité des fiches :** les éléments `sources` indiquent le nom tel qu'il apparaît dans la source, la localité, la date de consultation et la portée limitée de la vérification. Ne pas en déduire qu'une formation est ouverte, qu'une admission est garantie ou que les frais d'inscription représentent le coût total.
 - **Quiz :** le score est une règle interne d'auto-réflexion, pas un test psychométrique validé. Les correspondances série/filière ne confirment pas les conditions officielles d'admission ou d'affectation; vérifier auprès du MESRS et de l'établissement.
 - **Recherche non encore intégrée :** le CSV local `documentation/universites_privees_mesrs_2026.csv` contient 145 entrées réparties dans 18 villes. Lors de la consultation du 15 novembre 2026, la liste MESRS en ligne était numérotée jusqu'à 146; le CSV et la page ne sont donc pas synchronisés. Des variantes et erreurs de saisie sont également à rapprocher avant toute intégration. Le CSV ne constitue pas une preuve d'exhaustivité nationale.
-- **Mentors et offres :** les fichiers JSON contiennent des exemples explicitement fictifs. Le site les masque; ne jamais les présenter comme des profils, emplois ou stages réels.
-- **Assistant (Phase A) :** `js/assistant.js` applique des règles locales aux JSON du site; ce n'est pas une IA générative et aucune question n'est envoyée à un service externe. Il lit le résultat du quiz dans le stockage local du navigateur. Les mentors/offres ne sont chargés que si leur statut de publication est `verifie`; actuellement, les exemples sont fictifs et l'assistant confirme qu'aucun profil ni offre réel n'est publié. Pour les écoles, les réponses par domaine ne retiennent que les rattachements marqués confirmés; le relevé reste partiel et les fiches affichent les sources et leur portée.
-- **Pack fourni :** `pack-assistant-ia-v1/` est conservé comme référence d'origine. Les fichiers actifs sont `js/assistant.js` et `css/assistant.css`; ne remplace pas ces versions par celles du pack initial, dont les tests attendaient des profils et offres fictifs.
+- **Mentors et offres :** aucun profil ni annonce réelle n'est publié; les listes des JSON sont vides. Une publication devra être consentie et vérifiée avant d'être ajoutée.
+- **Assistant (Phase A) :** `js/assistant.js` applique des règles locales aux JSON du site; ce n'est pas une IA générative et aucune question n'est envoyée à un service externe. Il lit le résultat du quiz dans le stockage local du navigateur. Les mentors/offres ne sont chargés que si leur statut de publication est `verifie`; actuellement, aucune donnée n'est publiée. Pour les écoles, les réponses par domaine ne retiennent que les rattachements marqués confirmés; le relevé reste partiel et les fiches affichent les sources et leur portée.
 - **Frais, admissions et bourses :** conserver l'année, la nature précise du frais et la source officielle. Confirmer les montants, critères et échéances auprès du ministère ou de l'établissement avant publication.
 
 ## Principes de conception (à respecter en continuant le projet)
@@ -90,8 +88,8 @@ Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.te
   et ne doit pas être présenté comme une décision d'affectation ou une prédiction
   d'admission.
 - **Honnêteté sur les limites de la V1** : pas de backend; l'authentification
-  est simulée en `localStorage`, le mot de passe n'est pas vérifié, et les
-  mentors/offres fictifs sont masqués. Toujours l'indiquer à l'utilisateur.
+  est simulée en `localStorage`, le mot de passe n'est pas vérifié, et aucune
+  offre ni aucun mentor réel n'est publié. Toujours l'indiquer à l'utilisateur.
 - **Assistant local** : présenter les résultats comme des pistes, exposer les limites des sources et ne jamais confondre une correspondance dans le catalogue avec une admission, une offre réelle ou un mentor réel.
 
 ## État d'avancement
@@ -103,8 +101,8 @@ Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.te
       sources par fiche et rattachements à revalider)
 - [x] Favicon, page 404, gestion d'erreurs propre
 - [x] Comparateur, catalogues métiers, mentors et offres (interfaces présentes;
-      métiers à vérifier; exemples fictifs mentor/offres masqués)
-- [x] Assistant local de règles intégré aux pages; les données de démonstration sont exclues et les limites du catalogue sont indiquées
+      métiers à vérifier; aucune publication mentor/offre)
+- [x] Assistant local de règles intégré aux pages; les données non publiées sont exclues et les limites du catalogue sont indiquées
 - [ ] Concevoir une authentification réelle avant toute collecte de comptes
 - [ ] Choisir et mettre en place une base de données avant toute publication dynamique
 

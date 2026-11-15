@@ -730,7 +730,7 @@
       if (ouvert) {
         if (!dejaAccueilli) {
           dejaAccueilli = true;
-          ajouterBulle("Bonjour, je suis l'assistant local de JeuneAvenir CI. Je consulte le catalogue et ses références; certaines fiches restent à confirmer. Les profils et offres fictifs ne sont pas présentés comme réels.", "assistant");
+          ajouterBulle("Bonjour, je suis l'assistant local de JeuneAvenir CI. Je consulte le catalogue et ses références; certaines fiches restent à confirmer. Aucun mentor ni aucune offre réelle n'est publié pour le moment.", "assistant");
           ajouterBulle("Je peux proposer des pistes d'orientation, mais pas garantir une admission. Dis-moi ta série du bac, une ville ou un métier qui t'intéresse.", "assistant");
         }
         champ.focus();

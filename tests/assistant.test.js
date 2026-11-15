@@ -50,19 +50,29 @@ test("la recherche par domaine ne montre que les rattachements confirmés et leu
   assert.ok(reponse.cartes.every(carte => carte.sources.length > 0));
 });
 
-test("les données de démonstration ne sont jamais proposées sans publication vérifiée", () => {
+test("les mentors et offres non publiés ne sont jamais proposés", () => {
   const donnees = loadData();
+  donnees.mentors = [{
+    id: "mentor-test",
+    nom: "Profil temporaire de test",
+    domaine: "informatique",
+    bio: "Donnée de test non publiée"
+  }];
+  donnees.offres = [{
+    id: "offre-test",
+    titre: "Annonce temporaire de test",
+    entreprise: "Entreprise de test",
+    ville: "Abidjan",
+    domaine: "droit",
+    type: "stage"
+  }];
 
-  for (const [question, fauxNom] of [
-    ["Je cherche un stage en droit", "Stagiaire juriste d'entreprise"],
-    ["Je veux un mentor en informatique", "Aya K."]
-  ]) {
+  for (const question of ["Je cherche un stage en droit", "Je veux un mentor en informatique"]) {
     const reponse = assistant.repondre(question, donnees);
-    const texte = reponse.paragraphes.join(" ") + reponse.cartes.map(carte => carte.titre).join(" ");
+    const texte = reponse.paragraphes.join(" ");
 
     assert.equal(reponse.cartes.length, 0);
-    assert.ok(!texte.includes(fauxNom));
-    assert.match(texte, /démonstration/);
+    assert.match(texte, /n'est publi/);
   }
 });
 
