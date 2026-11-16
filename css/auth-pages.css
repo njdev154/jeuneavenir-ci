@@ -13,11 +13,6 @@
   background: var(--auth-fond);
 }
 
-.page-auth .reveal {
-  opacity: 1;
-  transform: none;
-}
-
 .auth-entete {
   position: relative;
   z-index: 1;

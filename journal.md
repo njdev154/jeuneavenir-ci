@@ -1,5 +1,11 @@
 # Journal du projet
 
+## 2026-11-16 — Assistant Copilot
+- Mission 03, étape 1 : création des fondations réutilisables dans `css/motion.css` et `js/motion.js`, avec entrées au défilement, décalage des groupes, micro-retours, variables communes et respect de `prefers-reduced-motion`.
+- Application à l’accueil et aux trois pages d’authentification. Le contenu reste visible sans JavaScript; le comportement reveal historique est conservé sur les pages pas encore migrées.
+- Vérifications : 6 tests Node existants, `node --check` sur les scripts concernés et `git diff --check` réussis. Contrôle navigateur des quatre pages aux formats 1899 × 876, 1440 × 900, 768 × 900, 390 × 844 et 360 × 800 selon la page; aucun débordement horizontal ni erreur JavaScript. Menu mobile, sélection du type de compte, bascule du mot de passe, confirmation de réinitialisation sans e-mail et réduction des animations vérifiés.
+- Reste à faire : appliquer le système au quiz, aux résultats et au comparateur; valider les parcours, les ex æquo et les six dimensions responsive; créer le second commit après validation.
+
 ## 2026-11-15 — Assistant Copilot
 - Mission 02 réalisée : refonte cohérente des pages `inscription.html`, `connexion.html` et `mot-de-passe-oublie.html`, avec une feuille dédiée `css/auth-pages.css` et le script d'interface `js/auth-ui.js`.
 - Les identifiants attendus par `js/auth.js` et `js/mot-de-passe-oublie.js` sont conservés. Le choix Jeune/Mentor/Entreprise, les validations, le message d'erreur, les liens, les boutons Google/Apple et leurs notices restent branchés au fonctionnement V1.

@@ -435,13 +435,6 @@ body.page-accueil {
   color: rgba(255, 255, 255, 0.62);
 }
 
-.page-accueil .reveal,
-.page-accueil .reveal-visible {
-  opacity: 1;
-  transform: none;
-  transition: none;
-}
-
 .page-accueil a:focus-visible,
 .page-accueil button:focus-visible {
   outline: 3px solid #FFFFFF;

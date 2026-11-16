@@ -1,0 +1,117 @@
+:root {
+  --motion-duration-fast: 160ms;
+  --motion-duration-enter: 420ms;
+  --motion-duration-feedback: 220ms;
+  --motion-easing: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --motion-distance: 14px;
+  --motion-stagger: 48ms;
+  --motion-scale-enter: 0.985;
+  --motion-feedback-opacity: 0.72;
+}
+
+[data-motion-stagger] > [data-motion] {
+  --motion-delay: calc(var(--motion-index, 0) * var(--motion-stagger));
+}
+
+html.motion-enabled [data-motion].motion-visible {
+  animation: motion-rise var(--motion-duration-enter) var(--motion-easing) var(--motion-delay, 0ms) both;
+}
+
+html.motion-enabled [data-motion="fade"].motion-visible {
+  animation-name: motion-fade;
+}
+
+html.motion-enabled [data-motion="scale"].motion-visible {
+  animation-name: motion-scale;
+}
+
+.bouton-principal,
+.bouton-secondaire,
+.bouton-reponse,
+.carte-pilier,
+.carte-type-compte,
+.auth-bouton-social,
+.auth-toggle-mot-de-passe {
+  transition-timing-function: var(--motion-easing);
+}
+
+.bouton-principal:not(:disabled):active,
+.bouton-secondaire:active,
+.bouton-reponse:active {
+  transform: translateY(1px);
+}
+
+.motion-feedback {
+  animation: motion-feedback var(--motion-duration-feedback) var(--motion-easing) both;
+}
+
+@keyframes motion-feedback {
+  from {
+    opacity: var(--motion-feedback-opacity);
+    transform: translate3d(0, 6px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes motion-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-distance), 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes motion-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes motion-scale {
+  from {
+    opacity: 0;
+    transform: scale(var(--motion-scale-enter));
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  html.motion-enabled [data-motion],
+  .motion-feedback {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .bouton-principal,
+  .bouton-secondaire,
+  .bouton-reponse,
+  .carte-pilier,
+  .carte-type-compte,
+  .auth-bouton-social,
+  .auth-toggle-mot-de-passe {
+    transition-duration: 0.01ms;
+  }
+
+  .bouton-principal:not(:disabled):active,
+  .bouton-secondaire:active,
+  .bouton-reponse:active {
+    transform: none;
+  }
+}

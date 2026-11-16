@@ -10,6 +10,7 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth-pages.css">
+  <link rel="stylesheet" href="css/motion.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
 <body class="page-auth page-auth-inscription">
@@ -22,7 +23,7 @@
   </header>
 
   <main class="auth-main auth-main-inscription">
-    <aside class="auth-story" aria-labelledby="auth-story-title">
+    <aside class="auth-story" aria-labelledby="auth-story-title" data-motion="rise">
       <div class="auth-story-contenu">
         <p class="auth-kicker auth-kicker-clair">JEUNEAVENIR CI</p>
         <h2 id="auth-story-title">Chaque étape<br>mérite<br>une bonne<br><em>boussole.</em></h2>
@@ -35,7 +36,7 @@
     </aside>
 
     <section class="auth-zone" aria-labelledby="auth-page-title">
-      <div class="auth-card auth-card-inscription">
+      <div class="auth-card auth-card-inscription" data-motion="rise">
         <p class="auth-kicker">REJOINDRE JEUNEAVENIR CI</p>
         <h1 id="auth-page-title">Crée ton compte.</h1>
         <p class="auth-intro">Choisis ton espace et commence à construire la suite de ton parcours.</p>
@@ -119,6 +120,7 @@
 
   <script src="js/auth.js"></script>
   <script src="js/auth-ui.js"></script>
+  <script src="js/motion.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
 </body>

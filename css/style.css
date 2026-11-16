@@ -1344,18 +1344,8 @@ h3 { font-size: 1.2rem; }
 }
 
 /* ===========================================
-   ANIMATIONS — apparition douce, pas de "snap" brutal
+   ANIMATIONS — compatibilité des pages non migrées
    =========================================== */
-
-/* Fondu léger de toute la page à l'arrivée */
-body {
-  opacity: 0;
-}
-
-body.page-prete {
-  opacity: 1;
-  transition: opacity 0.35s ease;
-}
 
 /* Cartes/titres : apparition progressive au scroll (au lieu d'apparaître d'un bloc) */
 .reveal {

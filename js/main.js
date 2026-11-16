@@ -1,6 +1,5 @@
 // main.js
-// Script commun à TOUTES les pages : menu mobile, animation d'apparition
-// au chargement de page, et animation "reveal" des cartes au scroll.
+// Script commun à TOUTES les pages : menu mobile, navigation active et animations.
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -29,15 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- Animation douce à l'arrivée sur la page (fondu + léger glissement) ---
-  document.body.classList.add("page-prete");
+  if (window.JeuneAvenirMotion) {
+    window.JeuneAvenirMotion.initialiser();
+    return;
+  }
 
-  // --- Animation "reveal" : les cartes apparaissent en douceur au scroll,
-  // au lieu d'être toutes visibles d'un coup (donne une impression de vie) ---
   const elementsAAnimer = document.querySelectorAll(".carte, .hero-texte, h1, h2");
   elementsAAnimer.forEach(el => el.classList.add("reveal"));
 
-  const observateur = new IntersectionObserver((entrees) => {
+  if (!("IntersectionObserver" in window)) {
+    elementsAAnimer.forEach(el => el.classList.add("reveal-visible"));
+    return;
+  }
+
+  const observateur = new IntersectionObserver(entrees => {
     entrees.forEach(entree => {
       if (entree.isIntersecting) {
         entree.target.classList.add("reveal-visible");
