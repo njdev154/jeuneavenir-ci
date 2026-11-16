@@ -1,5 +1,12 @@
 # Journal du projet
 
+## 2026-11-16 — Assistant Copilot (correction du menu mobile/tablette)
+- Les liens « Se connecter » et « S'inscrire » apparaissent désormais dans le menu ouvert sur l'accueil et les pages avec navigation partagée; l'état du menu et ses attributs ARIA sont synchronisés sur toutes ces pages.
+- Ajustement du seuil responsive pour éviter que les actions de compte disparaissent autour de 899 px.
+- Vérifications navigateur avec réduction des animations : menu clavier ouvert/fermé et liens visibles sur l'accueil et les catalogues à 390, 768 et 899 px; comportement desktop vérifié à 900, 1024 px. Aucun débordement horizontal; la navigation vers l'inscription et l'ARIA sont vérifiés.
+- Contrôles `node --check js/main.js` et `git diff --check` réussis.
+- Reste à faire : confirmer le remote et la branche à publier avant tout push.
+
 ## 2026-11-16 — Assistant Copilot (Mission 04, étape 3 : métiers et recherche transversale)
 - Refonte des fiches métiers et ajout de la recherche multi-contenu dans `recherche.html`, avec résultats séparés par filières, établissements et métiers.
 - Contrôles navigateur : 21 métiers, filtre Informatique (3 résultats), fiche Développeur web; requête « droit » (12 résultats dans les trois catégories) et état sans résultat.

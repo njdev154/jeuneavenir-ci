@@ -7,16 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const burger = document.querySelector(".menu-burger");
   const nav = document.querySelector(".nav-principale");
   if (burger && nav) {
+    if (!nav.id) nav.id = "nav-principale";
+    burger.setAttribute("aria-controls", nav.id);
+    burger.setAttribute("aria-expanded", String(nav.classList.contains("nav-ouverte")));
+    burger.setAttribute("aria-label", nav.classList.contains("nav-ouverte") ? "Fermer le menu" : "Ouvrir le menu");
+
     burger.addEventListener("click", () => {
       nav.classList.toggle("nav-ouverte");
       burger.classList.toggle("burger-actif");
-      if (document.body.classList.contains("page-accueil")) {
-        const menuOuvert = nav.classList.contains("nav-ouverte");
-        const entete = burger.closest(".entete");
-        burger.setAttribute("aria-expanded", String(menuOuvert));
-        burger.setAttribute("aria-label", menuOuvert ? "Fermer le menu" : "Ouvrir le menu");
-        if (entete) entete.classList.toggle("menu-ouvert", menuOuvert);
-      }
+      const menuOuvert = nav.classList.contains("nav-ouverte");
+      const entete = burger.closest(".entete");
+      burger.setAttribute("aria-expanded", String(menuOuvert));
+      burger.setAttribute("aria-label", menuOuvert ? "Fermer le menu" : "Ouvrir le menu");
+      if (entete) entete.classList.toggle("menu-ouvert", menuOuvert);
     });
   }
 
