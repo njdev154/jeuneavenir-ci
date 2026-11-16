@@ -8,24 +8,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const ecranIntro = document.getElementById("ecran-intro");
   const ecranQuestion = document.getElementById("ecran-question");
+  const ecranOuverte = document.getElementById("ecran-ouverte");
   const boutonDemarrer = document.getElementById("bouton-demarrer");
+  const boutonPrecedent = document.getElementById("bouton-precedent");
   const boutonSuivant = document.getElementById("bouton-suivant");
+  const boutonPrecedentOuverte = document.getElementById("bouton-precedent-ouverte");
   const texteQuestion = document.getElementById("quiz-question-texte");
   const conteneurReponses = document.getElementById("quiz-reponses");
   const selectSerie = document.getElementById("quiz-serie");
+  const etatQuiz = document.getElementById("quiz-etat");
 
   let questionsTirees = [];
   let indexActuel = 0;
   let reponseChoisie = null;
+  const reponsesChoisies = [];
   let SERIES_FILIERES = [];
   let serieChoisie = "";
 
   const scoresRiasec = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
   const historiqueReponses = [];
 
+  function afficherStatut(message, erreur = false) {
+    etatQuiz.textContent = message;
+    etatQuiz.classList.toggle("quiz-etat-erreur", erreur);
+  }
+
   // --- Chargement du mapping série -> filières (filtre) ---
   fetch("data/series_filieres.json")
-    .then(r => r.json())
+    .then(reponse => {
+      if (!reponse.ok) throw new Error("Réponse serveur invalide");
+      return reponse.json();
+    })
     .then(donnees => {
       SERIES_FILIERES = donnees.series;
       SERIES_FILIERES.forEach(s => {
@@ -36,12 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
           : s.nom;
         selectSerie.appendChild(option);
       });
+      afficherStatut("Choisis ta série pour commencer.");
     })
-    .catch(erreur => console.error("Impossible de charger les séries :", erreur));
+    .catch(erreur => {
+      console.error("Impossible de charger les séries :", erreur);
+      afficherStatut("Impossible de charger les séries. Vérifie ta connexion puis actualise la page.", true);
+    });
 
   selectSerie.addEventListener("change", () => {
     serieChoisie = selectSerie.value;
-    boutonDemarrer.disabled = !serieChoisie;
+    boutonDemarrer.disabled = !SERIES_FILIERES.some(serie => serie.id === serieChoisie);
   });
 
   function melanger(tableau) {
@@ -54,16 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function afficherErreurChargement() {
-    ecranIntro.innerHTML = `
-      <h1>Un problème est survenu</h1>
-      <p class="quiz-intro-texte">
-        Le quiz n'a pas pu se charger. Vérifie ta connexion, puis réessaie.
-      </p>
-      <button type="button" class="bouton-principal bouton-pleine-largeur" onclick="location.reload()">Réessayer</button>
-    `;
+    afficherStatut("Le quiz n'a pas pu se charger. Vérifie ta connexion puis réessaie.", true);
+    boutonDemarrer.disabled = !SERIES_FILIERES.some(serie => serie.id === serieChoisie);
   }
 
   boutonDemarrer.addEventListener("click", async () => {
+    boutonDemarrer.disabled = true;
+    afficherStatut("Préparation du quiz...");
     try {
       const reponseFetch = await fetch("data/questions.json");
       if (!reponseFetch.ok) throw new Error("Réponse serveur invalide");
@@ -72,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       ecranIntro.style.display = "none";
       ecranQuestion.style.display = "block";
+      afficherStatut("");
       afficherQuestion();
     } catch (erreur) {
       console.error(erreur);
@@ -80,16 +95,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function afficherQuestion() {
-    reponseChoisie = null;
-    boutonSuivant.disabled = true;
+    reponseChoisie = Number.isInteger(reponsesChoisies[indexActuel])
+      ? reponsesChoisies[indexActuel]
+      : null;
+    boutonSuivant.disabled = reponseChoisie === null;
+    boutonPrecedent.disabled = indexActuel === 0;
 
     const question = questionsTirees[indexActuel];
     texteQuestion.textContent = question.texte;
 
     const conteneurEtapes = document.getElementById("quiz-etapes");
+    const texteEtapes = document.getElementById("quiz-etapes-texte");
+    const numeroQuestion = indexActuel + 1;
+    texteEtapes.textContent = `Question ${numeroQuestion} sur ${questionsTirees.length}`;
+    conteneurEtapes.setAttribute("aria-valuemax", String(questionsTirees.length));
+    conteneurEtapes.setAttribute("aria-valuenow", String(numeroQuestion));
+    conteneurEtapes.setAttribute("aria-valuetext", `Question ${numeroQuestion} sur ${questionsTirees.length}`);
     conteneurEtapes.innerHTML = questionsTirees.map((_, i) => {
       const etat = i < indexActuel ? "etape-faite" : (i === indexActuel ? "etape-active" : "");
-      return `<span class="quiz-etape-point ${etat}"></span>`;
+      return `<span class="quiz-etape-point ${etat}" aria-hidden="true"></span>`;
     }).join("");
 
     conteneurReponses.innerHTML = "";
@@ -97,25 +121,49 @@ document.addEventListener("DOMContentLoaded", () => {
       const bouton = document.createElement("button");
       bouton.type = "button";
       bouton.className = "bouton-reponse";
+      bouton.setAttribute("aria-pressed", String(i === reponseChoisie));
       bouton.textContent = reponse.texte;
+      if (i === reponseChoisie) bouton.classList.add("bouton-reponse-selectionnee");
       bouton.addEventListener("click", () => choisirReponse(i, bouton));
       conteneurReponses.appendChild(bouton);
     });
 
     boutonSuivant.textContent = (indexActuel === questionsTirees.length - 1) ? "Continuer" : "Suivant";
-
-    const carte = document.getElementById("ecran-question");
-    carte.classList.remove("quiz-carte-animee");
-    void carte.offsetWidth;
-    carte.classList.add("quiz-carte-animee");
+    if (window.JeuneAvenirMotion) window.JeuneAvenirMotion.animer(ecranQuestion);
   }
 
   function choisirReponse(index, boutonClique) {
     reponseChoisie = index;
+    reponsesChoisies[indexActuel] = index;
     boutonSuivant.disabled = false;
-    document.querySelectorAll(".bouton-reponse").forEach(b => b.classList.remove("bouton-reponse-selectionnee"));
+    document.querySelectorAll(".bouton-reponse").forEach(b => {
+      b.classList.remove("bouton-reponse-selectionnee");
+      b.setAttribute("aria-pressed", "false");
+    });
     boutonClique.classList.add("bouton-reponse-selectionnee");
+    boutonClique.setAttribute("aria-pressed", "true");
   }
+
+  function revenirQuestionPrecedente() {
+    if (indexActuel <= 0) return;
+
+    const indexPrecedent = indexActuel - 1;
+    const questionPrecedente = questionsTirees[indexPrecedent];
+    const reponsePrecedente = questionPrecedente.reponses[reponsesChoisies[indexPrecedent]];
+
+    Object.entries(reponsePrecedente.riasec).forEach(([lettre, points]) => {
+      scoresRiasec[lettre] -= points;
+    });
+
+    historiqueReponses.pop();
+    indexActuel = indexPrecedent;
+    ecranOuverte.style.display = "none";
+    ecranQuestion.style.display = "block";
+    afficherQuestion();
+  }
+
+  boutonPrecedent.addEventListener("click", revenirQuestionPrecedente);
+  boutonPrecedentOuverte.addEventListener("click", revenirQuestionPrecedente);
 
   boutonSuivant.addEventListener("click", () => {
     if (reponseChoisie === null) return;
@@ -133,8 +181,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (indexActuel < questionsTirees.length) {
       afficherQuestion();
     } else {
-      document.getElementById("ecran-question").style.display = "none";
-      document.getElementById("ecran-ouverte").style.display = "block";
+      ecranQuestion.style.display = "none";
+      ecranOuverte.style.display = "block";
+      document.getElementById("quiz-etapes-texte").textContent = "Dernière étape facultative";
+      const conteneurEtapes = document.getElementById("quiz-etapes");
+      conteneurEtapes.setAttribute("aria-valuetext", "Dernière étape facultative");
+      if (window.JeuneAvenirMotion) window.JeuneAvenirMotion.animer(ecranOuverte);
     }
   });
 

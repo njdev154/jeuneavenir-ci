@@ -9,9 +9,11 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/orientation.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body>
+<body class="page-comparateur">
 
   <header class="entete">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
@@ -30,15 +32,39 @@
 
   <main class="conteneur page-decouverte">
 
-    <h1>Comparateur de filières</h1>
-    <p class="page-sous-titre">Choisis 2 ou 3 filières à comparer côte à côte.</p>
+    <p class="comparateur-etiquette" data-motion="rise">CHOISIR · COMPARER · VÉRIFIER</p>
+    <h1 data-motion="rise">Comparateur de filières</h1>
+    <p class="page-sous-titre comparateur-intro" data-motion="rise">Choisis deux ou trois pistes pour comparer leurs repères côte à côte.</p>
 
-    <div class="comparateur-selecteurs" id="comparateur-selecteurs">
-      <select class="champ-select comparateur-select" data-slot="0"><option value="">Filière 1...</option></select>
-      <select class="champ-select comparateur-select" data-slot="1"><option value="">Filière 2...</option></select>
-      <select class="champ-select comparateur-select" data-slot="2"><option value="">Filière 3 (optionnel)...</option></select>
+    <p class="comparateur-selection-aide" id="comparateur-aide">
+      Les lignes différant d'une piste à l'autre sont signalées dans le tableau. Aucun frais n'est renseigné dans les données du catalogue.
+    </p>
+
+    <div class="comparateur-selecteurs" id="comparateur-selecteurs" data-motion="rise">
+      <div class="comparateur-selecteur">
+        <label for="comparateur-filiere-0">Première filière</label>
+        <select id="comparateur-filiere-0" class="champ-select comparateur-select" data-slot="0" aria-describedby="comparateur-aide">
+          <option value="">Choisir une filière...</option>
+        </select>
+        <button class="comparateur-retirer" type="button" data-slot="0" disabled>Retirer</button>
+      </div>
+      <div class="comparateur-selecteur">
+        <label for="comparateur-filiere-1">Deuxième filière</label>
+        <select id="comparateur-filiere-1" class="champ-select comparateur-select" data-slot="1" aria-describedby="comparateur-aide">
+          <option value="">Choisir une filière...</option>
+        </select>
+        <button class="comparateur-retirer" type="button" data-slot="1" disabled>Retirer</button>
+      </div>
+      <div class="comparateur-selecteur">
+        <label for="comparateur-filiere-2">Troisième filière <span>(facultative)</span></label>
+        <select id="comparateur-filiere-2" class="champ-select comparateur-select" data-slot="2" aria-describedby="comparateur-aide">
+          <option value="">Aucune troisième filière</option>
+        </select>
+        <button class="comparateur-retirer" type="button" data-slot="2" disabled>Retirer</button>
+      </div>
     </div>
 
+    <p id="comparateur-annonce" class="orientation-visuellement-cache" aria-live="polite" aria-atomic="true"></p>
     <div id="tableau-comparateur"></div>
 
   </main>
@@ -48,6 +74,7 @@
   </footer>
 
   <script src="js/comparateur.js"></script>
+  <script src="js/motion.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
 </body>

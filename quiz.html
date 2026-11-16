@@ -9,6 +9,8 @@
   <link rel="alternate icon" href="assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/orientation.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
 <body class="page-quiz">
@@ -23,7 +25,8 @@
     <main class="conteneur-quiz">
 
       <!-- Écran d'intro : juste la série, rien d'autre -->
-      <div id="ecran-intro" class="carte carte-quiz carte-quiz-intro">
+      <div id="ecran-intro" class="carte carte-quiz carte-quiz-intro" data-motion="rise">
+        <p class="quiz-etiquette">ORIENTATION · ENVIRON 3 MINUTES</p>
         <h1>Trouve ta filière</h1>
         <p class="quiz-intro-texte">
           7 questions et une question facultative, environ 3 minutes. Ce quiz propose des pistes à explorer : il ne calcule pas tes chances d'affectation et ne garantit pas une admission.
@@ -38,33 +41,57 @@
           <option value="">Choisis ta série...</option>
         </select>
 
+        <p id="quiz-etat" class="quiz-etat" role="status" aria-live="polite">
+          Chargement des séries...
+        </p>
         <button id="bouton-demarrer" class="bouton-principal bouton-pleine-largeur" disabled>Commencer</button>
       </div>
 
       <!-- Écran de question (masqué au départ) -->
-      <div id="ecran-question" class="carte carte-quiz" style="display:none;">
+      <div id="ecran-question" class="carte carte-quiz" style="display:none;" data-motion="rise">
 
-        <div class="quiz-etapes" id="quiz-etapes"></div>
+        <div class="quiz-progression-entete">
+          <p id="quiz-etapes-texte" class="quiz-progression-texte" aria-live="polite">Question 1 sur 7</p>
+          <span class="quiz-progression-aide">7 questions · une dernière étape facultative</span>
+        </div>
+        <div
+          class="quiz-etapes"
+          id="quiz-etapes"
+          role="progressbar"
+          aria-label="Progression des questions"
+          aria-valuemin="1"
+          aria-valuemax="7"
+          aria-valuenow="1"
+          aria-valuetext="Question 1 sur 7"
+        ></div>
 
-        <h2 id="quiz-question-texte" class="quiz-question-texte"></h2>
+        <h2 id="quiz-question-texte" class="quiz-question-texte" aria-live="polite" aria-atomic="true"></h2>
 
-        <div id="quiz-reponses" class="quiz-reponses"></div>
+        <div id="quiz-reponses" class="quiz-reponses" role="group" aria-labelledby="quiz-question-texte"></div>
 
-        <button id="bouton-suivant" class="bouton-principal bouton-pleine-largeur" disabled>Suivant</button>
+        <div class="quiz-navigation">
+          <button id="bouton-precedent" class="bouton-secondaire quiz-bouton-precedent" type="button" disabled>Précédent</button>
+          <button id="bouton-suivant" class="bouton-principal quiz-bouton-suivant" type="button" disabled>Suivant</button>
+        </div>
       </div>
 
       <!-- Écran final : une question ouverte simple -->
-      <div id="ecran-ouverte" class="carte carte-quiz" style="display:none;">
+      <div id="ecran-ouverte" class="carte carte-quiz carte-quiz-ouverte" style="display:none;" data-motion="rise">
+        <p class="quiz-etiquette">DERNIÈRE ÉTAPE · FACULTATIVE</p>
         <h2 class="quiz-question-texte">Une dernière chose : qu'est-ce qui te motive dans un futur métier ?</h2>
         <p class="quiz-ouverte-aide">Facultatif — une phrase suffit.</p>
         <textarea id="quiz-texte-libre" class="quiz-textarea" rows="4" placeholder="Écris ici si tu veux..."></textarea>
-        <button id="bouton-voir-resultat" class="bouton-principal bouton-pleine-largeur">Voir ma filière</button>
+        <div class="quiz-navigation">
+          <button id="bouton-precedent-ouverte" class="bouton-secondaire quiz-bouton-precedent" type="button">Revoir la dernière réponse</button>
+          <button id="bouton-voir-resultat" class="bouton-principal quiz-bouton-suivant" type="button">Voir mes pistes</button>
+        </div>
       </div>
 
     </main>
   </div>
 
   <script src="js/quiz.js"></script>
+  <script src="js/motion.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
 </body>

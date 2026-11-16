@@ -1,6 +1,15 @@
 # Journal du projet
 
 ## 2026-11-16 — Assistant Copilot
+- Mission 03, étape 2 : refonte du quiz, des résultats et du comparateur avec `css/orientation.css`, sans modifier les données JSON ni le calcul d'orientation.
+- Le quiz conserve ses 7 questions tirées du catalogue et ses scores; ajout de la progression accessible, de la navigation précédent/suivant et de la reprise d'une réponse. Parcours A2 complet vérifié au clavier, avec correction d'une réponse; le score enregistré correspond exactement aux points des choix finaux.
+- Les résultats utilisent uniquement les filières accessibles et les données du catalogue; les ex æquo restent tous visibles, y compris une égalité à trois pistes. Le comparateur signale les différences, prévient les doublons, permet le retrait au clavier et n'affiche pas de frais absents des données.
+- Contrôles navigateur aux largeurs 360, 390, 768, 1024, 1440 et 1899 px sur quiz, résultats et comparateur : aucun débordement horizontal. Réduction des animations vérifiée; aucune erreur JavaScript observée. Régression mobile sans débordement sur accueil et trois pages d'authentification.
+- Vérifications : `node --check` sur les trois scripts, 6 tests Node existants et `git diff --check` réussis.
+- Captures navigateur : vues desktop du quiz, des résultats et du comparateur, ainsi qu'une vue mobile du résultat. Le navigateur intégré a parfois renvoyé une capture desktop périmée après le passage au viewport mobile pour le quiz et le comparateur; leurs vues mobiles ont donc été validées par mesures DOM plutôt que par capture.
+- Reste à faire : créer le commit dédié de l'étape 2, vérifier son contenu et l'état Git; ne pas commencer la Mission 04 et ne pas pousser.
+
+## 2026-11-16 — Assistant Copilot
 - Mission 03, étape 1 : création des fondations réutilisables dans `css/motion.css` et `js/motion.js`, avec entrées au défilement, décalage des groupes, micro-retours, variables communes et respect de `prefers-reduced-motion`.
 - Application à l’accueil et aux trois pages d’authentification. Le contenu reste visible sans JavaScript; le comportement reveal historique est conservé sur les pages pas encore migrées.
 - Vérifications : 6 tests Node existants, `node --check` sur les scripts concernés et `git diff --check` réussis. Contrôle navigateur des quatre pages aux formats 1899 × 876, 1440 × 900, 768 × 900, 390 × 844 et 360 × 800 selon la page; aucun débordement horizontal ni erreur JavaScript. Menu mobile, sélection du type de compte, bascule du mot de passe, confirmation de réinitialisation sans e-mail et réduction des animations vérifiés.
