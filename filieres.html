@@ -9,9 +9,11 @@
   <link rel="alternate icon" href="assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/discovery.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body>
+<body class="page-catalogue page-catalogue-filieres">
 
   <header class="entete">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
@@ -28,17 +30,65 @@
     </div>
   </header>
 
-  <main class="conteneur page-decouverte">
+  <main class="conteneur page-decouverte" id="catalogue">
+    <section class="discovery-hero" data-motion="rise">
+      <p class="discovery-kicker">CHOISIR SON PARCOURS</p>
+      <h1>Explore les filières</h1>
+      <p>Comprends les domaines d’études, les matières et les parcours possibles après le bac. Les informations disponibles sont des repères, pas une garantie d’admission.</p>
+      <nav class="discovery-nav" aria-label="Explorer les catalogues">
+        <a href="filieres.html" aria-current="page">Filières</a>
+        <a href="ecoles.html">Écoles</a>
+        <a href="metiers.html">Métiers</a>
+      </nav>
+    </section>
 
-    <h1>Filières du premier catalogue</h1>
-    <p class="page-sous-titre">Ce premier catalogue de 7 filières est incomplet. Vérifie les formations ouvertes, conditions d'admission et établissements auprès du MESRS et des écoles concernées.</p>
+    <form class="discovery-search" action="recherche.html" method="get" role="search">
+      <label for="recherche-filiere">Rechercher une filière ou un débouché</label>
+      <input type="search" id="recherche-filiere" name="q" required placeholder="Ex. informatique, droit, développeur web">
+      <button type="submit">Rechercher partout</button>
+      <p class="discovery-search-hint">La saisie filtre ce catalogue. Le bouton recherche dans les filières, les écoles et les métiers.</p>
+    </form>
 
-    <input type="search" id="recherche-filiere" class="champ-recherche" placeholder="Rechercher une filière (ex: informatique, droit...)">
+    <div class="discovery-workspace">
+      <aside class="discovery-sidebar" aria-labelledby="titre-filtres-filieres" data-motion="rise">
+        <h2 id="titre-filtres-filieres">Affiner l’exploration</h2>
+        <fieldset class="discovery-filter">
+          <legend>Univers d’études</legend>
+          <div id="filtres-univers"></div>
+          <p class="discovery-filter-note">Repères de navigation établis à partir des intitulés du catalogue, pas une classification officielle.</p>
+        </fieldset>
+        <div class="discovery-filter">
+          <label for="filtre-duree-filiere">Durée indiquée</label>
+          <select id="filtre-duree-filiere">
+            <option value="">Toutes les durées</option>
+          </select>
+        </div>
+        <div class="discovery-filter">
+          <label for="filtre-metier-filiere">Métier associé</label>
+          <select id="filtre-metier-filiere">
+            <option value="">Tous les métiers associés</option>
+          </select>
+        </div>
+        <button class="discovery-reset" id="reinitialiser-filtres-filieres" type="button">Réinitialiser les filtres</button>
+      </aside>
 
-    <div id="grille-filieres" class="grille-filieres"></div>
+      <section class="discovery-results" aria-labelledby="titre-resultats-filieres">
+        <h2 id="titre-resultats-filieres" class="discovery-visually-hidden">Résultats du catalogue de filières</h2>
+        <p id="compteur-filiere" class="discovery-count" aria-live="polite"></p>
+        <div id="grille-filieres" class="discovery-grid" data-motion-stagger aria-live="polite"></div>
+      </section>
+    </div>
 
-    <!-- Fiche détaillée, affichée au clic sur une filière -->
-    <div id="fiche-filiere" class="carte fiche-filiere" style="display:none;"></div>
+    <section id="fiche-filiere" class="discovery-fiche" hidden aria-live="polite"></section>
+    <p id="etat-catalogue-filieres" class="discovery-search-status" role="status" aria-live="polite"></p>
+
+    <noscript>
+      <div class="discovery-empty">
+        <h2>Le catalogue interactif nécessite JavaScript</h2>
+        <p>Les données du catalogue restent consultables dans le fichier source.</p>
+        <a href="data/filieres.json">Consulter les données des filières (JSON)</a>
+      </div>
+    </noscript>
 
   </main>
 
@@ -47,7 +97,9 @@
   </footer>
 
   <script src="js/favoris.js"></script>
+  <script src="js/discovery-common.js"></script>
   <script src="js/filieres.js"></script>
+  <script src="js/motion.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
 </body>

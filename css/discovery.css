@@ -1,0 +1,774 @@
+body.page-catalogue,
+body.page-recherche-decouverte {
+  background: #F7FAFD;
+}
+
+.page-catalogue .page-decouverte,
+.page-recherche-decouverte .page-decouverte {
+  width: min(1280px, 100%);
+  padding: 28px clamp(18px, 4vw, 56px) 72px;
+}
+
+.discovery-hero {
+  padding: clamp(30px, 5vw, 66px) 0 24px;
+  border-bottom: 1px solid #DCE5EF;
+}
+
+.discovery-kicker {
+  margin: 0 0 12px;
+  color: #163F6F;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.discovery-hero h1,
+.discovery-search-page h1 {
+  margin: 0 0 8px;
+  color: #0B2545;
+  font: 400 clamp(2.7rem, 6vw, 4.7rem)/0.98 var(--police-titres);
+}
+
+.discovery-hero > p:last-of-type,
+.discovery-search-page > p {
+  max-width: 720px;
+  margin: 0;
+  color: #5B6B82;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.discovery-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.discovery-nav a {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  padding: 7px 12px;
+  border: 1px solid #DCE5EF;
+  border-radius: 999px;
+  background: #FFFFFF;
+  color: #163F6F;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing), border-color var(--motion-duration-fast) var(--motion-easing), color var(--motion-duration-fast) var(--motion-easing);
+}
+
+.discovery-nav a[aria-current="page"] {
+  border-color: #163F6F;
+  background: #163F6F;
+  color: #FFFFFF;
+}
+
+.discovery-nav a:hover {
+  border-color: #4C9FE8;
+  color: #0B2545;
+}
+
+.discovery-search {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+  margin: 22px 0;
+  padding: 14px;
+  border: 1px solid #DCE5EF;
+  border-radius: 12px;
+  background: #FFFFFF;
+}
+
+.discovery-search label {
+  grid-column: 1 / -1;
+  color: #0B2545;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.discovery-search input,
+.discovery-search select,
+.discovery-filter select,
+.discovery-filter input {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid #C8D6E4;
+  border-radius: 8px;
+  background: #FFFFFF;
+  color: #16233B;
+  font: inherit;
+}
+
+.discovery-search button,
+.discovery-reset {
+  min-height: 48px;
+  padding: 10px 16px;
+  border: 1px solid #0B2545;
+  border-radius: 8px;
+  background: #0B2545;
+  color: #FFFFFF;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing), transform var(--motion-duration-fast) var(--motion-easing);
+}
+
+.discovery-search button:hover,
+.discovery-reset:hover {
+  background: #163F6F;
+}
+
+.discovery-search input:focus-visible,
+.discovery-search button:focus-visible,
+.discovery-filter select:focus-visible,
+.discovery-filter input:focus-visible,
+.discovery-reset:focus-visible,
+.discovery-card a:focus-visible,
+.discovery-action:focus-visible,
+.discovery-back:focus-visible,
+.discovery-nav a:focus-visible {
+  outline: 3px solid #4C9FE8;
+  outline-offset: 3px;
+}
+
+.discovery-search-hint {
+  grid-column: 1 / -1;
+  margin: -4px 0 0;
+  color: #5B6B82;
+  font-size: 0.73rem;
+  line-height: 1.5;
+}
+
+.discovery-workspace {
+  display: grid;
+  grid-template-columns: minmax(205px, 250px) minmax(0, 1fr);
+  align-items: start;
+  gap: 22px;
+  margin-top: 18px;
+}
+
+.discovery-sidebar {
+  position: sticky;
+  top: 20px;
+  padding: 18px;
+  border: 1px solid #DCE5EF;
+  border-radius: 12px;
+  background: #FFFFFF;
+}
+
+.discovery-sidebar h2 {
+  margin: 0 0 14px;
+  color: #0B2545;
+  font-size: 0.92rem;
+}
+
+.discovery-filter {
+  display: grid;
+  gap: 7px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #E3EAF2;
+}
+
+.discovery-filter legend,
+.discovery-filter > label {
+  color: #0B2545;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.discovery-filter fieldset {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.discovery-filter label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #5B6B82;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.discovery-filter input[type="checkbox"] {
+  width: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  margin: 1px 0 0;
+  accent-color: #163F6F;
+}
+
+.discovery-filter-note {
+  margin: 4px 0 0;
+  color: #687B92;
+  font-size: 0.67rem;
+  line-height: 1.5;
+}
+
+.discovery-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.discovery-reset {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 18px;
+  padding: 8px 12px;
+  background: #EAF3FC;
+  color: #163F6F;
+  border-color: #DCE5EF;
+}
+
+.discovery-results {
+  min-width: 0;
+}
+
+.discovery-count {
+  min-height: 1.5em;
+  margin: 0 0 12px;
+  color: #5B6B82;
+  font-size: 0.78rem;
+}
+
+.discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
+}
+
+.discovery-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid #DCE5EF;
+  border-radius: 12px;
+  background: #FFFFFF;
+  transition: transform var(--motion-duration-fast) var(--motion-easing), border-color var(--motion-duration-fast) var(--motion-easing), background-color var(--motion-duration-fast) var(--motion-easing);
+}
+
+.discovery-card:hover {
+  transform: translateY(-3px);
+  border-color: #A7BCD1;
+}
+
+.discovery-card-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  margin-bottom: 12px;
+  border-radius: 9px;
+  background: #EAF3FC;
+  color: #163F6F;
+}
+
+.discovery-card-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.discovery-card h2,
+.discovery-card h3 {
+  margin: 12px 0 6px;
+  color: #0B2545;
+  font: 400 1.55rem/1.1 var(--police-titres);
+}
+
+.discovery-card > p {
+  margin: 0 0 12px;
+  color: #5B6B82;
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.discovery-card .discovery-card-fact {
+  margin: auto 0 0;
+  color: #43546B;
+  font-size: 0.71rem;
+  font-weight: 700;
+}
+
+.discovery-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding: 10px 0 4px;
+}
+
+.discovery-tag,
+.discovery-badge,
+.discovery-card-meta span {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #EAF3FC;
+  color: #163F6F;
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.discovery-card a,
+.discovery-action,
+.discovery-back {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  color: #163F6F;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.discovery-card a:hover,
+.discovery-action:hover,
+.discovery-back:hover {
+  color: #0B2545;
+  text-decoration: underline;
+}
+
+.discovery-empty {
+  padding: 24px;
+  border: 1px dashed #C8D6E4;
+  border-radius: 12px;
+  background: #FFFFFF;
+}
+
+.discovery-empty-kicker {
+  margin: 0 0 8px;
+  color: #2A6FB0;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.discovery-empty h2 {
+  margin: 0 0 8px;
+  color: #0B2545;
+  font: 400 1.7rem/1.15 var(--police-titres);
+}
+
+.discovery-empty p:last-child {
+  margin: 0;
+  color: #5B6B82;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.discovery-detail {
+  scroll-margin-top: 22px;
+}
+
+.discovery-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 310px);
+  align-items: start;
+  gap: clamp(22px, 4vw, 40px);
+}
+
+.discovery-detail-main {
+  min-width: 0;
+}
+
+.discovery-detail h1 {
+  margin: 0 0 10px;
+  color: #0B2545;
+  font: 400 clamp(2.65rem, 6vw, 4.5rem)/0.98 var(--police-titres);
+  overflow-wrap: anywhere;
+}
+
+.discovery-back {
+  margin: 0 0 26px;
+}
+
+.discovery-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0 16px;
+}
+
+.discovery-detail-description {
+  max-width: 780px;
+  margin: 0 0 22px;
+  color: #5B6B82;
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+.discovery-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+
+.discovery-facts > div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #DCE5EF;
+  border-radius: 10px;
+  background: #FFFFFF;
+}
+
+.discovery-facts dt {
+  margin-bottom: 6px;
+  color: #5B6B82;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.discovery-facts dd {
+  margin: 0;
+  color: #0B2545;
+  font: 400 1.2rem/1.25 var(--police-titres);
+  overflow-wrap: anywhere;
+}
+
+.discovery-detail-section {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid #DCE5EF;
+}
+
+.discovery-detail-section h2,
+.discovery-detail-aside h2 {
+  margin: 0 0 10px;
+  color: #0B2545;
+  font: 400 1.7rem/1.15 var(--police-titres);
+}
+
+.discovery-detail-section > p {
+  margin: 0 0 12px;
+  color: #5B6B82;
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.discovery-detail-list {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.discovery-detail-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 5px 12px;
+  padding: 12px 14px;
+  border: 1px solid #E3EAF2;
+  border-radius: 9px;
+  background: #FFFFFF;
+}
+
+.discovery-detail-list li > a,
+.discovery-detail-list li > span {
+  min-width: 0;
+  color: #163F6F;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.discovery-detail-list li > p,
+.discovery-detail-list li > small {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #5B6B82;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.discovery-detail-list li > small {
+  color: #687B92;
+}
+
+.discovery-badge {
+  align-self: start;
+  background: #F0F5FA;
+  color: #43546B;
+}
+
+.discovery-missing {
+  padding: 12px 14px;
+  border-left: 3px solid #4C9FE8;
+  background: #EAF3FC;
+  color: #43546B;
+  font-size: 0.79rem;
+  line-height: 1.6;
+}
+
+.discovery-detail-aside {
+  position: sticky;
+  top: 20px;
+  padding: 22px;
+  border: 1px solid #DCE5EF;
+  border-radius: 12px;
+  background: #FFFFFF;
+}
+
+.discovery-detail-aside > p:not(.discovery-kicker) {
+  margin: 0 0 16px;
+  color: #5B6B82;
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.discovery-actions {
+  display: grid;
+  gap: 6px;
+}
+
+.discovery-actions .discovery-action:first-child {
+  justify-content: center;
+  min-height: 48px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #0B2545;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.discovery-note {
+  margin: 22px 0 0;
+  padding: 14px 16px;
+  border-left: 3px solid #4C9FE8;
+  background: #EAF3FC;
+  color: #43546B;
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+
+.discovery-favorite-slot {
+  margin: 10px 0 22px;
+}
+
+.discovery-favorite-slot .bouton-favori {
+  min-height: 42px;
+  padding: 9px 13px;
+  border: 1px solid #C8D6E4;
+  border-radius: 8px;
+  background: #FFFFFF;
+  color: #163F6F;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.discovery-search-page {
+  min-height: 68vh;
+}
+
+.discovery-search-page .discovery-search {
+  margin-top: 24px;
+}
+
+.discovery-search-section {
+  margin-top: 30px;
+}
+
+.discovery-search-section h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: #0B2545;
+  font: 400 1.8rem/1.15 var(--police-titres);
+}
+
+.discovery-search-section h2 span {
+  color: #5B6B82;
+  font: 700 0.72rem/1.5 var(--police-texte);
+}
+
+.discovery-search-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.discovery-search-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #DCE5EF;
+  border-radius: 10px;
+  background: #FFFFFF;
+}
+
+.discovery-search-card h3 {
+  margin: 0 0 6px;
+  color: #0B2545;
+  font: 400 1.35rem/1.15 var(--police-titres);
+}
+
+.discovery-search-card p {
+  margin: 0 0 8px;
+  color: #5B6B82;
+  font-size: 0.77rem;
+  line-height: 1.6;
+}
+
+.discovery-search-card a {
+  color: #163F6F;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-underline-offset: 3px;
+}
+
+.discovery-search-status {
+  min-height: 1.5em;
+  margin: 12px 0;
+  color: #5B6B82;
+  font-size: 0.78rem;
+}
+
+.page-catalogue [hidden],
+.page-recherche-decouverte [hidden] {
+  display: none !important;
+}
+
+@media (max-width: 1050px) {
+  .discovery-grid,
+  .discovery-search-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .discovery-detail-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 270px);
+  }
+}
+
+@media (max-width: 760px) {
+  .page-catalogue .page-decouverte,
+  .page-recherche-decouverte .page-decouverte {
+    padding: 22px 18px 54px;
+  }
+
+  .discovery-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .discovery-sidebar,
+  .discovery-detail-aside {
+    position: static;
+  }
+
+  .discovery-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 14px;
+  }
+
+  .discovery-sidebar > h2,
+  .discovery-reset {
+    grid-column: 1 / -1;
+  }
+
+  .discovery-filter {
+    min-width: 0;
+  }
+
+  .discovery-detail-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .discovery-detail-aside {
+    order: -1;
+  }
+
+  .discovery-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .discovery-search {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .discovery-search label,
+  .discovery-search-hint {
+    grid-column: 1;
+  }
+
+  .discovery-grid,
+  .discovery-search-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .discovery-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .discovery-sidebar > h2,
+  .discovery-reset {
+    grid-column: 1;
+  }
+
+  .discovery-detail h1 {
+    font-size: clamp(2.5rem, 13vw, 3.4rem);
+  }
+
+  .discovery-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .discovery-detail-list li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .discovery-detail-list li > p,
+  .discovery-detail-list li > small {
+    grid-column: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discovery-nav a,
+  .discovery-card,
+  .discovery-search button,
+  .discovery-reset {
+    transition: none;
+  }
+
+  .discovery-card:hover,
+  .discovery-search button:active,
+  .discovery-reset:active {
+    transform: none;
+  }
+}

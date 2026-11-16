@@ -1,5 +1,12 @@
 # Journal du projet
 
+## 2026-11-16 — Assistant Copilot (Mission 04, étape 1 : filières)
+- Refonte du catalogue des filières : recherche accent-insensible, filtres combinables, cartes de découverte et fiches détaillées liées aux métiers et établissements du catalogue.
+- Les données financières absentes ne sont pas inventées; les salaires renseignés restent signalés comme estimations à vérifier. Correction d’un lien de métier associé qui pointait vers `#undefined`.
+- Contrôles navigateur : 7 filières chargées, état sans résultat, référence de fiche invalide, fiche Informatique, retour clavier vers la liste et lien vers `metiers.html#developpeur-web`.
+- Vérifications techniques : `node --check` sur les scripts Découverte, 6 tests Node et `git diff --check` réussis.
+- Reste à faire : valider des captures visuelles fiables, finaliser les étapes écoles, métiers et recherche transversale, puis vérifier les commits et l’état Git. Aucune Mission 05.
+
 ## 2026-11-16 — Assistant Copilot
 - Mission 03, étape 2 : refonte du quiz, des résultats et du comparateur avec `css/orientation.css`, sans modifier les données JSON ni le calcul d'orientation.
 - Le quiz conserve ses 7 questions tirées du catalogue et ses scores; ajout de la progression accessible, de la navigation précédent/suivant et de la reprise d'une réponse. Parcours A2 complet vérifié au clavier, avec correction d'une réponse; le score enregistré correspond exactement aux points des choix finaux.
