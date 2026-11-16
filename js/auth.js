@@ -30,11 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
       messageErreur.textContent = "";
 
       const nom = document.getElementById("nom").value.trim();
-      const email = document.getElementById("email").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
       const motDePasse = document.getElementById("mot_de_passe").value;
       const confirmation = document.getElementById("confirmation").value;
-      const typeCompte = formInscription.querySelector('input[name="type_compte"]:checked').value;
+      const profilChoisi = formInscription.querySelector('input[name="type_compte"]:checked')?.value;
+      const groupeProfil = profilChoisi && formInscription.querySelector(`[data-profile-fields="${profilChoisi}"]`);
 
+      if (!groupeProfil || groupeProfil.disabled) {
+        messageErreur.textContent = "Choisis un profil et renseigne les informations demandées.";
+        return;
+      }
       if (motDePasse !== confirmation) {
         messageErreur.textContent = "Les mots de passe ne correspondent pas.";
         return;
@@ -46,12 +51,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Vérifie si un compte existe déjà avec cet email (simulation simple)
       const utilisateurs = JSON.parse(localStorage.getItem("jac_utilisateurs") || "[]");
-      if (utilisateurs.some(u => u.email === email)) {
+      if (utilisateurs.some(u => u.email.trim().toLowerCase() === email)) {
         messageErreur.textContent = "Un compte existe déjà avec cet e-mail.";
         return;
       }
 
-      const nouvelUtilisateur = { nom, email, typeCompte, dateCreation: new Date().toISOString() };
+      const profilDetails = Object.fromEntries(
+        Array.from(groupeProfil.querySelectorAll("input, select, textarea"))
+          .filter(champ => champ.name && !champ.disabled && champ.value.trim())
+          .map(champ => [champ.name, champ.value.trim()])
+      );
+      const typeCompte = profilChoisi === "professeur" ? "mentor" : profilChoisi;
+      const nouvelUtilisateur = {
+        nom,
+        email,
+        typeCompte,
+        profilDetails,
+        dateCreation: new Date().toISOString()
+      };
+      const ville = document.getElementById("ville").value.trim();
+      if (ville) nouvelUtilisateur.ville = ville;
+      if (profilChoisi === "professeur") nouvelUtilisateur.sousTypeCompte = "professeur";
+      if (profilChoisi === "jeune") {
+        nouvelUtilisateur.statut = profilDetails.statut;
+        nouvelUtilisateur.formation = profilDetails.formation;
+      }
+
       utilisateurs.push(nouvelUtilisateur);
       localStorage.setItem("jac_utilisateurs", JSON.stringify(utilisateurs));
       localStorage.setItem("jac_utilisateur_connecte", JSON.stringify(nouvelUtilisateur));
@@ -68,13 +93,27 @@ document.addEventListener("DOMContentLoaded", () => {
       const messageErreur = document.getElementById("message-erreur");
       messageErreur.textContent = "";
 
-      const email = document.getElementById("email").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const profilChoisi = formConnexion.querySelector('input[name="type_compte"]:checked')?.value;
+      if (!profilChoisi) {
+        messageErreur.textContent = "Choisis le profil associé à ton compte.";
+        return;
+      }
 
       const utilisateurs = JSON.parse(localStorage.getItem("jac_utilisateurs") || "[]");
-      const utilisateur = utilisateurs.find(u => u.email === email);
+      const utilisateur = utilisateurs.find(u => u.email.trim().toLowerCase() === email);
 
       if (!utilisateur) {
         messageErreur.textContent = "Aucun compte trouvé avec cet e-mail. (Rappel : V1 = données stockées uniquement dans ce navigateur)";
+        return;
+      }
+
+      const profilCorrespond = profilChoisi === "professeur"
+        ? utilisateur.typeCompte === "mentor" && utilisateur.sousTypeCompte === "professeur"
+        : utilisateur.typeCompte === profilChoisi
+          && !(profilChoisi === "mentor" && utilisateur.sousTypeCompte === "professeur");
+      if (!profilCorrespond) {
+        messageErreur.textContent = "Ce compte ne correspond pas au profil choisi. Vérifie ton choix puis réessaie.";
         return;
       }
 

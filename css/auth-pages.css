@@ -71,7 +71,8 @@
   display: flex;
 }
 
-.auth-main-inscription {
+.auth-main-inscription,
+.auth-main-authentification {
   min-height: calc(100vh - 132px);
 }
 
@@ -110,6 +111,7 @@
 .auth-story h2 {
   margin: 18px 0 22px;
   color: #FFFFFF;
+  max-width: 13ch;
   font-size: clamp(3rem, 5.2vw, 5.8rem);
   font-weight: 400;
   line-height: 0.94;
@@ -237,7 +239,7 @@
 
 .choix-type-compte {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
   min-width: 0;
   margin: 0 0 2px;
@@ -247,6 +249,7 @@
 
 .choix-type-compte legend {
   width: 100%;
+  grid-column: 1 / -1;
   margin-bottom: 9px;
   color: var(--bleu-900);
   font-size: 0.84rem;
@@ -300,10 +303,34 @@
   line-height: 1.4;
 }
 
+.auth-profil-champs {
+  min-width: 0;
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.auth-profil-champs[hidden] {
+  display: none !important;
+}
+
+.auth-profil-champs legend {
+  grid-column: 1 / -1;
+  margin-bottom: 9px;
+  color: var(--bleu-900);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
 .auth-champs-grille {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px 12px;
+}
+
+.auth-profil-champs.auth-champs-grille {
+  gap: 12px;
 }
 
 .auth-champ {
@@ -323,7 +350,9 @@
   font-weight: 800;
 }
 
-.auth-champ input {
+.auth-champ input,
+.auth-champ select,
+.auth-champ textarea {
   width: 100%;
   min-width: 0;
   min-height: 45px;
@@ -336,12 +365,19 @@
   font-size: 0.87rem;
 }
 
+.auth-champ textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
 .auth-champ input::placeholder {
   color: #8997A8;
   opacity: 1;
 }
 
-.auth-champ input:focus {
+.auth-champ input:focus,
+.auth-champ select:focus,
+.auth-champ textarea:focus {
   border-color: var(--bleu-700);
   outline: 2px solid rgba(76, 159, 232, 0.3);
   outline-offset: 1px;
@@ -620,36 +656,29 @@
 }
 
 @media (max-width: 900px) {
-  .auth-main-inscription {
+  .auth-main-inscription,
+  .auth-main-authentification {
     flex-direction: column;
   }
 
   .auth-story {
     flex: none;
     min-height: auto;
-    padding: 32px 28px 30px;
+    align-items: flex-start;
+    padding: 22px clamp(22px, 5vw, 48px);
   }
 
   .auth-story h2 {
-    margin: 12px 0 13px;
-    font-size: clamp(2.8rem, 9vw, 4rem);
+    margin: 8px 0 0;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 1.04;
   }
 
-  .auth-story-contenu > p:not(.auth-kicker):not(.auth-story-signature) {
-    max-width: 480px;
-    font-size: 0.88rem;
+  .auth-story-contenu > p:not(.auth-kicker) {
+    display: none;
   }
 
-  .auth-story-signature {
-    margin-top: 18px;
-    padding-top: 10px;
-  }
-
-  .auth-orbite {
-    right: -72px;
-    bottom: -115px;
-    width: 230px;
-  }
+  .auth-orbite { display: none; }
 
   .auth-zone {
     padding: 24px 18px 32px;
@@ -694,27 +723,18 @@
     font-size: 1rem;
   }
 
-  .auth-main-inscription {
+  .auth-main-inscription,
+  .auth-main-authentification {
     min-height: auto;
   }
 
   .auth-story {
-    padding: 27px 22px 24px;
+    padding: 17px 20px 19px;
   }
 
   .auth-story h2 {
-    font-size: clamp(2.65rem, 12vw, 3.3rem);
-  }
-
-  .auth-story-signature {
-    margin-top: 14px;
-    font-size: 0.72rem;
-  }
-
-  .auth-orbite {
-    right: -100px;
-    bottom: -118px;
-    width: 205px;
+    max-width: 19ch;
+    font-size: clamp(1.7rem, 7vw, 2.25rem);
   }
 
   .auth-zone,
@@ -743,13 +763,13 @@
   }
 
   .choix-type-compte {
-    grid-template-columns: 1fr;
-    gap: 7px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .carte-type-compte {
-    min-height: 62px;
-    padding: 10px 38px 10px 12px;
+    min-height: 72px;
+    padding: 10px 30px 10px 11px;
   }
 
   .carte-type-compte input {
@@ -759,6 +779,10 @@
 
   .type-desc {
     font-size: 0.7rem;
+  }
+
+  .auth-profil-champs.auth-champs-grille {
+    grid-template-columns: 1fr;
   }
 
   .auth-champs-grille {

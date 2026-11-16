@@ -7,14 +7,14 @@ Version pilote d'une plateforme d'orientation pour les lycéens et nouveaux bach
 ```
 jeuneavenir-ci/
 ├── index.html                 → Accueil (hero "Horizon", 5 piliers)
-├── inscription.html           → Inscription de démonstration (aucun compte en ligne)
-├── connexion.html             → Connexion (idem)
+├── inscription.html           → Inscription de démonstration par profil (aucun compte en ligne)
+├── connexion.html             → Connexion locale avec choix du profil
 ├── mot-de-passe-oublie.html   → Information sur la réinitialisation (non active en V1)
 ├── quiz.html                  → Quiz d'orientation (par série + questions)
 ├── resultat.html              → Pistes les mieux notées, ex æquo inclus
 ├── filieres.html               → Liste + recherche + fiche détaillée
 ├── ecoles.html                  → Liste + filtres (ville/statut/domaine)
-├── dashboard.html                → Tableau de bord (jeune/mentor/entreprise)
+├── dashboard.html                → Tableau de bord (jeune/mentor/entreprise; professeur rattaché à Mentor)
 ├── avis.html                      → Formulaire de retour sur le site
 ├── 404.html                        → Page d'erreur
 ├── mentorat.html, offres.html  → Pages d'attente; les données fictives sont masquées
@@ -90,6 +90,10 @@ Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.te
 - **Honnêteté sur les limites de la V1** : pas de backend; l'authentification
   est simulée en `localStorage`, le mot de passe n'est pas vérifié, et aucune
   offre ni aucun mentor réel n'est publié. Toujours l'indiquer à l'utilisateur.
+- **Profils de compte** : les formulaires de démonstration distinguent jeune,
+  professeur, mentor et entreprise. Le profil professeur utilise le type
+  technique Mentor du CDC; seuls les champs actifs sont enregistrés dans le
+  navigateur. Ne pas saisir de mot de passe réutilisé ni de donnée sensible.
 - **Assistant local** : présenter les résultats comme des pistes, exposer les limites des sources et ne jamais confondre une correspondance dans le catalogue avec une admission, une offre réelle ou un mentor réel.
 
 ## État d'avancement

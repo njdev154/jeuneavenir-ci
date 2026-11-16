@@ -5,7 +5,15 @@
 - Ajustement du seuil responsive pour éviter que les actions de compte disparaissent autour de 899 px.
 - Vérifications navigateur avec réduction des animations : menu clavier ouvert/fermé et liens visibles sur l'accueil et les catalogues à 390, 768 et 899 px; comportement desktop vérifié à 900, 1024 px. Aucun débordement horizontal; la navigation vers l'inscription et l'ARIA sont vérifiés.
 - Contrôles `node --check js/main.js` et `git diff --check` réussis.
-- Reste à faire : confirmer le remote et la branche à publier avant tout push.
+- Le remote `origin` est configuré; le push GitHub a été refusé (403) car l'identité Git utilisée n'a pas le droit d'écriture sur le dépôt. À retenter après correction de l'accès.
+
+## 2026-11-16 — Assistant Copilot (authentification responsive et profils)
+- Recomposition des pages d'inscription et de connexion : panneaux bleu et clair côte à côte sur grand écran, panneau bleu compact au-dessus du formulaire sur mobile.
+- Formulaires distincts pour Jeune/étudiant, Professeur, Mentor et Entreprise; seuls les champs du profil choisi sont actifs. Les champs collectés sont limités au parcours (niveau/formation), à l'enseignement, à l'expérience de mentor ou à l'organisation, avec la ville facultative.
+- Le CDC prévoit trois types de compte techniques; Professeur est donc enregistré comme sous-profil de Mentor et reçoit son libellé propre au tableau de bord. La connexion vérifie aussi le profil sélectionné. Les mots de passe ne sont ni stockés ni vérifiés en V1; les données de profil restent locales.
+- Vérifications navigateur aux largeurs 360, 390, 768, 1024 et 1440 px sur les deux pages : aucun débordement horizontal, panneau mobile compact, disposition desktop en deux colonnes. Parcours des quatre profils, sauvegarde des champs sans mot de passe, connexion professeur, refus d'un mauvais profil et navigation clavier vérifiés; comptes de test retirés.
+- `node --check` des scripts concernés, les 6 tests Node existants et `git diff --check` réussis.
+- Reste à faire : retenter le push après reconnexion GitHub avec un compte ayant accès en écriture au dépôt. L'authentification demeure une démonstration locale, sans backend.
 
 ## 2026-11-16 — Assistant Copilot (Mission 04, étape 3 : métiers et recherche transversale)
 - Refonte des fiches métiers et ajout de la recherche multi-contenu dans `recherche.html`, avec résultats séparés par filières, établissements et métiers.

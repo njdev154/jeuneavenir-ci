@@ -23,7 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("sidebar-nom").textContent = utilisateur.nom;
 
   const libellesType = { jeune: "Jeune", mentor: "Mentor", entreprise: "Entreprise" };
-  document.getElementById("sidebar-type").textContent = libellesType[utilisateur.typeCompte] || "";
+  const libelleType = utilisateur.typeCompte === "mentor" && utilisateur.sousTypeCompte === "professeur"
+    ? "Professeur / enseignant"
+    : libellesType[utilisateur.typeCompte] || "";
+  document.getElementById("sidebar-type").textContent = libelleType;
   document.getElementById("dashboard-salutation").textContent = `Bonjour ${utilisateur.nom.split(" ")[0]} !`;
 
   // --- Contenu spécifique par type de compte ---

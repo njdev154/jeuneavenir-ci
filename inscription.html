@@ -26,7 +26,7 @@
     <aside class="auth-story" aria-labelledby="auth-story-title" data-motion="rise">
       <div class="auth-story-contenu">
         <p class="auth-kicker auth-kicker-clair">JEUNEAVENIR CI</p>
-        <h2 id="auth-story-title">Chaque étape<br>mérite<br>une bonne<br><em>boussole.</em></h2>
+        <h2 id="auth-story-title">Chaque étape mérite <em>une bonne boussole.</em></h2>
         <p>Explore des pistes d'orientation et des informations sourcées pour avancer à ton rythme.</p>
         <p class="auth-story-signature">Ton parcours commence ici.</p>
       </div>
@@ -37,43 +37,115 @@
 
     <section class="auth-zone" aria-labelledby="auth-page-title">
       <div class="auth-card auth-card-inscription" data-motion="rise">
-        <p class="auth-kicker">REJOINDRE JEUNEAVENIR CI</p>
+        <p class="auth-kicker" id="auth-signup-kicker">REJOINDRE JEUNEAVENIR CI</p>
         <h1 id="auth-page-title">Crée ton compte.</h1>
-        <p class="auth-intro">Choisis ton espace et commence à construire la suite de ton parcours.</p>
-        <p class="auth-notice" id="auth-demo-note"><strong>Démo locale :</strong> tes données restent dans ce navigateur; aucun compte en ligne n'est créé. N'utilise pas un mot de passe réel.</p>
+        <p class="auth-intro" id="auth-signup-intro">Choisis ton espace et commence à construire la suite de ton parcours.</p>
+        <p class="auth-notice" id="auth-demo-note"><strong>Démo locale :</strong> aucun compte n'est créé en ligne. Les informations de profil restent dans ce navigateur. Utilise des données de test, jamais un vrai mot de passe.</p>
 
         <form id="formulaire-inscription">
           <fieldset class="choix-type-compte">
-            <legend>Je suis un(e) :</legend>
+            <legend>Quel espace te correspond ?</legend>
 
             <label class="carte-type-compte">
               <input type="radio" name="type_compte" value="jeune" checked>
-              <span class="type-titre">Jeune</span>
-              <span class="type-desc">Lycéen, étudiant ou jeune diplômé</span>
+              <span class="type-titre">Jeune / étudiant</span>
+              <span class="type-desc">Lycéen, étudiant ou diplômé</span>
+            </label>
+
+            <label class="carte-type-compte">
+              <input type="radio" name="type_compte" value="professeur">
+              <span class="type-titre">Professeur</span>
+              <span class="type-desc">Enseignant ou éducateur</span>
             </label>
 
             <label class="carte-type-compte">
               <input type="radio" name="type_compte" value="mentor">
               <span class="type-titre">Mentor</span>
-              <span class="type-desc">Professionnel souhaitant accompagner</span>
+              <span class="type-desc">Professionnel qui accompagne</span>
             </label>
 
             <label class="carte-type-compte">
               <input type="radio" name="type_compte" value="entreprise">
               <span class="type-titre">Entreprise</span>
-              <span class="type-desc">Recruteur ou représentant d'entreprise</span>
+              <span class="type-desc">Recruteur ou organisation</span>
             </label>
+          </fieldset>
+
+          <fieldset class="auth-profil-champs auth-champs-grille" data-profile-fields="jeune">
+            <legend>Ton parcours</legend>
+            <div class="auth-champ">
+              <label for="statut-jeune">Situation actuelle</label>
+              <select id="statut-jeune" name="statut" required>
+                <option value="">Choisis une situation...</option>
+                <option value="lyceen">Lycéen ou bachelier récent</option>
+                <option value="etudiant">Étudiant en formation</option>
+                <option value="jeune-diplome">Jeune diplômé</option>
+              </select>
+            </div>
+            <div class="auth-champ">
+              <label for="formation-jeune">Niveau ou formation</label>
+              <input type="text" id="formation-jeune" name="formation" placeholder="Ex. Terminale série D, BTS 1" required autocomplete="off">
+            </div>
+          </fieldset>
+
+          <fieldset class="auth-profil-champs auth-champs-grille" data-profile-fields="professeur" hidden disabled>
+            <legend>Ton activité d'enseignement</legend>
+            <div class="auth-champ">
+              <label for="matiere-professeur">Matière ou discipline</label>
+              <input type="text" id="matiere-professeur" name="matiere" placeholder="Ex. Mathématiques, informatique" required autocomplete="organization-title">
+            </div>
+            <div class="auth-champ">
+              <label for="etablissement-professeur">Établissement (facultatif)</label>
+              <input type="text" id="etablissement-professeur" name="etablissement" placeholder="Nom de l'établissement" autocomplete="organization">
+            </div>
+          </fieldset>
+
+          <fieldset class="auth-profil-champs auth-champs-grille" data-profile-fields="mentor" hidden disabled>
+            <legend>Ton expérience professionnelle</legend>
+            <div class="auth-champ">
+              <label for="profession-mentor">Métier ou fonction</label>
+              <input type="text" id="profession-mentor" name="profession" placeholder="Ex. Développeur, comptable" required autocomplete="organization-title">
+            </div>
+            <div class="auth-champ">
+              <label for="domaine-mentor">Domaine d'accompagnement</label>
+              <input type="text" id="domaine-mentor" name="domaine" placeholder="Ex. Numérique, santé" required>
+            </div>
+            <div class="auth-champ auth-champ-large">
+              <label for="organisation-mentor">Organisation (facultatif)</label>
+              <input type="text" id="organisation-mentor" name="organisation" placeholder="Entreprise ou structure" autocomplete="organization">
+            </div>
+          </fieldset>
+
+          <fieldset class="auth-profil-champs auth-champs-grille" data-profile-fields="entreprise" hidden disabled>
+            <legend>Ton organisation</legend>
+            <div class="auth-champ">
+              <label for="nom-entreprise">Nom de l'organisation</label>
+              <input type="text" id="nom-entreprise" name="organisation" placeholder="Nom de l'entreprise" required autocomplete="organization">
+            </div>
+            <div class="auth-champ">
+              <label for="fonction-entreprise">Ta fonction</label>
+              <input type="text" id="fonction-entreprise" name="fonction" placeholder="Ex. Recrutement, ressources humaines" required autocomplete="organization-title">
+            </div>
+            <div class="auth-champ auth-champ-large">
+              <label for="secteur-entreprise">Secteur d'activité (facultatif)</label>
+              <input type="text" id="secteur-entreprise" name="secteur" placeholder="Ex. BTP, agro-industrie">
+            </div>
           </fieldset>
 
           <div class="auth-champs-grille">
             <div class="auth-champ auth-champ-large">
-              <label for="nom">Nom complet</label>
+              <label for="nom">Ton nom complet</label>
               <input type="text" id="nom" name="nom" placeholder="Nom et prénom" required autocomplete="name" aria-describedby="auth-demo-note">
             </div>
 
             <div class="auth-champ auth-champ-large">
-              <label for="email">Adresse e-mail</label>
+              <label for="email">Ton adresse e-mail</label>
               <input type="email" id="email" name="email" placeholder="nom@exemple.ci" required autocomplete="email" aria-describedby="auth-demo-note">
+            </div>
+
+            <div class="auth-champ auth-champ-large">
+              <label for="ville">Ville (facultatif)</label>
+              <input type="text" id="ville" name="ville" placeholder="Ex. Abidjan" autocomplete="address-level2">
             </div>
 
             <div class="auth-champ">
@@ -92,7 +164,7 @@
               </div>
             </div>
           </div>
-          <p class="auth-aide" id="auth-password-hint">Au moins 8 caractères. Tu pourras compléter ton profil plus tard.</p>
+          <p class="auth-aide" id="auth-password-hint">Au moins 8 caractères. Le mot de passe n'est pas stocké dans cette démo.</p>
 
           <p class="message-erreur auth-erreur" id="message-erreur" role="alert"></p>
           <button type="submit" class="bouton-principal auth-bouton-principal">Créer mon compte</button>
@@ -108,7 +180,7 @@
           </button>
         </div>
         <p class="auth-note-social" id="auth-social-note">Google et Apple ne sont pas activés en V1; ces boutons affichent une information et ne créent pas de session.</p>
-        <p class="auth-lien-bas">Déjà inscrit ? <a href="connexion.html">Se connecter</a></p>
+        <p class="auth-lien-bas">Déjà inscrit ? <a href="connexion.html" data-profile-link>Se connecter</a></p>
       </div>
     </section>
   </main>
