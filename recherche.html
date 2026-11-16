@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recherche dans les catalogues — JeuneAvenir CI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="alternate icon" href="assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/discovery.css">
+  <link rel="stylesheet" href="css/assistant.css">
+</head>
+<body class="page-recherche-decouverte">
+  <header class="entete">
+    <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
+    <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
+    <nav class="nav-principale">
+      <a href="quiz.html">Orientation</a>
+      <a href="filieres.html">Découverte</a>
+      <a href="mentorat.html">Mentorat</a>
+      <a href="offres.html">Insertion pro</a>
+    </nav>
+    <div class="entete-actions">
+      <a href="connexion.html" class="lien-connexion">Se connecter</a>
+      <a href="inscription.html" class="bouton-principal bouton-petit">S'inscrire</a>
+    </div>
+  </header>
+
+  <main class="conteneur page-decouverte discovery-search-page">
+    <section class="discovery-hero" data-motion="rise">
+      <p class="discovery-kicker">UNE RECHERCHE, TROIS CATALOGUES</p>
+      <h1>Recherche et exploration</h1>
+      <p>Retrouve les informations disponibles sur les filières, les établissements et les métiers. Les résultats reflètent uniquement les catalogues du projet.</p>
+      <nav class="discovery-nav" aria-label="Explorer les catalogues">
+        <a href="filieres.html">Filières</a>
+        <a href="ecoles.html">Écoles</a>
+        <a href="metiers.html">Métiers</a>
+      </nav>
+    </section>
+
+    <form class="discovery-search" id="recherche-transversale" role="search">
+      <label for="recherche-globale">Rechercher dans les catalogues</label>
+      <input type="search" id="recherche-globale" name="q" required placeholder="Ex. Abidjan, droit, développeur web">
+      <button type="submit">Rechercher</button>
+      <p class="discovery-search-hint">Les recherches parcourent les noms, descriptions et caractéristiques présentes dans les données locales.</p>
+    </form>
+
+    <p id="statut-recherche-globale" class="discovery-search-status" role="status" aria-live="polite">Chargement des catalogues…</p>
+    <div id="resultats-recherche-globale" aria-live="polite"></div>
+    <noscript>
+      <div class="discovery-empty">
+        <h2>La recherche nécessite JavaScript</h2>
+        <p>Tu peux consulter directement les catalogues disponibles.</p>
+        <nav class="discovery-nav" aria-label="Catalogues">
+          <a href="filieres.html">Filières</a>
+          <a href="ecoles.html">Écoles</a>
+          <a href="metiers.html">Métiers</a>
+        </nav>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="pied-de-page">
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+  </footer>
+
+  <script src="js/discovery-common.js"></script>
+  <script src="js/recherche-decouverte.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/assistant.js" defer></script>
+</body>
+</html>

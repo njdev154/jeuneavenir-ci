@@ -1,5 +1,12 @@
 # Journal du projet
 
+## 2026-11-16 — Assistant Copilot (Mission 04, étape 3 : métiers et recherche transversale)
+- Refonte des fiches métiers et ajout de la recherche multi-contenu dans `recherche.html`, avec résultats séparés par filières, établissements et métiers.
+- Contrôles navigateur : 21 métiers, filtre Informatique (3 résultats), fiche Développeur web; requête « droit » (12 résultats dans les trois catégories) et état sans résultat.
+- Contrôles responsive des quatre pages aux tailles 360 × 800, 390 × 844, 768 × 900, 1024 × 900, 1440 × 900 et 1899 × 876 : aucun débordement horizontal. Avec `prefers-reduced-motion: reduce`, aucune animation active.
+- Captures desktop/mobile tentées mais non fiables : l’API du navigateur rapporte `visibilityState: hidden` et les captures après redimensionnement montrent un rendu desktop périmé. Ne pas les présenter comme preuves visuelles; les refaire une fois le navigateur visible.
+- Reste à faire : obtenir des captures valides, vérifier le hash et l’état Git final. Ne pas commencer la Mission 05.
+
 ## 2026-11-16 — Assistant Copilot (Mission 04, étape 2 : écoles)
 - Refonte de l’annuaire : recherche par nom, sigle, ville et filière; filtres combinables selon les valeurs documentées; fiches avec sources, coordonnées et admission uniquement lorsqu’elles sont présentes.
 - Les données manquantes sont explicitement signalées; le badge de rattachement documenté ne prétend pas vérifier l’ensemble de la fiche.
