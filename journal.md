@@ -1,5 +1,11 @@
 # Journal du projet
 
+## 2026-11-16 — Assistant Copilot (Mission 04, étape 2 : écoles)
+- Refonte de l’annuaire : recherche par nom, sigle, ville et filière; filtres combinables selon les valeurs documentées; fiches avec sources, coordonnées et admission uniquement lorsqu’elles sont présentes.
+- Les données manquantes sont explicitement signalées; le badge de rattachement documenté ne prétend pas vérifier l’ensemble de la fiche.
+- Contrôles navigateur : 30 établissements, recherche UVCI (1 résultat), combinaison Abidjan/public/informatique (3 résultats), fiche UVCI et absence de conditions d’admission explicitée.
+- Reste à faire : finaliser métiers et recherche transversale, valider des captures visuelles fiables, puis vérifier les commits et l’état Git. Aucune Mission 05.
+
 ## 2026-11-16 — Assistant Copilot (Mission 04, étape 1 : filières)
 - Refonte du catalogue des filières : recherche accent-insensible, filtres combinables, cartes de découverte et fiches détaillées liées aux métiers et établissements du catalogue.
 - Les données financières absentes ne sont pas inventées; les salaires renseignés restent signalés comme estimations à vérifier. Correction d’un lien de métier associé qui pointait vers `#undefined`.

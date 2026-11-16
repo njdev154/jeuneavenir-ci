@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Établissements recensés — JeuneAvenir CI</title>
+  <title>Annuaire des établissements — JeuneAvenir CI</title>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="alternate icon" href="assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/discovery.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body>
-
+<body class="page-catalogue page-catalogue-ecoles">
   <header class="entete">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
     <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
@@ -28,41 +29,90 @@
     </div>
   </header>
 
-  <main class="conteneur page-decouverte">
+  <main class="conteneur page-decouverte" id="catalogue">
+    <section class="discovery-hero" data-motion="rise">
+      <p class="discovery-kicker">CHOISIR OÙ ÉTUDIER</p>
+      <h1>Trouve ton établissement</h1>
+      <p>Explore les établissements présents dans ce premier relevé et vérifie directement les formations et conditions d’admission auprès des organismes concernés. Ce catalogue n’est pas exhaustif.</p>
+      <nav class="discovery-nav" aria-label="Explorer les catalogues">
+        <a href="filieres.html">Filières</a>
+        <a href="ecoles.html" aria-current="page">Écoles</a>
+        <a href="metiers.html">Métiers</a>
+      </nav>
+    </section>
 
-    <h1>Établissements recensés</h1>
-    <p class="page-sous-titre">
-      Notre premier relevé compte 30 fiches dans 6 villes; ce n'est pas encore un recensement national.
-      L'audit des références du 15 novembre 2026 a montré que les sources attachées ne prouvent pas encore chaque statut ou filière.
-      Les rattachements de filières sont donc tous à confirmer.
-    </p>
+    <form class="discovery-search" action="recherche.html" method="get" role="search">
+      <label for="recherche-ecole">Rechercher un établissement ou une formation</label>
+      <input type="search" id="recherche-ecole" name="q" required placeholder="Nom, sigle, ville ou filière">
+      <button type="submit">Rechercher partout</button>
+      <p class="discovery-search-hint">La saisie filtre cet annuaire. Le bouton recherche dans les filières, les écoles et les métiers.</p>
+    </form>
 
-    <div class="barre-filtres">
-      <input type="search" id="recherche-ecole" class="champ-recherche" placeholder="Rechercher une école...">
-      <select id="filtre-ville" class="champ-select">
-        <option value="">Toutes les villes</option>
-      </select>
-      <select id="filtre-statut" class="champ-select">
-        <option value="">Tous les types indiqués</option>
-        <option value="public">Type indiqué : public</option>
-        <option value="prive">Type indiqué : privé</option>
-      </select>
-      <select id="filtre-domaine" class="champ-select">
-        <option value="">Toutes les filières</option>
-      </select>
+    <div class="discovery-workspace">
+      <aside class="discovery-sidebar" aria-labelledby="titre-filtres-ecoles" data-motion="rise">
+        <h2 id="titre-filtres-ecoles">Affiner la recherche</h2>
+        <div class="discovery-filter">
+          <label for="filtre-ville">Ville indiquée</label>
+          <select id="filtre-ville">
+            <option value="">Toutes les villes</option>
+          </select>
+        </div>
+        <div class="discovery-filter">
+          <label for="filtre-statut">Statut indiqué</label>
+          <select id="filtre-statut">
+            <option value="">Public et privé</option>
+          </select>
+        </div>
+        <div class="discovery-filter">
+          <label for="filtre-type">Type d’établissement indiqué</label>
+          <select id="filtre-type">
+            <option value="">Tous les types</option>
+          </select>
+        </div>
+        <div class="discovery-filter">
+          <label for="filtre-domaine">Filière associée</label>
+          <select id="filtre-domaine">
+            <option value="">Toutes les filières</option>
+          </select>
+          <p class="discovery-filter-note">Les associations ne confirment pas qu’un programme est actuellement ouvert.</p>
+        </div>
+        <div class="discovery-filter">
+          <label for="filtre-verification">Rattachement documenté</label>
+          <select id="filtre-verification">
+            <option value="">Tous les rattachements</option>
+            <option value="documente">Avec source de rattachement</option>
+            <option value="a-confirmer">À confirmer</option>
+          </select>
+        </div>
+        <button class="discovery-reset" id="reinitialiser-filtres-ecoles" type="button">Réinitialiser les filtres</button>
+      </aside>
+
+      <section class="discovery-results" aria-labelledby="titre-resultats-ecoles">
+        <h2 id="titre-resultats-ecoles" class="discovery-visually-hidden">Résultats de l’annuaire</h2>
+        <p id="compteur-resultats" class="discovery-count" aria-live="polite"></p>
+        <div id="liste-ecoles" class="discovery-grid" data-motion-stagger aria-live="polite"></div>
+      </section>
     </div>
 
-    <p id="compteur-resultats" class="compteur-resultats"></p>
+    <section id="fiche-ecole" class="discovery-fiche" hidden aria-live="polite"></section>
+    <p id="etat-catalogue-ecoles" class="discovery-search-status" role="status" aria-live="polite"></p>
 
-    <div id="liste-ecoles" class="liste-ecoles"></div>
-
+    <noscript>
+      <div class="discovery-empty">
+        <h2>L’annuaire interactif nécessite JavaScript</h2>
+        <p>Les données disponibles restent consultables dans le fichier source.</p>
+        <a href="data/ecoles.json">Consulter les données des établissements (JSON)</a>
+      </div>
+    </noscript>
   </main>
 
   <footer class="pied-de-page">
     <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
   </footer>
 
+  <script src="js/discovery-common.js"></script>
   <script src="js/ecoles.js"></script>
+  <script src="js/motion.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
 </body>
