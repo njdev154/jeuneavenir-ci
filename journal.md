@@ -4,8 +4,9 @@
 - Refonte des fiches métiers et ajout de la recherche multi-contenu dans `recherche.html`, avec résultats séparés par filières, établissements et métiers.
 - Contrôles navigateur : 21 métiers, filtre Informatique (3 résultats), fiche Développeur web; requête « droit » (12 résultats dans les trois catégories) et état sans résultat.
 - Contrôles responsive des quatre pages aux tailles 360 × 800, 390 × 844, 768 × 900, 1024 × 900, 1440 × 900 et 1899 × 876 : aucun débordement horizontal. Avec `prefers-reduced-motion: reduce`, aucune animation active.
-- Captures desktop/mobile tentées mais non fiables : l’API du navigateur rapporte `visibilityState: hidden` et les captures après redimensionnement montrent un rendu desktop périmé. Ne pas les présenter comme preuves visuelles; les refaire une fois le navigateur visible.
-- Reste à faire : obtenir des captures valides, vérifier le hash et l’état Git final. Ne pas commencer la Mission 05.
+- Captures représentatives réalisées dans le navigateur intégré : annuaire desktop et catalogue filières mobile. Courte démonstration vidéo Playwright enregistrée après validation du scénario; le script et la vidéo restent dans le dossier de session et ne sont pas ajoutés au dépôt.
+- Le parcours enregistré montre la recherche « informatique », l’ouverture de la fiche Informatique, puis la navigation vers la fiche Développeur web. Assertions finales réussies. L’inspection technique de la durée vidéo n’a pas pu être faite : l’accès au binaire ffmpeg a été refusé par le sandbox.
+- Limite restante : les données des catalogues restent un premier relevé non exhaustif; les informations absentes (notamment admissions et coordonnées) ne sont pas inventées.
 
 ## 2026-11-16 — Assistant Copilot (Mission 04, étape 2 : écoles)
 - Refonte de l’annuaire : recherche par nom, sigle, ville et filière; filtres combinables selon les valeurs documentées; fiches avec sources, coordonnées et admission uniquement lorsqu’elles sont présentes.
