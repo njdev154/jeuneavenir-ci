@@ -1,5 +1,18 @@
 # Journal du projet
 
+## 2026-11-17 — Assistant Copilot (Mission 08, pages institutionnelles)
+- Audit Git avant modification : branche `assistant-ia`, sept commits d’avance sur `origin/assistant-ia`, aucun fichier suivi modifié. Les éléments non suivis préexistants `docs/`, `pack-assistant-ia-v2/` et le cahier des charges ont été préservés.
+- Relecture du CDC, des décisions du projet, des quatre pages existantes, des sources HTML et du système de design des maquettes Horizon, de `js/contact.js`, de `js/main.js`, du Motion Design System et des mécanismes de stockage.
+- FAQ réorganisée en thèmes, avec recherche instantanée accent-insensible, filtres combinables, état vide, liens vers les pages concernées et accordéons natifs utilisables au clavier. Le contenu reprend les limites actuelles des catalogues, des comptes, du mentorat, des candidatures et du mode hors connexion.
+- Page À propos clarifiée autour de la vision, du public pilote et des cinq piliers, sans chiffres d’impact, partenaires ou équipe inventés.
+- Formulaire Contact corrigé : validation native et contrôle des champs non vides; aucun envoi, stockage local ni message de succès de transmission. Sans JavaScript, les champs sans attribut `name` ne sont pas inclus dans la requête GET; l’état explique explicitement que le service n’est pas connecté.
+- Politique de confidentialité corrigée à partir des clés `localStorage` réellement utilisées. Elle distingue les profils, résultat du quiz, favoris, démarches et avis; elle signale l’ancienne clé locale de Contact, les polices Google Fonts, les requêtes à l’hébergeur et l’absence de suppression automatique configurée. Les évolutions futures restent décrites comme non actives.
+- Les quatre pages réutilisent `css/style.css`, `css/motion.css` et `js/motion.js`; une extension partagée `css/institutional.css` et le script `js/faq.js` ont été ajoutés.
+- Tests : `node --test tests/*.test.js` — 47 réussis, 0 échec. `node --check` sur tous les scripts `js/*.js` et `git diff --check` réussis. Tests de recherche/filtres FAQ, accordéons, validation Contact sans écriture locale, transparence stockage et liens internes.
+- Contrôles navigateur : six dimensions (360×800, 390×844, 768×900, 1024×900, 1440×900, 1899×876) sans débordement horizontal sur les quatre pages; `prefers-reduced-motion` donne une durée d’animation calculée à `0s`; ouverture d’un accordéon au clavier et filtrage FAQ vérifiés. Contact testé avec saisie invalide puis valide; aucune entrée `localStorage` n’a été créée.
+- Limite des captures : l’outil navigateur a indiqué `document.visibilityState === "hidden"` et a rendu une capture vide ou incohérente avec les dimensions DOM. Aucune capture n’est livrée comme preuve visuelle.
+- Reste à faire : revue du diff, commit et vérification Git finale. Aucun push ni début de Mission 09.
+
 ## 2026-11-17 — Assistant Copilot (Mission 07, finalisation du pilier Compte)
 - Audit Git initial : branche `assistant-ia`, quatre commits d’avance sur `origin/assistant-ia`, avant la Mission 07 aucune modification suivie n’était enregistrée pour cette mission. Les dossiers préexistants `docs/`, `pack-assistant-ia-v2/`, le cahier des charges non suivi et les maquettes ont été conservés.
 - Audit des pages `dashboard.html`, `profil.html`, `favoris.html`, des inscriptions et connexions, des scripts `auth.js`, `profil.js`, `favoris.js`, `favoris-page.js`, `dashboard.js`, des favoris et des données locales. Les cinq catégories de favoris sont disponibles; les catalogues Mentor et Offres restent vides avec le statut `aucune_publication`.
@@ -10,7 +23,7 @@
 - Vérifications navigateur réalisées sur les pages déconnectées Tableau de bord, Profil et Favoris aux dimensions 360×800, 390×844, 768×900, 1024×900, 1440×900 et 1899×876 : aucun débordement horizontal. Navigation clavier vérifiée sur les tableaux de bord déconnecté et profil; `prefers-reduced-motion: reduce` désactive les animations calculées.
 - Captures navigateur représentatives du tableau de bord déconnecté prises en desktop 1440×900 et mobile 390×844; la page Favoris a aussi été contrôlée par snapshot accessible et mesures DOM aux six dimensions. Les captures obsolètes ou masquées ne sont pas présentées comme preuves.
 - Limites V1 conservées : aucune authentification réelle, aucune sauvegarde serveur, aucun mentor ou offre publique disponible, aucune réponse mentor ni candidature transmise. Le stockage local n’est pas présenté comme sécurisé.
-- Reste à faire : examiner puis valider les commits Mission 07, confirmer le statut Git final et la liste des hashes. Aucun push ni début de Mission 08.
+- Mission 07 livrée dans les commits `a544625`, `ae5a825` et `0408fae`; aucun push. La Mission 08 est commencée dans une étape distincte.
 
 ## 2026-11-17 — Assistant Copilot (Mission 05, annuaire et parcours mentorat V1)
 - Audit Git effectué avant l’étape : branche `assistant-ia`, commit précédent `386bbeb`; les fichiers mentorat déjà modifiés ainsi que les dossiers non suivis préexistants `docs/`, `pack-assistant-ia-v2/` et le cahier des charges ont été préservés.

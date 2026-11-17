@@ -9,9 +9,11 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/institutional.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body>
+<body class="institutional-page">
 
   <header class="entete">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
@@ -28,47 +30,66 @@
     </div>
   </header>
 
-  <main class="conteneur-auth">
-    <div class="carte carte-auth" id="carte-contact">
-      <h1>Contact</h1>
-      <p class="auth-sous-titre">Une question, un partenariat, une école ou une entreprise à référencer ? Écris-nous.</p>
+  <main class="institutional-main">
+    <section class="institutional-hero" data-motion="rise" aria-labelledby="titre-contact">
+      <p class="institutional-eyebrow">ÉCRIRE À L’ÉQUIPE</p>
+      <h1 id="titre-contact">Contact.</h1>
+      <p>Tu peux préparer ici une question ou une remarque. Le formulaire n’est pas encore connecté à une adresse ou à un service d’envoi.</p>
+    </section>
 
-      <form id="formulaire-contact">
-        <label for="contact-nom">Ton nom</label>
-        <input type="text" id="contact-nom" required>
+    <div class="institutional-contact-layout">
+      <aside class="institutional-panel" data-motion="rise">
+        <p class="institutional-eyebrow">À SAVOIR AVANT D’ÉCRIRE</p>
+        <h2>Aucun message ne part de cette page.</h2>
+        <p>La V1 ne dispose pas d’infrastructure de contact. Après vérification des champs, la page t’indiquera que rien n’a été envoyé ni enregistré. N’inclus pas d’information sensible.</p>
+        <p>Pour laisser un avis local sur l’interface, tu peux aussi consulter <a class="institutional-link" href="avis.html">la page Avis</a>. Les avis de démonstration restent eux aussi dans ton navigateur.</p>
+        <p><a class="institutional-link" href="confidentialite.html">Comprendre les données conservées</a></p>
+      </aside>
 
-        <label for="contact-email">Ton e-mail</label>
-        <input type="email" id="contact-email" required>
-
-        <label for="contact-sujet">Sujet</label>
-        <select id="contact-sujet" class="champ-select" style="width:100%;">
-          <option value="question">Question générale</option>
-          <option value="ecole">Je représente une école</option>
-          <option value="entreprise">Je représente une entreprise</option>
-          <option value="mentor">Je veux devenir mentor</option>
-          <option value="autre">Autre</option>
-        </select>
-
-        <label for="contact-message">Message</label>
-        <textarea id="contact-message" class="quiz-textarea" rows="5" required></textarea>
-
-        <button type="submit" class="bouton-principal bouton-pleine-largeur">Envoyer</button>
-      </form>
-
-      <div id="confirmation-contact" style="display:none; text-align:center;">
-        <h2>Message envoyé</h2>
-        <p class="auth-sous-titre">On te répondra dès que possible.</p>
-        <a href="index.html" class="bouton-secondaire bouton-pleine-largeur">Retour à l'accueil</a>
-      </div>
-
-      <p class="auth-bas">Tu veux plutôt donner un avis sur le site ? <a href="avis.html">C'est par ici</a></p>
+      <section class="institutional-panel" data-motion="rise" aria-labelledby="titre-formulaire-contact">
+        <h2 id="titre-formulaire-contact">Préparer un message</h2>
+        <p>Les champs avec * sont nécessaires pour vérifier le formulaire.</p>
+        <form id="formulaire-contact" class="institutional-contact-form" action="contact.html" method="get">
+          <div class="institutional-field">
+            <label for="contact-nom">Nom *</label>
+            <input id="contact-nom" type="text" autocomplete="name" maxlength="120" required>
+          </div>
+          <div class="institutional-field">
+            <label for="contact-email">Adresse e-mail *</label>
+            <input id="contact-email" type="email" autocomplete="email" maxlength="254" required>
+          </div>
+          <div class="institutional-field">
+            <label for="contact-sujet">Sujet *</label>
+            <select id="contact-sujet" required>
+              <option value="">Choisir un sujet</option>
+              <option value="question">Question générale</option>
+              <option value="ecole">Établissement à référencer</option>
+              <option value="entreprise">Entreprise</option>
+              <option value="mentor">Mentorat</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="institutional-field">
+            <label for="contact-message">Message *</label>
+            <textarea id="contact-message" rows="6" maxlength="3000" aria-describedby="aide-message-contact" required></textarea>
+            <small id="aide-message-contact">3 000 caractères maximum. Évite les informations confidentielles.</small>
+          </div>
+          <button type="submit" class="bouton-principal institutional-submit">Vérifier le formulaire</button>
+        </form>
+        <p id="etat-contact" class="institutional-notice" role="status" aria-live="polite" tabindex="-1" hidden></p>
+      </section>
     </div>
   </main>
 
-  <footer class="pied-de-page">
-    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+  <footer class="pied-de-page institutional-footer">
+    <nav class="institutional-footer-links" aria-label="Pages institutionnelles">
+      <a href="faq.html">FAQ</a><a href="a-propos.html">À propos</a>
+      <a href="contact.html" aria-current="page">Contact</a><a href="confidentialite.html">Confidentialité</a>
+    </nav>
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI</p>
   </footer>
 
+  <script src="js/motion.js"></script>
   <script src="js/contact.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>

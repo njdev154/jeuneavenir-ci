@@ -9,9 +9,11 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/institutional.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body>
+<body class="institutional-page">
 
   <header class="entete">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
@@ -24,43 +26,85 @@
     </nav>
   </header>
 
-  <main class="conteneur page-decouverte" style="max-width:760px;">
-    <h1>Politique de confidentialité</h1>
-    <p class="page-sous-titre">Dernière mise à jour : 20 août 2026 — version de lancement (V1)</p>
+  <main class="institutional-main">
+    <section class="institutional-hero" data-motion="rise" aria-labelledby="titre-confidentialite">
+      <p class="institutional-eyebrow">INFORMATIONS V1</p>
+      <h1 id="titre-confidentialite">Confidentialité et données locales.</h1>
+      <p>Dernière mise à jour : 17 novembre 2026. Cette page décrit le fonctionnement constaté dans la version actuelle du site; elle ne promet ni sécurité serveur ni durée légale de conservation.</p>
+    </section>
 
-    <h2 class="dashboard-section-titre" style="margin-top:28px;">Ce que fait vraiment le site aujourd'hui</h2>
-    <p class="fiche-description">
-      JeuneAvenir CI est actuellement dans sa version de lancement. Toutes les informations
-      que tu saisis (compte, profil, favoris, candidatures, demandes de mentorat, messages)
-      sont enregistrées <strong>uniquement dans ton navigateur</strong> (technique appelée
-      "localStorage"), sur l'appareil que tu utilises. Rien n'est envoyé sur un serveur
-      externe pour l'instant.
-    </p>
+    <section class="institutional-section" aria-labelledby="stockage-local">
+      <p class="institutional-eyebrow">DANS TON NAVIGATEUR</p>
+      <h2 id="stockage-local">Ce que l’application enregistre localement</h2>
+      <p>Les données ci-dessous sont écrites dans le <code>localStorage</code> par les fonctionnalités concernées. Elles restent dans le profil du navigateur et de l’appareil utilisés; elles ne sont pas synchronisées avec un compte en ligne.</p>
+      <div class="institutional-grid">
+        <article class="institutional-panel" data-motion="rise">
+          <h3>Profil et session</h3>
+          <p><code>jac_utilisateurs</code> contient les profils créés localement. <code>jac_utilisateur_connecte</code> contient le profil de session actuel. L’inscription ne conserve pas le mot de passe saisi; la connexion simulée ne le vérifie pas. Ces mécanismes ne constituent pas une authentification sécurisée.</p>
+        </article>
+        <article class="institutional-panel" data-motion="rise">
+          <h3>Orientation et favoris</h3>
+          <p><code>jac_dernier_resultat_quiz</code> conserve le dernier résultat calculé. Les réponses saisies au quiz ne sont pas sauvegardées par le moteur. <code>jac_favoris</code> conserve les identifiants des éléments mis de côté.</p>
+        </article>
+        <article class="institutional-panel" data-motion="rise">
+          <h3>Démarches et offres locales</h3>
+          <p><code>jac_candidatures</code>, <code>jac_demandes_mentorat</code> et <code>jac_offres_entreprise</code> peuvent contenir les coordonnées, le texte préparé et les détails saisis pour ces démonstrations. Ils ne sont pas envoyés aux employeurs, aux mentors ni à la plateforme.</p>
+        </article>
+        <article class="institutional-panel" data-motion="rise">
+          <h3>Avis sur l’interface</h3>
+          <p><code>jac_avis</code> peut enregistrer localement le type d’avis, son message et l’adresse e-mail facultative saisie sur la page Avis. Ces retours ne sont pas partagés avec l’équipe par le site.</p>
+        </article>
+      </div>
+    </section>
 
-    <h2 class="dashboard-section-titre" style="margin-top:28px;">Ce que ça veut dire concrètement</h2>
-    <p class="fiche-description">
-      Si tu changes de téléphone, d'ordinateur, ou si tu vides le cache de ton navigateur,
-      ces informations seront perdues. Ce n'est pas un manque de sérieux : c'est une étape
-      de développement, avant la mise en place d'une vraie base de données sécurisée.
-    </p>
+    <section class="institutional-section" aria-labelledby="contact-local">
+      <p class="institutional-eyebrow">FORMULAIRES</p>
+      <h2 id="contact-local">Contact et anciennes données locales</h2>
+      <div class="institutional-panel">
+        <p>Le formulaire Contact de cette version n’est connecté à aucun service d’envoi. Il ne transmet et n’enregistre pas le message; les champs restent uniquement dans la page ouverte.</p>
+        <p>Une ancienne version du formulaire a pu enregistrer des messages dans <code>jac_messages_contact</code> sur le navigateur. La version actuelle ne lit plus et n’ajoute plus d’entrée à cette clé; les données déjà présentes ne sont pas effacées automatiquement. Effacer les données du site dans les paramètres du navigateur peut supprimer cette clé, mais aussi les profils, favoris et autres données locales du site.</p>
+      </div>
+    </section>
 
-    <h2 class="dashboard-section-titre" style="margin-top:28px;">Prochaine version</h2>
-    <p class="fiche-description">
-      Une prochaine version du site utilisera une vraie authentification sécurisée et une
-      base de données, avec une politique de confidentialité complète décrivant précisément
-      quelles données sont conservées, pour combien de temps, et comment les supprimer.
-    </p>
+    <section class="institutional-section" aria-labelledby="requete-et-tiers">
+      <p class="institutional-eyebrow">CHARGEMENT DU SITE</p>
+      <h2 id="requete-et-tiers">Requêtes réseau et services tiers</h2>
+      <div class="institutional-grid">
+        <article class="institutional-panel" data-motion="rise">
+          <h3>Fichiers du site</h3>
+          <p>Les catalogues et questions sont chargés depuis les fichiers de données du site. L’assistant de la V1 consulte ces fichiers dans le navigateur et n’envoie pas la question saisie à une IA externe. L’hébergeur reçoit les requêtes nécessaires au chargement et peut traiter des journaux techniques selon ses propres modalités; l’hébergeur et ses durées de conservation ne sont pas définis dans ce dépôt.</p>
+        </article>
+        <article class="institutional-panel" data-motion="rise">
+          <h3>Polices et liens externes</h3>
+          <p>Les pages chargent Instrument Serif et Manrope depuis Google Fonts. Cette requête contacte l’infrastructure de Google Fonts; consulte les informations de confidentialité de Google pour ses traitements. Des liens vers des sources externes peuvent également être ouverts par choix de l’utilisateur. Aucun outil d’analytique ou de publicité tiers n’a été identifié dans les scripts applicatifs examinés.</p>
+        </article>
+      </div>
+    </section>
 
-    <h2 class="dashboard-section-titre" style="margin-top:28px;">Contact</h2>
-    <p class="fiche-description">
-      Pour toute question sur tes données, écris-nous via la <a href="contact.html" class="lien-explorer">page Contact</a>.
-    </p>
+    <section class="institutional-section" aria-labelledby="controle-donnees">
+      <p class="institutional-eyebrow">TES CHOIX</p>
+      <h2 id="controle-donnees">Conservation et suppression</h2>
+      <p>Les données locales restent dans le navigateur jusqu’à leur suppression manuelle ou jusqu’à ce qu’une fonctionnalité du site les modifie. Cette V1 n’a aucune suppression automatique programmée. Les données peuvent ne pas être accessibles depuis un autre appareil et peuvent être perdues lors de la suppression des données du site.</p>
+      <p>Ne saisis pas de mot de passe réutilisé, de document d’identité, de donnée sensible ou d’information que tu ne souhaites pas laisser dans le navigateur. Le site ne propose pas encore d’outil dédié pour exporter ou supprimer sélectivement toutes les données d’un profil.</p>
+    </section>
+
+    <section class="institutional-section" aria-labelledby="evolutions-confidentialite">
+      <p class="institutional-eyebrow">À L’AVENIR</p>
+      <h2 id="evolutions-confidentialite">Les évolutions envisagées ne sont pas actives</h2>
+      <p>Le cahier des charges évoque pour une version future une authentification et une base de données. Elles ne sont pas connectées dans cette V1. Toute mise en service devra préciser les données concernées, les responsabilités, les durées et les moyens de contrôle avant d’être présentée comme opérationnelle.</p>
+      <p>Pour les fonctionnalités et leurs limites actuelles, consulte aussi la <a class="institutional-link" href="faq.html">FAQ</a>. Le <a class="institutional-link" href="contact.html">formulaire Contact</a> n’envoie pas de message pour le moment.</p>
+    </section>
   </main>
 
-  <footer class="pied-de-page">
-    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+  <footer class="pied-de-page institutional-footer">
+    <nav class="institutional-footer-links" aria-label="Pages institutionnelles">
+      <a href="faq.html">FAQ</a><a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a><a href="confidentialite.html" aria-current="page">Confidentialité</a>
+    </nav>
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI</p>
   </footer>
 
+  <script src="js/motion.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
 </body>

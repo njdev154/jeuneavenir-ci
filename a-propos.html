@@ -9,9 +9,11 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/institutional.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body>
+<body class="institutional-page">
 
   <header class="entete">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
@@ -28,55 +30,74 @@
     </div>
   </header>
 
-  <main class="conteneur page-decouverte" style="max-width:760px;">
-    <h1>Explorer les pistes de formation après le bac</h1>
-    <p class="page-sous-titre">
-      JeuneAvenir CI construit un premier parcours d'orientation pour les lycéens et nouveaux
-      bacheliers ivoiriens. Le pilote aide à explorer des filières; il ne remplace ni les sources
-      officielles ni les décisions d'affectation.
-    </p>
+  <main class="institutional-main">
+    <section class="institutional-hero" data-motion="rise" aria-labelledby="titre-propos">
+      <p class="institutional-eyebrow">À PROPOS DU PROJET</p>
+      <h1 id="titre-propos">Des repères pour choisir la suite.</h1>
+      <p>JeuneAvenir CI est un projet d’orientation et de découverte conçu pour les jeunes en Côte d’Ivoire, avec une priorité actuelle donnée aux lycéens et aux nouveaux bacheliers.</p>
+    </section>
 
-    <h2 class="dashboard-section-titre" style="margin-top:32px;">Pourquoi ce site existe</h2>
-    <p class="fiche-description">
-      Comparer une formation demande de vérifier son programme, ses conditions d'accès, son
-      établissement et son lieu. Ces informations peuvent changer. Le premier objectif du projet
-      est de rendre cette exploration plus claire sans présenter une piste comme une garantie.
-    </p>
+    <section class="institutional-about-intro" data-motion="rise" aria-labelledby="vision-projet">
+      <p class="institutional-eyebrow institutional-eyebrow-light">NOTRE VISION</p>
+      <h2 id="vision-projet">Rendre les prochaines étapes du parcours plus faciles à explorer et à comprendre.</h2>
+      <p>Choisir une formation, découvrir un métier, trouver des conseils et préparer l’entrée dans la vie professionnelle sont des étapes liées. La plateforme veut réunir des informations utiles au même endroit, sans décider à la place du jeune ni transformer une piste en promesse.</p>
+    </section>
 
-    <h2 class="dashboard-section-titre" style="margin-top:32px;">Ce qu'on propose aujourd'hui</h2>
-    <div class="bandeau-stats" style="border-radius: var(--rayon-carte); margin: 16px 0;">
-      <div class="conteneur stats-grille">
-        <div class="stat"><strong>7</strong><span>Filières dans le premier catalogue</span></div>
-        <div class="stat"><strong>30</strong><span>Fiches d'établissement à réexaminer</span></div>
-        <div class="stat"><strong>10</strong><span>Noms et localités rapprochés d'une liste MESRS</span></div>
-        <div class="stat"><strong>0</strong><span>Mentors ou offres vérifiés publiés</span></div>
+    <section class="institutional-section" aria-labelledby="cinq-piliers">
+      <p class="institutional-eyebrow">LE PARCOURS</p>
+      <h2 id="cinq-piliers">Cinq piliers, une même boussole.</h2>
+      <div class="institutional-pillars">
+        <article class="institutional-pillar" data-motion="rise">
+          <h3><a class="institutional-link" href="quiz.html">Orientation</a></h3>
+          <p>Un questionnaire d’auto-réflexion, des pistes de filières et un comparateur pour nourrir la réflexion. Le résultat n’est ni une évaluation psychométrique ni une décision d’affectation.</p>
+        </article>
+        <article class="institutional-pillar" data-motion="rise">
+          <h3><a class="institutional-link" href="filieres.html">Découverte</a></h3>
+          <p>Des catalogues de filières, d’écoles et de métiers pour explorer les liens entre études et débouchés, avec des informations parfois partielles à vérifier.</p>
+        </article>
+        <article class="institutional-pillar" data-motion="rise">
+          <h3><a class="institutional-link" href="mentorat.html">Mentorat</a></h3>
+          <p>Un espace prévu pour découvrir le mentorat. Aucun mentor vérifié n’est actuellement publié et les demandes de démonstration ne sont pas transmises.</p>
+        </article>
+        <article class="institutional-pillar" data-motion="rise">
+          <h3><a class="institutional-link" href="offres.html">Insertion professionnelle</a></h3>
+          <p>Un espace pour les stages, emplois et candidatures. Aucune offre vérifiée n’est publiée et aucune candidature locale n’est envoyée à une entreprise.</p>
+        </article>
+        <article class="institutional-pillar" data-motion="rise">
+          <h3><a class="institutional-link" href="dashboard.html">Compte</a></h3>
+          <p>Des profils, favoris et espaces personnels qui fonctionnent localement dans le navigateur, sans compte en ligne ni synchronisation entre appareils.</p>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <h2 class="dashboard-section-titre" style="margin-top:32px;">Notre approche</h2>
-    <p class="fiche-description">
-      Le quiz est un outil de réflexion avec un score interne; il ne s'agit pas d'un test
-      psychométrique validé et il ne prédit ni l'admission ni l'affectation. Le catalogue des
-      établissements est partiel : quelques rattachements ont une source officielle directe,
-      tandis que les autres restent à vérifier. Consulte la source affichée et contacte
-      l'établissement avant toute décision.
-    </p>
-
-    <h2 class="dashboard-section-titre" style="margin-top:32px;">Une plateforme en construction</h2>
-    <p class="fiche-description">
-      Ce dépôt contient une démonstration statique. La connexion et l'inscription ne créent pas
-      de compte en ligne; aucune candidature ni demande de mentorat n'est transmise. Aucune offre
-      ni aucun mentor réel n'est publié. Les fonctions seront annoncées comme disponibles seulement
-      lorsqu'elles seront réellement opérationnelles.
-    </p>
-
-    <a href="quiz.html" class="bouton-principal" style="margin-top:20px; display:inline-block;">Faire le quiz d'orientation</a>
+    <section class="institutional-section institutional-grid" aria-label="Public et limites">
+      <article class="institutional-panel" data-motion="rise">
+        <p class="institutional-eyebrow">À QUI S’ADRESSE LE PROJET ?</p>
+        <h2>Aux jeunes qui préparent leur prochaine étape.</h2>
+        <p>Le pilote met l’accent sur les lycéens et nouveaux bacheliers ivoiriens qui veulent commencer à explorer des formations et des métiers. Les ressources peuvent aussi servir de point de départ à une discussion avec la famille, un professeur ou un conseiller.</p>
+      </article>
+      <article class="institutional-panel" data-motion="rise">
+        <p class="institutional-eyebrow">UNE V1 EN CONSTRUCTION</p>
+        <h2>Ce que la plateforme ne fait pas encore.</h2>
+        <ul>
+          <li>Les catalogues ne sont pas exhaustifs et certaines données doivent être vérifiées.</li>
+          <li>L’inscription et la connexion sont des simulations locales.</li>
+          <li>Les demandes de mentorat, candidatures et offres préparées ne sont pas transmises.</li>
+          <li>Aucun service de contact ni de réponse distante n’est connecté.</li>
+        </ul>
+      </article>
+    </section>
   </main>
 
-  <footer class="pied-de-page">
-    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+  <footer class="pied-de-page institutional-footer">
+    <nav class="institutional-footer-links" aria-label="Pages institutionnelles">
+      <a href="faq.html">FAQ</a><a href="a-propos.html" aria-current="page">À propos</a>
+      <a href="contact.html">Contact</a><a href="confidentialite.html">Confidentialité</a>
+    </nav>
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI</p>
   </footer>
 
+  <script src="js/motion.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
 </body>

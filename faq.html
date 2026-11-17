@@ -9,9 +9,11 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/institutional.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body>
+<body class="institutional-page">
 
   <header class="entete">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
@@ -28,54 +30,113 @@
     </div>
   </header>
 
-  <main class="conteneur page-decouverte" style="max-width:760px;">
-    <h1>Questions fréquentes</h1>
-    <p class="page-sous-titre">Tout ce qu'il faut savoir pour bien utiliser JeuneAvenir CI.</p>
+  <main class="institutional-main">
+    <section class="institutional-hero" data-motion="rise" aria-labelledby="titre-faq">
+      <p class="institutional-eyebrow">REPÈRES POUR AVANCER</p>
+      <h1 id="titre-faq">Questions fréquentes.</h1>
+      <p>Des réponses concrètes sur les outils disponibles aujourd’hui et leurs limites dans cette version de JeuneAvenir CI.</p>
+    </section>
 
-    <div class="liste-faq">
+    <section id="faq-outils" class="institutional-toolbar" aria-label="Rechercher et filtrer les questions" hidden>
+      <label class="institutional-search-label" for="faq-recherche">Rechercher dans les questions</label>
+      <input class="institutional-search" id="faq-recherche" type="search" autocomplete="off" placeholder="Ex. résultat, favori, compte">
+      <div class="institutional-filter-list" id="faq-filtres" role="group" aria-label="Filtrer par thème">
+        <button class="institutional-filter" type="button" data-faq-categorie="tout" aria-pressed="true">Tout</button>
+        <button class="institutional-filter" type="button" data-faq-categorie="orientation" aria-pressed="false">Orientation</button>
+        <button class="institutional-filter" type="button" data-faq-categorie="decouverte" aria-pressed="false">Découverte</button>
+        <button class="institutional-filter" type="button" data-faq-categorie="mentorat" aria-pressed="false">Mentorat</button>
+        <button class="institutional-filter" type="button" data-faq-categorie="insertion" aria-pressed="false">Insertion professionnelle</button>
+        <button class="institutional-filter" type="button" data-faq-categorie="compte" aria-pressed="false">Compte et favoris</button>
+        <button class="institutional-filter" type="button" data-faq-categorie="technique" aria-pressed="false">Fonctionnement</button>
+      </div>
+    </section>
 
-      <details class="item-faq">
-        <summary>Le quiz d'orientation, comment ça marche vraiment ?</summary>
-        <p>Tu choisis ta série, puis tu réponds à des questions d'auto-réflexion. Le score compare tes réponses aux correspondances présentes dans le catalogue incomplet; les filières les mieux classées peuvent être proposées, y compris en cas d'égalité. Ces correspondances ne confirment pas l'accès officiel à une formation : vérifie les conditions auprès des sources officielles et de l'établissement.</p>
+    <p id="faq-statut" class="institutional-status" role="status" aria-live="polite">Toutes les réponses restent accessibles dans les accordéons ci-dessous.</p>
+    <p id="faq-vide" class="institutional-empty" role="status" hidden>Aucune question ne correspond. Essaie un autre mot ou un autre thème.</p>
+
+    <div class="institutional-faq-list" id="faq-questions">
+      <details class="institutional-faq-item" data-faq-item="orientation" data-motion="rise">
+        <summary>Comment fonctionne le questionnaire d’orientation ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Tu choisis ta série du bac et réponds à sept questions d’auto-réflexion tirées d’une banque. Le calcul met en regard tes réponses et les correspondances disponibles dans le catalogue.</p>
+          <p><a class="institutional-link" href="quiz.html">Découvrir le questionnaire d’orientation</a></p>
+        </div>
       </details>
-
-      <details class="item-faq">
-        <summary>Le résultat du quiz est-il garanti à 100% ?</summary>
-        <p>Non. Ce quiz utilise un score interne et n'est pas un test psychométrique validé. C'est une aide à la réflexion, pas une décision d'affectation, une garantie d'admission ou un choix à ta place. Parles-en avec ta famille, tes professeurs ou un service d'orientation.</p>
+      <details class="institutional-faq-item" data-faq-item="orientation" data-motion="rise">
+        <summary>Le résultat est-il une décision ou une garantie d’admission ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Non. Le score du quiz est un repère de réflexion, pas un test psychométrique validé, une affectation ni une garantie d’admission. Le catalogue est partiel et les conditions d’accès doivent être vérifiées auprès des sources officielles et des établissements.</p>
+          <p><a class="institutional-link" href="resultat.html">Voir les résultats d’orientation</a></p>
+        </div>
       </details>
-
-      <details class="item-faq">
-        <summary>Les écoles listées sont-elles toutes vérifiées ?</summary>
-        <p>Non. Le catalogue est partiel et ses 30 fiches sont à réexaminer. Dix fiches privées renvoient à une entrée des listes MESRS pour le nom ou le sigle et la localité; ces listes ne renseignent pas les filières. Onze correspondances école-domaine citent une source; pour ISA Santé, la source est publiée par l'école et son agrément doit être confirmé indépendamment. Aucun de ces éléments ne prouve qu'une formation est actuellement ouverte : vérifie les conditions auprès du MESRS et de l'établissement avant de t'engager.</p>
+      <details class="institutional-faq-item" data-faq-item="orientation" data-motion="rise">
+        <summary>Comment comparer des filières et que devient mon résultat ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Les résultats à égalité restent visibles. Tu peux ajouter des filières au comparateur pour consulter côte à côte les informations renseignées; les données manquantes ne sont pas complétées par supposition. Le dernier résultat est conservé dans le stockage local du navigateur.</p>
+          <p><a class="institutional-link" href="comparateur.html">Ouvrir le comparateur</a></p>
+        </div>
       </details>
-
-      <details class="item-faq">
-        <summary>Comment fonctionne le mentorat ?</summary>
-        <p>Aucun mentor réel et vérifié n'est publié pour le moment et le site ne transmet pas de demande de mise en relation.</p>
+      <details class="institutional-faq-item" data-faq-item="decouverte" data-motion="rise">
+        <summary>Les fiches de filières, d’écoles et de métiers sont-elles exhaustives ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Non. Ce sont des catalogues partiels. Certaines fiches indiquent leurs sources et leur portée; une mention ou un rattachement documenté ne garantit pas qu’une formation est actuellement ouverte ni qu’elle est accessible à ton profil. Vérifie les informations directement auprès de l’établissement.</p>
+          <p><a class="institutional-link" href="filieres.html">Explorer les filières</a> · <a class="institutional-link" href="ecoles.html">Consulter les écoles</a> · <a class="institutional-link" href="metiers.html">Découvrir les métiers</a></p>
+        </div>
       </details>
-
-      <details class="item-faq">
-        <summary>Est-ce que je peux vraiment postuler à un stage ou un emploi depuis le site ?</summary>
-        <p>Non. Aucune offre réelle vérifiée n'est publiée et aucune candidature n'est transmise.</p>
+      <details class="institutional-faq-item" data-faq-item="mentorat" data-motion="rise">
+        <summary>Puis-je être mis en relation avec un mentor ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Aucun mentor vérifié n’est actuellement publié. Une demande préparée sur le site reste une démonstration enregistrée dans le navigateur; elle n’est transmise à personne et ne reçoit pas de réponse réelle.</p>
+          <p><a class="institutional-link" href="mentorat.html">Consulter l’espace mentorat</a></p>
+        </div>
       </details>
-
-      <details class="item-faq">
-        <summary>Mes données sont-elles en sécurité ?</summary>
-        <p>Cette démonstration n'a pas de serveur de comptes : certaines informations peuvent être stockées localement dans le navigateur et ne sont pas synchronisées. L'inscription ne crée pas de compte en ligne et le mot de passe n'est pas vérifié. N'utilise pas de mot de passe réel ou réutilisé.</p>
+      <details class="institutional-faq-item" data-faq-item="insertion" data-motion="rise">
+        <summary>Les offres et candidatures sont-elles réelles ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Aucune offre vérifiée n’est publiée pour le moment. Une candidature ou une offre préparée dans cette V1 est locale au navigateur et n’est transmise ni à une entreprise ni à la plateforme.</p>
+          <p><a class="institutional-link" href="offres.html">Consulter les offres</a> · <a class="institutional-link" href="candidatures.html">Voir l’espace candidatures</a></p>
+        </div>
       </details>
-
-      <details class="item-faq">
-        <summary>Le site est-il gratuit ?</summary>
-        <p>La démonstration actuelle ne demande aucun paiement. Les conditions d'éventuels services futurs ne sont pas définies.</p>
+      <details class="institutional-faq-item" data-faq-item="compte" data-motion="rise">
+        <summary>Mon inscription crée-t-elle un compte en ligne ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Non. Les comptes et profils de démonstration sont conservés dans le navigateur utilisé. Le mot de passe saisi à l’inscription n’est ni stocké ni vérifié à la connexion. Google, Apple et la réinitialisation par e-mail ne sont pas connectés.</p>
+          <p><a class="institutional-link" href="inscription.html">Créer un profil local de démonstration</a> · <a class="institutional-link" href="confidentialite.html">Lire les informations de confidentialité</a></p>
+        </div>
       </details>
-
+      <details class="institutional-faq-item" data-faq-item="compte" data-motion="rise">
+        <summary>Où sont enregistrés mon profil et mes favoris ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Les profils, la session et les favoris sont enregistrés dans le stockage local de ce navigateur. Ils ne sont pas synchronisés entre appareils. Les favoris concernent les filières, écoles, métiers, mentors et offres disponibles dans l’application.</p>
+          <p><a class="institutional-link" href="profil.html">Consulter le profil</a> · <a class="institutional-link" href="favoris.html">Retrouver les favoris</a></p>
+        </div>
+      </details>
+      <details class="institutional-faq-item" data-faq-item="technique" data-motion="rise">
+        <summary>Le site fonctionne-t-il hors connexion ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Le site ne met pas en place de cache hors connexion ni de mode hors ligne garanti. Les pages qui chargent les catalogues et les questions ont besoin de récupérer les fichiers de données depuis le site. Le stockage local peut rester dans le navigateur, mais cela ne rend pas les fonctionnalités hors ligne.</p>
+        </div>
+      </details>
+      <details class="institutional-faq-item" data-faq-item="technique" data-motion="rise">
+        <summary>Le formulaire Contact envoie-t-il un message ?</summary>
+        <div class="institutional-faq-answer">
+          <p>Non. Il n’est relié à aucun service d’envoi. Le formulaire indique cette limite et ne sauvegarde pas le message.</p>
+          <p><a class="institutional-link" href="contact.html">Accéder au formulaire Contact</a></p>
+        </div>
+      </details>
     </div>
   </main>
 
-  <footer class="pied-de-page">
-    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+  <footer class="pied-de-page institutional-footer">
+    <nav class="institutional-footer-links" aria-label="Pages institutionnelles">
+      <a href="faq.html" aria-current="page">FAQ</a><a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a><a href="confidentialite.html">Confidentialité</a>
+    </nav>
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI</p>
   </footer>
 
+  <script src="js/motion.js"></script>
+  <script src="js/faq.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
 </body>
