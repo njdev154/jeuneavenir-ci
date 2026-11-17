@@ -128,6 +128,17 @@
 - Vérifications : 9 liens-source rendus dans les fiches; sources réservées à des établissements privés; aucun domaine passé à confirmé; JSON, liens locaux, syntaxe JS et `git diff --check` valides.
 - À faire : rapprocher les 21 fiches restantes et confirmer les programmes auprès des écoles; examiner séparément les variantes de noms du CSV, sans en déduire une couverture nationale.
 
+## 2026-11-17 — Assistant Copilot
+- Mission 06 : refonte du catalogue des offres avec recherche et filtres combinables; aucune offre n'a été ajoutée, car `data/offres.json` ne contient aucune annonce vérifiée.
+- Ajout de fiches partageables par identifiant, intégration des favoris existants et candidature locale réservée au rôle Jeune; l'interface indique explicitement qu'aucune donnée n'est transmise à une entreprise.
+- Ajout d'un historique local des candidatures et d'un espace Entreprise pour préparer, prévisualiser, modifier et supprimer des brouillons ou des annonces « à vérifier » stockés uniquement dans le navigateur.
+- Tableau de bord relié aux candidatures locales et aux annonces locales; aucune candidature reçue ni aucun entretien n'est inventé.
+- Vérifications : 22 tests Node réussis; `node --check` sur les scripts modifiés; `git diff --check`; parcours navigateur du catalogue vide, recherche, historique sans connexion et blocage de publication sans rôle Entreprise.
+- Responsive mesuré à 360 × 800, 390 × 844, 768 × 900, 1024 × 900, 1440 × 900 et 1899 × 876 sur les trois pages; aucun débordement horizontal. Réduction des animations vérifiée.
+- Vidéo de démonstration enregistrée; captures navigateur du catalogue à 1440 × 900 et 390 × 844 réalisées. Aucun compte ni annonce de test créé.
+- Navigation clavier vérifiée : la tabulation atteint les liens, la recherche et chaque filtre. Limites : le formulaire Entreprise n'a pas été soumis dans le navigateur et le parcours de candidature ne peut pas être exercé de bout en bout tant qu'aucune offre vérifiée n'est publiée. Le rôle V1 et les données restent locaux; aucune autorisation serveur ou intégration Supabase n'existe.
+- À faire : connecter une API sécurisée en V2, publier une première offre après vérification réelle, puis tester le parcours complet avec des données et comptes autorisés.
+
 ## 2026-11-15 — Assistant Copilot
 - Consultation des pages officielles de l'UFHB (annuaire des UFR), du MESRS (filières UVCI), de l'ESATIC (parcours de licence) et de l'INFAS.
 - Six rattachements école-domaine sont maintenant marqués confirmés avec date et source directe : trois UFR de l'UFHB, UVCI, ESATIC et INFAS. Les sources précisent les limites; elles ne certifient pas les admissions ni tous les niveaux.

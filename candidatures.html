@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes candidatures — JeuneAvenir CI</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="alternate icon" href="assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/offres.css">
+  <link rel="stylesheet" href="css/assistant.css">
+</head>
+<body>
+  <header class="entete">
+    <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
+    <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
+    <nav class="nav-principale">
+      <a href="quiz.html">Orientation</a>
+      <a href="filieres.html">Découverte</a>
+      <a href="mentorat.html">Mentorat</a>
+      <a href="offres.html">Insertion pro</a>
+    </nav>
+    <div class="entete-actions">
+      <a href="connexion.html" class="lien-connexion">Se connecter</a>
+      <a href="inscription.html" class="bouton-principal bouton-petit">S'inscrire</a>
+    </div>
+  </header>
+
+  <main class="offres-page">
+    <section class="offres-hero" data-motion="rise">
+      <div>
+        <p class="offres-surtitre">Espace personnel</p>
+        <h1>Mes candidatures</h1>
+        <p>Retrouve les informations enregistrées dans ce navigateur et leur statut de démonstration.</p>
+      </div>
+      <a class="bouton-principal offres-hero-action" href="offres.html">Explorer les offres</a>
+    </section>
+    <aside class="offres-notice" role="note" data-motion="fade">
+      <strong>Limite V1</strong>
+      <p>Une candidature locale n’est ni envoyée à une entreprise ni visible par elle. Les statuts ne constituent pas une décision de recrutement réelle.</p>
+    </aside>
+    <section aria-labelledby="titre-historique">
+      <div class="offres-section-entete">
+        <div>
+          <p class="offres-surtitre">Suivi</p>
+          <h2 id="titre-historique">Historique local</h2>
+        </div>
+        <a class="offres-lien" href="dashboard.html">Retour au tableau de bord</a>
+      </div>
+      <div id="historique-candidatures" class="offres-historique" aria-live="polite" aria-busy="true">
+        <p class="offres-etat" role="status">Lecture de l’historique…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pied-de-page">
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+  </footer>
+
+  <script src="js/motion.js"></script>
+  <script src="js/candidatures.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/assistant.js" defer></script>
+</body>
+</html>

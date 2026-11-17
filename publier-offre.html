@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace entreprise — JeuneAvenir CI</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="alternate icon" href="assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/offres.css">
+  <link rel="stylesheet" href="css/assistant.css">
+</head>
+<body>
+  <header class="entete">
+    <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
+    <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
+    <nav class="nav-principale">
+      <a href="quiz.html">Orientation</a>
+      <a href="filieres.html">Découverte</a>
+      <a href="mentorat.html">Mentorat</a>
+      <a href="offres.html">Insertion pro</a>
+    </nav>
+    <div class="entete-actions">
+      <a href="connexion.html" class="lien-connexion">Se connecter</a>
+      <a href="inscription.html" class="bouton-principal bouton-petit">S'inscrire</a>
+    </div>
+  </header>
+
+  <main class="offres-page">
+    <section class="offres-hero" data-motion="rise">
+      <div>
+        <p class="offres-surtitre">Espace entreprise · V1 locale</p>
+        <h1>Présentez une opportunité avec clarté.</h1>
+        <p>Préparez une annonce de stage ou d’emploi à destination des jeunes en Côte d’Ivoire.</p>
+      </div>
+      <a class="bouton-principal offres-hero-action" href="offres.html">Voir le catalogue</a>
+    </section>
+
+    <aside class="offres-notice" role="note" data-motion="fade">
+      <strong>Avant de publier</strong>
+      <p>Ce formulaire enregistre vos brouillons dans ce navigateur uniquement. « À vérifier » ne signifie pas que l’annonce a été envoyée, publiée ou rendue visible aux jeunes.</p>
+    </aside>
+
+    <section id="acces-publication" class="offres-etat" aria-live="polite" hidden></section>
+    <section id="zone-publication" hidden>
+      <div class="offres-publisher-layout">
+        <section class="offres-publisher-form" aria-labelledby="titre-formulaire-offre">
+          <p class="offres-surtitre">Informations de l’opportunité</p>
+          <h2 id="titre-formulaire-offre">Nouvelle offre</h2>
+          <label class="offres-progress-label" for="progression-offre">Complétude des informations requises <span id="texte-progression-offre">0 sur 9</span></label>
+          <progress id="progression-offre" max="9" value="0">0 sur 9</progress>
+          <form id="formulaire-offre" class="offres-form">
+            <label class="champ-large" for="titre-offre">Intitulé du poste ou du stage *
+              <input id="titre-offre" name="titre" maxlength="140" required>
+            </label>
+            <label for="type-offre-entreprise">Type d’opportunité *
+              <select id="type-offre-entreprise" name="type" required>
+                <option value="">Choisir un type</option>
+                <option value="stage">Stage</option>
+                <option value="emploi">Emploi</option>
+              </select>
+            </label>
+            <label for="domaine-offre-entreprise">Domaine *
+              <select id="domaine-offre-entreprise" name="domaine" required>
+                <option value="">Chargement des domaines…</option>
+              </select>
+            </label>
+            <label for="ville-offre-entreprise">Ville *
+              <input id="ville-offre-entreprise" name="ville" maxlength="100" required>
+            </label>
+            <label for="entreprise-offre">Entreprise *
+              <input id="entreprise-offre" name="entreprise" maxlength="140" required>
+            </label>
+            <label class="champ-large" for="presentation-entreprise">Présentation de l’entreprise *
+              <textarea id="presentation-entreprise" name="presentationEntreprise" minlength="20" maxlength="1200" required></textarea>
+            </label>
+            <label for="contrat-offre-entreprise">Type de contrat / durée
+              <input id="contrat-offre-entreprise" name="contrat" maxlength="100" placeholder="Ex. CDD, 3 mois (facultatif)">
+            </label>
+            <label for="date-limite-offre">Date limite de candidature
+              <input id="date-limite-offre" name="dateLimite" type="date">
+            </label>
+            <label class="champ-large" for="description-offre-entreprise">Description *
+              <textarea id="description-offre-entreprise" name="description" minlength="30" maxlength="2400" required></textarea>
+            </label>
+            <label class="champ-large" for="missions-offre-entreprise">Missions *
+              <textarea id="missions-offre-entreprise" name="missions" minlength="20" maxlength="2000" required></textarea>
+            </label>
+            <label class="champ-large" for="profil-offre-entreprise">Profil recherché *
+              <textarea id="profil-offre-entreprise" name="profilRecherche" minlength="20" maxlength="1800" required></textarea>
+            </label>
+            <label class="champ-large" for="competences-offre-entreprise">Compétences attendues
+              <textarea id="competences-offre-entreprise" name="competences" maxlength="1000" placeholder="Une compétence par ligne (facultatif)"></textarea>
+            </label>
+            <label class="champ-large" for="conditions-offre-entreprise">Conditions et informations financières
+              <textarea id="conditions-offre-entreprise" name="conditions" maxlength="1600" placeholder="Ne renseigner que les conditions confirmées. (facultatif)"></textarea>
+            </label>
+            <p class="offres-form-actions">
+              <button type="submit" class="bouton-secondaire" value="brouillon">Enregistrer le brouillon</button>
+              <button type="submit" class="bouton-principal" value="a_verifier">Enregistrer comme « à vérifier »</button>
+            </p>
+            <p id="erreur-publication" class="offres-message-erreur champ-large" role="alert" tabindex="-1" hidden></p>
+          </form>
+        </section>
+
+        <aside class="offres-publisher-preview" aria-labelledby="titre-apercu">
+          <p class="offres-surtitre">Aperçu privé</p>
+          <span id="apercu-type" class="badge-type-offre">Type à renseigner</span>
+          <h2 id="titre-apercu">Votre offre apparaîtra ici</h2>
+          <p id="apercu-identite" class="offres-preview-placeholder">Entreprise et ville</p>
+          <p id="apercu-meta" class="offres-preview-placeholder">Domaine, contrat et date limite</p>
+          <p id="apercu-presentation" class="offres-preview-placeholder">La présentation apparaîtra ici pendant la saisie.</p>
+          <div class="offres-preview-body" aria-live="polite">
+            <section><h3>Description</h3><p id="apercu-description">À compléter.</p></section>
+            <section><h3>Missions</h3><p id="apercu-missions">À compléter.</p></section>
+            <section><h3>Profil recherché</h3><p id="apercu-profil">À compléter.</p></section>
+            <section><h3>Compétences</h3><p id="apercu-competences">Non renseignées.</p></section>
+            <section><h3>Conditions</h3><p id="apercu-conditions">Non renseignées.</p></section>
+          </div>
+          <p class="offres-publication-note">Cet aperçu n’est visible que dans cette session. Il ne constitue pas une annonce publique.</p>
+        </aside>
+      </div>
+
+      <section id="mes-offres" class="offres-gestion" aria-labelledby="titre-mes-offres">
+        <p class="offres-surtitre">Stockage local</p>
+        <h2 id="titre-mes-offres">Mes offres enregistrées</h2>
+        <div id="liste-offres-locales" class="offres-gestion-liste" aria-live="polite"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="pied-de-page">
+    <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
+  </footer>
+
+  <script src="js/motion.js"></script>
+  <script src="js/publication-offre.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/assistant.js" defer></script>
+</body>
+</html>
