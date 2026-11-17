@@ -1,5 +1,12 @@
 # Journal du projet
 
+## 2026-11-17 — Assistant Copilot (authentification mobile et profils différenciés)
+- Ajustement du schéma mobile des pages d’authentification pour éviter la version desktop trop lourde sur petits écrans : le panneau d’introduction devient compact, plus lisible et mieux ancré au-dessus du formulaire.
+- Les profils Jeune, Professeur, Mentor et Entreprise reçoivent désormais des repères visuels distincts sur le formulaire et le panneau de présentation, sans créer de doublon de système ni modifier les flux de données V1.
+- Le comportement reste cohérent avec le système de profil existant dans `js/auth-ui.js` : le choix de compte est toujours respecté, les champs spécifiques restent activés uniquement pour le bon profil, et les liens de navigation conservent le bon contexte.
+- Vérification technique : `node --check` sur les scripts `js/auth.js` et `js/auth-ui.js`, puis `node --test tests/assistant.test.js` réussis. Aucune régression sur les scripts de compte ni sur les tests existants.
+- Reste à faire : poursuivre la validation UX côté navigateur sur les largeurs 360/390/768/1024/1440 si le prochain cycle de travail porte sur les maquettes de compte ou le module mentorat.
+
 ## 2026-11-16 — Assistant Copilot (correction du menu mobile/tablette)
 - Les liens « Se connecter » et « S'inscrire » apparaissent désormais dans le menu ouvert sur l'accueil et les pages avec navigation partagée; l'état du menu et ses attributs ARIA sont synchronisés sur toutes ces pages.
 - Ajustement du seuil responsive pour éviter que les actions de compte disparaissent autour de 899 px.

@@ -197,6 +197,22 @@
   background: #FFFFFF;
 }
 
+body[data-auth-profile="jeune"] .auth-card {
+  border-top: 3px solid var(--bleu-700);
+}
+
+body[data-auth-profile="professeur"] .auth-card {
+  border-top: 3px solid #3F7EC9;
+}
+
+body[data-auth-profile="mentor"] .auth-card {
+  border-top: 3px solid #2F6FB5;
+}
+
+body[data-auth-profile="entreprise"] .auth-card {
+  border-top: 3px solid #194B80;
+}
+
 .auth-card-inscription {
   width: min(100%, 760px);
 }
@@ -666,6 +682,20 @@
     min-height: auto;
     align-items: flex-start;
     padding: 22px clamp(22px, 5vw, 48px);
+    background: var(--bleu-900);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  body[data-auth-profile="professeur"] .auth-story {
+    background: var(--bleu-700);
+  }
+
+  body[data-auth-profile="mentor"] .auth-story {
+    background: #194B80;
+  }
+
+  body[data-auth-profile="entreprise"] .auth-story {
+    background: #12375B;
   }
 
   .auth-story h2 {
