@@ -9,6 +9,8 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/account.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
 <body>
@@ -18,48 +20,148 @@
     <a href="dashboard.html" class="lien-retour">← Mon tableau de bord</a>
   </header>
 
-  <div id="bloc-non-connecte" class="conteneur-auth" style="display:none;">
-    <div class="carte carte-auth" style="text-align:center;">
-      <h1>Tu n'es pas connecté</h1>
-      <p class="auth-sous-titre">Connecte-toi pour accéder à ton profil.</p>
-      <a href="connexion.html" class="bouton-principal bouton-pleine-largeur">Se connecter</a>
-    </div>
-  </div>
+  <main class="conteneur account-page">
+    <section class="account-hero" data-motion="rise">
+      <p class="account-eyebrow">TON ESPACE PERSONNEL</p>
+      <h1>Mon profil.</h1>
+      <p>Garde tes informations à jour pour retrouver plus facilement ton parcours et tes démarches.</p>
+    </section>
 
-  <main id="bloc-profil" class="conteneur-auth" style="display:none;">
-    <div class="carte carte-auth" style="max-width:520px;">
-      <h1>Mon profil</h1>
-      <p class="auth-sous-titre">Ces informations sont enregistrées sur cet appareil (V1).</p>
+    <p id="profil-erreur-session" class="account-alert" role="alert" hidden></p>
 
-      <form id="formulaire-profil">
-        <label for="profil-nom">Nom complet</label>
-        <input type="text" id="profil-nom" required>
+    <section id="bloc-non-connecte" class="account-empty" hidden data-motion="rise">
+      <h2>Connecte-toi pour consulter ton profil</h2>
+      <p>Les informations personnelles restent dans le navigateur utilisé pour cette démonstration.</p>
+      <a href="connexion.html" class="account-button">Se connecter</a>
+    </section>
 
-        <label for="profil-email">Adresse e-mail</label>
-        <input type="email" id="profil-email" disabled>
+    <section id="bloc-profil" class="account-profile-layout" hidden aria-labelledby="titre-formulaire-profil">
+      <aside class="account-profile-aside" data-motion="rise">
+        <div class="account-avatar" id="profil-avatar" aria-hidden="true">?</div>
+        <p class="account-profile-name" id="profil-resume-nom"></p>
+        <p class="account-card-meta" id="profil-resume-role"></p>
+        <p class="account-local-note">Aucune sauvegarde distante n’est disponible en V1.</p>
+      </aside>
 
-        <label for="profil-ville">Ville</label>
-        <input type="text" id="profil-ville" placeholder="Ex : Abidjan">
-
-        <div id="champs-jeune" style="display:none;">
-          <label for="profil-formation">Formation actuelle</label>
-          <input type="text" id="profil-formation" placeholder="Ex : BTS Informatique">
-
-          <label for="profil-competences">Compétences (séparées par une virgule)</label>
-          <input type="text" id="profil-competences" placeholder="Ex : HTML, CSS, JavaScript">
+      <div class="account-profile-card" data-motion="rise">
+        <div class="account-section-heading">
+          <div>
+            <p class="account-eyebrow">INFORMATIONS DU COMPTE</p>
+            <h2 id="titre-formulaire-profil">Informations personnelles</h2>
+          </div>
+          <span class="account-badge">Modifiable</span>
         </div>
 
-        <p class="message-erreur" id="message-succes-profil" role="status" style="color:#1e7e42;"></p>
+        <p class="account-help" id="profil-aide">Complète uniquement les informations utiles à ton parcours. Les champs facultatifs peuvent rester vides.</p>
 
-        <button type="submit" class="bouton-principal bouton-pleine-largeur">Enregistrer</button>
-      </form>
-    </div>
+        <form id="formulaire-profil" novalidate>
+          <div class="account-form-grid">
+            <div class="account-field">
+              <label for="profil-nom">Nom complet</label>
+              <input type="text" id="profil-nom" maxlength="120" autocomplete="name" required>
+            </div>
+            <div class="account-field">
+              <label for="profil-email">Adresse e-mail</label>
+              <input type="email" id="profil-email" autocomplete="email" readonly aria-describedby="profil-aide">
+            </div>
+            <div class="account-field">
+              <label for="profil-ville">Ville <span>(facultatif)</span></label>
+              <input type="text" id="profil-ville" maxlength="100" autocomplete="address-level2">
+            </div>
+          </div>
+
+          <fieldset id="champs-jeune" class="account-role-fields" hidden disabled>
+            <legend>Parcours du jeune</legend>
+            <div class="account-form-grid">
+              <div class="account-field">
+                <label for="profil-statut">Situation actuelle <span>(facultatif)</span></label>
+                <select id="profil-statut">
+                  <option value="">Non renseignée</option>
+                  <option value="lyceen">Lycéen ou bachelier récent</option>
+                  <option value="etudiant">Étudiant en formation</option>
+                  <option value="jeune-diplome">Jeune diplômé</option>
+                </select>
+              </div>
+              <div class="account-field">
+                <label for="profil-formation">Niveau ou formation <span>(facultatif)</span></label>
+                <input type="text" id="profil-formation" maxlength="160" autocomplete="off">
+              </div>
+              <div class="account-field account-field-wide">
+                <label for="profil-competences">Compétences <span>(facultatif, séparées par une virgule)</span></label>
+                <input type="text" id="profil-competences" maxlength="500" autocomplete="off">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset id="champs-mentor" class="account-role-fields" hidden disabled>
+            <legend>Profil mentor</legend>
+            <div class="account-form-grid">
+              <div class="account-field">
+                <label for="profil-profession">Métier ou fonction <span>(facultatif)</span></label>
+                <input type="text" id="profil-profession" maxlength="160" autocomplete="organization-title">
+              </div>
+              <div class="account-field">
+                <label for="profil-domaine">Domaine d’accompagnement <span>(facultatif)</span></label>
+                <input type="text" id="profil-domaine" maxlength="160">
+              </div>
+              <div class="account-field account-field-wide">
+                <label for="profil-organisation-mentor">Organisation <span>(facultatif)</span></label>
+                <input type="text" id="profil-organisation-mentor" maxlength="160" autocomplete="organization">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset id="champs-professeur" class="account-role-fields" hidden disabled>
+            <legend>Profil enseignant</legend>
+            <div class="account-form-grid">
+              <div class="account-field">
+                <label for="profil-matiere">Matière ou discipline <span>(facultatif)</span></label>
+                <input type="text" id="profil-matiere" maxlength="160">
+              </div>
+              <div class="account-field">
+                <label for="profil-etablissement">Établissement <span>(facultatif)</span></label>
+                <input type="text" id="profil-etablissement" maxlength="160" autocomplete="organization">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset id="champs-entreprise" class="account-role-fields" hidden disabled>
+            <legend>Profil entreprise</legend>
+            <div class="account-form-grid">
+              <div class="account-field">
+                <label for="profil-organisation-entreprise">Organisation <span>(facultatif)</span></label>
+                <input type="text" id="profil-organisation-entreprise" maxlength="160" autocomplete="organization">
+              </div>
+              <div class="account-field">
+                <label for="profil-fonction">Fonction <span>(facultatif)</span></label>
+                <input type="text" id="profil-fonction" maxlength="160" autocomplete="organization-title">
+              </div>
+              <div class="account-field account-field-wide">
+                <label for="profil-secteur">Secteur d’activité <span>(facultatif)</span></label>
+                <input type="text" id="profil-secteur" maxlength="160">
+              </div>
+            </div>
+          </fieldset>
+
+          <p id="profil-erreur" class="account-alert" role="alert" hidden></p>
+          <p id="message-succes-profil" class="account-success" role="status" aria-live="polite"></p>
+          <div class="account-form-actions">
+            <button type="submit" class="account-button" id="bouton-enregistrer-profil">Enregistrer les modifications</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <noscript>
+      <p class="account-alert">Le profil local nécessite JavaScript. Aucune information ne peut être sauvegardée sur un serveur en V1.</p>
+    </noscript>
   </main>
 
   <footer class="pied-de-page">
     <p class="footer-bas">&copy; 2026 JeuneAvenir CI — Fait avec ambition à Abidjan</p>
   </footer>
 
+  <script src="js/motion.js"></script>
   <script src="js/profil.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>

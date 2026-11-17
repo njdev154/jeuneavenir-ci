@@ -4,6 +4,20 @@
 // les parcours (inscription -> tableau de bord) en attendant la V2,
 // où tout sera remplacé par Supabase Auth (email + Google + Apple réels).
 
+function lireUtilisateursLocaux() {
+  try {
+    const valeur = localStorage.getItem("jac_utilisateurs");
+    const utilisateurs = valeur === null ? [] : JSON.parse(valeur);
+    if (!Array.isArray(utilisateurs)) {
+      throw new Error("La liste des comptes locaux n’a pas le format attendu.");
+    }
+    return utilisateurs;
+  } catch (erreur) {
+    console.error("Lecture des comptes locaux impossible :", erreur);
+    throw new Error("Les comptes locaux sont illisibles. Aucune donnée n’a été remplacée.");
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // --- Boutons Google / Apple : pas encore fonctionnels en V1 ---
@@ -50,8 +64,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Vérifie si un compte existe déjà avec cet email (simulation simple)
-      const utilisateurs = JSON.parse(localStorage.getItem("jac_utilisateurs") || "[]");
-      if (utilisateurs.some(u => u.email.trim().toLowerCase() === email)) {
+      let utilisateurs;
+      try {
+        utilisateurs = lireUtilisateursLocaux();
+      } catch (erreur) {
+        messageErreur.textContent = erreur.message;
+        return;
+      }
+      if (utilisateurs.some(u => u && typeof u.email === "string" && u.email.trim().toLowerCase() === email)) {
         messageErreur.textContent = "Un compte existe déjà avec cet e-mail.";
         return;
       }
@@ -78,8 +98,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       utilisateurs.push(nouvelUtilisateur);
-      localStorage.setItem("jac_utilisateurs", JSON.stringify(utilisateurs));
-      localStorage.setItem("jac_utilisateur_connecte", JSON.stringify(nouvelUtilisateur));
+      try {
+        localStorage.setItem("jac_utilisateurs", JSON.stringify(utilisateurs));
+        localStorage.setItem("jac_utilisateur_connecte", JSON.stringify(nouvelUtilisateur));
+      } catch (erreur) {
+        console.error("Création du compte local impossible :", erreur);
+        messageErreur.textContent = "Le compte n’a pas pu être enregistré dans ce navigateur.";
+        return;
+      }
 
       window.location.href = "dashboard.html";
     });
@@ -100,8 +126,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const utilisateurs = JSON.parse(localStorage.getItem("jac_utilisateurs") || "[]");
-      const utilisateur = utilisateurs.find(u => u.email.trim().toLowerCase() === email);
+      let utilisateurs;
+      try {
+        utilisateurs = lireUtilisateursLocaux();
+      } catch (erreur) {
+        messageErreur.textContent = erreur.message;
+        return;
+      }
+      const utilisateur = utilisateurs.find(u => u && typeof u.email === "string" && u.email.trim().toLowerCase() === email);
 
       if (!utilisateur) {
         messageErreur.textContent = "Aucun compte trouvé avec cet e-mail. (Rappel : V1 = données stockées uniquement dans ce navigateur)";
@@ -118,9 +150,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // V1 : on ne vérifie pas le mot de passe (pas de vraie sécurité avant la V2)
-      localStorage.setItem("jac_utilisateur_connecte", JSON.stringify(utilisateur));
+      try {
+        localStorage.setItem("jac_utilisateur_connecte", JSON.stringify(utilisateur));
+      } catch (erreur) {
+        console.error("Ouverture de session locale impossible :", erreur);
+        messageErreur.textContent = "La session n’a pas pu être enregistrée dans ce navigateur.";
+        return;
+      }
       window.location.href = "dashboard.html";
     });
+
   }
 
 });
