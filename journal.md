@@ -1,5 +1,15 @@
 # Journal du projet
 
+## 2026-11-17 — Assistant Copilot (Mission 05, annuaire et parcours mentorat V1)
+- Audit Git effectué avant l’étape : branche `assistant-ia`, commit précédent `386bbeb`; les fichiers mentorat déjà modifiés ainsi que les dossiers non suivis préexistants `docs/`, `pack-assistant-ia-v2/` et le cahier des charges ont été préservés.
+- Relecture de l’annuaire, du script, du JSON mentors, des favoris, des rôles, du Motion Design System et des maquettes Horizon desktop « annuaire mentor » / « fiche mentor ». Aucune maquette mobile dédiée au mentorat n’est présente.
+- L’annuaire conserve l’état vide honnête : `data/mentors.json` est explicitement `aucune_publication` et ne contient aucun mentor vérifié. Aucun profil de démonstration n’a été ajouté aux données du projet.
+- Amélioration de la recherche (accents ignorés et filtres combinables), du récapitulatif local de demande et de l’annonce explicite que les états en attente/accepté/refusé sont des simulations, sans notification ni réponse réelle. Le favori mentor continue d’utiliser le stockage partagé `jac_favoris`.
+- Tests automatisés : `node --test tests/mentors.test.js tests/assistant.test.js` (9 réussis), `node --check js/mentors.js` et `git diff --check`.
+- Tests navigateur avec données de profil temporaires non conservées : filtrage, accès direct à une fiche via URL stable, ajout/retrait de favori, demande locale et récapitulatif, statuts simulés. Annuaire et fiche contrôlés à 360×800, 390×844, 768×900, 1024×900, 1440×900 et 1899×876 : aucun débordement horizontal. Réduction des animations vérifiée.
+- Les captures intégrées ont été tentées, mais l’outil a fourni une vue desktop décalée puis une vue mobile blanche malgré les dimensions DOM correctes; elles ne sont donc pas retenues comme preuves visuelles. Les contrôles responsive ont été mesurés dans le navigateur.
+- Reste à faire : valider la livraison. Aucun backend, mentor vérifié, demande réelle ou réponse mentor n’est disponible en V1; ne pas commencer la Mission 06.
+
 ## 2026-11-17 — Assistant Copilot (authentification mobile et profils différenciés)
 - Ajustement du schéma mobile des pages d’authentification pour éviter la version desktop trop lourde sur petits écrans : le panneau d’introduction devient compact, plus lisible et mieux ancré au-dessus du formulaire.
 - Les profils Jeune, Professeur, Mentor et Entreprise reçoivent désormais des repères visuels distincts sur le formulaire et le panneau de présentation, sans créer de doublon de système ni modifier les flux de données V1.

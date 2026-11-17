@@ -32,10 +32,7 @@
   }
 
   function initialiser() {
-    if (initialise) return;
-    initialise = true;
-
-    elementsMotion = Array.from(document.querySelectorAll("[data-motion]"));
+    const candidats = Array.from(document.querySelectorAll("[data-motion]"));
     document.querySelectorAll("[data-motion-stagger]").forEach(groupe => {
       Array.from(groupe.children)
         .filter(element => element.matches("[data-motion]"))
@@ -44,24 +41,37 @@
         });
     });
 
-    if (!elementsMotion.length || mouvementsReduits()) {
-      elementsMotion.forEach(rendreVisible);
+    elementsMotion = elementsMotion.filter(element => {
+      if (element.isConnected) return true;
+      if (observateur) observateur.unobserve(element);
+      return false;
+    });
+
+    const nouveauxElements = candidats.filter(element => !elementsMotion.includes(element));
+    elementsMotion.push(...nouveauxElements);
+
+    if (!initialise) {
+      initialise = true;
+      window.addEventListener("scroll", planifierVerification, { passive: true });
+      window.addEventListener("resize", planifierVerification, { passive: true });
+    }
+
+    if (mouvementsReduits()) {
+      candidats.forEach(rendreVisible);
       return;
     }
 
-    if ("IntersectionObserver" in window) {
+    if (candidats.length) document.documentElement.classList.add("motion-enabled");
+
+    if ("IntersectionObserver" in window && !observateur) {
       observateur = new IntersectionObserver(entrees => {
         entrees.forEach(entree => {
           if (entree.isIntersecting) rendreVisible(entree.target);
         });
       }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
-
-      elementsMotion.forEach(element => observateur.observe(element));
     }
 
-    document.documentElement.classList.add("motion-enabled");
-    window.addEventListener("scroll", planifierVerification, { passive: true });
-    window.addEventListener("resize", planifierVerification, { passive: true });
+    if (observateur) nouveauxElements.forEach(element => observateur.observe(element));
     planifierVerification();
   }
 

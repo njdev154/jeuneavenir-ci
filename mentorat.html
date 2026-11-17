@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvre les profils de mentors publiés et les informations disponibles sur JeuneAvenir CI.">
   <title>Mentorat — JeuneAvenir CI</title>
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="alternate icon" href="assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/mentorat.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
-<body>
+<body class="page-mentorat">
 
   <header class="entete">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
@@ -28,25 +31,66 @@
     </div>
   </header>
 
-  <main class="conteneur page-decouverte">
+  <main class="conteneur page-decouverte page-mentorat-contenu">
+    <div id="mentorat-annuaire">
+      <section class="mentorat-introduction" data-motion="rise">
+        <div class="mentorat-introduction-texte">
+          <p class="mentorat-surtitre">APPRENDRE DE L'EXPÉRIENCE</p>
+          <h1>Rencontre un mentor</h1>
+          <p class="mentorat-chapeau">Des professionnels peuvent t'aider à mieux comprendre leur domaine et les chemins qui y mènent. Ici, seuls les profils publiés après vérification ont leur place.</p>
+        </div>
+        <aside class="mentorat-principe" aria-labelledby="titre-principe">
+          <p class="mentorat-surtitre">LE PRINCIPE</p>
+          <h2 id="titre-principe">Un échange, pas une promesse.</h2>
+          <ol>
+            <li>Explore les profils disponibles.</li>
+            <li>Explique ce que tu aimerais apprendre.</li>
+            <li>La réponse dépend du mentor.</li>
+          </ol>
+        </aside>
+      </section>
 
-    <h1>Mentorat</h1>
-    <p class="page-sous-titre">Aucun mentor réel et vérifié n'est encore disponible; aucune demande de mise en relation ne sera transmise.</p>
+      <section class="mentorat-annuaire" aria-labelledby="titre-annuaire">
+        <div class="mentorat-annuaire-entete">
+          <div>
+            <p class="mentorat-surtitre">ANNUAIRE</p>
+            <h2 id="titre-annuaire">Les professionnels qui partagent leur expérience</h2>
+          </div>
+          <p class="mentorat-v1-note">V1 : les demandes de démonstration restent dans ce navigateur. Elles ne sont transmises à aucun mentor.</p>
+        </div>
 
-    <div class="barre-filtres">
-      <input type="search" id="recherche-mentor" class="champ-recherche" placeholder="Rechercher un mentor...">
-      <select id="filtre-domaine-mentor" class="champ-select">
-        <option value="">Tous les domaines</option>
-      </select>
+        <div class="mentorat-outils" role="search" aria-label="Rechercher un mentor">
+          <div class="mentorat-champ">
+            <label for="recherche-mentor">Nom, domaine ou compétence</label>
+            <input type="search" id="recherche-mentor" placeholder="Ex. comptabilité, santé…" aria-describedby="aide-recherche-mentor" disabled>
+            <span id="aide-recherche-mentor" class="mentorat-aide-champ">La recherche s'active dès qu'un profil est publié.</span>
+          </div>
+          <div class="mentorat-champ">
+            <label for="filtre-domaine-mentor">Domaine professionnel</label>
+            <select id="filtre-domaine-mentor" disabled>
+              <option value="">Tous les domaines</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="compteur-mentors" class="mentorat-compteur" aria-live="polite" aria-atomic="true">Chargement de l'annuaire…</p>
+
+        <div id="grille-mentors" class="grille-mentors" data-motion-stagger aria-live="polite">
+          <div class="mentorat-vide">
+            <img src="assets/icons/logo.svg" alt="" width="44" height="44">
+            <h3>Les profils publiés apparaîtront ici</h3>
+            <p>Un mentor n'est affiché qu'après son accord et la vérification des informations de son profil.</p>
+            <a href="filieres.html" class="mentorat-lien">Explorer les filières en attendant</a>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <p id="compteur-mentors" class="compteur-resultats"></p>
+    <section id="fiche-mentor" class="fiche-mentor mentorat-fiche" aria-live="polite" tabindex="-1" hidden></section>
 
-    <div id="grille-mentors" class="grille-mentors"></div>
-
-    <!-- Fiche mentor détaillée, affichée au clic -->
-    <div id="fiche-mentor" class="carte fiche-mentor" style="display:none;"></div>
-
+    <noscript>
+      <p class="mentorat-noscript">Active JavaScript pour charger l'annuaire. Aucun profil ni aucune demande ne peut être transmis sans les services correspondants.</p>
+    </noscript>
   </main>
 
   <footer class="pied-de-page">
@@ -54,6 +98,7 @@
   </footer>
 
   <script src="js/favoris.js"></script>
+  <script src="js/motion.js"></script>
   <script src="js/mentors.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
