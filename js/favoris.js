@@ -1,50 +1,123 @@
-// favoris.js
-// Petit module réutilisable pour ajouter/retirer des favoris
-// (filières, écoles, mentors, offres). Stocké en localStorage (V1).
-// Utilisé par filieres.js, ecoles.js, mentors.js, offres.js et favoris.html.
-
+// Source unique des favoris enregistrés dans le navigateur (V1).
 const FAVORIS_CLE = "jac_favoris";
+const FAVORIS_CATEGORIES = ["filieres", "ecoles", "metiers", "mentors", "offres"];
+
+function favorisVides() {
+  return Object.fromEntries(FAVORIS_CATEGORIES.map(categorie => [categorie, []]));
+}
+
+function lireEtatFavoris() {
+  try {
+    const valeur = localStorage.getItem(FAVORIS_CLE);
+    if (!valeur) return { favoris: favorisVides(), erreur: null };
+
+    const stockes = JSON.parse(valeur);
+    if (!stockes || typeof stockes !== "object" || Array.isArray(stockes)) {
+      throw new Error("Les favoris enregistrés ne sont pas un objet.");
+    }
+
+    Object.entries(stockes).forEach(([categorie, ids]) => {
+      if (!Array.isArray(ids)) {
+        throw new Error(`La catégorie de favoris « ${categorie} » n’est pas une liste.`);
+      }
+    });
+
+    return { favoris: { ...favorisVides(), ...stockes }, erreur: null };
+  } catch (erreur) {
+    console.error("Lecture des favoris locaux impossible :", erreur);
+    return {
+      favoris: favorisVides(),
+      erreur: new Error("Les favoris enregistrés sont illisibles. Ils n’ont pas été remplacés.")
+    };
+  }
+}
 
 function chargerFavoris() {
-  return JSON.parse(localStorage.getItem(FAVORIS_CLE) || '{"filieres":[],"ecoles":[],"mentors":[],"offres":[]}');
+  return lireEtatFavoris().favoris;
 }
 
 function sauvegarderFavoris(favoris) {
-  localStorage.setItem(FAVORIS_CLE, JSON.stringify(favoris));
+  try {
+    localStorage.setItem(FAVORIS_CLE, JSON.stringify(favoris));
+  } catch (erreur) {
+    console.error("Enregistrement des favoris locaux impossible :", erreur);
+    throw new Error("Les favoris n’ont pas pu être enregistrés dans ce navigateur.");
+  }
 }
 
 function estFavori(categorie, id) {
-  return chargerFavoris()[categorie]?.includes(id) || false;
+  const etat = lireEtatFavoris();
+  if (etat.erreur) return false;
+  return Array.isArray(etat.favoris[categorie]) && etat.favoris[categorie].includes(String(id));
 }
 
 function basculerFavori(categorie, id) {
-  const favoris = chargerFavoris();
-  if (!favoris[categorie]) favoris[categorie] = [];
-  const index = favoris[categorie].indexOf(id);
-  if (index === -1) {
-    favoris[categorie].push(id);
-  } else {
-    favoris[categorie].splice(index, 1);
+  if (!FAVORIS_CATEGORIES.includes(categorie) || !String(id || "").trim()) {
+    throw new Error("Cette référence ne peut pas être enregistrée dans les favoris.");
   }
+
+  const etat = lireEtatFavoris();
+  if (etat.erreur) throw etat.erreur;
+
+  const favoris = etat.favoris;
+  const identifiant = String(id);
+  const estActif = favoris[categorie].includes(identifiant);
+  favoris[categorie] = estActif
+    ? favoris[categorie].filter(element => element !== identifiant)
+    : [...favoris[categorie], identifiant];
+
   sauvegarderFavoris(favoris);
-  return favoris[categorie].includes(id);
+  return !estActif;
 }
 
-// Génère le HTML d'un bouton favori (à insérer dans une fiche)
+function echapperFavori(valeur) {
+  return String(valeur).replace(/[&<>"']/g, caractere => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#39;"
+  })[caractere]);
+}
+
 function boutonFavoriHTML(categorie, id) {
-  const actif = estFavori(categorie, id);
-  return `<button type="button" class="bouton-favori ${actif ? 'bouton-favori-actif' : ''}" data-categorie="${categorie}" data-id="${id}">
+  if (!FAVORIS_CATEGORIES.includes(categorie)) return "";
+  const identifiant = String(id);
+  const actif = estFavori(categorie, identifiant);
+  return `<button type="button" class="bouton-favori ${actif ? "bouton-favori-actif" : ""}" data-categorie="${echapperFavori(categorie)}" data-id="${echapperFavori(identifiant)}" aria-pressed="${actif}" aria-label="${actif ? "Retirer des favoris" : "Ajouter aux favoris"}">
     ${actif ? "★ Retirer des favoris" : "☆ Ajouter aux favoris"}
   </button>`;
 }
 
-// À appeler après avoir inséré le bouton dans le DOM
 function activerBoutonFavori(conteneur) {
-  const bouton = conteneur.querySelector(".bouton-favori");
-  if (!bouton) return;
-  bouton.addEventListener("click", () => {
-    const actif = basculerFavori(bouton.dataset.categorie, bouton.dataset.id);
-    bouton.textContent = actif ? "★ Retirer des favoris" : "☆ Ajouter aux favoris";
-    bouton.classList.toggle("bouton-favori-actif", actif);
+  const boutons = conteneur.querySelectorAll(".bouton-favori");
+  boutons.forEach(bouton => {
+    bouton.addEventListener("click", () => {
+      const erreurExistante = bouton.parentElement.querySelector(".favori-erreur");
+      if (erreurExistante) erreurExistante.remove();
+
+      try {
+        const actif = basculerFavori(bouton.dataset.categorie, bouton.dataset.id);
+        bouton.textContent = actif ? "★ Retirer des favoris" : "☆ Ajouter aux favoris";
+        bouton.setAttribute("aria-label", actif ? "Retirer des favoris" : "Ajouter aux favoris");
+        bouton.setAttribute("aria-pressed", String(actif));
+        bouton.classList.toggle("bouton-favori-actif", actif);
+        if (window.JeuneAvenirMotion) window.JeuneAvenirMotion.animer(bouton);
+        if (typeof CustomEvent !== "undefined") {
+          window.dispatchEvent(new CustomEvent("jac:favoris-modifies", {
+            detail: { categorie: bouton.dataset.categorie, id: bouton.dataset.id, actif }
+          }));
+        }
+      } catch (erreur) {
+        console.error("Modification du favori impossible :", erreur);
+        const message = document.createElement("span");
+        message.className = "favori-erreur";
+        message.setAttribute("role", "alert");
+        message.textContent = erreur.message;
+        bouton.insertAdjacentElement("afterend", message);
+      }
+    });
   });
 }
+
+window.JeuneAvenirFavoris = { categories: FAVORIS_CATEGORIES, lire: lireEtatFavoris };

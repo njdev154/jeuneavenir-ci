@@ -179,6 +179,7 @@ function afficherFiche(ecole) {
   outils.rendreFiche(document.getElementById("fiche-ecole"), {
     kind: "ÉTABLISSEMENT",
     title: ecole.nom,
+    favorite: { category: "ecoles", id: ecole.id },
     description: "Cette fiche rassemble les informations présentes dans le catalogue du projet. Elle ne constitue pas une confirmation de l’offre actuelle ni des conditions d’admission.",
     tags: [
       ecole.statut === "public" ? "Type indiqué : public" : "Type indiqué : privé",

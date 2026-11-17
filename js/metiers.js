@@ -143,6 +143,7 @@ function afficherFiche(metier) {
   utilitaires.rendreFiche(document.getElementById("fiche-metier"), {
     kind: "MÉTIER",
     title: metier.nom,
+    favorite: { category: "metiers", id: metier.id },
     description: metier.description,
     tags: ["Repère général", ...(filieres.length ? filieres.map(filiere => filiere.nom) : [])],
     facts: [

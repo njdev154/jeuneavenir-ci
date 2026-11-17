@@ -9,6 +9,8 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/account.css">
   <link rel="stylesheet" href="css/assistant.css">
 </head>
 <body>
@@ -27,15 +29,30 @@
     </div>
   </header>
 
-  <main class="conteneur page-decouverte">
-    <h1>Mes favoris</h1>
-    <p class="page-sous-titre">Filières et mentors que tu as sauvegardés (enregistré sur cet appareil).</p>
+  <main class="conteneur account-page">
+    <section class="account-hero" data-motion="rise">
+      <p class="account-eyebrow">TES REPÈRES SAUVEGARDÉS</p>
+      <h1>Mes favoris.</h1>
+      <p>Retrouve les filières, établissements, métiers, mentors et offres que tu souhaites consulter plus tard.</p>
+    </section>
 
-    <h2 class="dashboard-section-titre" style="margin-top:32px;">Filières</h2>
-    <div id="favoris-filieres" class="grille-filieres"></div>
+    <p class="account-local-note" role="note">Tes favoris sont enregistrés uniquement dans ce navigateur. Les mentors et offres indisponibles ne sont pas présentés comme des profils ou annonces réels.</p>
 
-    <h2 class="dashboard-section-titre" style="margin-top:32px;">Mentors</h2>
-    <div id="favoris-mentors" class="grille-mentors"></div>
+    <div class="account-filter-group" id="favoris-filtres" role="group" aria-label="Filtrer les favoris">
+      <button type="button" class="account-filter-button" data-favoris-filtre="tout" aria-pressed="true">Tout</button>
+      <button type="button" class="account-filter-button" data-favoris-filtre="filieres" aria-pressed="false">Filières</button>
+      <button type="button" class="account-filter-button" data-favoris-filtre="ecoles" aria-pressed="false">Écoles</button>
+      <button type="button" class="account-filter-button" data-favoris-filtre="metiers" aria-pressed="false">Métiers</button>
+      <button type="button" class="account-filter-button" data-favoris-filtre="mentors" aria-pressed="false">Mentors</button>
+      <button type="button" class="account-filter-button" data-favoris-filtre="offres" aria-pressed="false">Offres</button>
+    </div>
+
+    <p id="favoris-etat" class="account-status" role="status" aria-live="polite">Les favoris enregistrés dans ce navigateur vont être chargés.</p>
+    <div id="favoris-categories" class="account-favorites-list"></div>
+
+    <noscript>
+      <p class="account-alert">Active JavaScript pour consulter et gérer les favoris stockés dans ce navigateur.</p>
+    </noscript>
   </main>
 
   <footer class="pied-de-page">
@@ -43,6 +60,7 @@
   </footer>
 
   <script src="js/favoris.js"></script>
+  <script src="js/motion.js"></script>
   <script src="js/favoris-page.js"></script>
   <script src="js/main.js"></script>
   <script src="js/assistant.js" defer></script>
