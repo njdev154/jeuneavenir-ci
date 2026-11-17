@@ -1,5 +1,14 @@
 # Journal du projet
 
+## 2026-11-17 — Assistant Copilot (Mission 10, cadrage fonctionnel et gouvernance)
+- Vérification préalable de Git et de `docs/conception/` : branche `assistant-ia`; les ressources non suivies préexistantes `docs/`, le CDC Markdown et `pack-assistant-ia-v2/` ont été préservés; `docs/conception/` n'existait pas.
+- Comparaison du CDC Markdown disponible (16 août 2026), de la Mission Directrice jointe, des documents Horizon, du README, des audits historiques, du journal, des scripts et des JSON. Le PDF consolidé du 3 novembre et les scripts SQL Supabase ne sont pas présents dans la copie examinée.
+- Création des six documents retenus par le propriétaire dans `docs/conception/` : référentiel/périmètre, règles métier, rôles/permissions, gouvernance des données, registre des exigences et décisions.
+- Le dossier conserve les cinq piliers comme socle du lancement et les huit univers comme vision; les simulations locales, fonctions partielles, absences et états non vérifiés sont distingués. Les priorités P0/P1 restent des propositions à valider.
+- Le registre contient 41 exigences identifiées sans doublon; les écarts 14/18 questions, 50 simultanés/10 000 utilisateurs, rôles, Supabase, capacités opérationnelles et extensions de vision restent inscrits comme ouverts.
+- Vérifications documentaires : six fichiers attendus présents; tous les liens Markdown locaux résolvent; aucun ID d'exigence dupliqué; aucun espace final dans les six nouveaux documents. Aucun test applicatif n'a été exécuté, aucun fichier de code/donnée/configuration n'a été modifié.
+- Aucun commit ni push. Les décisions listées dans le document 06 et les priorités du registre attendent validation; l'architecture détaillée demeure le livrable d'une phase ultérieure, avant tout backend.
+
 ## 2026-11-17 — Assistant Copilot (Mission 08, pages institutionnelles)
 - Audit Git avant modification : branche `assistant-ia`, sept commits d’avance sur `origin/assistant-ia`, aucun fichier suivi modifié. Les éléments non suivis préexistants `docs/`, `pack-assistant-ia-v2/` et le cahier des charges ont été préservés.
 - Relecture du CDC, des décisions du projet, des quatre pages existantes, des sources HTML et du système de design des maquettes Horizon, de `js/contact.js`, de `js/main.js`, du Motion Design System et des mécanismes de stockage.
