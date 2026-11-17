@@ -1,5 +1,17 @@
 # Journal du projet
 
+## 2026-11-17 — Assistant Copilot (Mission 07, finalisation du pilier Compte)
+- Audit Git initial : branche `assistant-ia`, quatre commits d’avance sur `origin/assistant-ia`, avant la Mission 07 aucune modification suivie n’était enregistrée pour cette mission. Les dossiers préexistants `docs/`, `pack-assistant-ia-v2/`, le cahier des charges non suivi et les maquettes ont été conservés.
+- Audit des pages `dashboard.html`, `profil.html`, `favoris.html`, des inscriptions et connexions, des scripts `auth.js`, `profil.js`, `favoris.js`, `favoris-page.js`, `dashboard.js`, des favoris et des données locales. Les cinq catégories de favoris sont disponibles; les catalogues Mentor et Offres restent vides avec le statut `aucune_publication`.
+- Finalisation du profil Jeune/Mentor/Professeur/Entreprise avec données locales réellement disponibles, champs facultatifs, valeurs déjà enregistrées, validation du nom, erreurs de stockage et sauvegarde dans `jac_utilisateurs` + `jac_utilisateur_connecte`. Les sauvegardes distantes ne sont pas prétendues.
+- Les favoris utilisent exclusivement `jac_favoris` pour les filières, écoles, métiers, mentors et offres. Ajout/retrait, persistance, liens, références absentes, états vides, filtres et `aria-pressed` sont cohérents. Les mentors/offres non publiés restent absents.
+- Les tableaux de bord sont désormais filtrés par rôle. Le Jeune voit ses favoris, son résultat de quiz, ses candidatures locales et ses demandes locales par courriel. Mentor ne relie les demandes que par `mentorId`, jamais par nom seul. Entreprise ne montre que les offres filtrées par son courriel et aucune candidature reçue inventée.
+- Vérifications techniques : `node --test tests/*.test.js` — 40 tests sur 40 réussis; `node --check` sur les scripts Compte et `git diff --check` réussis.
+- Vérifications navigateur réalisées sur les pages déconnectées Tableau de bord, Profil et Favoris aux dimensions 360×800, 390×844, 768×900, 1024×900, 1440×900 et 1899×876 : aucun débordement horizontal. Navigation clavier vérifiée sur les tableaux de bord déconnecté et profil; `prefers-reduced-motion: reduce` désactive les animations calculées.
+- Captures navigateur représentatives du tableau de bord déconnecté prises en desktop 1440×900 et mobile 390×844; la page Favoris a aussi été contrôlée par snapshot accessible et mesures DOM aux six dimensions. Les captures obsolètes ou masquées ne sont pas présentées comme preuves.
+- Limites V1 conservées : aucune authentification réelle, aucune sauvegarde serveur, aucun mentor ou offre publique disponible, aucune réponse mentor ni candidature transmise. Le stockage local n’est pas présenté comme sécurisé.
+- Reste à faire : examiner puis valider les commits Mission 07, confirmer le statut Git final et la liste des hashes. Aucun push ni début de Mission 08.
+
 ## 2026-11-17 — Assistant Copilot (Mission 05, annuaire et parcours mentorat V1)
 - Audit Git effectué avant l’étape : branche `assistant-ia`, commit précédent `386bbeb`; les fichiers mentorat déjà modifiés ainsi que les dossiers non suivis préexistants `docs/`, `pack-assistant-ia-v2/` et le cahier des charges ont été préservés.
 - Relecture de l’annuaire, du script, du JSON mentors, des favoris, des rôles, du Motion Design System et des maquettes Horizon desktop « annuaire mentor » / « fiche mentor ». Aucune maquette mobile dédiée au mentorat n’est présente.
