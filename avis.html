@@ -32,10 +32,13 @@
     <div class="carte carte-auth" id="carte-avis">
       <h1>Donne ton avis</h1>
       <p class="auth-sous-titre">
-        Une idée, un bug, une suggestion sur le site ? Dis-le nous — indépendamment du quiz d'orientation.
+        Cette page reste consultable, mais le formulaire d’avis est désactivé et ne transmet rien à l’équipe.
       </p>
 
+      <p id="pilot-avis-notice" class="pilot-form-message" role="status">Ne saisis pas de message ni d’adresse e-mail ici. Pour tester le site, transmets tes remarques directement à la personne qui organise le pilote.</p>
       <form id="formulaire-avis">
+        <fieldset class="pilot-disabled-controls" disabled aria-describedby="pilot-avis-notice">
+          <legend>Avis désactivé</legend>
         <label for="type-avis">Type de retour</label>
         <select id="type-avis" class="champ-select" style="width:100%;">
           <option value="idee">Une idée / suggestion</option>
@@ -51,11 +54,12 @@
         <input type="email" id="email-avis" placeholder="ton@email.com">
 
         <button type="submit" class="bouton-principal bouton-pleine-largeur">Envoyer mon avis</button>
+        </fieldset>
       </form>
 
       <div id="confirmation-avis" style="display:none; text-align:center;">
         <h2>Merci !</h2>
-        <p class="auth-sous-titre">Ton avis a bien été enregistré.</p>
+        <p class="auth-sous-titre">Les avis ne sont pas transmis pendant ce pilote.</p>
         <a href="index.html" class="bouton-secondaire bouton-pleine-largeur">Retour à l'accueil</a>
       </div>
     </div>

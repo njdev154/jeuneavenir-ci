@@ -318,6 +318,11 @@ function afficherStatutDemande(zone, demande, mentor) {
 }
 
 function afficherDemande(mentor, zone) {
+  if (!window.JeuneAvenirPilot?.submissionsEnabled) {
+    zone.innerHTML = '<p role="status">La mise en relation n’est pas disponible pendant ce pilote. Aucun message ni aucune coordonnée ne seront recueillis.</p>';
+    return;
+  }
+
   const utilisateur = lireUtilisateurConnecte();
   if (utilisateur?.erreurLecture) {
     zone.innerHTML = `<p class="mentorat-statut mentorat-statut-erreur" role="alert">Impossible de lire la session locale. Recharge la page ou reconnecte-toi.</p>`;
@@ -482,8 +487,8 @@ function afficherFiche(mentor, donnerFocus) {
       </div>
       <aside class="mentorat-demande" aria-labelledby="titre-demande-mentor">
         <p class="mentorat-surtitre">ÉCHANGER</p>
-        <h2 id="titre-demande-mentor">Demander une mise en relation</h2>
-        <p>La demande V1 sert uniquement à tester le parcours. Le mentor ne la reçoit pas.</p>
+        <h2 id="titre-demande-mentor">Échanger avec un mentor</h2>
+        <p>Les mises en relation ne sont pas activées pendant le pilote. Aucun message ne sera transmis.</p>
         <div id="zone-demande-mentor" aria-live="polite" aria-atomic="true"></div>
       </aside>
     </div>

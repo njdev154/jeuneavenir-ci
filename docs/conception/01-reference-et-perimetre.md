@@ -23,7 +23,7 @@ Une contradiction qui affecte le périmètre, la sécurité, les données ou les
 
 - Le CDC disponible dans le dépôt est `Cahier_des_charges_DEFINITIF_JeuneAvenirCI (1).md`, daté du 16 août 2026. Il est utilisé comme base provisoire et n'est pas présenté comme le CDC consolidé du 3 novembre.
 - Le propriétaire a fourni le 17 novembre une « MISSION DIRECTRICE — Référentiel produit, technique et organisationnel ». Elle apporte des principes, des extensions de vision et une première mission de consolidation; elle est complémentaire et ne remplace ni le CDC ni la Mission 10.
-- Le propriétaire a confirmé le 17 novembre que les cinq piliers restent dans le socle du lancement, que les données publiées doivent être vérifiées et traçables avec un responsable, et que l'architecture doit être étudiée et validée avant le backend.
+- Le propriétaire a confirmé le 17 novembre que les cinq piliers restent dans le socle du lancement, que les données publiées doivent être vérifiées et traçables avec un responsable, et que l'architecture devait précéder le backend. DEC-015 autorise ensuite un prototype local limité; la validation d'architecture reste requise avant la production.
 - `docs/maquettes/JeuneAvenir_CI_Maquettes_Horizon/` est la référence visuelle la plus récente identifiée. Le choix Horizon (bleus, Instrument Serif, Manrope, boussole) est confirmé par les consignes du propriétaire.
 - `journal.md`, `README.md`, les pages, les scripts, les tests et les données JSON sont des preuves de l'état du projet à la date d'examen, pas des spécifications garanties.
 - Aucun PDF intitulé « Cahier des charges JeuneAvenir CI », version 1.0 consolidée du 3 novembre 2026, ni script SQL Supabase n'a été trouvé dans le dépôt examiné. Le référentiel ne prétend donc pas avoir vérifié ces éléments.
@@ -99,9 +99,9 @@ Cette feuille de route ne contient ni date, ni budget, ni promesse de mise en pr
 | Étape | Résultat attendu | Dépendances / statut |
 |---|---|---|
 | 0. Référentiel | CDC applicable, périmètre détaillé, rôles, gouvernance, exigences et décisions ouvertes validés. | Le présent dossier est en cours de validation; plusieurs arbitrages restent ouverts. |
-| 1. Architecture détaillée | Options comparées, architecture retenue, schéma conceptuel, frontières de confiance, permissions et stratégie de tests validés. | À réaliser dans une phase distincte, avant tout backend; aucune technologie finale n'est retenue ici. |
+| 1. Architecture détaillée | Options comparées, architecture retenue, schéma conceptuel, frontières de confiance, permissions et stratégie de tests validés. | À achever avant la production; une première tranche Laravel locale est autorisée par DEC-015, sans valider l'architecture complète. |
 | 2. Préparation du lancement | Capacités P0 de chacun des cinq piliers définies et évaluables; jeux de données vérifiés; règles de confidentialité et de modération cadrées. | P0 à valider dans le registre; vérification juridique compétente requise pour les obligations locales. |
-| 3. Construction progressive du socle | Mise en œuvre module par module, avec tests d'API, d'autorisations, d'accessibilité et de parcours. | Après validation de l'architecture et du périmètre; hors mission documentaire actuelle. |
+| 3. Construction progressive du socle | Mise en œuvre module par module, avec tests d'API, d'autorisations, d'accessibilité et de parcours. | Le prototype local couvre le routage, la session Jeune de développement et l'orientation; les autres modules et validations de production restent à faire. |
 | 4. Préproduction et pilote | Vérification des opérations réelles, restauration, supervision, capacité mesurée, consentements et support. | Aucun environnement de production ni niveau de service n'est établi dans le dépôt. |
 | 5. Extensions de vision | Étude puis arbitrage de l'apprentissage, des portfolios, de l'assistant génératif et de la communauté. | FUTUR / PROPOSITION; aucun engagement de version ou de date. |
 
@@ -111,7 +111,9 @@ Les critères P0/P1 détaillés sont dans le [registre des exigences](05-registr
 
 La cible doit conserver le frontend HTML/CSS/JavaScript modulaire si l'analyse confirme qu'il convient. Le CDC et la Mission Directrice nomment Supabase Auth, PostgreSQL, API et Storage comme options ou cibles à examiner; le choix final est ouvert.
 
-Aucun backend, schéma SQL, migration, configuration distante, fournisseur d'authentification, fournisseur IA ou stockage de fichiers n'est approuvé par le présent document. L'architecture détaillée sera conçue et validée séparément avant le backend.
+Un backend Laravel local existe conformément à l'autorisation de développement DEC-015 : routage même origine, première API d'orientation et sessions Jeune de développement désactivées par défaut. Cela ne valide pas l'architecture complète et n'autorise ni collecte réelle ni déploiement. Le moteur SQL de production, la configuration distante, la vérification d'e-mail, la récupération de compte, le fournisseur IA et le stockage de fichiers ne sont pas retenus.
+
+La cible de conception validée est détaillée dans [l'architecture](07-architecture-cible.md), le [modèle logique](08-modele-de-donnees.md) et les [contrats API](09-contrats-api.md). Laravel modulaire et la préservation du frontend avec adoption progressive de TypeScript sont validés comme cible. PostgreSQL reste une préférence à confirmer après comparaison des contraintes d'hébergement, de compatibilité, de coûts et de maintenance. Le registre officiel des autres arbitrages demeure le document 06.
 
 ## 8. Risques structurants
 
@@ -120,7 +122,7 @@ Aucun backend, schéma SQL, migration, configuration distante, fournisseur d'aut
 - Des résultats du quiz pourraient être interprétés comme une décision d'admission malgré leur caractère exploratoire.
 - Les mineurs, les échanges avec mentors/organisations, les documents et les consentements exigent des règles spécifiques avant activation.
 - Le CDC disponible ne règle pas plusieurs conflits de nombre, de version, de capacité et de périmètre; ces points sont dans le document 06.
-- L'absence de scripts SQL et de configuration Supabase dans la copie examinée signifie qu'aucune préparation backend déjà engagée ne peut être présumée.
+- Les risques d'exploitation restent ouverts : aucune configuration de production, sauvegarde/restauration, supervision ni hébergement n'est établi dans le dépôt.
 
 ## 9. Évolutions de ce document
 

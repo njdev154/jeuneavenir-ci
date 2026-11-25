@@ -1,0 +1,316 @@
+.app-header {
+  position: relative;
+  z-index: 20;
+  gap: clamp(14px, 2vw, 28px);
+}
+
+.app-header .logo {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.app-header .nav-principale {
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.5vw, 24px);
+  margin: 0 auto;
+}
+
+.app-header .nav-principale a {
+  position: relative;
+  padding: 10px 0;
+  color: #fff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.app-header .nav-principale a:hover,
+.app-header .nav-principale a[aria-current="page"] {
+  color: #a9d5ff;
+}
+
+.app-header .nav-principale a[aria-current="page"]::after {
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 2px;
+  background: #a9d5ff;
+  content: "";
+}
+
+.app-header .nav-principale a:focus-visible,
+.app-header .logo:focus-visible,
+.app-header .entete-actions a:focus-visible,
+.app-header .menu-burger:focus-visible {
+  outline: 3px solid #a9d5ff;
+  outline-offset: 4px;
+}
+
+.app-header .menu-burger {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 9px;
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 7px;
+}
+
+.app-header .menu-burger-ligne {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+  background: #fff;
+  transition: transform var(--motion-duration-fast) var(--motion-easing),
+    opacity var(--motion-duration-fast) var(--motion-easing);
+}
+
+.app-header .menu-burger.burger-actif .menu-burger-ligne:first-child {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.app-header .menu-burger.burger-actif .menu-burger-ligne:nth-child(2) {
+  opacity: 0;
+}
+
+.app-header .menu-burger.burger-actif .menu-burger-ligne:last-child {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.app-header .entete-actions {
+  flex: 0 0 auto;
+}
+
+.account-pillar-overview {
+  margin: 30px 0 22px;
+}
+
+.account-pillar-overview .account-section-heading {
+  align-items: end;
+}
+
+.account-pillar-overview .account-section-heading h2 {
+  margin: 0;
+  color: var(--bleu-900);
+  font: 400 clamp(1.7rem, 3vw, 2.2rem)/1.1 var(--police-titres);
+}
+
+.account-pillar-overview .account-section-heading > p {
+  max-width: 360px;
+  margin: 0;
+  color: var(--gris-500);
+  font-size: 0.82rem;
+}
+
+.account-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
+}
+
+.account-pillar-card {
+  display: grid;
+  min-width: 0;
+  min-height: 142px;
+  grid-template-areas:
+    "number title status"
+    "number description description"
+    "number action action";
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  grid-template-rows: auto auto 1fr;
+  align-items: start;
+  column-gap: 12px;
+  padding: 15px 4px 17px;
+  border-top: 1px solid #dce5ef;
+  color: var(--gris-900);
+  background: transparent;
+  text-decoration: none;
+  transition: border-color var(--motion-duration-fast) var(--motion-easing);
+}
+
+.account-pillar-card:hover {
+  border-color: #9dbbd9;
+}
+
+.account-pillar-card:focus-visible {
+  outline: 3px solid var(--bleu-500);
+  outline-offset: 3px;
+}
+
+.account-pillar-number {
+  grid-area: number;
+  margin-bottom: 12px;
+  color: var(--bleu-700);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.account-pillar-card h3 {
+  grid-area: title;
+  min-width: 0;
+  margin: 0 0 9px;
+  color: var(--bleu-900);
+  font: 400 1.35rem/1.1 var(--police-titres);
+}
+
+.account-pillar-status {
+  grid-area: status;
+  display: inline-flex;
+  align-self: start;
+  margin-bottom: 9px;
+  padding: 3px 7px;
+  border: 1px solid #d7e4f0;
+  border-radius: 999px;
+  color: var(--bleu-700);
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.account-pillar-card p {
+  grid-area: description;
+  margin: 0 0 10px;
+  color: var(--gris-500);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.account-pillar-link {
+  grid-area: action;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--bleu-700);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.account-pillar-card:hover .account-pillar-link span {
+  transform: translateX(3px);
+}
+
+.account-pillar-link span {
+  transition: transform var(--motion-duration-fast) var(--motion-easing);
+}
+
+@media (min-width: 901px) and (max-width: 1119px) {
+  .app-header {
+    gap: 12px;
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .app-header .nav-principale {
+    gap: 12px;
+  }
+
+  .app-header .nav-principale a {
+    font-size: 0.76rem;
+  }
+
+  .app-header .entete-actions {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .app-header .nav-principale {
+    display: flex;
+  }
+
+  .app-header .menu-burger {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-header {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 10px 16px;
+  }
+
+  .app-header .logo {
+    margin-right: auto;
+  }
+
+  .app-header .menu-burger {
+    display: flex;
+    flex: 0 0 44px;
+    place-content: center;
+  }
+
+  .app-header .nav-principale {
+    display: none;
+    flex: 0 0 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px 12px;
+    margin: 0;
+    padding: 4px 0 0;
+  }
+
+  .app-header .nav-principale.nav-ouverte {
+    display: grid;
+  }
+
+  .app-header .nav-principale a {
+    padding: 11px 8px;
+    border-top: 1px solid rgb(255 255 255 / 18%);
+  }
+
+  .app-header .nav-principale a[aria-current="page"]::after {
+    right: 8px;
+    bottom: 5px;
+    left: 8px;
+  }
+
+  .app-header .entete-actions {
+    display: none;
+    flex: 0 0 100%;
+    padding: 4px 8px 8px;
+  }
+
+  .app-header.menu-ouvert .entete-actions {
+    display: flex;
+  }
+
+  .account-pillar-overview .account-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 560px) {
+  .account-pillar-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .account-pillar-card {
+    min-height: 0;
+    grid-template-columns: 26px minmax(0, 1fr) auto;
+    column-gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .account-pillar-card,
+  .account-pillar-link span,
+  .app-header .menu-burger-ligne {
+    scroll-behavior: auto;
+    transition: none;
+  }
+
+  .account-pillar-card:hover .account-pillar-link span {
+    transform: none;
+  }
+}

@@ -6,6 +6,8 @@ let OFFRE_EN_COURS_EDITION = null;
 document.addEventListener("DOMContentLoaded", initialiserPublicationOffres);
 
 async function initialiserPublicationOffres() {
+  if (!window.JeuneAvenirPilot?.submissionsEnabled) return;
+
   const zone = document.getElementById("zone-publication");
   if (!zone) return;
 

@@ -7,6 +7,7 @@ const vm = require("node:vm");
 const root = path.join(__dirname, "..");
 const faqSource = fs.readFileSync(path.join(root, "js", "faq.js"), "utf8");
 const contactSource = fs.readFileSync(path.join(root, "js", "contact.js"), "utf8");
+const mainSource = fs.readFileSync(path.join(root, "js", "main.js"), "utf8");
 
 function creerPageFAQ(categories) {
   const callbacks = {};
@@ -127,33 +128,60 @@ function creerFormulaireContact(estValide) {
       return champs[id];
     }
   };
-  const contexte = vm.createContext({ document });
+  const window = { JeuneAvenirPilot: { submissionsEnabled: false } };
+  const contexte = vm.createContext({ document, window });
   vm.runInContext(contactSource, contexte, { filename: "js/contact.js" });
   callbacks.DOMContentLoaded();
   return { formulaire, statut };
 }
 
-test("le formulaire Contact valide les champs sans créer de fausse confirmation ni sauvegarder", () => {
+test("le formulaire Contact est désactivé dans le pilote et ne collecte rien", () => {
   const html = fs.readFileSync(path.join(root, "contact.html"), "utf8");
   const formulaireHTML = html.match(/<form id="formulaire-contact"[\s\S]*?<\/form>/)[0];
   const page = creerFormulaireContact(true);
-  page.formulaire.submit({ preventDefault() {} });
 
-  assert.equal(page.statut.hidden, false);
-  assert.match(page.statut.textContent, /aucun message n’a été envoyé ni enregistré/i);
-  assert.doesNotMatch(page.statut.textContent, /message envoyé/i);
+  assert.equal(page.formulaire.submit, undefined);
+  assert.match(formulaireHTML, /<fieldset class="pilot-disabled-controls" disabled/);
+  assert.match(html, /Le contact n’est pas ouvert pendant ce pilote/);
   assert.doesNotMatch(contactSource, /localStorage|jac_messages_contact/);
   assert.match(formulaireHTML, /action="contact\.html" method="get"/);
-  assert.doesNotMatch(formulaireHTML, /\bname=/);
 });
 
-test("le formulaire Contact renvoie les champs invalides vers la validation native", () => {
-  const page = creerFormulaireContact(false);
-  page.formulaire.submit({ preventDefault() {} });
+test("les fonctions du pilote désactivent comptes et envois et n’effacent que les clés JeuneAvenir", () => {
+  const stockage = {
+    jac_orientation_parcours_v1: "{}",
+    jac_utilisateurs: "[]",
+    autre_application: "à conserver"
+  };
+  const cles = Object.keys(stockage);
+  const localStorage = {
+    get length() { return cles.length; },
+    key(index) { return cles[index] ?? null; },
+    removeItem(cle) {
+      delete stockage[cle];
+      cles.splice(cles.indexOf(cle), 1);
+    }
+  };
+  const stockageSession = { jac_orientation_api_resultat_session: "{}" };
+  const clesSession = Object.keys(stockageSession);
+  const sessionStorage = {
+    get length() { return clesSession.length; },
+    key(index) { return clesSession[index] ?? null; },
+    removeItem(cle) {
+      delete stockageSession[cle];
+      clesSession.splice(clesSession.indexOf(cle), 1);
+    }
+  };
+  const document = { addEventListener() {} };
+  const window = { localStorage, sessionStorage };
+  const contexte = vm.createContext({ document, window });
+  vm.runInContext(mainSource, contexte, { filename: "js/main.js" });
 
-  assert.equal(page.formulaire.aDemandeValidation, true);
-  assert.match(page.statut.textContent, /Aucun message n’a été envoyé/);
-  assert.equal(page.statut.className, "institutional-notice institutional-notice-error");
+  assert.equal(window.JeuneAvenirPilot.accountsEnabled, false);
+  assert.equal(window.JeuneAvenirPilot.submissionsEnabled, false);
+  assert.equal(window.JeuneAvenirPilot.effacerDonneesLocales(), 3);
+  assert.deepEqual(stockage, { autre_application: "à conserver" });
+  assert.deepEqual(stockageSession, {});
 });
 
 test("les pages institutionnelles documentent les mécanismes de stockage réellement utilisés", () => {
@@ -164,18 +192,18 @@ test("les pages institutionnelles documentent les mécanismes de stockage réell
     .join("\n");
   const clesDocumentees = [
     "jac_utilisateurs", "jac_utilisateur_connecte", "jac_dernier_resultat_quiz",
-    "jac_favoris", "jac_candidatures", "jac_demandes_mentorat",
-    "jac_offres_entreprise", "jac_avis", "jac_messages_contact"
+    "jac_orientation_parcours_v1", "jac_favoris", "jac_candidatures", "jac_demandes_mentorat",
+    "jac_offres_entreprise", "jac_avis", "jac_orientation_api_resultat_session"
   ];
 
-  for (const cle of clesDocumentees.filter(cle => cle !== "jac_messages_contact")) {
+  for (const cle of clesDocumentees) {
     assert.ok(scripts.includes(cle), `La clé ${cle} existe dans les scripts.`);
     assert.ok(confidentialite.includes(cle), `La clé ${cle} est documentée.`);
   }
-  assert.match(confidentialite, /jac_messages_contact/);
+  assert.doesNotMatch(scripts, /jac_messages_contact/);
   assert.match(confidentialite, /Google Fonts/);
-  assert.match(confidentialite, /ne sont pas effacées automatiquement/);
-  assert.match(confidentialite, /aucune suppression automatique programmée/i);
+  assert.match(confidentialite, /Effacer les données de cet appareil/);
+  assert.match(confidentialite, /commençant par <code>jac_<\/code>/);
 });
 
 test("les liens internes des quatre pages institutionnelles pointent vers des fichiers existants", () => {

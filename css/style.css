@@ -48,6 +48,79 @@ body {
   line-height: 1.6;
 }
 
+.pilot-notice,
+.pilot-page-message,
+.pilot-form-message {
+  border-left: 4px solid var(--bleu-700);
+  padding: 12px 16px;
+  color: var(--gris-900);
+  background: var(--bleu-100);
+}
+
+.pilot-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.pilot-notice p {
+  flex: 1 1 100%;
+}
+
+.pilot-notice a {
+  color: var(--bleu-900);
+  font-weight: 700;
+}
+
+.pilot-clear-button {
+  border: 1px solid var(--bleu-700);
+  padding: 7px 10px;
+  color: var(--bleu-900);
+  background: transparent;
+  font: inherit;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.pilot-clear-button:focus-visible,
+.pilot-notice a:focus-visible {
+  outline: 3px solid var(--bleu-700);
+  outline-offset: 3px;
+}
+
+.pilot-clear-status {
+  flex: 1 1 100%;
+  font-weight: 700;
+}
+
+.pilot-form-message,
+.pilot-page-message {
+  margin: 0 0 14px;
+}
+
+.pilot-account-status,
+.pilot-disabled-link {
+  color: var(--blanc);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.pilot-disabled-link {
+  display: inline-block;
+  padding: 10px 0;
+  opacity: 0.72;
+}
+
+.pilot-disabled-controls {
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
 h1, h2, h3 {
   font-family: var(--police-titres);
   font-weight: 700;

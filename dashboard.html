@@ -12,26 +12,34 @@
   <link rel="stylesheet" href="css/motion.css">
   <link rel="stylesheet" href="css/account.css">
   <link rel="stylesheet" href="css/assistant.css">
+  <link rel="stylesheet" href="css/app-shell.css">
 </head>
 <body class="page-account">
-  <header class="account-header">
+  <header class="entete app-header account-header">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
-    <a href="index.html" class="account-header-link">Retour à la plateforme</a>
+    <button class="menu-burger" type="button" aria-label="Ouvrir le menu" aria-controls="nav-principale" aria-expanded="false">
+      <span class="menu-burger-ligne"></span>
+      <span class="menu-burger-ligne"></span>
+      <span class="menu-burger-ligne"></span>
+    </button>
+    <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
+      <a href="quiz.html">Orientation</a>
+      <a href="filieres.html">Découverte</a>
+      <a href="mentorat.html">Mentorat</a>
+      <a href="offres.html">Insertion pro</a>
+      <a href="dashboard.html">Compte</a>
+    </nav>
   </header>
 
   <main class="account-dashboard-page">
     <section id="bloc-non-connecte" class="account-empty account-login-prompt" aria-labelledby="titre-non-connecte" data-motion="rise">
       <p class="account-eyebrow">ESPACE PERSONNEL</p>
-      <h1 id="titre-non-connecte">Connecte-toi pour retrouver ton espace.</h1>
-      <p>Les tableaux de bord V1 lisent uniquement les données locales de ce navigateur.</p>
-      <a href="connexion.html" class="account-button">Se connecter</a>
+      <h1 id="titre-non-connecte">Le compte n’est pas activé dans ce pilote.</h1>
+      <p>Aucun espace personnel ni tableau de bord connecté n’est disponible. Explore les parcours ouverts du site sans créer de compte.</p>
     </section>
 
     <div id="bloc-dashboard" class="account-dashboard" hidden>
       <aside class="account-sidebar">
-        <div class="account-sidebar-brand">
-          <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
-        </div>
         <div class="account-sidebar-user">
           <div class="account-avatar" id="avatar-initiale" aria-hidden="true">?</div>
           <p id="sidebar-nom" class="account-sidebar-name"></p>
@@ -53,6 +61,16 @@
           <div id="dashboard-actions" class="account-actions"></div>
         </div>
         <p id="dashboard-erreur" class="account-alert" role="alert" hidden></p>
+        <section class="account-pillar-overview" aria-labelledby="titre-espaces">
+          <div class="account-section-heading">
+            <div>
+              <p class="account-eyebrow">LES CINQ PILIERS</p>
+              <h2 id="titre-espaces">Choisis ton espace</h2>
+            </div>
+            <p>Les services de mentorat et d’emploi restent des démonstrations locales.</p>
+          </div>
+          <div class="account-pillar-grid" id="dashboard-espaces"></div>
+        </section>
         <div class="account-stats" id="dashboard-stats" aria-label="Résumé du compte"></div>
         <div class="account-dashboard-panels" id="dashboard-sections"></div>
       </section>

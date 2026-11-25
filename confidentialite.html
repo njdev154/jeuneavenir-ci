@@ -30,7 +30,7 @@
     <section class="institutional-hero" data-motion="rise" aria-labelledby="titre-confidentialite">
       <p class="institutional-eyebrow">INFORMATIONS V1</p>
       <h1 id="titre-confidentialite">Confidentialité et données locales.</h1>
-      <p>Dernière mise à jour : 17 novembre 2026. Cette page décrit le fonctionnement constaté dans la version actuelle du site; elle ne promet ni sécurité serveur ni durée légale de conservation.</p>
+      <p>Dernière mise à jour : 25 novembre 2026. Cette page distingue le pilote statique du mode de développement Laravel local; elle ne promet ni ouverture publique ni durée légale de conservation.</p>
     </section>
 
     <section class="institutional-section" aria-labelledby="stockage-local">
@@ -40,19 +40,19 @@
       <div class="institutional-grid">
         <article class="institutional-panel" data-motion="rise">
           <h3>Profil et session</h3>
-          <p><code>jac_utilisateurs</code> contient les profils créés localement. <code>jac_utilisateur_connecte</code> contient le profil de session actuel. L’inscription ne conserve pas le mot de passe saisi; la connexion simulée ne le vérifie pas. Ces mécanismes ne constituent pas une authentification sécurisée.</p>
+          <p>Les comptes et profils ne sont pas activés pendant le pilote. D’anciennes clés locales (<code>jac_utilisateurs</code>, <code>jac_utilisateur_connecte</code>) peuvent subsister sur un appareil ayant déjà servi aux essais; le pilote ne les lit pas.</p>
         </article>
         <article class="institutional-panel" data-motion="rise">
           <h3>Orientation et favoris</h3>
-          <p><code>jac_dernier_resultat_quiz</code> conserve le dernier résultat calculé. Les réponses saisies au quiz ne sont pas sauvegardées par le moteur. <code>jac_favoris</code> conserve les identifiants des éléments mis de côté.</p>
+          <p>Dans le pilote statique, <code>jac_orientation_parcours_v1</code> conserve localement le profil facultatif, les réponses, la progression et le texte facultatif du quiz; <code>jac_dernier_resultat_quiz</code> conserve le résultat et les réponses; <code>jac_favoris</code> conserve les éléments mis de côté. Dans le mode Laravel local, les réponses sont envoyées à l’API du même site uniquement pour le calcul, sans enregistrement par l’application côté serveur; le résultat et ses réponses restent temporairement dans <code>sessionStorage</code> jusqu’à la fermeture de l’onglet. <code>jac_orientation_api_resultat_session</code> identifie cette donnée temporaire. Aucun de ces parcours n’est relié au compte Jeune.</p>
         </article>
         <article class="institutional-panel" data-motion="rise">
           <h3>Démarches et offres locales</h3>
-          <p><code>jac_candidatures</code>, <code>jac_demandes_mentorat</code> et <code>jac_offres_entreprise</code> peuvent contenir les coordonnées, le texte préparé et les détails saisis pour ces démonstrations. Ils ne sont pas envoyés aux employeurs, aux mentors ni à la plateforme.</p>
+          <p>Les candidatures, demandes de mentorat et publications d’offres sont désactivées. D’anciennes données de démonstration (<code>jac_candidatures</code>, <code>jac_demandes_mentorat</code>, <code>jac_offres_entreprise</code>) peuvent rester sur un appareil utilisé pour des essais; le pilote ne les lit pas.</p>
         </article>
         <article class="institutional-panel" data-motion="rise">
           <h3>Avis sur l’interface</h3>
-          <p><code>jac_avis</code> peut enregistrer localement le type d’avis, son message et l’adresse e-mail facultative saisie sur la page Avis. Ces retours ne sont pas partagés avec l’équipe par le site.</p>
+          <p>Le formulaire Avis est désactivé et ne collecte aucun retour. Une ancienne clé <code>jac_avis</code> peut subsister depuis les essais précédents; le pilote ne la lit pas.</p>
         </article>
       </div>
     </section>
@@ -61,8 +61,8 @@
       <p class="institutional-eyebrow">FORMULAIRES</p>
       <h2 id="contact-local">Contact et anciennes données locales</h2>
       <div class="institutional-panel">
-        <p>Le formulaire Contact de cette version n’est connecté à aucun service d’envoi. Il ne transmet et n’enregistre pas le message; les champs restent uniquement dans la page ouverte.</p>
-        <p>Une ancienne version du formulaire a pu enregistrer des messages dans <code>jac_messages_contact</code> sur le navigateur. La version actuelle ne lit plus et n’ajoute plus d’entrée à cette clé; les données déjà présentes ne sont pas effacées automatiquement. Effacer les données du site dans les paramètres du navigateur peut supprimer cette clé, mais aussi les profils, favoris et autres données locales du site.</p>
+        <p>Dans le pilote statique, les formulaires Contact, Avis, compte, candidature, mentorat et publication sont désactivés. Le quiz API est disponible seulement si le site est servi par Laravel en local; l’inscription Jeune exige en plus l’activation explicite du compte de développement. N’utilise que des données fictives et ne saisis aucune coordonnée personnelle.</p>
+        <p>Le bouton « Effacer les données de cet appareil » supprime les clés JeuneAvenir commençant par <code>jac_</code> dans le stockage local et dans l’onglet, y compris le résultat temporaire du quiz API. La suppression nécessite une confirmation; elle ne supprime pas d’éventuels journaux techniques du serveur.</p>
       </div>
     </section>
 
@@ -72,7 +72,7 @@
       <div class="institutional-grid">
         <article class="institutional-panel" data-motion="rise">
           <h3>Fichiers du site</h3>
-          <p>Les catalogues et questions sont chargés depuis les fichiers de données du site. L’assistant de la V1 consulte ces fichiers dans le navigateur et n’envoie pas la question saisie à une IA externe. L’hébergeur reçoit les requêtes nécessaires au chargement et peut traiter des journaux techniques selon ses propres modalités; l’hébergeur et ses durées de conservation ne sont pas définis dans ce dépôt.</p>
+          <p>Les catalogues sont chargés depuis les fichiers du site. Dans le pilote statique, le quiz calcule dans le navigateur. Sur Laravel local, il charge sept questions depuis l’API et lui transmet uniquement la série choisie, les identifiants des questions et les indices de réponse pour calculer des pistes; le profil facultatif et le texte libre ne sont pas envoyés. L’API ne stocke pas les réponses et ne les transmet pas à un service externe. Le résultat contenant les réponses est gardé dans <code>sessionStorage</code> jusqu’à la fermeture de l’onglet. L’hébergeur reçoit nécessairement les requêtes techniques et pourrait appliquer ses propres journaux; aucune conservation d’hébergement n’est déterminée ici.</p>
         </article>
         <article class="institutional-panel" data-motion="rise">
           <h3>Polices et liens externes</h3>
@@ -84,15 +84,15 @@
     <section class="institutional-section" aria-labelledby="controle-donnees">
       <p class="institutional-eyebrow">TES CHOIX</p>
       <h2 id="controle-donnees">Conservation et suppression</h2>
-      <p>Les données locales restent dans le navigateur jusqu’à leur suppression manuelle ou jusqu’à ce qu’une fonctionnalité du site les modifie. Cette V1 n’a aucune suppression automatique programmée. Les données peuvent ne pas être accessibles depuis un autre appareil et peuvent être perdues lors de la suppression des données du site.</p>
-      <p>Ne saisis pas de mot de passe réutilisé, de document d’identité, de donnée sensible ou d’information que tu ne souhaites pas laisser dans le navigateur. Le site ne propose pas encore d’outil dédié pour exporter ou supprimer sélectivement toutes les données d’un profil.</p>
+      <p>Dans le pilote statique, le quiz et les favoris sont conservés dans le navigateur. Dans le mode Laravel local, les réponses transitent vers l’API sans être stockées par celle-ci et le résultat reste temporairement dans l’onglet. Aucun résultat n’est synchronisé avec le compte. Le bouton d’effacement retire les clés JeuneAvenir des stockages de cet appareil; il ne peut pas effacer les journaux éventuels de l’hébergeur.</p>
+      <p>Ne saisis pas de coordonnées, de mot de passe, de document d’identité ni d’information sensible. Si tu utilises un appareil partagé, efface les données JeuneAvenir avant de le quitter.</p>
     </section>
 
     <section class="institutional-section" aria-labelledby="evolutions-confidentialite">
       <p class="institutional-eyebrow">À L’AVENIR</p>
       <h2 id="evolutions-confidentialite">Les évolutions envisagées ne sont pas actives</h2>
-      <p>Le cahier des charges évoque pour une version future une authentification et une base de données. Elles ne sont pas connectées dans cette V1. Toute mise en service devra préciser les données concernées, les responsabilités, les durées et les moyens de contrôle avant d’être présentée comme opérationnelle.</p>
-      <p>Pour les fonctionnalités et leurs limites actuelles, consulte aussi la <a class="institutional-link" href="faq.html">FAQ</a>. Le <a class="institutional-link" href="contact.html">formulaire Contact</a> n’envoie pas de message pour le moment.</p>
+      <p>Une première API d’orientation et une première session de compte existent uniquement pour les essais locaux, désactivées par défaut et non prêtes pour le public. Toute mise en service devra préciser les données concernées, les responsabilités, les durées et les moyens de contrôle avant d’être présentée comme opérationnelle.</p>
+      <p>Pour les fonctionnalités et leurs limites actuelles, consulte aussi la <a class="institutional-link" href="faq.html">FAQ</a>. Le <a class="institutional-link" href="contact.html">formulaire Contact</a> est désactivé pendant ce pilote.</p>
     </section>
   </main>
 

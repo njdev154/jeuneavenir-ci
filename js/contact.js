@@ -1,5 +1,7 @@
 // contact.js
 document.addEventListener("DOMContentLoaded", () => {
+  if (!window.JeuneAvenirPilot?.submissionsEnabled) return;
+
   const formulaire = document.getElementById("formulaire-contact");
   if (!formulaire) return;
 

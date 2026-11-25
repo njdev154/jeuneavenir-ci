@@ -13,17 +13,23 @@
   <link rel="stylesheet" href="css/motion.css">
   <link rel="stylesheet" href="css/mentorat.css">
   <link rel="stylesheet" href="css/assistant.css">
+  <link rel="stylesheet" href="css/app-shell.css">
 </head>
 <body class="page-mentorat">
 
-  <header class="entete">
+  <header class="entete app-header">
     <a href="index.html" class="logo"><img src="assets/icons/logo.svg" alt="" class="logo-icone" width="32" height="32">JeuneAvenir CI</a>
-    <button class="menu-burger" aria-label="Ouvrir le menu">☰</button>
-    <nav class="nav-principale">
+    <button class="menu-burger" type="button" aria-label="Ouvrir le menu" aria-controls="nav-principale" aria-expanded="false">
+      <span class="menu-burger-ligne"></span>
+      <span class="menu-burger-ligne"></span>
+      <span class="menu-burger-ligne"></span>
+    </button>
+    <nav class="nav-principale" id="nav-principale" aria-label="Navigation principale">
       <a href="quiz.html">Orientation</a>
       <a href="filieres.html">Découverte</a>
       <a href="mentorat.html">Mentorat</a>
       <a href="offres.html">Insertion pro</a>
+      <a href="dashboard.html">Compte</a>
     </nav>
     <div class="entete-actions">
       <a href="connexion.html" class="lien-connexion">Se connecter</a>
@@ -56,7 +62,7 @@
             <p class="mentorat-surtitre">ANNUAIRE</p>
             <h2 id="titre-annuaire">Les professionnels qui partagent leur expérience</h2>
           </div>
-          <p class="mentorat-v1-note">V1 : les demandes de démonstration restent dans ce navigateur. Elles ne sont transmises à aucun mentor.</p>
+          <p class="mentorat-v1-note">Aucun profil de mentor n’est actuellement publié. Les mises en relation sont désactivées pendant ce pilote.</p>
         </div>
 
         <div class="mentorat-outils" role="search" aria-label="Rechercher un mentor">

@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", afficherHistoriqueCandidatures);
 
 function afficherHistoriqueCandidatures() {
+  if (!window.JeuneAvenirPilot?.accountsEnabled) return;
+
   const conteneur = document.getElementById("historique-candidatures");
   if (!conteneur) return;
   conteneur.removeAttribute("aria-busy");

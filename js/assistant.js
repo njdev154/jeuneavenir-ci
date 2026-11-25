@@ -17,18 +17,8 @@
 //   stocké par le site lui-même (clé "jac_dernier_resultat_quiz"), pour
 //   personnaliser les conseils. Lecture seule, jamais modifiée ici.
 //
-// VERROU COMPTE (demandé par Junior, 2026-11-15) :
-// L'assistant ne répond qu'aux visiteurs CONNECTÉS : sans compte et sans
-// connexion, il affiche un message et les boutons Inscription / Connexion
-// au lieu de répondre. La vérification lit la clé que le site utilise
-// déjà ("jac_utilisateur_connecte", posée par js/auth.js).
-// Limite honnête : en V1, les comptes sont SIMULÉS (localStorage, mot de
-// passe non vérifié — voir le CDC, section 3). Ce verrou est donc un
-// verrou de parcours : il arrête les visiteurs ordinaires, pas un
-// technicien déterminé. La vraie serrure arrivera avec la V2 (Supabase
-// Auth) et, pour la Phase B, le serveur vérifiera la session AVANT tout
-// appel à Gemini — c'est aussi ce qui protégera le quota et, plus tard,
-// le paiement.
+// En mode pilote, l'assistant est disponible sans compte et traite les
+// questions uniquement dans le navigateur, sans les sauvegarder.
 //
 // LIMITES HONNÊTES :
 // Ce n'est PAS une intelligence artificielle générative : l'assistant
@@ -259,7 +249,7 @@
 
   var ACTION_QUIZ = { label: "Faire le quiz d'orientation", href: "quiz.html" };
   var ACTION_FILIERES = { label: "Voir toutes les filières", href: "filieres.html" };
-  var ACTION_CONTACT = { label: "Contacter l'équipe", href: "contact.html" };
+  var ACTION_CONFIDENTIALITE = { label: "Voir les informations de confidentialité", href: "confidentialite.html" };
 
   // ------------------------------------------------------------------
   // 4. LE CERVEAU : question -> réponse structurée
@@ -470,7 +460,7 @@
     rep.paragraphes.push("Essaie avec des mots simples, par exemple : « filières après un bac A2 », « écoles d'informatique à Abidjan », « stage en droit », « mentor en santé ». Ou commence par le quiz d'orientation.");
     rep.actions.push(ACTION_QUIZ);
     rep.actions.push(ACTION_FILIERES);
-    rep.actions.push(ACTION_CONTACT);
+    rep.actions.push(ACTION_CONFIDENTIALITE);
     return rep;
   }
 
@@ -538,20 +528,6 @@
     } catch (e) { return null; }
   }
 
-  // Utilisateur connecté selon le mécanisme actuel du site (V1 simulée).
-  // Renvoie l'objet utilisateur ({ nom, email, typeCompte }) ou null.
-  function lireUtilisateurConnecte() {
-    try {
-      var u = JSON.parse(localStorage.getItem("jac_utilisateur_connecte") || "null");
-      return u && u.email ? u : null;
-    } catch (e) { return null; }
-  }
-
-  var ACTIONS_VERROU = [
-    { label: "Créer un compte", href: "inscription.html" },
-    { label: "Se connecter", href: "connexion.html" }
-  ];
-
   function construireInterface() {
     if (document.querySelector(".jac-assistant-bouton")) return;
 
@@ -593,6 +569,9 @@
     fermer.className = "jac-assistant-fermer";
     fermer.setAttribute("aria-label", "Fermer l'assistant");
     fermer.textContent = "✕";
+    var noteConfidentialite = document.createElement("p");
+    noteConfidentialite.className = "jac-assistant-note";
+    noteConfidentialite.textContent = "Assistant local : les questions restent dans cette page et ne sont ni envoyées ni enregistrées. N’écris pas d’informations personnelles.";
     entete.appendChild(imgEntete);
     entete.appendChild(textes);
     entete.appendChild(fermer);
@@ -633,6 +612,7 @@
     formulaire.appendChild(envoyer);
 
     panneau.appendChild(entete);
+    panneau.appendChild(noteConfidentialite);
     panneau.appendChild(messages);
     panneau.appendChild(suggestions);
     panneau.appendChild(formulaire);
@@ -693,15 +673,6 @@
     function poserQuestion(question) {
       var q = String(question || "").trim();
       if (!q) return;
-      // Verrou compte : sans connexion, aucune réponse, juste le chemin.
-      if (!lireUtilisateurConnecte()) {
-        afficherReponse({
-          paragraphes: ["Pour utiliser l'assistant, il faut d'abord créer un compte ou te connecter. C'est gratuit et ça prend une minute."],
-          cartes: [],
-          actions: ACTIONS_VERROU
-        });
-        return;
-      }
       ajouterBulle(q, "utilisateur");
       envoyer.disabled = true;
       var attente = ajouterBulle("Je cherche dans les données du site…", "assistant");
@@ -723,20 +694,8 @@
       if (ouvert) {
         if (!dejaAccueilli) {
           dejaAccueilli = true;
-          var utilisateur = lireUtilisateurConnecte();
-          if (utilisateur) {
-            ajouterBulle("Bonjour" + (utilisateur.nom ? " " + utilisateur.nom : "") + ", je consulte le catalogue de JeuneAvenir CI et je signale les informations qui restent à confirmer.", "assistant");
-            ajouterBulle("Dis-moi par exemple ta série du bac, une ville, ou le métier qui t'intéresse.", "assistant");
-          } else {
-            afficherReponse({
-              paragraphes: [
-                "Bonjour, je suis l'assistant de JeuneAvenir CI. Je consulte le catalogue du site et je signale les informations qui restent à confirmer.",
-                "L'assistant est réservé aux membres : crée un compte gratuit ou connecte-toi, et je pourrai te répondre tout de suite."
-              ],
-              cartes: [],
-              actions: ACTIONS_VERROU
-            });
-          }
+          ajouterBulle("Bonjour, je consulte le catalogue de JeuneAvenir CI et je signale les informations qui restent à confirmer.", "assistant");
+          ajouterBulle("Dis-moi par exemple une série du bac, une ville ou un métier qui t'intéresse. N'indique ni nom, ni adresse, ni autre information personnelle.", "assistant");
         }
         champ.focus();
       }

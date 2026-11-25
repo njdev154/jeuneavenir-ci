@@ -27,22 +27,25 @@
       <div class="auth-card" data-motion="rise">
         <p class="auth-kicker">ACCÈS AU COMPTE</p>
         <h1 id="auth-page-title">Mot de passe oublié ?</h1>
-        <p class="auth-intro">Saisis l'adresse e-mail utilisée pour ton compte afin de consulter les options disponibles.</p>
-        <p class="auth-notice"><strong>À savoir :</strong> la réinitialisation par e-mail n'est pas activée en V1. Aucun message ne sera envoyé.</p>
+        <p class="auth-intro">La réinitialisation de mot de passe n’est pas disponible pendant le pilote.</p>
+        <p class="auth-notice"><strong>N’entre pas ton adresse e-mail.</strong> Aucun compte ni service de messagerie n’est activé.</p>
 
         <form id="formulaire-mdp-oublie">
+          <fieldset class="pilot-disabled-controls" disabled>
+            <legend>Réinitialisation désactivée</legend>
           <div class="auth-champ auth-champ-large">
             <label for="email-mdp-oublie">Adresse e-mail</label>
             <input type="email" id="email-mdp-oublie" name="email" placeholder="nom@exemple.ci" required autocomplete="email" aria-describedby="auth-reset-note">
           </div>
           <span class="auth-aide auth-reset-aide" id="auth-reset-note">Cette démonstration ne contacte pas de service de messagerie.</span>
           <button type="submit" class="bouton-principal auth-bouton-principal">Afficher l'information</button>
+          </fieldset>
         </form>
 
         <div class="auth-confirmation" id="confirmation-mdp-oublie" hidden role="status" aria-live="polite">
           <span class="auth-confirmation-marque" aria-hidden="true">i</span>
           <h2>Réinitialisation non disponible en V1</h2>
-          <p>Aucun e-mail n'a été envoyé. Pour cette démonstration locale, la connexion retrouve un compte à partir de son adresse e-mail et ne vérifie pas le mot de passe.</p>
+          <p>Aucun e-mail n’a été envoyé. Cette page ne permet pas de récupérer un compte; un service de récupération devra être configuré avant toute ouverture des comptes.</p>
           <a href="connexion.html" class="bouton-secondaire auth-bouton-secondaire">Retour à la connexion</a>
         </div>
 

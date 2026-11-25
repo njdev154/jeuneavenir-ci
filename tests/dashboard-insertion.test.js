@@ -6,12 +6,12 @@ const vm = require("node:vm");
 
 const source = fs.readFileSync(path.join(__dirname, "..", "js", "dashboard.js"), "utf8");
 
-function executerDashboard(utilisateur, stockage = {}) {
+function executerDashboard(utilisateur, stockage = {}, accountsEnabled = true, fetchFn) {
   const elements = {};
   [
     "bloc-non-connecte", "bloc-dashboard", "avatar-initiale", "sidebar-nom", "sidebar-type",
     "dashboard-role-kicker", "dashboard-salutation", "dashboard-sous-titre", "dashboard-nav",
-    "dashboard-actions", "dashboard-erreur", "dashboard-stats", "dashboard-sections", "bouton-deconnexion"
+    "dashboard-actions", "dashboard-erreur", "dashboard-espaces", "dashboard-stats", "dashboard-sections", "bouton-deconnexion"
   ].forEach(id => {
     elements[id] = {
       hidden: id === "bloc-dashboard" || id === "dashboard-erreur",
@@ -27,17 +27,37 @@ function executerDashboard(utilisateur, stockage = {}) {
   const document = {
     addEventListener(event, callback) { callbacks[event] = callback; },
     getElementById(id) { return elements[id]; },
-    createElement() { return { className: "", textContent: "", setAttribute() {} }; }
+    querySelector(selector) {
+      if (selector === ".pilot-notice") return { setAttribute() {}, querySelector: () => ({ textContent: "" }) };
+      return null;
+    },
+    querySelectorAll(selector) {
+      if (selector === ".pilot-disabled-link") {
+        return [{
+          textContent: "Compte indisponible",
+          replaceWith(element) { this.replacement = element; }
+        }];
+      }
+      return [];
+    },
+    createElement() {
+      return { className: "", textContent: "", setAttribute() {}, replaceWith() {} };
+    }
   };
   const donnees = { ...stockage };
+  let lecturesStockage = 0;
   if (utilisateur !== undefined) donnees.jac_utilisateur_connecte = JSON.stringify(utilisateur);
   const localStorage = {
-    getItem(cle) { return Object.prototype.hasOwnProperty.call(donnees, cle) ? donnees[cle] : null; },
+    getItem(cle) {
+      lecturesStockage += 1;
+      return Object.prototype.hasOwnProperty.call(donnees, cle) ? donnees[cle] : null;
+    },
     removeItem(cle) { delete donnees[cle]; }
   };
   const window = {
     location: { href: "" },
     JeuneAvenirMotion: { initialiser() {} },
+    JeuneAvenirPilot: { accountsEnabled },
     JeuneAvenirFavoris: {
       lire() {
         const valeur = donnees.jac_favoris ? JSON.parse(donnees.jac_favoris) : {};
@@ -48,13 +68,18 @@ function executerDashboard(utilisateur, stockage = {}) {
       }
     }
   };
-  const contexte = vm.createContext({ document, localStorage, window, console: { error() {} } });
+  const fetch = fetchFn || (async () => ({
+    ok: true,
+    status: 200,
+    json: async () => ({ data: { enabled: false } })
+  }));
+  const contexte = vm.createContext({ document, localStorage, window, fetch, console: { error() {} } });
   vm.runInContext(source, contexte, { filename: "js/dashboard.js" });
-  callbacks.DOMContentLoaded();
-  return { elements, donnees, window };
+  const ready = callbacks.DOMContentLoaded();
+  return { elements, donnees, window, ready, get lecturesStockage() { return lecturesStockage; } };
 }
 
-test("le tableau Jeune relie ses favoris, son quiz et ses démarches locales par courriel", () => {
+test("le code historique du tableau Jeune relie ses données locales par courriel", () => {
   const page = executerDashboard(
     { nom: "Awa Koné", email: " AWA@example.ci ", typeCompte: "jeune", formation: "BTS 1" },
     {
@@ -84,6 +109,19 @@ test("le tableau Jeune relie ses favoris, son quiz et ses démarches locales par
   assert.match(page.elements["dashboard-sections"].innerHTML, /Consulter le résultat/);
   assert.doesNotMatch(page.elements["dashboard-sections"].innerHTML, /Candidature envoyée|Activité récente/);
   assert.doesNotMatch(page.elements["dashboard-sections"].innerHTML, /autre@example/);
+});
+
+test("le code historique de l’espace central distingue les piliers et les limites locales", () => {
+  const page = executerDashboard({ nom: "Awa Koné", email: "awa@example.ci", typeCompte: "jeune" });
+  const espaces = page.elements["dashboard-espaces"].innerHTML;
+
+  for (const href of ["quiz.html", "filieres.html", "mentorat.html", "offres.html", "dashboard.html"]) {
+    assert.match(espaces, new RegExp(`href="${href.replace(".", "\\.")}"`));
+  }
+  assert.match(espaces, /aria-current="page"/);
+  assert.match(espaces, /démonstration ne sont transmises à aucun mentor/);
+  assert.match(espaces, /ne sont pas synchronisés avec un service en ligne/);
+  assert.doesNotMatch(espaces, /échange confirmé|candidature transmise|mentor disponible/);
 });
 
 test("le tableau Mentor n’attribue pas une demande par simple nom", () => {
@@ -169,4 +207,80 @@ test("une session corrompue affiche une erreur et n’ouvre pas un espace par d�
   assert.equal(page.elements["bloc-dashboard"].hidden, true);
   assert.equal(page.elements["bloc-non-connecte"].children.length, 1);
   assert.match(page.elements["bloc-non-connecte"].children[0].textContent, /session locale est illisible/);
+});
+
+test("le pilote public ne lit pas les comptes locaux et laisse le tableau de bord fermé", async () => {
+  const stockage = { jac_utilisateur_connecte: "{invalid", jac_utilisateurs: "[{}]" };
+  const page = executerDashboard(
+    undefined,
+    stockage,
+    false
+  );
+  await page.ready;
+
+  assert.equal(page.lecturesStockage, 0);
+  assert.equal(page.elements["bloc-dashboard"].hidden, true);
+  assert.equal(page.elements["bouton-deconnexion"].click, undefined);
+  assert.deepEqual(page.donnees, stockage);
+});
+
+test("le tableau de bord affiche l'identité de la session serveur sans lire les anciennes données du navigateur", async () => {
+  const calls = [];
+  const page = executerDashboard(undefined, { jac_utilisateur_connecte: "{invalid" }, false, async (url) => {
+    calls.push(url);
+    if (url === "/auth/status") {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ data: { enabled: true, csrf_token: "csrf-test" } })
+      };
+    }
+    return {
+      ok: true,
+      status: 200,
+      json: async () => ({
+        data: { user: { id: 7, name: "Awa Koné", email: "awa@example.ci", role: "jeune" } }
+      })
+    };
+  });
+  await page.ready;
+
+  assert.deepEqual(calls, ["/auth/status", "/auth/current"]);
+  assert.equal(page.lecturesStockage, 0);
+  assert.equal(page.elements["bloc-dashboard"].hidden, false);
+  assert.equal(page.elements["sidebar-nom"].textContent, "Awa Koné");
+  assert.match(page.elements["dashboard-sections"].innerHTML, /pas encore liés à ce compte/);
+});
+
+test("la déconnexion du tableau de bord envoie le jeton CSRF et ferme la session serveur", async () => {
+  let logoutOptions;
+  const page = executerDashboard(undefined, {}, false, async (url, options = {}) => {
+    if (url === "/auth/status") {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ data: { enabled: true, csrf_token: "csrf-test" } })
+      };
+    }
+    if (url === "/auth/current") {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          data: { user: { id: 7, name: "Awa Koné", email: "awa@example.ci", role: "jeune" } }
+        })
+      };
+    }
+    logoutOptions = options;
+    return { ok: true, status: 200, json: async () => ({}) };
+  });
+  await page.ready;
+  await page.elements["bouton-deconnexion"].click({
+    currentTarget: page.elements["bouton-deconnexion"]
+  });
+
+  assert.equal(logoutOptions.method, "POST");
+  assert.equal(logoutOptions.headers["X-CSRF-TOKEN"], "csrf-test");
+  assert.equal(page.window.location.href, "/connexion.html");
+  assert.equal(page.lecturesStockage, 0);
 });

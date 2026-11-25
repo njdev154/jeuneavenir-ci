@@ -40,9 +40,11 @@
         <p class="auth-kicker" id="auth-login-kicker">TON ESPACE JEUNEAVENIR CI</p>
         <h1 id="auth-page-title">Bon retour !</h1>
         <p class="auth-intro" id="auth-login-intro">Connecte-toi pour retrouver ton parcours et tes repères.</p>
-        <p class="auth-notice"><strong>Démo locale :</strong> seuls les comptes créés dans ce navigateur sont disponibles. Le mot de passe n'est pas vérifié; n'utilise pas un mot de passe réel.</p>
+        <p class="auth-notice" id="auth-login-note"><strong>Compte indisponible pendant le pilote.</strong> N’entre pas d’adresse e-mail ni de mot de passe ici.</p>
 
         <form id="formulaire-connexion">
+          <fieldset class="pilot-disabled-controls" disabled>
+            <legend>Connexion désactivée</legend>
           <fieldset class="choix-type-compte auth-choix-connexion">
             <legend>Quel espace veux-tu retrouver ?</legend>
             <label class="carte-type-compte">
@@ -85,15 +87,17 @@
           </div>
 
           <p class="message-erreur auth-erreur" id="message-erreur" role="alert"></p>
+          <p class="auth-aide" id="message-succes" role="status" aria-live="polite"></p>
           <button type="submit" class="bouton-principal auth-bouton-principal">Se connecter</button>
+          </fieldset>
         </form>
 
         <div class="auth-separateur"><span>ou continuer avec</span></div>
         <div class="auth-reseaux" aria-label="Autres méthodes de connexion" aria-describedby="auth-social-note">
-          <button type="button" class="bouton-social auth-bouton-social" id="bouton-google">
+          <button type="button" class="bouton-social auth-bouton-social" id="bouton-google" disabled>
             <img src="assets/icons/google-logo.svg" alt="" width="18" height="18"> Continuer avec Google
           </button>
-          <button type="button" class="bouton-social auth-bouton-social" id="bouton-apple">
+          <button type="button" class="bouton-social auth-bouton-social" id="bouton-apple" disabled>
             <img src="assets/icons/apple-logo.svg" alt="" width="18" height="18"> Continuer avec Apple
           </button>
         </div>

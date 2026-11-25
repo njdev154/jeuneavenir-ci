@@ -4,6 +4,8 @@
 // arrivera en V2, plutôt que de faire semblant que ça fonctionne.
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!window.JeuneAvenirPilot?.accountsEnabled) return;
+
   const formulaire = document.getElementById("formulaire-mdp-oublie");
   const confirmation = document.getElementById("confirmation-mdp-oublie");
   if (!formulaire || !confirmation) return;

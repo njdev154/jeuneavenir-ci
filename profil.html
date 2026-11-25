@@ -24,15 +24,14 @@
     <section class="account-hero" data-motion="rise">
       <p class="account-eyebrow">TON ESPACE PERSONNEL</p>
       <h1>Mon profil.</h1>
-      <p>Garde tes informations à jour pour retrouver plus facilement ton parcours et tes démarches.</p>
+      <p>La consultation et la modification d’un profil ne sont pas disponibles pendant ce pilote.</p>
     </section>
 
     <p id="profil-erreur-session" class="account-alert" role="alert" hidden></p>
 
     <section id="bloc-non-connecte" class="account-empty" hidden data-motion="rise">
-      <h2>Connecte-toi pour consulter ton profil</h2>
-      <p>Les informations personnelles restent dans le navigateur utilisé pour cette démonstration.</p>
-      <a href="connexion.html" class="account-button">Se connecter</a>
+      <h2>Les comptes ne sont pas activés</h2>
+      <p>Aucun profil n’est créé, consulté ou sauvegardé par le site.</p>
     </section>
 
     <section id="bloc-profil" class="account-profile-layout" hidden aria-labelledby="titre-formulaire-profil">
@@ -55,6 +54,8 @@
         <p class="account-help" id="profil-aide">Complète uniquement les informations utiles à ton parcours. Les champs facultatifs peuvent rester vides.</p>
 
         <form id="formulaire-profil" novalidate>
+          <fieldset class="pilot-disabled-controls" disabled>
+            <legend>Modification du profil désactivée</legend>
           <div class="account-form-grid">
             <div class="account-field">
               <label for="profil-nom">Nom complet</label>
@@ -148,6 +149,7 @@
           <div class="account-form-actions">
             <button type="submit" class="account-button" id="bouton-enregistrer-profil">Enregistrer les modifications</button>
           </div>
+          </fieldset>
         </form>
       </div>
     </section>

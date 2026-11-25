@@ -1,6 +1,6 @@
 # JeuneAvenir CI
 
-Version pilote d'une plateforme d'orientation pour les lycéens et nouveaux bacheliers ivoiriens. Le site aide à explorer des pistes; il ne décide pas d'une affectation et ne garantit ni admission, ni place, ni emploi. Le catalogue actuel est partiel et plusieurs services ne sont pas encore réels.
+Plateforme d'orientation en construction pour les lycéens et nouveaux bacheliers ivoiriens. Le site aide à explorer des pistes; il ne décide pas d'une affectation et ne garantit ni admission, ni place, ni emploi. Le catalogue actuel est partiel. Le backend Laravel local contient des routes de session pour développement, désactivées par défaut; l'interface peut être testée localement après activation explicite, mais aucun compte n'est ouvert au public.
 
 ## Structure du projet
 
@@ -28,10 +28,10 @@ jeuneavenir-ci/
 │
 ├── js/
 │   ├── main.js                → Menu mobile, animations, lien actif
-│   ├── quiz.js                 → Moteur du quiz (logique interne cachée
-│   │                             à l'utilisateur -- voir commentaires)
-│   ├── resultat.js              → Calcul et affichage du résultat
-│   ├── auth.js                   → Inscription/connexion (simulation V1)
+│   ├── quiz.js                 → Parcours du quiz; bascule API Laravel ou pilote statique
+│   ├── orientation-api.js      → Contrat client de l’API orientation locale
+│   ├── resultat.js              → Affichage des résultats locaux ou de l’API
+│   ├── auth.js                   → Formulaires reliés aux sessions Laravel locales (fermés par défaut)
 │   ├── dashboard.js                → Tableau de bord dynamique
 │   ├── filieres.js                  → Liste + fiche filière
 │   ├── ecoles.js                     → Liste + filtres écoles
@@ -48,6 +48,8 @@ jeuneavenir-ci/
 │   ├── metiers.json                 → 21 fiches de départ, à valider
 │   ├── mentors.json, offres.json     → Listes vides tant qu'aucune donnée réelle n'est validée
 │
+├── backend/                    → API Laravel locale, première tranche orientation
+│
 ├── documentation/               → Recherches sources (CSV MESRS, rapport)
 ├── tests/assistant.test.js       → Tests Node ciblés de l'assistant
 │
@@ -60,11 +62,54 @@ jeuneavenir-ci/
 
 Le quiz et les pages Filières/Écoles chargent des fichiers JSON via `fetch()`,
 ce qui **ne fonctionne pas** en ouvrant juste le fichier HTML directement.
-Utilise un serveur local :
-1. Extension **Live Server** de VS Code (clic droit sur `index.html` → "Open with Live Server"), OU
-2. `python3 -m http.server 8000` à la racine, puis ouvrir `http://localhost:8000`
+Pour consulter le pilote statique sans API, depuis la racine :
+
+```powershell
+python -m http.server 5500 --bind 127.0.0.1
+```
+
+Ouvre ensuite `http://127.0.0.1:5500/`. Cette prévisualisation ne fournit ni comptes ni API.
 
 Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.test.js`.
+
+### API Laravel locale
+
+PHP 8.3+ et Composer sont nécessaires. Depuis `backend/` :
+
+```powershell
+composer install
+php artisan serve --host 127.0.0.1 --port 8000
+```
+
+Ouvre `http://127.0.0.1:8000/` pour le site servi par Laravel sur la même origine. Dans ce mode, le quiz charge sept questions depuis `GET /api/v1/orientation/questionnaire` et envoie à `POST /api/v1/orientation/results` uniquement la série, le jeton et les indices de réponse. L’API ne conserve pas ces réponses; le résultat, qui les contient, reste temporairement dans `sessionStorage` jusqu’à la fermeture de l’onglet et n’est pas lié au compte. Le profil facultatif et le texte libre ne sont pas transmis. La prévisualisation statique conserve son parcours local si l’API répond 404. L’inscription/connexion Jeune peut être testée localement après activation explicite de `ACCOUNTS_ENABLED`; les comptes restent fermés en production. Voir [backend/README.md](backend/README.md) pour les étapes et limites.
+
+### Tests avant contribution
+
+Depuis la racine du dépôt, exécute les tests frontend puis, dans `backend/`, les tests Laravel et l'audit des dépendances :
+
+```powershell
+node --test tests/*.test.js
+Set-Location backend
+php artisan test
+composer audit --no-interaction
+```
+
+Le workflow GitHub Actions `.github/workflows/tests.yml` exécute ces vérifications sur les push et pull requests; il ne déploie pas le site.
+
+### Préparer le pilote public sur Netlify
+
+Le pilote public est un export statique : `netlify.toml` configure la commande
+`node scripts/build-public-site.mjs` et la publication du dossier `dist/`.
+Pour un déploiement manuel, exécute cette commande depuis la racine, puis publie
+le contenu de `dist/` dans Netlify. Pour un déploiement lié au dépôt, Netlify
+doit utiliser la configuration de la racine.
+
+Cet export ne contient ni backend ni comptes, API ou formulaires actifs. Les
+réponses du quiz, le profil facultatif et les favoris peuvent rester dans le
+navigateur. Le catalogue est partiel; les rattachements non confirmés sont
+signalés et doivent être vérifiés avant de les présenter comme des faits.
+Aucun site Netlify ni domaine n'est encore créé ou publié; vérifier les limites
+et conditions du forfait avant toute mise en ligne.
 
 ## Sources et limites des données
 
@@ -77,7 +122,7 @@ Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.te
 - **Quiz :** le score est une règle interne d'auto-réflexion, pas un test psychométrique validé. Les correspondances série/filière ne confirment pas les conditions officielles d'admission ou d'affectation; vérifier auprès du MESRS et de l'établissement.
 - **Recherche non encore intégrée :** le CSV local `documentation/universites_privees_mesrs_2026.csv` contient 145 entrées réparties dans 18 villes. Lors de la consultation du 15 novembre 2026, la liste MESRS en ligne était numérotée jusqu'à 146; le CSV et la page ne sont donc pas synchronisés. Des variantes et erreurs de saisie sont également à rapprocher avant toute intégration. Le CSV ne constitue pas une preuve d'exhaustivité nationale.
 - **Mentors et offres :** aucun profil ni annonce réelle n'est publié; les listes des JSON sont vides. Une publication devra être consentie et vérifiée avant d'être ajoutée.
-- **Assistant (Phase A, v2) :** `js/assistant.js` applique des règles locales aux JSON du site; ce n'est pas une IA générative et aucune question n'est envoyée à un service externe. Il lit le résultat du quiz dans le stockage local du navigateur. Un verrou d'interface demande un compte pour poser une question, mais l'authentification V1 en `localStorage` est simulée et ne constitue pas une protection de sécurité. Les mentors/offres ne sont chargés que si leur statut de publication est `verifie`; actuellement, aucune donnée n'est publiée. Les recherches d'école par domaine ne retiennent que les rattachements confirmés; le relevé reste partiel et les fiches affichent les sources et leur portée.
+- **Assistant (Phase A, v2) :** `js/assistant.js` applique des règles locales aux JSON du site; ce n'est pas une IA générative et aucune question n'est envoyée à un service externe. Il lit le résultat du quiz dans le stockage du navigateur; dans le mode Laravel local, il reste séparé du compte et peut ne pas recevoir le résultat temporaire conservé dans `sessionStorage`. Son verrou d'interface dépend encore de l'ancien état local du navigateur et ne constitue pas une autorisation de sécurité; les actions privées doivent être contrôlées côté serveur. Les mentors/offres ne sont chargés que si leur statut de publication est `verifie`; actuellement, aucune donnée n'est publiée. Les recherches d'école par domaine ne retiennent que les rattachements confirmés; le relevé reste partiel et les fiches affichent les sources et leur portée.
 - **Frais, admissions et bourses :** conserver l'année, la nature précise du frais et la source officielle. Confirmer les montants, critères et échéances auprès du ministère ou de l'établissement avant publication.
 
 ## Principes de conception (à respecter en continuant le projet)
@@ -87,9 +132,7 @@ Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.te
 - **Clarté sur le quiz :** le score est interne, non validé psychométriquement,
   et ne doit pas être présenté comme une décision d'affectation ou une prédiction
   d'admission.
-- **Honnêteté sur les limites de la V1** : pas de backend; l'authentification
-  est simulée en `localStorage`, le mot de passe n'est pas vérifié, et aucune
-  offre ni aucun mentor réel n'est publié. Toujours l'indiquer à l'utilisateur.
+- **Honnêteté sur les limites de la V1** : l'API d'orientation ne fonctionne que quand le site est servi par le backend Laravel local; les comptes, eux, restent désactivés par défaut et doivent être activés explicitement pour les essais. L'inscription et la connexion Jeune utilisent alors une session serveur; le tableau de bord n'y affiche que l'identité et ne synchronise ni quiz, ni profil, ni favoris, ni mentorat, ni candidatures. Les autres démonstrations du pilote statique ne deviennent pas des services réels. Aucune offre ni aucun mentor réel n'est publié.
 - **Profils de compte** : les formulaires de démonstration distinguent jeune,
   professeur, mentor et entreprise. Le profil professeur utilise le type
   technique Mentor du CDC; seuls les champs actifs sont enregistrés dans le
@@ -107,12 +150,12 @@ Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.te
 - [x] Comparateur, catalogues métiers, mentors et offres (interfaces présentes;
       métiers à vérifier; aucune publication mentor/offre)
 - [x] Assistant local de règles intégré aux pages; les données non publiées sont exclues et les limites du catalogue sont indiquées
-- [ ] Concevoir une authentification réelle avant toute collecte de comptes
+- [x] Première tranche locale de comptes Jeune et tableau de bord limité à la session serveur (pas prête pour le public)
 - [ ] Choisir et mettre en place une base de données avant toute publication dynamique
 
 ## Versions du projet
 
 - **V1** (en cours) : site statique pilote, HTML/CSS/JS, données JSON partielles
-- **Étapes ultérieures** : authentification, base de données et outils de gestion à concevoir et valider avant publication
+- **Étapes ultérieures** : finaliser l'authentification et concevoir base de données/outils de gestion après validation des prérequis, avant toute publication
 - **Phase A** : assistant local non génératif, fondé sur les données du catalogue
 - **À évaluer** : conversation générative seulement avec un besoin validé, des sources fiables et un backend protégeant les clés; elle ne doit pas inventer d'admissions, d'offres ou de mentors

@@ -1,165 +1,137 @@
-// auth.js
-// V1 : authentification SIMULÉE via localStorage. Ce n'est PAS sécurisé,
-// et ce n'est pas fait pour l'être — ça sert juste à faire fonctionner
-// les parcours (inscription -> tableau de bord) en attendant la V2,
-// où tout sera remplacé par Supabase Auth (email + Google + Apple réels).
+function messageDeReponse(responseBody, fallback) {
+  const erreurs = responseBody?.errors;
+  if (erreurs && typeof erreurs === "object") {
+    const details = Object.values(erreurs)
+      .flat()
+      .filter(message => typeof message === "string");
+    if (details.length) return details.join(" ");
+  }
+  return typeof responseBody?.message === "string" ? responseBody.message : fallback;
+}
 
-function lireUtilisateursLocaux() {
+function afficherEtatAuthentification(type, message) {
+  const cible = document.getElementById(type === "succes" ? "message-succes" : "message-erreur");
+  if (cible) cible.textContent = message;
+}
+
+async function requeteAuthentification(url, donnees, csrfToken) {
+  const response = await fetch(url, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": csrfToken
+    },
+    body: JSON.stringify(donnees)
+  });
+
+  let responseBody;
   try {
-    const valeur = localStorage.getItem("jac_utilisateurs");
-    const utilisateurs = valeur === null ? [] : JSON.parse(valeur);
-    if (!Array.isArray(utilisateurs)) {
-      throw new Error("La liste des comptes locaux n’a pas le format attendu.");
-    }
-    return utilisateurs;
+    responseBody = await response.json();
   } catch (erreur) {
-    console.error("Lecture des comptes locaux impossible :", erreur);
-    throw new Error("Les comptes locaux sont illisibles. Aucune donnée n’a été remplacée.");
+    console.error("Réponse du serveur d’authentification illisible :", erreur);
+    throw new Error("Le serveur a renvoyé une réponse illisible. Réessaie plus tard.");
+  }
+
+  if (!response.ok) {
+    throw new Error(messageDeReponse(responseBody, "La demande n’a pas abouti."));
+  }
+
+  return responseBody;
+}
+
+async function activerAuthentificationLocale() {
+  const formulaireInscription = document.getElementById("formulaire-inscription");
+  const formulaireConnexion = document.getElementById("formulaire-connexion");
+  if (!formulaireInscription && !formulaireConnexion) return;
+
+  try {
+    const response = await fetch("/auth/status", {
+      credentials: "same-origin",
+      headers: { "Accept": "application/json" }
+    });
+    if (response.status === 404) return;
+    if (!response.ok) throw new Error(`Le serveur a répondu avec le statut ${response.status}.`);
+
+    const etat = await response.json();
+    const csrfToken = etat?.data?.csrf_token;
+    if (etat?.data?.enabled !== true) return;
+    if (typeof csrfToken !== "string" || csrfToken.length === 0) {
+      throw new Error("Le jeton de sécurité du formulaire est absent.");
+    }
+
+    const interfaceActivee = window.JeuneAvenirPilot?.activerComptesLocauxPourLeTest?.();
+    if (!interfaceActivee) {
+      throw new Error("L’interface de développement local ne peut pas être activée.");
+    }
+
+    if (formulaireInscription) {
+      formulaireInscription.addEventListener("submit", async evenement => {
+        evenement.preventDefault();
+        afficherEtatAuthentification("erreur", "");
+        afficherEtatAuthentification("succes", "");
+
+        const profil = formulaireInscription.querySelector('input[name="type_compte"]:checked')?.value;
+        if (profil !== "jeune") {
+          afficherEtatAuthentification("erreur", "Seul le compte Jeune peut être créé dans ce test local.");
+          return;
+        }
+
+        const bouton = formulaireInscription.querySelector('button[type="submit"]');
+        if (bouton) bouton.disabled = true;
+        try {
+          await requeteAuthentification("/auth/register", {
+            name: document.getElementById("nom").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            password: document.getElementById("mot_de_passe").value,
+            password_confirmation: document.getElementById("confirmation").value
+          }, csrfToken);
+          afficherEtatAuthentification("succes", "Compte Jeune de test créé. Ouverture de ton espace local…");
+          window.location.href = "/dashboard.html";
+        } catch (erreur) {
+          console.error("Inscription locale impossible :", erreur);
+          afficherEtatAuthentification("erreur", erreur.message);
+        } finally {
+          if (bouton) bouton.disabled = false;
+        }
+      });
+    }
+
+    if (formulaireConnexion) {
+      formulaireConnexion.addEventListener("submit", async evenement => {
+        evenement.preventDefault();
+        afficherEtatAuthentification("erreur", "");
+        afficherEtatAuthentification("succes", "");
+
+        const profil = formulaireConnexion.querySelector('input[name="type_compte"]:checked')?.value;
+        if (profil !== "jeune") {
+          afficherEtatAuthentification("erreur", "Seul le compte Jeune est disponible dans ce test local.");
+          return;
+        }
+
+        const bouton = formulaireConnexion.querySelector('button[type="submit"]');
+        if (bouton) bouton.disabled = true;
+        try {
+          await requeteAuthentification("/auth/login", {
+            email: document.getElementById("email").value.trim(),
+            password: document.getElementById("mot_de_passe").value
+          }, csrfToken);
+          afficherEtatAuthentification("succes", "Connexion réussie. Ouverture de ton espace local…");
+          window.location.href = "/dashboard.html";
+        } catch (erreur) {
+          console.error("Connexion locale impossible :", erreur);
+          afficherEtatAuthentification("erreur", erreur.message);
+        } finally {
+          if (bouton) bouton.disabled = false;
+        }
+      });
+    }
+  } catch (erreur) {
+    console.error("Activation du mode compte local impossible :", erreur);
+    const note = document.getElementById("auth-demo-note") || document.getElementById("auth-login-note");
+    if (note) note.textContent = "Le serveur local n’est pas disponible. Le formulaire reste désactivé.";
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-
-  // --- Boutons Google / Apple : pas encore fonctionnels en V1 ---
-  const boutonGoogle = document.getElementById("bouton-google");
-  const boutonApple = document.getElementById("bouton-apple");
-
-  const afficherMessageBientot = (bouton) => {
-    if (bouton.nextElementSibling?.classList?.contains("message-info-connexion")) return;
-    const message = document.createElement("p");
-    message.className = "message-info-connexion";
-    message.textContent = "Bientôt disponible — utilise l'email et le mot de passe pour l'instant.";
-    bouton.insertAdjacentElement("afterend", message);
-  };
-
-  if (boutonGoogle) boutonGoogle.addEventListener("click", () => afficherMessageBientot(boutonGoogle));
-  if (boutonApple) boutonApple.addEventListener("click", () => afficherMessageBientot(boutonApple));
-
-  // --- Formulaire d'inscription ---
-  const formInscription = document.getElementById("formulaire-inscription");
-  if (formInscription) {
-    formInscription.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const messageErreur = document.getElementById("message-erreur");
-      messageErreur.textContent = "";
-
-      const nom = document.getElementById("nom").value.trim();
-      const email = document.getElementById("email").value.trim().toLowerCase();
-      const motDePasse = document.getElementById("mot_de_passe").value;
-      const confirmation = document.getElementById("confirmation").value;
-      const profilChoisi = formInscription.querySelector('input[name="type_compte"]:checked')?.value;
-      const groupeProfil = profilChoisi && formInscription.querySelector(`[data-profile-fields="${profilChoisi}"]`);
-
-      if (!groupeProfil || groupeProfil.disabled) {
-        messageErreur.textContent = "Choisis un profil et renseigne les informations demandées.";
-        return;
-      }
-      if (motDePasse !== confirmation) {
-        messageErreur.textContent = "Les mots de passe ne correspondent pas.";
-        return;
-      }
-      if (motDePasse.length < 8) {
-        messageErreur.textContent = "Le mot de passe doit contenir au moins 8 caractères.";
-        return;
-      }
-
-      // Vérifie si un compte existe déjà avec cet email (simulation simple)
-      let utilisateurs;
-      try {
-        utilisateurs = lireUtilisateursLocaux();
-      } catch (erreur) {
-        messageErreur.textContent = erreur.message;
-        return;
-      }
-      if (utilisateurs.some(u => u && typeof u.email === "string" && u.email.trim().toLowerCase() === email)) {
-        messageErreur.textContent = "Un compte existe déjà avec cet e-mail.";
-        return;
-      }
-
-      const profilDetails = Object.fromEntries(
-        Array.from(groupeProfil.querySelectorAll("input, select, textarea"))
-          .filter(champ => champ.name && !champ.disabled && champ.value.trim())
-          .map(champ => [champ.name, champ.value.trim()])
-      );
-      const typeCompte = profilChoisi === "professeur" ? "mentor" : profilChoisi;
-      const nouvelUtilisateur = {
-        nom,
-        email,
-        typeCompte,
-        profilDetails,
-        dateCreation: new Date().toISOString()
-      };
-      const ville = document.getElementById("ville").value.trim();
-      if (ville) nouvelUtilisateur.ville = ville;
-      if (profilChoisi === "professeur") nouvelUtilisateur.sousTypeCompte = "professeur";
-      if (profilChoisi === "jeune") {
-        nouvelUtilisateur.statut = profilDetails.statut;
-        nouvelUtilisateur.formation = profilDetails.formation;
-      }
-
-      utilisateurs.push(nouvelUtilisateur);
-      try {
-        localStorage.setItem("jac_utilisateurs", JSON.stringify(utilisateurs));
-        localStorage.setItem("jac_utilisateur_connecte", JSON.stringify(nouvelUtilisateur));
-      } catch (erreur) {
-        console.error("Création du compte local impossible :", erreur);
-        messageErreur.textContent = "Le compte n’a pas pu être enregistré dans ce navigateur.";
-        return;
-      }
-
-      window.location.href = "dashboard.html";
-    });
-  }
-
-  // --- Formulaire de connexion ---
-  const formConnexion = document.getElementById("formulaire-connexion");
-  if (formConnexion) {
-    formConnexion.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const messageErreur = document.getElementById("message-erreur");
-      messageErreur.textContent = "";
-
-      const email = document.getElementById("email").value.trim().toLowerCase();
-      const profilChoisi = formConnexion.querySelector('input[name="type_compte"]:checked')?.value;
-      if (!profilChoisi) {
-        messageErreur.textContent = "Choisis le profil associé à ton compte.";
-        return;
-      }
-
-      let utilisateurs;
-      try {
-        utilisateurs = lireUtilisateursLocaux();
-      } catch (erreur) {
-        messageErreur.textContent = erreur.message;
-        return;
-      }
-      const utilisateur = utilisateurs.find(u => u && typeof u.email === "string" && u.email.trim().toLowerCase() === email);
-
-      if (!utilisateur) {
-        messageErreur.textContent = "Aucun compte trouvé avec cet e-mail. (Rappel : V1 = données stockées uniquement dans ce navigateur)";
-        return;
-      }
-
-      const profilCorrespond = profilChoisi === "professeur"
-        ? utilisateur.typeCompte === "mentor" && utilisateur.sousTypeCompte === "professeur"
-        : utilisateur.typeCompte === profilChoisi
-          && !(profilChoisi === "mentor" && utilisateur.sousTypeCompte === "professeur");
-      if (!profilCorrespond) {
-        messageErreur.textContent = "Ce compte ne correspond pas au profil choisi. Vérifie ton choix puis réessaie.";
-        return;
-      }
-
-      // V1 : on ne vérifie pas le mot de passe (pas de vraie sécurité avant la V2)
-      try {
-        localStorage.setItem("jac_utilisateur_connecte", JSON.stringify(utilisateur));
-      } catch (erreur) {
-        console.error("Ouverture de session locale impossible :", erreur);
-        messageErreur.textContent = "La session n’a pas pu être enregistrée dans ce navigateur.";
-        return;
-      }
-      window.location.href = "dashboard.html";
-    });
-
-  }
-
-});
+document.addEventListener("DOMContentLoaded", () => activerAuthentificationLocale());

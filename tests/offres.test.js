@@ -24,7 +24,8 @@ function creerContexte(elements = {}, stockage = {}) {
   const window = {
     addEventListener() {},
     location: { hash: "", pathname: "/offres.html", search: "" },
-    JeuneAvenirMotion: { initialiser() {}, animer() {} }
+    JeuneAvenirMotion: { initialiser() {}, animer() {} },
+    JeuneAvenirPilot: { submissionsEnabled: false }
   };
   const contexte = vm.createContext({ document, window, localStorage, console, history: { replaceState() {} } });
   vm.runInContext(source, contexte, { filename: "js/offres.js" });
@@ -132,46 +133,29 @@ test("les cartes échappent les contenus issus des données d’annonce", () => 
   assert.match(html, /Entreprise &amp; fils/);
 });
 
-test("les rôles non Jeune ne peuvent pas préparer une candidature", () => {
+test("le pilote bloque aussi les candidatures pour les rôles non Jeune", () => {
   const elements = { "zone-candidature": { innerHTML: "" } };
   const contexte = creerContexte(elements);
 
   contexte.afficherFormulaireCandidature({ id: "offre-1" }, { typeCompte: "entreprise", email: "entreprise@example.ci" });
 
-  assert.match(elements["zone-candidature"].innerHTML, /réservée aux comptes Jeune/);
+  assert.match(elements["zone-candidature"].innerHTML, /ne sont pas disponibles pendant ce pilote/);
   assert.doesNotMatch(elements["zone-candidature"].innerHTML, /formulaire-candidature/);
 });
 
-test("une candidature Jeune est enregistrée localement avec un statut en attente, sans prétendre l’envoyer", () => {
+test("le pilote public bloque une candidature et ne conserve aucune donnée de candidat", () => {
   const stockage = { jac_candidatures: "[]" };
   const zone = { innerHTML: "" };
-  const erreur = { hidden: true, textContent: "" };
-  const formulaire = {
-    elements: { motivation: { value: "Cette mission correspond à mes compétences et à mon projet professionnel." } },
-    dataset: {},
-    reportValidity() { return true; },
-    addEventListener(evenement, callback) {
-      if (evenement === "submit") this.soumettre = callback;
-    }
-  };
-  const elements = {
-    "zone-candidature": zone,
-    "formulaire-candidature": formulaire,
-    "erreur-candidature": erreur
-  };
-  const contexte = creerContexte(elements, stockage);
+  const contexte = creerContexte({ "zone-candidature": zone }, stockage);
   const utilisateur = { typeCompte: "jeune", nom: "Awa Koné", email: "awa@example.ci" };
   const offre = { id: "offre-1", titre: "Stage développeuse", entreprise: "Structure vérifiée" };
 
   contexte.afficherFormulaireCandidature(offre, utilisateur);
-  formulaire.soumettre({ preventDefault() {}, currentTarget: formulaire });
 
   const candidatures = JSON.parse(stockage.jac_candidatures);
-  assert.equal(candidatures.length, 1);
-  assert.equal(candidatures[0].statut, "en_attente");
-  assert.equal(candidatures[0].mode, "demonstration_locale");
-  assert.equal(candidatures[0].candidatEmail, "awa@example.ci");
-  assert.match(zone.innerHTML, /Aucune entreprise n’a reçu cette candidature/);
+  assert.equal(candidatures.length, 0);
+  assert.match(zone.innerHTML, /ne sont pas disponibles pendant ce pilote/);
+  assert.doesNotMatch(zone.innerHTML, /formulaire-candidature|awa@example\.ci/);
 });
 
 test("les statuts de candidature sont distincts et signalés comme démonstration", () => {

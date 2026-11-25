@@ -6,6 +6,8 @@
 // utilisateurs.
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!window.JeuneAvenirPilot?.submissionsEnabled) return;
+
   const formulaire = document.getElementById("formulaire-avis");
   if (!formulaire) return;
 

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120" width="560" height="120">
+  <defs>
+    <style>
+      .nom { font-family: 'Instrument Serif', Georgia, serif; font-weight: 700; font-size: 46px; fill: #FFFFFF; }
+    </style>
+  </defs>
+  <g>
+    <circle cx="60" cy="60" r="56" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.9"/>
+    <polygon points="93,27 65,65 27,93" fill="#FFFFFF"/>
+    <polygon points="93,27 55,55 27,93" fill="#FFFFFF" opacity="0.55"/>
+    <circle cx="60" cy="60" r="6" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
+  <text x="140" y="76" class="nom">JeuneAvenir CI</text>
+</svg>

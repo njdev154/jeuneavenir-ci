@@ -8,4 +8,7 @@ Thumbs.db
 
 # Si un jour tu ajoutes des dépendances (V2)
 node_modules/
+
+# Export statique généré pour le pilote public
+/dist/
 .env

@@ -6,7 +6,7 @@ const vm = require("node:vm");
 
 const source = fs.readFileSync(path.join(__dirname, "..", "js", "profil.js"), "utf8");
 
-function ouvrirProfil(stockage) {
+function ouvrirProfil(stockage, accountsEnabled = true) {
   const ids = [
     "bloc-profil", "bloc-non-connecte", "profil-erreur-session", "profil-nom", "profil-email", "profil-ville",
     "profil-resume-nom", "profil-resume-role", "profil-avatar", "profil-statut", "profil-formation",
@@ -38,7 +38,10 @@ function ouvrirProfil(stockage) {
     getItem(cle) { return Object.prototype.hasOwnProperty.call(stockage, cle) ? stockage[cle] : null; },
     setItem(cle, valeur) { stockage[cle] = valeur; }
   };
-  const window = { JeuneAvenirMotion: { initialiser() {}, animer() {} } };
+  const window = {
+    JeuneAvenirMotion: { initialiser() {}, animer() {} },
+    JeuneAvenirPilot: { accountsEnabled }
+  };
   const contexte = vm.createContext({ document, localStorage, window, console: { error() {} }, setTimeout });
   vm.runInContext(source, contexte, { filename: "js/profil.js" });
   callbacks.DOMContentLoaded();
@@ -167,4 +170,20 @@ test("une session illisible produit une erreur explicite sans afficher ni modifi
   assert.equal(page.elements["bloc-profil"].hidden, true);
   assert.equal(page.elements["profil-erreur-session"].hidden, false);
   assert.match(page.elements["profil-erreur-session"].textContent, /illisible/);
+});
+
+test("le pilote public ne lit pas une session locale ni n’ouvre le formulaire profil", () => {
+  const stockage = {
+    jac_utilisateur_connecte: JSON.stringify({ nom: "Awa", email: "awa@example.ci", typeCompte: "jeune" }),
+    jac_utilisateurs: JSON.stringify([{ email: "awa@example.ci" }])
+  };
+  const page = ouvrirProfil(stockage, false);
+
+  assert.equal(page.elements["bloc-profil"].hidden, true);
+  assert.equal(page.elements["profil-nom"].value, "");
+  assert.equal(page.elements["formulaire-profil"].submit, undefined);
+  assert.deepEqual(stockage, {
+    jac_utilisateur_connecte: JSON.stringify({ nom: "Awa", email: "awa@example.ci", typeCompte: "jeune" }),
+    jac_utilisateurs: JSON.stringify([{ email: "awa@example.ci" }])
+  });
 });

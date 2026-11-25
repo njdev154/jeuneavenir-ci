@@ -2,7 +2,7 @@
 
 **Statut :** référentiel de gouvernance à valider avant publication ou collecte réelle.
 **Règle validée par le propriétaire :** toute donnée publiée doit être traçable, vérifiée et associée à un responsable de validation.
-**Documents liés :** [Référentiel](01-reference-et-perimetre.md), [Règles métier](02-regles-metier.md), [Rôles](03-roles-et-permissions.md), [Exigences](05-registre-des-exigences.md), [Décisions ouvertes](06-decisions-et-points-a-valider.md).
+**Documents liés :** [Référentiel](01-reference-et-perimetre.md), [Règles métier](02-regles-metier.md), [Rôles](03-roles-et-permissions.md), [Exigences](05-registre-des-exigences.md), [Décisions](06-decisions-et-points-a-valider.md), [Architecture](07-architecture-cible.md), [Modèle logique](08-modele-de-donnees.md).
 
 ## 1. Principes
 
@@ -90,6 +90,8 @@ Dans le tableau, « responsable » désigne la fonction cible; son nom, son orga
 - Les règles d'accès du document 03 s'appliquent même lorsqu'une personne possède un rôle administratif.
 - La conservation doit être déterminée par catégorie et événement de départ (fin de compte, clôture d'offre, décision de candidature, fin de relation de mentorat, fin de validité d'une source). Aucune durée n'est inventée ici.
 - Avant production, faire vérifier par une personne compétente les obligations applicables en Côte d'Ivoire, les responsabilités, consentements, droits, mentions et éventuelles obligations propres aux mineurs. Aucune conformité juridique n'est déclarée acquise.
+- La région d'hébergement, la localisation des sauvegardes et tout transfert vers un fournisseur étranger doivent être inclus dans cette revue. La comparaison technique seule n'approuve aucun hébergeur pour des données personnelles.
+- Jusqu'à cette revue et à la définition des accès, consentements et durées, ne pas utiliser de vrais comptes, candidatures, coordonnées, réponses identifiables, CV, demandes de mentorat ou données de mineurs sur un service hébergé. Les tests de démonstration doivent rester synthétiques et séparés de la publication.
 - Le stockage local actuel ne constitue pas un registre central de données publiées ni un service de compte; il ne doit pas servir de référence de conservation pour la cible backend.
 
 ## 6. Procédure de correction et de retrait
@@ -114,4 +116,4 @@ La procédure de recours, les délais de traitement et les responsabilités nomi
 
 ## 8. Points à décider
 
-Les responsables nominatifs, sources acceptables par assertion, périodicité de révision, niveau de contrôle des mentors/organisations, durée de conservation, procédure mineurs, pièces justificatives, voie de correction et conformité applicable sont consignés comme ouverts dans le [registre des décisions](06-decisions-et-points-a-valider.md).
+Les responsables nominatifs, sources acceptables par assertion, périodicité de révision, niveau de contrôle des mentors/organisations, durée de conservation, procédure mineurs, pièces justificatives, voie de correction et conformité applicable sont consignés comme ouverts dans le [registre des décisions](06-decisions-et-points-a-valider.md). La traduction logique de ces catégories en groupes d'entités est décrite dans le [modèle de données](08-modele-de-donnees.md), sans remplacer ces règles de gouvernance.

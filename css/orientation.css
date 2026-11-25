@@ -83,6 +83,81 @@
   text-underline-offset: 3px;
 }
 
+.page-quiz .orientation-profil {
+  min-width: 0;
+  margin: 26px 0 24px;
+  padding: 18px 20px 20px;
+  border: 1px solid #DCE5EF;
+  border-radius: 12px;
+  background: #F7FAFD;
+}
+
+.page-quiz .orientation-profil legend {
+  padding: 0 8px;
+  color: #0B2545;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.page-quiz .orientation-profil-aide {
+  max-width: 640px;
+  margin: 2px 0 16px;
+  color: #5B6B82;
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.page-quiz .orientation-profil-champs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.page-quiz .orientation-profil-champs > div {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 7px;
+}
+
+.page-quiz .orientation-profil-champs label {
+  color: #263D58;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.page-quiz .orientation-profil-champs label span {
+  color: #68798E;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.page-quiz .orientation-profil-champs input,
+.page-quiz .orientation-profil-champs select {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 9px 11px;
+  border: 1px solid #C8D6E4;
+  border-radius: 7px;
+  background: #FFFFFF;
+  color: #16233B;
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.page-quiz .orientation-profil-champs input::placeholder {
+  color: #8290A2;
+}
+
+.page-quiz .orientation-profil-champs input:focus-visible,
+.page-quiz .orientation-profil-champs select:focus-visible {
+  outline: 3px solid rgba(76, 159, 232, 0.34);
+  outline-offset: 2px;
+  border-color: #4C9FE8;
+}
+
 .page-quiz .quiz-label-serie {
   margin: 28px 0 8px;
   color: #0B2545;
@@ -329,6 +404,115 @@
   color: #0B2545;
   font-size: 1.9rem;
   line-height: 1.1;
+}
+
+.page-quiz .carte-mini-filiere h3 {
+  margin: 0 0 10px;
+  color: #0B2545;
+  font: 1.65rem/1.15 var(--police-titres);
+}
+
+.resultat-synthese,
+.resultat-alternatives,
+.resultat-reponses {
+  margin: 22px 0;
+  padding-top: 18px;
+  border-top: 1px solid #DCE5EF;
+}
+
+.resultat-synthese h2,
+.resultat-alternatives h2,
+.resultat-reponses h2 {
+  margin: 0 0 12px;
+  color: #0B2545;
+  font: 1.5rem/1.2 var(--police-titres);
+}
+
+.resultat-note,
+.resultat-date {
+  color: #53647A;
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.resultat-ecoles {
+  margin: 8px 0 18px;
+  padding-left: 20px;
+  color: #53647A;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.resultat-ecoles a {
+  color: #163F6F;
+  text-underline-offset: 3px;
+}
+
+.resultat-filiere-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.resultat-filiere-actions button,
+.resultat-filiere-actions a {
+  min-height: 42px;
+}
+
+.bouton-comparer-filiere {
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: #163F6F;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.resultat-alternatives ul {
+  columns: 2;
+  padding-left: 20px;
+  color: #53647A;
+  line-height: 1.8;
+}
+
+.resultat-alternatives a {
+  color: #163F6F;
+  text-underline-offset: 3px;
+}
+
+.resultat-reponses ol {
+  display: grid;
+  gap: 14px;
+  padding-left: 24px;
+}
+
+.resultat-reponses li {
+  padding-left: 4px;
+  color: #53647A;
+  line-height: 1.6;
+}
+
+.resultat-reponses li strong,
+.resultat-reponses li span {
+  display: block;
+}
+
+.resultat-reponses li strong {
+  color: #16233B;
+}
+
+.resultat-texte-libre {
+  padding: 12px 14px;
+  background: #F7FAFD;
+  color: #53647A;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
 }
 
 .page-quiz .carte-mini-filiere > p:not(.resultat-carte-etiquette) {
@@ -652,6 +836,21 @@
     border-radius: 11px;
   }
 
+  .page-quiz .orientation-profil {
+    margin: 22px 0;
+    padding: 15px 14px 16px;
+  }
+
+  .page-quiz .orientation-profil-champs {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .page-quiz .orientation-profil-champs input,
+  .page-quiz .orientation-profil-champs select {
+    font-size: 0.86rem;
+  }
+
   .page-quiz .quiz-progression-entete {
     display: block;
   }
@@ -709,4 +908,7 @@
   .page-quiz .quiz-etape-point {
     transition: none;
   }
+}
+.page-quiz [hidden] {
+  display: none !important;
 }

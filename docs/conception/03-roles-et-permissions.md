@@ -1,7 +1,7 @@
 # Rôles et permissions — JeuneAvenir CI
 
 **Statut :** matrice cible de conception; les mappings de rôles signalés à confirmer ne sont pas des rôles actuellement sécurisés.
-**Documents liés :** [Référentiel](01-reference-et-perimetre.md), [Règles métier](02-regles-metier.md), [Gouvernance](04-gouvernance-des-donnees.md), [Exigences](05-registre-des-exigences.md), [Décisions ouvertes](06-decisions-et-points-a-valider.md).
+**Documents liés :** [Référentiel](01-reference-et-perimetre.md), [Règles métier](02-regles-metier.md), [Gouvernance](04-gouvernance-des-donnees.md), [Exigences](05-registre-des-exigences.md), [Décisions](06-decisions-et-points-a-valider.md), [Architecture](07-architecture-cible.md), [Modèle logique](08-modele-de-donnees.md), [Contrats API](09-contrats-api.md).
 
 ## 1. Principes d'autorisation
 
@@ -11,7 +11,7 @@
 4. Aucun utilisateur ne peut s'attribuer un rôle, créer un rôle privilégié ou modifier les permissions d'autrui par une requête frontend.
 5. Les rôles d'administration éditoriale et technique sont séparés; aucun privilège technique n'est accordé automatiquement à l'équipe éditoriale.
 6. Les accès exceptionnels aux données personnelles sont justifiés, limités, journalisés et audités.
-7. Avec Supabase, si ce choix est validé, chaque table exposée doit disposer de politiques RLS et de tests positifs et négatifs par rôle. RLS n'est pas encore présente dans le dépôt.
+7. La cible de conception est Laravel : chaque route et opération métier doit appliquer les autorisations côté serveur au moyen de politiques/gates adaptées. RLS n'est requise que si une décision future remplace cette cible par une plateforme qui expose directement PostgreSQL.
 
 ## 2. Taxonomie des rôles
 
@@ -77,7 +77,7 @@ Les niveaux de confidentialité et durées sont détaillés dans le document 04 
 
 ## 6. Modèle de politique serveur
 
-La conception détaillée devra choisir les contrôles correspondants à la plateforme retenue. Minimum attendu :
+Pour la cible Laravel validée en conception, les contrôles doivent être appliqués dans les routes, politiques/gates, validateurs de requête et services métier appropriés. Minimum attendu :
 
 1. Authentifier l'acteur et vérifier l'état de sa session.
 2. Charger son rôle et ses habilitations depuis une source de confiance.
@@ -87,7 +87,7 @@ La conception détaillée devra choisir les contrôles correspondants à la plat
 6. Enregistrer un événement d'audit pour les opérations sensibles.
 7. Tester également les refus, y compris les accès horizontaux (autre utilisateur/organisation) et verticaux (rôle supérieur).
 
-Si Supabase est retenu, RLS doit être activée et testée pour toutes les tables et opérations exposées. Une clé de service ou un rôle de contournement ne doit jamais être livré au navigateur.
+Le client ne peut pas définir lui-même son rôle, son organisation, son statut de vérification ou la décision de publication. Les permissions ne doivent pas dépendre de l'état de l'interface ni d'un identifiant difficile à deviner. Si la cible change ultérieurement vers Supabase ou un accès direct à la base, la protection RLS devra être spécifiée et testée; aucune clé privilégiée ne doit être livrée au navigateur.
 
 ## 7. Tests d'autorisation requis
 
@@ -98,6 +98,6 @@ Si Supabase est retenu, RLS doit être activée et testée pour toutes les table
 - Tentatives de publication par un visiteur, un jeune ou un mentor.
 - Séparation des droits éditoriaux et techniques; test du refus d'accès aux données personnelles non nécessaires.
 - Révocation d'un rôle, d'une session ou d'un représentant; accès refusé après révocation.
-- RLS par table si Supabase est choisi; tests négatifs sur lectures, insertions, mises à jour et suppressions.
+- Tests d'autorisation par politique Laravel sur lectures, insertions, mises à jour et suppressions; RLS par table seulement si une autre architecture qui expose la base est validée.
 
 Les tests ne sont pas encore exécutables sur un backend inexistant; leur réalisation dépend de l'architecture et du modèle de données validés.

@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  if (!window.JeuneAvenirPilot?.accountsEnabled) return;
+
   if (window.JeuneAvenirMotion) window.JeuneAvenirMotion.initialiser();
   const blocProfil = document.getElementById("bloc-profil");
   const blocNonConnecte = document.getElementById("bloc-non-connecte");

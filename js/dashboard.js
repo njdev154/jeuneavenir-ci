@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  if (!window.JeuneAvenirPilot?.accountsEnabled) {
+    return initialiserDashboardSessionLocale();
+  }
+
   if (window.JeuneAvenirMotion) window.JeuneAvenirMotion.initialiser();
   const blocNonConnecte = document.getElementById("bloc-non-connecte");
   const blocDashboard = document.getElementById("bloc-dashboard");
@@ -33,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   nav.innerHTML = navigationRole(utilisateur.typeCompte)
     .map(item => `<a href="${item.href}"${item.current ? ' aria-current="page"' : ""}>${echapperDashboard(item.label)}</a>`)
     .join("");
+  document.getElementById("dashboard-espaces").innerHTML = cartesEspacesPiliers();
 
   const sections = [];
   const alertes = [];
@@ -120,6 +125,122 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.JeuneAvenirMotion) window.JeuneAvenirMotion.initialiser();
 });
 
+async function initialiserDashboardSessionLocale() {
+  try {
+    const statusResponse = await fetch("/auth/status", {
+      credentials: "same-origin",
+      headers: { "Accept": "application/json" }
+    });
+    if (!statusResponse.ok) return;
+
+    const statut = await statusResponse.json();
+    if (statut?.data?.enabled !== true) return;
+    const csrfToken = statut.data.csrf_token;
+    if (typeof csrfToken !== "string" || csrfToken.length === 0) {
+      throw new Error("Le jeton de sécurité du compte est absent.");
+    }
+
+    const response = await fetch("/auth/current", {
+      credentials: "same-origin",
+      headers: { "Accept": "application/json" }
+    });
+    if (response.status === 401) {
+      window.location.href = "/connexion.html";
+      return;
+    }
+    if (!response.ok) throw new Error(`Le serveur a répondu avec le statut ${response.status}.`);
+
+    const payload = await response.json();
+    const utilisateur = payload?.data?.user;
+    if (
+      !utilisateur
+      || typeof utilisateur.name !== "string"
+      || typeof utilisateur.email !== "string"
+      || utilisateur.role !== "jeune"
+    ) {
+      throw new Error("Le profil de session est absent ou n’est pas pris en charge.");
+    }
+
+    rendreDashboardSessionLocale(utilisateur, csrfToken);
+  } catch (erreur) {
+    console.error("Chargement de la session locale impossible :", erreur);
+    afficherErreurConnexion("Le tableau de bord n’a pas pu charger la session du serveur local. Réessaie ou reconnecte-toi.");
+  }
+}
+
+function rendreDashboardSessionLocale(utilisateur, csrfToken) {
+  const nom = texteDashboard(utilisateur.name);
+  const prenom = nom.split(/\s+/)[0] || "Jeune";
+  const blocNonConnecte = document.getElementById("bloc-non-connecte");
+  const blocDashboard = document.getElementById("bloc-dashboard");
+  blocNonConnecte.hidden = true;
+  blocDashboard.hidden = false;
+
+  document.getElementById("avatar-initiale").textContent = initialesDashboard(nom);
+  document.getElementById("sidebar-nom").textContent = nom;
+  document.getElementById("sidebar-type").textContent = "Compte Jeune · développement local";
+  document.getElementById("dashboard-role-kicker").textContent = "ESPACE JEUNE";
+  document.getElementById("dashboard-salutation").textContent = `Bonjour ${prenom}.`;
+  document.getElementById("dashboard-sous-titre").textContent =
+    "Ta session est ouverte sur ce serveur local. Les autres activités ne sont pas encore reliées à ce compte.";
+
+  document.getElementById("dashboard-nav").innerHTML = [
+    '<a href="/dashboard.html" aria-current="page">Tableau de bord</a>',
+    '<a href="/quiz.html">Orientation</a>',
+    '<a href="/filieres.html">Découverte</a>'
+  ].join("");
+  document.getElementById("dashboard-actions").innerHTML =
+    '<a class="account-button" href="/quiz.html">Explorer le parcours d’orientation</a>';
+  document.getElementById("dashboard-espaces").innerHTML = [
+    '<a class="account-pillar-card" href="/quiz.html"><span class="account-pillar-number" aria-hidden="true">01</span><h3>Orientation</h3><span class="account-pillar-status">Exploration locale</span><p>Le résultat du quiz n’est pas encore sauvegardé dans ton compte.</p><span class="account-pillar-link">Ouvrir le quiz <span aria-hidden="true">→</span></span></a>',
+    '<a class="account-pillar-card" href="/filieres.html"><span class="account-pillar-number" aria-hidden="true">02</span><h3>Découverte</h3><span class="account-pillar-status">Catalogue partiel</span><p>Consulte les filières et les établissements avec leurs limites de vérification.</p><span class="account-pillar-link">Explorer le catalogue <span aria-hidden="true">→</span></span></a>'
+  ].join("");
+  document.getElementById("dashboard-stats").innerHTML =
+    '<article class="account-stat"><strong>Actif</strong><span>Compte local</span></article>';
+  document.getElementById("dashboard-sections").innerHTML =
+    '<section class="account-panel"><p class="account-eyebrow">ÉTAT DU COMPTE</p><h2>Un premier espace, sans fausse synchronisation</h2><p>Le serveur conserve les identifiants de ce compte de test. Le profil détaillé, les résultats du quiz, les favoris, le mentorat et les candidatures ne sont pas encore liés à ce compte.</p></section>';
+
+  const notice = document.querySelector(".pilot-notice");
+  const noticeTexte = notice?.querySelector("p");
+  if (noticeTexte) {
+    notice.setAttribute("aria-label", "Limites du compte de développement local");
+    noticeTexte.textContent = "Compte de développement local actif. N’utilise que des données fictives; aucun parcours métier ni donnée de mineur n’est activé.";
+  }
+  document.querySelectorAll(".pilot-page-message").forEach(message => message.remove());
+  document.querySelectorAll(".pilot-disabled-link").forEach((element) => {
+    const lien = document.createElement("a");
+    lien.href = "/dashboard.html";
+    lien.textContent = "Compte";
+    lien.setAttribute("aria-current", "page");
+    element.replaceWith(lien);
+  });
+
+  document.getElementById("bouton-deconnexion").addEventListener("click", async (evenement) => {
+    const bouton = evenement.currentTarget;
+    const erreur = document.getElementById("dashboard-erreur");
+    bouton.disabled = true;
+    try {
+      const response = await fetch("/auth/logout", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Accept": "application/json",
+          "X-CSRF-TOKEN": csrfToken
+        }
+      });
+      if (!response.ok) throw new Error(`Le serveur a répondu avec le statut ${response.status}.`);
+      window.location.href = "/connexion.html";
+    } catch (exception) {
+      console.error("Déconnexion du compte local impossible :", exception);
+      erreur.hidden = false;
+      erreur.textContent = "La déconnexion n’a pas abouti. Réessaie.";
+      bouton.disabled = false;
+    }
+  });
+
+  if (window.JeuneAvenirMotion) window.JeuneAvenirMotion.initialiser();
+}
+
 function lireJSONDashboard(cle, valeurParDefaut) {
   try {
     const contenu = localStorage.getItem(cle);
@@ -146,6 +267,26 @@ function afficherStats(stats) {
       <strong>${echapperDashboard(stat.valeur)}</strong>
       <span>${echapperDashboard(stat.libelle)}</span>
     </article>
+  `).join("");
+}
+
+function cartesEspacesPiliers() {
+  const espaces = [
+    { numero: "01", titre: "Orientation", href: "quiz.html", statut: "Quiz disponible", description: "Des pistes exploratoires, avec un résultat conservé sur cet appareil." },
+    { numero: "02", titre: "Découverte", href: "filieres.html", statut: "Catalogues partiels", description: "Explore les filières, établissements et métiers; vérifie les sources." },
+    { numero: "03", titre: "Mentorat", href: "mentorat.html", statut: "Annuaire consultable", description: "Les demandes de démonstration ne sont transmises à aucun mentor." },
+    { numero: "04", titre: "Insertion professionnelle", href: "offres.html", statut: "Candidatures locales", description: "Les candidatures et annonces de démonstration restent dans ce navigateur." },
+    { numero: "05", titre: "Compte", href: "dashboard.html", statut: "Profil local", description: "Profil, favoris et activité ne sont pas synchronisés avec un service en ligne.", current: true }
+  ];
+
+  return espaces.map(espace => `
+    <a class="account-pillar-card" href="${espace.href}"${espace.current ? ' aria-current="page"' : ""}>
+      <span class="account-pillar-number" aria-hidden="true">${espace.numero}</span>
+      <h3>${echapperDashboard(espace.titre)}</h3>
+      <span class="account-pillar-status">${echapperDashboard(espace.statut)}</span>
+      <p>${echapperDashboard(espace.description)}</p>
+      <span class="account-pillar-link">Ouvrir l’espace <span aria-hidden="true">→</span></span>
+    </a>
   `).join("");
 }
 

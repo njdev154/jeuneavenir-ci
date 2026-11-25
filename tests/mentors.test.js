@@ -6,7 +6,7 @@ const vm = require("node:vm");
 
 const source = fs.readFileSync(path.join(__dirname, "..", "js", "mentors.js"), "utf8");
 
-function creerContexte(elements = {}) {
+function creerContexte(elements = {}, stockage = {}) {
   const document = {
     addEventListener() {},
     getElementById(id) {
@@ -14,12 +14,21 @@ function creerContexte(elements = {}) {
     }
   };
   const window = {
+    JeuneAvenirPilot: { submissionsEnabled: false },
     JeuneAvenirMotion: {
       initialiser() {},
       animer() {}
     }
   };
-  const contexte = vm.createContext({ document, window, console });
+  const localStorage = {
+    getItem(cle) {
+      return Object.prototype.hasOwnProperty.call(stockage, cle) ? stockage[cle] : null;
+    },
+    setItem(cle, valeur) {
+      stockage[cle] = valeur;
+    }
+  };
+  const contexte = vm.createContext({ document, window, console, localStorage });
   vm.runInContext(source, contexte, { filename: "js/mentors.js" });
   return contexte;
 }
@@ -85,4 +94,30 @@ test("le récapitulatif local échappe le message et précise qu'aucune réponse
   assert.match(zone.innerHTML, /aucune notification ni mise en relation réelle/);
   assert.match(zone.innerHTML, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
   assert.doesNotMatch(zone.innerHTML, /<script>alert/);
+});
+
+test("le pilote public bloque une demande mentorat sans lire ni écrire le stockage local", () => {
+  const stockage = { jac_demandes_mentorat: "[]" };
+  const zone = { innerHTML: "" };
+  const contexte = creerContexte({}, stockage);
+  let lectures = 0;
+  let ecritures = 0;
+  const lire = contexte.localStorage.getItem;
+  const ecrire = contexte.localStorage.setItem;
+  contexte.localStorage.getItem = (...argumentsAppel) => {
+    lectures += 1;
+    return lire(...argumentsAppel);
+  };
+  contexte.localStorage.setItem = (...argumentsAppel) => {
+    ecritures += 1;
+    return ecrire(...argumentsAppel);
+  };
+
+  contexte.afficherDemande({ id: "mentor-1", nom: "Mentor test" }, zone);
+
+  assert.match(zone.innerHTML, /mise en relation n’est pas disponible pendant ce pilote/);
+  assert.doesNotMatch(zone.innerHTML, /formulaire-demande-mentor/);
+  assert.equal(lectures, 0);
+  assert.equal(ecritures, 0);
+  assert.deepEqual(stockage, { jac_demandes_mentorat: "[]" });
 });

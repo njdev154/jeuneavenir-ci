@@ -68,6 +68,15 @@
   padding: 6px;
 }
 
+.jac-assistant-note {
+  margin: 0;
+  padding: 8px 14px;
+  color: #16233B;
+  background: #EAF3FC;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
 .jac-assistant-messages {
   flex: 1;
   overflow-y: auto;

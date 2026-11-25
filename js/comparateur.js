@@ -60,6 +60,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
+    const preselection = new URLSearchParams(window.location.search).get("filieres");
+    if (preselection) {
+      const idsDisponibles = new Set(TOUTES_FILIERES.map(filiere => String(filiere.id)));
+      const ids = [...new Set(preselection.split(",").filter(id => idsDisponibles.has(id)))].slice(0, 3);
+      ids.forEach((id, slot) => {
+        selectionsActuelles[slot] = id;
+        const select = document.querySelector(`.comparateur-select[data-slot="${slot}"]`);
+        if (select) select.value = id;
+      });
+    }
     mettreAJourSelecteurs();
     afficherTableau();
   } catch (erreur) {

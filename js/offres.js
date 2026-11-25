@@ -307,8 +307,8 @@ function afficherFicheOffre(offre) {
           ? boutonFavoriHTML("offres", echapperOffre(offre.id))
           : ""}
         <div id="zone-candidature"></div>
-        <p class="offres-note-v1">La candidature est enregistrée uniquement dans ce navigateur. Elle n’est pas transmise à l’entreprise.</p>
-        <a href="candidatures.html" class="offres-lien">Consulter mes candidatures locales</a>
+        <p class="offres-note-v1">Les candidatures ne sont pas ouvertes pendant ce pilote. Aucune coordonnée ni aucun texte de candidature ne sera recueilli.</p>
+        <a href="candidatures.html" class="offres-lien">Voir l’état du suivi des candidatures</a>
       </aside>
     </div>
   `;
@@ -335,6 +335,8 @@ function afficherFicheOffre(offre) {
 }
 
 function lireUtilisateurOffres() {
+  if (!window.JeuneAvenirPilot?.accountsEnabled) return null;
+
   try {
     const utilisateur = JSON.parse(localStorage.getItem("jac_utilisateur_connecte") || "null");
     return utilisateur && typeof utilisateur.email === "string" ? utilisateur : null;
@@ -358,6 +360,10 @@ function lireCandidaturesOffres() {
 
 function afficherFormulaireCandidature(offre, utilisateur) {
   const zone = document.getElementById("zone-candidature");
+  if (!window.JeuneAvenirPilot?.submissionsEnabled) {
+    zone.innerHTML = '<p role="status">Les candidatures ne sont pas disponibles pendant ce pilote. Aucune donnée n’a été recueillie ou transmise.</p>';
+    return;
+  }
   if (!utilisateur) {
     zone.innerHTML = `
       <p>Connecte-toi avec un compte Jeune pour préparer une candidature de démonstration.</p>
