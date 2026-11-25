@@ -96,6 +96,16 @@ composer audit --no-interaction
 
 Le workflow GitHub Actions `.github/workflows/tests.yml` exécute ces vérifications sur les push et pull requests; il ne déploie pas le site.
 
+### État de publication actuel
+
+Le dépôt public est également publié par sa configuration GitHub Pages existante
+à [njdev154.github.io/jeuneavenir-ci](https://njdev154.github.io/jeuneavenir-ci/).
+Ce déploiement suit la branche `assistant-ia` et publie le dépôt depuis sa
+racine; il n'utilise pas l'export à liste blanche `dist/` décrit ci-dessous.
+Le dépôt étant public, son code source l'est aussi. Pour ne publier que le site
+statique autorisé, utiliser Netlify avec `netlify.toml` ou configurer GitHub
+Pages pour déployer le dossier `dist/` via GitHub Actions.
+
 ### Préparer le pilote public sur Netlify
 
 Le pilote public est un export statique : `netlify.toml` configure la commande

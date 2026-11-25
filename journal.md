@@ -332,4 +332,6 @@
 ## 2026-11-25 — Correction de la CI PHP
 - Le premier push a déclenché la CI : les tests frontend ont réussi, mais l'installation Composer a échoué car le lock résout Symfony 8.1, qui exige PHP 8.4.1+, alors que le workflow installait PHP 8.3.
 - Alignement du workflow sur PHP 8.5, de la contrainte PHP Composer et des prérequis documentés sur PHP 8.4.1+. `composer update --lock`, `composer validate --strict`, `composer audit` et les 18 tests Laravel / 164 assertions réussissent localement.
-- À faire : pousser ce correctif et vérifier le nouveau passage de la CI. Aucun déploiement Netlify n'est effectué, faute de site ou domaine associé.
+- Push du correctif; la CI GitHub Actions réussit sur les tests frontend, `composer install`, l'audit Composer et les tests Laravel.
+- Le push a aussi déclenché la publication GitHub Pages déjà configurée sur la branche `assistant-ia`. Le pilote est accessible à `https://njdev154.github.io/jeuneavenir-ci/`; l'accueil et le démarrage du quiz ont été vérifiés en ligne, l'inscription reste désactivée et les données de test du navigateur ont été effacées.
+- GitHub Pages publie actuellement la racine du dépôt, pas l'export `dist/`; le dépôt est public et son code source l'est également. Netlify n'est pas connecté et aucun domaine personnalisé n'est configuré.
