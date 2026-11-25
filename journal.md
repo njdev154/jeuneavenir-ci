@@ -328,3 +328,8 @@
 - Ajout du contrôle automatisé de l'export et d'une CI de tests/audit sans étape de déploiement. Documentation des commandes manuelles et des limites du pilote dans le README.
 - Vérifications : 83 tests Node réussis; quiz statique parcouru jusqu'aux résultats avec sept réponses; le formulaire d'inscription et les comptes restent désactivés. Le 404 attendu de l'API en mode statique conserve l'avertissement de pilote; les données de test du navigateur ont été effacées.
 - Le déploiement n'a pas été effectué : aucun site Netlify ni domaine n'est associé, et la vérification/validation éditoriale du catalogue reste à faire.
+
+## 2026-11-25 — Correction de la CI PHP
+- Le premier push a déclenché la CI : les tests frontend ont réussi, mais l'installation Composer a échoué car le lock résout Symfony 8.1, qui exige PHP 8.4.1+, alors que le workflow installait PHP 8.3.
+- Alignement du workflow sur PHP 8.5, de la contrainte PHP Composer et des prérequis documentés sur PHP 8.4.1+. `composer update --lock`, `composer validate --strict`, `composer audit` et les 18 tests Laravel / 164 assertions réussissent localement.
+- À faire : pousser ce correctif et vérifier le nouveau passage de la CI. Aucun déploiement Netlify n'est effectué, faute de site ou domaine associé.

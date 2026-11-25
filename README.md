@@ -74,7 +74,7 @@ Les tests ciblés de l'assistant se lancent avec `node --test tests/assistant.te
 
 ### API Laravel locale
 
-PHP 8.3+ et Composer sont nécessaires. Depuis `backend/` :
+PHP 8.4.1+ et Composer sont nécessaires. Depuis `backend/` :
 
 ```powershell
 composer install

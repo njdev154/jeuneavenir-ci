@@ -4,7 +4,7 @@ Application Laravel de développement local. Elle sert les pages du dépôt pare
 
 ## Prérequis
 
-- PHP 8.3 ou plus récent
+- PHP 8.4.1 ou plus récent
 - Composer
 
 ## Démarrer en local
